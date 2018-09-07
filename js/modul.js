@@ -159,8 +159,32 @@ $(document).ready(function() {
     });
 });
 
+
+function filter(){
+var semester = document.getElementById("semester").value;
+var art = document.getElementById("art").value;
+var betreuer = document.getElementById("betreuer").value;
+
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("semester_f").innerHTML = this.responseText;  
+        var content1 = this.responseText;  
+          
+    }
+}
+xhttp.open("GET", "ajax/filter_semester.php?semester=" + semester + "&art="+art+"&betreuer="+betreuer, true);
+xhttp.send();
+}
+
+
+
+/*
 function sem(str,str2) {
     var xhttp;
+    var str;
+    var str2;
+
     if (str == "") {
         document.getElementById("semester_f").innerHTML = "";
         return;
