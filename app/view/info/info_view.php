@@ -1,7 +1,7 @@
 
 
 <info>
-<h2 class="card-title">Themenvergabe für Seminar- und Abschlussarbeitsthemen!</h2>
+<h2 class="card-title">Themenvergabe für Seminar- und Abschlussarbeitsthemen</h2>
    Herzlich Willkommen zum Tool zur Anmeldung und Vergabe von Seminar- und Abschlussarbeitsthemen. <br>
    Hier finden Sie zentrale Informationen zur Vergabe der einzelnen Modulen und der dazugehörigen Themen.<br>
 <br>
