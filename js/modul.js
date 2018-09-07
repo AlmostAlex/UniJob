@@ -159,10 +159,8 @@ $(document).ready(function() {
     });
 });
 
-function sem(str) {
+function sem(str,str2) {
     var xhttp;
-    var art = document.getElementById("art"),
-        artValue = art.value;
     if (str == "") {
         document.getElementById("semester_f").innerHTML = "";
         return;
@@ -170,12 +168,12 @@ function sem(str) {
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("semester_f").innerHTML = this.responseText;
+            document.getElementById("semester_f").innerHTML = this.responseText;  
+            var content1 = this.responseText;  
+              
         }
-        var art = document.getElementById("art").innerHTML,
-            artValue = art.value;
     };
-    xhttp.open("GET", "ajax/filter_semester.php?semester=" + str + "&art=" + art, true);
+    xhttp.open("GET", "ajax/filter_semester.php?semester=" + str, true);
     xhttp.send();
 }
 
@@ -194,3 +192,18 @@ function art1(str) {
     xhttp.open("GET", "ajax/filter_art.php?art=" + str, true);
     xhttp.send();
 }
+
+/*
+$.ajax({
+    url: "/ajax/tags.php?term=" + query,
+    type: "get",
+    dataType: "html",
+    async: false,
+    success: function(data) {
+        result = data;
+    }
+});
+console.log(result);
+
+return JSON.parse(result); */
+
