@@ -1,0 +1,18 @@
+
+<div class="verwaltungsbox">
+    <h4 class='card-title'>Verwaltungsbereich</h4>
+            Folgende Funktionen stehen zur Verfügung: <br>
+        <b>1.</b> Es können Module mit den dazugehörigen Themen eingetragen werden.<br>
+        <b>2.</b> Es können eingetragene Module und Themen verwaltet, bearbeitet und gelöscht werden.<br>
+        <b>3.</b> Zudem können Themen nachträglich zum Modul hinzugefügt werden.<br>
+        <b>4.</b> Es kann ein Report erstellt und exportiert werden.ree
+</div>
+ 
+<div class="Verwaltungsbereich">
+        <ul>
+                <li class='Thema_uebersicht'><a href='/mt_verwaltung'>Übersicht &<br>Verwaltung<span></span></a></li>
+                <li class='thema_hochladen'><a href=''>Archivierung<br><span></span></a></li>
+                <li class='inf_verwalten'><a href='/modul_eintragen'>Modul <br>eintragen<span></span></a></li>
+                <li class='report_erstellen'><a href='/report_wahl'>Report <br>erstellen<span></span></a></li>
+        </ul>
+</div>

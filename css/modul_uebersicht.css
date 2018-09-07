@@ -1,0 +1,25 @@
+.suche {
+    padding: 2%;
+    background-color: rgba(34, 36, 38, .01);
+    border: 1px solid rgba(34, 36, 38, .1);
+    border-radius: 6px;
+    background-image: linear-gradient(to top, rgba(34, 36, 38, .01) 0%, rgba(34, 36, 38, .02) 70%);
+}
+
+.suche b {
+    font-size: 14px;
+}
+
+.suche table {
+    width: 100%;
+    text-align: center
+}
+
+.suche select {
+    width: 150px;
+    margin-left: 20px;
+}
+
+.suche form {
+    margin-bottom: 2%;
+}

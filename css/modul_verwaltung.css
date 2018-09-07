@@ -1,0 +1,469 @@
+.modul_anzeige table {
+    width: 100%;
+    border-bottom: 1px solid rgba(34, 36, 38, .15);
+    border-left: 1px solid rgba(34, 36, 38, .15);
+    border-right: 1px solid rgba(34, 36, 38, .15);
+    box-shadow: none;
+    border-radius: .48571429rem;
+    text-align: left;
+    color: rgba(0, 0, 0, .87);
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.modul_anzeige table tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    border: 1px solid rgba(34, 36, 38, .1);
+}
+
+.modul_anzeige tr th {
+    cursor: auto;
+    color: rgba(34, 36, 38, .85);
+    background: #F9FAFB;
+    text-align: inherit;
+    color: rgba(0, 0, 0, .87);
+    padding: .82857143em .68571429em;
+    vertical-align: inherit;
+    text-transform: none;
+    background-image: linear-gradient(to top, rgba(34, 36, 38, .01) 0%, rgba(34, 36, 38, .015) 20%);
+}
+
+.modul_anzeige table tr td {
+    color: rgba(34, 36, 38, .85);
+    border-left: 1px solid rgba(34, 36, 38, .1);
+    border-bottom: 1px solid rgba(34, 36, 38, .1);
+    padding: .78571429em;
+    text-align: inherit;
+    border-radius: 6px;
+}
+
+th {
+    font-weight: normal;
+}
+
+.vergeben {
+    background-color: red;
+}
+
+.modul_anzeige inside table tr th {
+    padding: .58571429em;
+    line-height: 1.5;
+    margin: 60px auto;
+    color: #000000;
+    font-weight: bold;
+    border-bottom: 2px solid #3979b5;
+    border-left: 1px solid rgba(34, 36, 38, .1);
+}
+
+.modul_anzeige table tr:nth-child(2n-2) {
+    background-color: rgba(34, 36, 38, .025);
+    font-size: 14px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #333;
+    border-radius: 6px;
+}
+
+.modul_anzeige table tr:nth-child(2n-1) {
+    background-color: rgba(34, 36, 38, .01);
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #333;
+    border-radius: 6px;
+}
+
+.bewerbung {
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #28a745;
+    float: right;
+    min-width: 170px;
+    margin-bottom: 15px;
+}
+
+.border_round {
+    float: left;
+    font-size: 11.4px;
+    margin: 2px;
+    background-color: white;
+    border: 1px solid #ced4da;
+    padding: 7px;
+    border-radius: .95rem
+}
+
+titel {
+    font-size: 14.5px;
+    line-height: 10px;
+    text-align: center;
+    font-weight: 700;
+}
+
+[data-toggle="collapse"] i:before {
+    font-size: 17px;
+    content: "\f13a";
+}
+
+[data-toggle="collapse"].collapsed i:before {
+    content: "\f138";
+}
+
+.nopadding {
+    padding: 0 !important;
+}
+
+.information_content {
+    padding: 10px 10px 10px 15px;
+}
+
+.information_content_inhalt {
+    font-size: 11.5px;
+    margin-left: 5px;
+    padding: 10px;
+    background-color: #F6F7F6;
+    border: 1px solid #EBECEB;
+}
+
+.information_titel {
+    font-size: 13px;
+    padding-bottom: 2px;
+    margin-bottom: 10px;
+}
+
+.vergeben {
+    width: 90%;
+    font-size: 11.4px;
+    color: #BB0A21;
+    padding: 3px;
+    background-color: #F8E8EA;
+    border: 1px solid #efc2c2;
+    border-radius: 5px;
+}
+
+.verfügbar {
+    width: 90%;
+    font-size: 11.4px;
+    color: #658752;
+    padding: 3px;
+    background-color: #E8EEDF;
+    border: 1px solid #ACC18A;
+    border-radius: 5px;
+}
+
+
+/* ÜEBERSICHT ADMIN */
+
+uebersicht table th {
+    font-weight: bold;
+}
+
+.top {
+    color: #333;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid transparent;
+    border-color: #ddd;
+    border-top: 4px solid #3979b5;
+    padding: 10px;
+    width: 100%;
+}
+
+panel panel-default panel-table {
+    width: 100%;
+    font-size: 12.5px;
+}
+
+.panel-title-dozent {
+    font-size: 1.25rem;
+    border-bottom: 1px solid #efefef;
+    margin-right: 50px;
+}
+
+.panel_table th {
+    margin: 0px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: center;
+}
+
+uebersicht .btn-group_dozent {
+    float: left;
+    border-radius: 10px;
+    padding: 0px;
+}
+
+uebersicht list .btn {
+    color: #444444;
+    background-color: #f2f2f2;
+    transition: all 0.8s ease 0s;
+    border: 1px solid rgba(0, 0, 0, 0.2959795);
+    text-shadow: 0px 0px 9px #ffffff;
+    box-shadow: 0px 0px 1px #aaa, inset 0px 2px 3px #fff;
+}
+
+uebersicht list .btn:hover {
+    color: #444444;
+    background-color: #e8e8e8;
+}
+
+uebersicht list .btn:active {
+    color: #ffffff;
+}
+
+uebersicht label {
+    margin-right: 5px;
+}
+
+.panel {
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.panel-body {
+    padding: 15px;
+}
+
+.panel-default {
+    border-color: #ddd;
+    -webkit-box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
+}
+
+uebersicht module tr {
+    border: 1px solid #ddd;
+}
+
+uebersicht a {
+    color: #ffffff;
+}
+
+uebersicht .border_round {
+    display: inline-block;
+    padding: .55em .6em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: .25rem;
+    background-color: white;
+    border: 1px solid #ced4da;
+}
+
+uebersicht .table {
+    margin-bottom: 0px;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.badge {
+    padding: 10px;
+}
+
+uebersicht span {
+    transition: all 0.5s ease 0s;
+}
+
+uebersicht span:hover {
+    background: orange;
+}
+
+uebersicht span a:hover {
+    color: #ffffff;
+}
+
+uebersicht module table tr {
+    background-color: #F1F0F0;
+}
+
+uebersicht module table td {
+    background-color: #fcfcfc;
+}
+
+uebersicht .btn-group_dozent input {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    pointer-events: none
+}
+
+inside table,
+inside th,
+inside td {
+    font-size: 14.2px;
+    vertical-align: top;
+}
+
+.panel-footer {
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+inside .badge {
+    padding: 8px;
+}
+
+
+/* Tabellen */
+
+uebersicht {
+    margin-bottom: 100px;
+}
+
+
+/* actions  */
+
+.btn_false {
+    display: none;
+}
+
+
+/* MODAL MODIFIKATIONEN */
+
+.modal.fade {
+    top: 30%;
+}
+
+.well {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.alert-danger {
+    font-size: 15px;
+}
+
+
+/* Edit */
+
+
+/*-- Edits Divs und Tables -*/
+
+.edit_div {
+    margin-top: 5%;
+    margin-bottom: 10%;
+    margin-left: 5%;
+    font-size: 12.5px;
+    border: 1px solid #d9d9d9;
+    border-top: 4px solid #3979b5;
+    width: 80%;
+    background: #FFF;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
+    -moz-box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
+    -webkit-box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
+}
+
+.edit_div h5 {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.edit_div h5 span {
+    font-size: 15px;
+}
+
+.edit_div_table {
+    width: 90%;
+    margin: 5%;
+}
+
+
+/*-- Edits Divs und Tables für Module-*/
+
+.edit_div_modul {
+    margin-top: 5%;
+    margin-bottom: 10%;
+    margin-left: 1%;
+    font-size: 12.5px;
+    border: 1px solid #d9d9d9;
+    border-top: 4px solid #3979b5;
+    width: 95%;
+    background: #FFF;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
+    -moz-box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
+    -webkit-box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
+}
+
+.edit_div_modul table td label {
+    width: 200px;
+    padding-right: 0%;
+    margin-right: 0px;
+    font-size: 15px;
+    text-align: left;
+    float: left;
+    padding-bottom: 4%;
+}
+
+.edit_div_modul h5 {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.edit_div_modul h5 span {
+    font-size: 15px;
+}
+
+.edit_div_modul li {
+    margin-left: 4%;
+}
+
+#waehle_modul {
+    display: none;
+}
+
+report label {
+    padding: 0%;
+}
+
+
+/*add thema */
+
+.bootstrap-tagsinput input {
+    font-size: 14px;
+}
+
+.bootstrap-tagsinput .tag {
+    color: black;
+}
+
+#js-edit-input {
+    background-color: transparent;
+    font-size: 12px;
+    line-height: 23px;
+    text-shadow: 0 1px white;
+    margin: 0px;
+    padding: 0px;
+    display: inline;
+    width: 60%;
+}
+
+.add_thema .bootstrap-tagsinput {
+    width: 90%;
+}
+
+#add_btn {
+    float: right;
+    background-color: #3979b5;
+}
+
+.list-group-item.active {
+    background-color: #3979b5;
+}

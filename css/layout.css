@@ -1,0 +1,115 @@
+html {
+    font-size:14px;
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 310px;
+}
+
+/* CSS zum Layout */
+.header { 
+    position: relative;
+    background-color: #13306a;
+}    
+
+.headeruntertitel { 
+    text-align: right;
+    background-color: #13306a;
+    color:#fff;
+    font-size: 22px;
+    position:absolute;
+    bottom:0;
+    right:0;
+    margin-right: 40px;
+    margin-bottom: 10px;
+}    
+
+.headerunter { 
+    position: relative; 
+}
+
+
+.container {
+    width: auto;
+    max-width: 1250px;
+}
+
+/*  ENDE CSS zum Header  */
+
+
+/*  Anfang CSS zur OBEREN Navigation  */
+
+.navbereich{
+    background-color: #3979b5;
+    width: 100%;
+
+    text-align: center;
+    position:relative;
+    margin-top:0.2%;
+    padding: 0.2%;
+}
+.navbereich a:link {
+    color: #ffffff;
+    font-size: 20px;
+    padding-left: 1%;
+    text-transform: uppercase;
+}
+
+.navbereich a:visited {
+    color: #ffffff;
+    font-size: 20px;
+    padding-left: 1%;
+    text-transform: uppercase;
+}
+
+.navbereich a:hover {
+    color: #ffffff;
+    font-size: 20px;
+    padding-left: 1%;
+    text-transform: uppercase;
+}
+
+.navbereich a:active {
+    color: #ffffff;
+    font-size: 20px;
+    padding-left: 1%;
+    text-transform: uppercase;
+}  
+
+/*  CSS Zur Navigation rechts */
+
+.nav_box{     
+    width: 85%;
+    background-color: #efefef;
+    border-top: 4px solid #1d71a2;
+    margin: 5%;
+    padding: 5%;
+    padding-bottom: 2%;
+    margin-right: 50px;
+}
+
+.nav_box i{
+    color: #007bff;
+}
+
+/*  ENDE CSS Navigation */
+
+/*  Anfang CSS zur FOOTER  */
+.footer {
+    font-size: 15px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 310px;
+    background-color: #7d7d7d;
+    color: #ffffff;  
+    padding-top: 0px;
+}
+.footer a {
+    color: #fff;
+}
+
+/*  ENDE CSS zur FOOTER  */
+
