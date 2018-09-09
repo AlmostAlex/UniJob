@@ -160,21 +160,37 @@ $(document).ready(function() {
 });
 
 
-function filter(){
-var semester = document.getElementById("semester").value;
-var art = document.getElementById("art").value;
-var betreuer = document.getElementById("betreuer").value;       
+function filter() {
 
-xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("semester_f").innerHTML = this.responseText;  
-        var content1 = this.responseText;  
-          
+    var giftarray = new Array();
+    $('#gift option:selected').each(
+        function(i) {
+            giftarray[i] = $(this).text();
+        });
+
+    var semester = document.getElementById("semester").value;
+    var art = document.getElementById("art").value;
+    var betreuer = document.getElementById("betreuer").value;
+
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-}
-xhttp.open("GET", "ajax/filter_semester.php?semester=" + semester + "&art="+art+"&betreuer="+betreuer, true);
-xhttp.send();
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("semester_f").innerHTML = xmlhttp.responseText;
+        }
+    }
+    var gift = "'" + giftarray.join("','") + "'";
+    var url = "ajax/filter_semester.php?semester=" + semester + "&art=" + art + "&betreuer=" + betreuer;
+    url = url + "&gift=" + gift;
+
+
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+
 }
 
 
@@ -230,4 +246,3 @@ $.ajax({
 console.log(result);
 
 return JSON.parse(result); */
-

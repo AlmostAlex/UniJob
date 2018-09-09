@@ -14,6 +14,7 @@
 }
 </style>
 
+
 <h2 style='margin-top: 20px;' class='card-title'>Übersicht der Seminar- / Abschlussarbeitsthemen</h2>
 <div style='text-align: center'>
 <div class='suche'>
@@ -29,7 +30,7 @@
     <tr>
         <td>
             
-            <select class='form-control' id='art' name='art2' onchange="filter()">
+            <select class='form-control' id='art' name='art2' onchange="filter();">
             <option value=""></option>
                 <option value='Abschlussarbeit' name='Abschlussarbeit'>Abschlussarbeiten1</option>
                 <option value='Seminararbeiten' name='Seminararbeiten'>Seminararbeiten1</option>
@@ -38,7 +39,7 @@
         </td> 
         <td>
             
-            <select class='form-control' id='semester' name='semester2' onchange="filter()">
+            <select class='form-control' id='semester' name='semester2' onchange="filter();">
                 <option value=""></option>
                 <option value='s12'>s12</option>
                 <option value='s11'>s11</option>
@@ -46,33 +47,27 @@
         </td> 
 
          <td>           
-            <select class='form-control' id='betreuer' name='betreuer' onchange="filter()">
+            <select class='form-control' id='betreuer' name='betreuer' onchange="filter();">
                 <option value=""></option>
                 <option value='schuhmann'>boss</option>
                 <option value='kolbe'>boss!</option>
             </select>
        </td>
        <td>
-       <select class="selectpicker" multiple data-live-search="true" onchange="filter()">
-       <option>Mustard</option>
-  <option>Ketchup</option>
-  <option>Relish232323</option>  
-  <option>Mus3213tard</option>
-  <option>Ke33tchup</option>
-  <option>Re2lish</option>
+       <select name="gift" id="gift" class="selectpicker" multiple="multiple" onchange="filter();">
+       <option value=""></option>
+       <option value="him">Him</option>
+       <option value="her">Her</option>
+       <option value="kids">Kids</option>
 </select>
-
         </td> 
 </tr>
-
 
 </table>
 </div>
 </div>
 
-<p id="art_f"> hihi hi</p>
 <p id="semester_f">  joo </p>
-
 
 </form>
 
