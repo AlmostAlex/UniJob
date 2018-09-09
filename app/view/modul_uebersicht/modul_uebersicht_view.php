@@ -13,8 +13,8 @@
     <tr>
         <td>
             
-            <select class='form-control' id='art' name='art' onchange="art1(this.value)">
-                <option></option>
+            <select class='form-control' id='art' name='art2' onchange="filter()">
+            <option value=""></option>
                 <option value='Abschlussarbeit' name='Abschlussarbeit'>Abschlussarbeiten1</option>
                 <option value='Seminararbeiten' name='Seminararbeiten'>Seminararbeiten1</option>
             </select>
@@ -22,10 +22,18 @@
         </td> 
         <td>
             
-            <select class='form-control' id='semester' name='semester' onchange="sem(this.value)">
-                <option></option>
+            <select class='form-control' id='semester' name='semester2' onchange="filter()">
+                <option value=""></option>
                 <option value='s12'>s12</option>
                 <option value='s11'>s11</option>
+            </select>           
+        </td> 
+
+         <td>           
+            <select class='form-control' id='betreuer' name='betreuer' onchange="filter()">
+                <option value=""></option>
+                <option value='schuhmann'>boss</option>
+                <option value='kolbe'>boss!</option>
             </select>
        
             
@@ -42,3 +50,4 @@
 
 
 </form>
+
