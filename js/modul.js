@@ -163,7 +163,7 @@ $(document).ready(function() {
 function filter(){
 var semester = document.getElementById("semester").value;
 var art = document.getElementById("art").value;
-var betreuer = document.getElementById("betreuer").value;
+var betreuer = document.getElementById("betreuer").value;       
 
 xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {

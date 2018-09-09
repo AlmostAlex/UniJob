@@ -13,6 +13,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css"> 
         <link rel="stylesheet" href="/css/modul_verwaltung.css"> 
         
+
+
         <!-- Icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
                                
@@ -32,6 +34,13 @@
         <script src="/js/datepicker.js"></script>
         <script src="/js/modul.js"></script>
         <script src="/js/modul_verwaltung.js"></script>
+
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
+
+
 
 </head>
     <body>            

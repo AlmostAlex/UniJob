@@ -1,3 +1,19 @@
+<style>
+.bootstrap-select show-tick{
+    width:140px;
+}
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
+    width:140px;
+}
+.show{
+    display:none;
+}
+
+.bootstrap-select:not(.input-group-btn), .bootstrap-select[class*="col-"]{
+    display:inline;
+}
+</style>
+
 <h2 style='margin-top: 20px;' class='card-title'>Übersicht der Seminar- / Abschlussarbeitsthemen</h2>
 <div style='text-align: center'>
 <div class='suche'>
@@ -6,7 +22,7 @@
 <th style='width: 20%; padding-right:2%;' class='tg-py0s'><b>Art</b></th>
 <th style='width: 20%; padding-right:2%;' class='tg-py0s'><b>Semester</b></th>
 <th style='width: 20%; padding-right:2%;' class='tg-py0s'><b>Betreuer</b></th>
-<th style='width: 20%; padding-right:2%;' class='tg-py0s'><b>Verfügbarkeit</b></th>
+<th style='width: 20%; padding-right:2%;' class='tg-py0s'><b>Tags</b></th>
 </tr>
 
 <form method="post" action="">
@@ -35,8 +51,17 @@
                 <option value='schuhmann'>boss</option>
                 <option value='kolbe'>boss!</option>
             </select>
-       
-            
+       </td>
+       <td>
+       <select class="selectpicker" multiple data-live-search="true" onchange="filter()">
+       <option>Mustard</option>
+  <option>Ketchup</option>
+  <option>Relish232323</option>  
+  <option>Mus3213tard</option>
+  <option>Ke33tchup</option>
+  <option>Re2lish</option>
+</select>
+
         </td> 
 </tr>
 
