@@ -87,7 +87,7 @@ $router->map(["GET", "POST"],["/mt_verwaltung/modul/edit/{id}"], function ($acti
 
 //Routing für die Bewerbungen. Also weiterleitung von der Themen Übersicht zu dem passenden
 //Formular
-$router->map(["GET", "POST"],["/{action}","/{action}/{action2}/{id}"], function ($action,$action2,$id) {
+$router->map(["GET", "POST"],["/{action}/{id}"], function ($action,$action2,$id) {
     $modul = new bewerbung_controller();
     $modul->Route($action,$action2,$id); 
 });
