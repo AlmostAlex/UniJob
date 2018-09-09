@@ -6,23 +6,10 @@ include("PHPRouter/Response.php");
 include("PHPRouter/Request.php");
 include("app/controller/login_controller.php");  
 include("app/controller/modul_controller.php"); 
+include("app/controller/bewerbung_controller.php"); 
 include("app/controller/modul_eintragen_controller.php"); 
 include("app/controller/modul_uebersicht_controller.php"); 
 $router = new Router();
-/*  Der Router Code wird in der Index-Datei festgehalten 
-    Zu Beginn werden alle Routen für den Public-Bereich festgelegt.
-    render --> Wenn es sich um einen public bereich handelt
-    render_private --> Wenn eine Anfrage auf einen geschützen Bereich erfolgt.
-    Public
-        - / , /index --> view/index.php (Informationssseite)
-        - /login --> view/
-    Admin/Private
-        - 
-        -
-        ...
---> Für jede Unterseite wird ein eigener Controller angelegt
-
-        */
 
 /* PUBLIC */  
 $router->map(["GET", "GET"], ["/", "/index"], function (Response $response) {
@@ -87,9 +74,9 @@ $router->map(["GET", "POST"],["/mt_verwaltung/modul/edit/{id}"], function ($acti
 
 //Routing für die Bewerbungen. Also weiterleitung von der Themen Übersicht zu dem passenden
 //Formular
-$router->map(["GET", "POST"],["/{action}/{id}"], function ($action,$id) {
-    $modul = new bewerbung_controller();
-    $modul->Route($action,$id); 
+$router->map(["GET", "POST"],["/bewerbung/{action}/{id}"], function ($action,$id) {
+    $modul_bewerbung = new bewerbung_controller();
+    $modul_bewerbung->Route($action,$id); 
 });
 
 $router->dispatch();

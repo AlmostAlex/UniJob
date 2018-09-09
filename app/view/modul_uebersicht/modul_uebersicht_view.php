@@ -54,7 +54,7 @@
             </select>
        </td>
        <td>
-       <select name="gift" id="gift" class="selectpicker" multiple="multiple" onchange="filter();">
+       <select name="gift" id="gift" multiple data-live-search="true" class="selectpicker" multiple="multiple" onchange="filter();">
        <option value=""></option>
        <option value="him">Him</option>
        <option value="her">Her</option>
