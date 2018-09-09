@@ -15,27 +15,40 @@ class bewerbung_controller
         $this->heute_dt = new DateTime(date("Y-m-d"));
     }
 
-    public function Route($action, $action2, $id)
+    public function Route($action, $id)
     {
+        $modul = $this->modul_model->getModulByID($id);
 
      /*  if ($action == 'modul_eintragen' && $action2 == '' && $action3 =='') {
             $this->modulEintragung();
         */
         //verfahren aus DB holen
         //Wenn verfahren = X dann passende view aufrufen
-        if ($action == 'windhund') {
-            $this->Windhundformular($id);
 
-        } else if ($action2 == 'bewerbung') {  
-            //Nachrück? Wenn ja, dann /windhund_view        
-            $this->Bewerbungsformular($id);
+        if($modul[0]['kategorie'] == 'Seminararbeit' && $modul[0]['nachrueckv_status'] == 'true')
+        {
+            include 'app/view/bewerbung/windhund_view.php';
+        } elseif($modul[0]['kategorie'] == 'Seminararbeit' && $modul[0]['nachrueckv_status'] == ''){
 
-        } else if ($action2 == 'belegwunsch' ) {
-            $this->Belegwunschformular($id);
+            if ($modul[0]['verfahren'] == 'Windhundverfahren')
+            {
+                include 'app/view/bewerbung/windhund_view.php';
 
-        } else if ($action2 == 'abschluss') {
-            $this->Abschlussformular($id);
+            } else if ($modul[0]['verfahren'] == 'bewerbung'){
+                include 'app/view/bewerbung/bewerbung_view.php';
 
+            } else if ($modul[0]['verfahren'] == 'belegwunsch'){
+                include 'app/view/bewerbung/belegwunsch_view.php';
+
+            }
+        } else
+        {
+            include 'app/view/bewerbung/abschluss_view.php';
         }
+        /* sollte das Formular bei Abschlussthemen sich auch zu windhund ändern, dann in etwa diese Lösung hier nehmen
+        if($modul[0]['kategorie'] == 'Abschlussarbeit' && $modul[0]['nachrueckv_status'] == 'true')
+        {
+            include 'app/view/bewerbung/windhund_view.php';
+        } elseif($modul[0]['kategorie'] == 'Aschlussarbeit' && $modul[0]['nachrueckv_status'] == ''){ */
     }
 }
