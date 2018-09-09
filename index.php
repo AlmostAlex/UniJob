@@ -86,12 +86,12 @@ $router->map(["GET", "POST"],["/mt_verwaltung/modul/edit/{id}"], function ($acti
 /* ADMIN ENDE */
 
 //Routing für die Bewerbungen. Also weiterleitung von der Themen Übersicht zu dem passenden
-//Formular 
-/* $router->map(["GET", "POST"],["/{action}","/{action}/{action2}/{id}"], function ($action,$action2,$id) {
+//Formular
+$router->map(["GET", "POST"],["/{action}/{id}"], function ($action,$id) {
     $modul = new bewerbung_controller();
-    $modul->Route($action,$action2,$id); 
+    $modul->Route($action,$id); 
 });
-*/
+
 $router->dispatch();
 include('layout/navi.php');
 include('layout/footer.php');

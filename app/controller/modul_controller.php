@@ -48,11 +48,11 @@ class modul_controller
                 $this->getModal('fail_delete_modul_count', $id);
             } else {
                 $this->tags_model->deleteTags($id);
-                $this->modul_model->deleteModul($id);       
-                $this->thema_model->deleteAllThema($id); 
+                $this->modul_model->deleteModul($id);
+                $this->thema_model->deleteAllThema($id);
                 $this->getModal('delete_modul_success', $id);
             }
-                $this->Modul_Verwaltung('false',$id);  
+                $this->Modul_Verwaltung('false',$id);
 
         } else if ($action == 'mt_verwaltung' && $action2 == 'modul' && $action3 == 'add_thema') { 
                 $this->addThema($id);  

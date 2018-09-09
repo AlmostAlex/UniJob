@@ -128,10 +128,10 @@ class modul_model
 
     public function getModulById($modul_id)
     {
-        $statement = $this->dbh->prepare("SELECT modulbezeichnung,kategorie,verfahren,semester,frist_start,frist_ende,studiengang,modul_verfuegbarkeit From modul Where modul_id =?");
+        $statement = $this->dbh->prepare("SELECT modulbezeichnung,kategorie,verfahren,semester,frist_start,frist_ende,studiengang,modul_verfuegbarkeit,nachrueckverfahren From modul Where modul_id =?");
         $statement->bind_param('i', $modul_id);
         $statement->execute();
-        $statement->bind_result($modulbezeichnung, $kategorie, $verfahren, $semester, $frist_start, $frist_ende, $studiengang, $modul_verfuegbarkeit);
+        $statement->bind_result($modulbezeichnung, $kategorie, $verfahren, $semester, $frist_start, $frist_ende, $studiengang, $modul_verfuegbarkeit, $nachrueckverfahren);
 
         $modul = array();
         while ($statement->fetch()) {
@@ -145,6 +145,7 @@ class modul_model
                 'frist_ende' => $frist_ende,
                 'studiengang' => $studiengang,
                 'modul_verfuegbarkeit' => $modul_verfuegbarkeit,
+                'nachrueckv_status' => $nachrueckverfahren
             );
             $modul = $row;
         }

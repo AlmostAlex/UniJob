@@ -5,14 +5,14 @@
     <ul>
         <li>Informieren Sie sich auf der <a href='index.php'>Informationsseite</a> über das Windhundverfahren.</li>
         <li>Alle <b>Pflichtfelder ( <red style='color: red'>*</red> )</b> sind auszufüllen.</li>
-        <li>Nach Absenden des Formuolars, werden Sie <b>sofort</b> für das gewünschte Thema eingetragen.</li>
+        <li>Nach Absenden des Formulars, werden Sie <b>sofort</b> für das gewünschte Thema eingetragen.</li>
         <li>Nach Abmeldefrist erhalten Sie <b>Benachrichtung</b> über Ihre angegebene E-Mail-Adresse.</li>
     </ul>
 </div><br>
 
 <div class='windhund'><div style='margin-bottom: 100px; border-top: 4px solid #3979b5;' class='form_thema'>
     <form method='post'>
-        <h4 class='bew_ue'>Bewerbungsmodul: {$modulbezeichnung}</h4>
+        <h4 class='bew_ue'>Bewerbungsmodul: {$modul[0]['modulbezeichnung']}</h4>
         <h6>Windhundverfahren</h6><br>
         <table>
             <tr>
@@ -37,9 +37,9 @@
                     <select class='form-control' id='Thema' name='Thema' required>
                     <?php
                     //Select, der verfügbaren Themen
-                    while ($statement_themen->fetch()) 
+                    for($i = 0; i<$themen.length; $i++)
                     {
-                        echo "<option value='{$thema_id}'> $themenbezeichnung</option>";
+                        echo "<option value='{$thema[$i]['thema_id']}'> $thema[$i]['themenbezeichnung']</option>";
                     }
                     ?>
                     </select>";
