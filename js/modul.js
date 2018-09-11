@@ -137,12 +137,13 @@ $(document).ready(function() {
      */
     var elt = $(".tagsinput-typeahead"); //tagsinput input
     elt.tagsinput({
+
         typeahead: {
             afterSelect: function(val) { this.$element.val(""); },
             source: function(query) {
                 var result = null;
                 $.ajax({
-                    url: "/ajax/tags.php?term=" + query,
+                    url: "/ajax/ajax_controller.php?action=tagsterm=" + query,
                     type: "get",
                     dataType: "html",
                     async: false,
@@ -161,10 +162,10 @@ $(document).ready(function() {
 
 function filter() {
 
-    var giftarray = new Array();
-    $('#gift option:selected').each(
+    var tagsarray = new Array();
+    $('#tags option:selected').each(
         function(i) {
-            giftarray[i] = $(this).text();
+            tagsarray[i] = $(this).text();
         });
 
     var semester = document.getElementById("semester").value;
@@ -182,10 +183,10 @@ function filter() {
             document.getElementById("semester_f").innerHTML = xmlhttp.responseText;
         }
     }
-    var gift = "'" + giftarray.join("','") + "'";
-    var url = "ajax/filter_semester.php?semester=" + semester + "&art=" + art + "&betreuer=" + betreuer;
-    //var url = "app/controller/ajax_controller.php?semester=" + semester + "&art=" + art + "&betreuer=" + betreuer;
-    url = url + "&gift=" + gift;
+    var tags = "'" + tagsarray.join("','") + "'";
+    var url = "ajax/ajax_controller.php?action=filter&semester=" + semester + "&art=" + art + "&betreuer=" + betreuer;
+    //var url = "app/controller/ajax_controller.php?action=filter&semester=" + semester + "&art=" + art + "&betreuer=" + betreuer;
+    url = url + "&tags=" + tags;
 
 
     xmlhttp.open("GET", url, true);

@@ -12,9 +12,8 @@
 .bootstrap-select:not(.input-group-btn), .bootstrap-select[class*="col-"]{
     display:inline;
 }
+
 </style>
-
-
 
 
 <h2 style='margin-top: 20px;' class='card-title'>Übersicht der Seminar- / Abschlussarbeitsthemen</h2>
@@ -56,7 +55,7 @@
             </select>
        </td>
        <td> <!-- data-selected-text-format="count > 2" -->
-       <select class="selectpicker" title="Tags" multiple data-live-search="true" multiple="multiple" name='gift' id="gift" onchange="filter();">
+       <select class="selectpicker" title="Tags" multiple data-live-search="true" multiple="multiple" name='tags' id="tags" onchange="filter();">
        <option value=""></option>
        <option value="him">Him</option>
        <option value="her">Her</option>
@@ -65,8 +64,7 @@
        <option value="h3er">He3r</option>
        <option value="ki4ds">Ki1ds</option>
 </select>
-
-        </td> 
+</td> 
 </tr>
 
 
@@ -74,9 +72,9 @@
 </div>
 </div>
 
-<p id="art_f"> hihi hi</p>
-<p id="semester_f">  joo </p>
+<p id="semester_f">
 
+</p>
 
 </form>
 

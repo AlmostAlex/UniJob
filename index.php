@@ -60,7 +60,7 @@ $router->map(["GET", "POST"],["/modul_eintragen"], function () {
 
 $router->map(["GET", "POST"],["/modul_uebersicht"], function () {
     $modul_add = new modul_uebersicht_controller();
-    $modul_add->Route('modul_uebersicht');
+    $modul_add->modulUebersicht('modul_uebersicht');
 });
 
 
