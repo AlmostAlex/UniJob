@@ -16,6 +16,9 @@ $router->map(["GET", "GET"], ["/", "/index"], function (Response $response) {
     $response->render("app/view/info/info_view.php");
 });
 
+$router->map(["GET", "GET"], ["app/controller/ajax_controller.php"], function (Response $response) {
+});
+
 $router->map(["GET", "POST"], ["/login"], function () {  
     $controller = new Controller();
     $controller->login(); 
@@ -34,15 +37,13 @@ $router->map(["GET", "GET"], ["/verwaltung"], function (Response $response) {
 });
 
 $router->map(["GET", "POST"],["/ajax/tags.php"], function (Response $response) {
-
 });
+
 
 $router->map(["GET", "POST"],["/ajax/tags/{term}"], function ($term) {
     $modul = new modul_controller();
     $modul->Ajax($term); 
 });
-
-
 
 // gilt für mt_verwaltung, modul_eintragen, mt_verwaltung/modul/add(thema hinzufügen)
 // für jeden neuen controller neue Route anlegen
@@ -78,7 +79,6 @@ $router->map(["GET", "POST"],["/bewerbung/{action}/{id}"], function ($action,$id
     $modul_bewerbung = new bewerbung_controller();
     $modul_bewerbung->Route($action,$id); 
 });
-
 $router->dispatch();
 include('layout/navi.php');
 include('layout/footer.php');

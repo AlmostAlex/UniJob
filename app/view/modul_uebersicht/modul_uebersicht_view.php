@@ -15,6 +15,8 @@
 </style>
 
 
+
+
 <h2 style='margin-top: 20px;' class='card-title'>Übersicht der Seminar- / Abschlussarbeitsthemen</h2>
 <div style='text-align: center'>
 <div class='suche'>
@@ -53,21 +55,28 @@
                 <option value='kolbe'>boss!</option>
             </select>
        </td>
-       <td>
-       <select name="gift" id="gift" multiple data-live-search="true" class="selectpicker" multiple="multiple" onchange="filter();">
+       <td> <!-- data-selected-text-format="count > 2" -->
+       <select class="selectpicker" title="Tags" multiple data-live-search="true" multiple="multiple" name='gift' id="gift" onchange="filter();">
        <option value=""></option>
        <option value="him">Him</option>
        <option value="her">Her</option>
        <option value="kids">Kids</option>
+       <option value="h2im">H2im</option>
+       <option value="h3er">He3r</option>
+       <option value="ki4ds">Ki1ds</option>
 </select>
+
         </td> 
 </tr>
+
 
 </table>
 </div>
 </div>
 
+<p id="art_f"> hihi hi</p>
 <p id="semester_f">  joo </p>
+
 
 </form>
 

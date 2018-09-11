@@ -1,6 +1,13 @@
 
-
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+require_once('../app/controller/modul_uebersicht_controller.php');
+
+
+$controller = new modul_uebersicht_controller();
+$controller->blabla(); 
+
 if(isset($_GET["semester"])){
     $w = $_GET["semester"];
     echo $w;
@@ -33,10 +40,14 @@ if(isset($_GET["betreuer"])){
     $gift_string=str_replace("\\","",$gift);
    
     echo $_GET["gift"];
-    echo "<br><br>";
+    echo "tags da";
  }
  else{
      $y = 'keine tags';
  }
+
+
+
+
 
 ?>

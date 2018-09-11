@@ -1,8 +1,11 @@
 <?php
-include_once "app/model/modul_model.php";
-include_once "app/model/thema_model.php";
-include_once "app/model/tags_model.php";
-include_once "db.php";
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+include_once(__DIR__."/../model/modul_model.php");
+include_once(__DIR__."/../model/thema_model.php");
+include_once(__DIR__."/../model/tags_model.php");
+include_once(__DIR__."/../../db.php"); 
+
 
 class modul_uebersicht_controller
 {
@@ -21,10 +24,12 @@ class modul_uebersicht_controller
         }
     }
 
-    public function modulUebersicht(){
-
-        
+    public function modulUebersicht(){   
         include 'app/view/modul_uebersicht/modul_uebersicht_view.php';
+    }
+
+    public function blabla(){   
+        echo"hihihi";
     }
 
 

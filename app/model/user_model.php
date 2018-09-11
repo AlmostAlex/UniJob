@@ -8,7 +8,7 @@ class Model
 
     public function __construct()
     {
-        require "db.php";
+        require(__DIR__."/../../db.php");
         $this->dbh = $dbh;
     }
 
