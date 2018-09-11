@@ -11,7 +11,7 @@ if(isset($_GET["betreuer"])){ $betreuer = $_GET["betreuer"];} else{$betreuer = "
 if(isset($_GET["tags"])){ $tags = $_GET["tags"];} else{$tags = "";}
 
 $controller = new modul_uebersicht_controller();
-$controller->filter($semester, $art, $betreuer,$tags); 
+$controller->modulUebersicht($semester, $art, $betreuer,$tags,'false'); 
 
 }
 

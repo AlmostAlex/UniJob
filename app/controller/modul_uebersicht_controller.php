@@ -17,28 +17,25 @@ class modul_uebersicht_controller
         $this->thema_model = new thema_model();
         $this->tags_model = new tags_model();
     }
-/*
-    public function Route($action){
-        if($action == 'modul_uebersicht'){
-            $this->modulUebersicht();
-        }
-    } */
 
-    public function modulUebersicht(){   
-        include 'app/view/modul_uebersicht/modul_uebersicht_view.php';
-    }
+    public function modulUebersicht($semester,$art,$betreuer,$tags,$state){
+        switch ($state) {
+            case 'true':
+                include 'app/view/modul_uebersicht/modul_uebersicht_view.php';
+            break;
 
-    public function filter($semester, $art, $betreuer,$tags){         
-        $tags_string=str_replace("\\","",$tags);
-        $tags_string=str_replace("'","",$tags);
-        $tags_array = explode(",", $tags_string); // heraus kommt [0] --> blubb [1] --> bla etc
-        $i=0;
-
-       while($i < count($tags_array) ){
-          //  $tags_array[$i]=str_replace("'","",$tags_array[$i]);
-            echo $tags_array[$i];
-            $i++;
-        }
-
+            case 'false':
+                $tags_string=str_replace("\\","",$tags);
+                $tags_string=str_replace("'","",$tags);
+                $tags_array = explode(",", $tags_string); // heraus kommt [0] --> blubb [1] --> bla etc
+                $i=0;
+    
+                while($i < count($tags_array) ){
+                    //  $tags_array[$i]=str_replace("'","",$tags_array[$i]);
+                    echo $tags_array[$i].'<br>';
+                    $i++;
+                }
+            break;
+        }        
     }
 }
