@@ -85,25 +85,24 @@ $(document).ready(function(e) {
     $("feld3").on("click", ".remove", function() {
         $(this).parents(".fieldGroup").remove();
     });
-});
 
-
-$(document).ready(function() {
     $("#Seminarmodul").css("display", "none");
     $("#Professur").css("display", "none");
-
-    $('.Kategorie').click(function() {
-        if ($('input[name=Seminararbeit]:checked')) {
+    $('input[type="radio"]').click(function() {
+        if ($(this).attr("value") == "Seminararbeit") {
             $('#Seminarmodul').slideDown("slow");
             $('#kategorie_meldung').slideUp("slow");
             $('#Professur').slideUp("slow");
-        } else if ($('input[name=Abschlussarbeit]:checked')) {
+        }
+        if ($(this).attr("value") == "Abschlussarbeit") {
             $('#Professur').slideDown("slow");
             $('#kategorie_meldung').slideUp("slow");
             $('#Seminarmodul').slideUp("slow");
+
         }
     });
 });
+
 
 $(function() {
     $("#WindUndBew").css("display", "none");

@@ -20,9 +20,9 @@
                 <tr>
                     <td><label for="Kategorie"><b>Kategorie:</b><red>*</red></label></td>
                     <td>
-                        <input id="Kategorie" autocomplete='off' type="radio" name="Kategorie" value="Seminararbeit" class="Kategorie" /><space>Seminararbeit</space></input> 
+                        <input id="Kategorie" autocomplete='off' type="radio" name="Seminararbeit" value="Seminararbeit" class="Kategorie" /><space>Seminararbeit</space></input> 
                     </td>
-                    <td><input id="Kategorie" type="radio" name="Kategorie" value="Abschlussarbeit" class="Kategorie" /><space>Abschlussarbeit</space></input></td>
+                    <td><input id="Kategorie" autocomplete='off' type="radio" name="Abschlussarbeit" value="Abschlussarbeit" class="Kategorie" /><space>Abschlussarbeit</space></input></td>
                     <td></td>
                 </tr>
                 </table>
