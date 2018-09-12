@@ -156,7 +156,7 @@
     <table>
         <tr>
             <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
-            <td><space><input type="text" class="form-control" id="betreuer" name='betreuer' placeholder="Betreuer des Themas" required></space> </td>
+            <td><space><input type="text" class="form-control" id="betreuerwindhund" name='betreuer' placeholder="Betreuer des Themas" required></space> </td>
             <td><a href="javascript:void(0)" class="btn btn-danger remove">-</a></td>
         </tr>
         <tr>
@@ -184,7 +184,7 @@
     <table>
         <tr>
             <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
-            <td><space><input type="text" class="form-control" id="betreuer" name='betreuer' placeholder="Betreuer des Themas" required></space> </td>
+            <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas" required></space> </td>
             <td><a href="javascript:void(0)" class="btn btn-danger remove">-</a></td>
         </tr>
         <tr>
@@ -214,7 +214,7 @@
             <div class="form-group fieldGroup"> 
                 <tr>
                     <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
-                    <td><space><input type="text" class="form-control" id="betreuer" name='betreuer' placeholder="Betreuer des Themas" required></space> </td>
+                    <td><space><input type="text" class="form-control" name='betreuerwindhund[]' placeholder="Betreuer des Themas" required></space> </td>
                     <td><a href="javascript:void(0)" class="btn btn-success addMore2">+</a></td>
                 </tr>
                 <tr>
@@ -250,7 +250,7 @@
         <!-- 1 -->
             <tr>
                 <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
-                <td><space><input type="text" class="form-control" id="betreuer" name='betreuer' placeholder="Betreuer des Themas" required></space> </td>
+                <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas" required></space> </td>
                 <td><a href="javascript:void(0)" class="btn btn-success addMore3">+</a></td>
             </tr>
             <tr>
@@ -272,7 +272,7 @@
         <!-- 2 -->
             <tr>
                 <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
-                <td><space><input type="text" class="form-control" id="betreuer" name='betreuer' placeholder="Betreuer des Themas" required></space> </td>
+                <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas" required></space> </td>
             </tr>
             <tr>
                 <td><label for="titel"><b>Titel: <red style="color: red"> * </red> </b></label></td>
@@ -293,7 +293,7 @@
         <!-- 3 -->
             <tr>
                 <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
-                <td><space><input type="text" class="form-control" id="betreuer" name='betreuer' placeholder="Betreuer des Themas" required></space> </td>
+                <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas" required></space> </td>
             </tr>
             <tr>
                 <td><label for="titel"><b>Titel: <red style="color: red"> * </red></b></label></td>
