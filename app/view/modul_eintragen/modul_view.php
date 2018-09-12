@@ -35,7 +35,6 @@
                     <td colspan='2'><input type="text" class="form-control" id="modulbezeichnung" name='modulbezeichnung' placeholder="Bezeichnung der Veranstaltung" name="Bezeichnung" required> </td>
                     <td></td>
                 </tr> 
-
                 <tr>
                     <td><label for="Termine"><b>Bewerbungsfristen:</b><red>*</red></label></td>
                     <td>
@@ -122,163 +121,169 @@
     <!-- Das kopierende Feld bei Windhund oder Bewerbung  -->
         <!--  COPY FIELDS --> 
 <div class="form-group fieldGroupCopy" style="display: none;">     
-          <table>
-          <tr>
-             <td class='first_td'><label for="titel"><b>Titel:</b></label></td>
-            <td><space><input  type="text" name="themenbezeichnungwindhund[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
+    <table>
+        <tr>
+            <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
+            <td><space><input type="text" class="form-control" id="betreuer" name='betreuer' placeholder="Betreuer des Themas" required></space> </td>
             <td><a href="javascript:void(0)" class="btn btn-danger remove">-</a></td>
-            </tr>
-            <tr>
-            <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
-            <td>
-            <textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea>
-              </td>
-             </tr>
-             <tr>
-          <td><label for="Tags"><b>Tags</b></label></td>
-          <td colspan='2'>
-            <div class="form-group">
-              <input type="text" id='taggin' name='tags_WiBe[]' placeholder='Add Tags' class="form-control" />
-            </div>
-          </td>
         </tr>
-        </table>
-    </div>
+        <tr>
+            <td class='first_td'><label for="titel"><b>Titel:</b></label></td>
+            <td><space><input  type="text" name="themenbezeichnungwindhund[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
+        </tr>
+        <tr>
+            <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
+            <td><textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
+        </tr>
+        <tr>
+            <td><label for="Tags"><b>Tags:</b></label></td>
+            <td colspan='2'>
+                <div class="form-group">
+                    <input type="text" id='taggin' name='tags_WiBe[]' placeholder='Add Tags' class="form-control" />
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
 <!--  COPY FIELD END -->
 
 <!--  COPY FIELDS BELEGWUNSCH --> 
-        <div class="form-group fieldGroupCopy2" style="display: none;">     
-          <table>
-          <tr>
-             <td class='first_td'><label for="titel"><b>Titel:</b></label></td>
-            <td><space><input type="text" name="themenbezeichnungbelegwunsch[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
+<div class="form-group fieldGroupCopy2" style="display: none;">     
+    <table>
+        <tr>
+            <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
+            <td><space><input type="text" class="form-control" id="betreuer" name='betreuer' placeholder="Betreuer des Themas" required></space> </td>
             <td><a href="javascript:void(0)" class="btn btn-danger remove">-</a></td>
-            </tr>
-            <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
-            <td>
-            <textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea>
-              </td>
-             </tr>
-          <td><label for="Tags"><b>Tags</b></label></td>
-          <td colspan='2'>
-            <div class="form-group">
-              <input type="text" id='taggin' name='tags_Beleg[]' placeholder='Add Tags' class="form-control" />
-            </div>
-          </td>
         </tr>
-        </table>
-    </div>
+        <tr>
+            <td class='first_td'><label for="titel"><b>Titel:</b></label></td>
+            <td><space><input type="text" name="themenbezeichnungbelegwunsch[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
+        </tr>
+            <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
+            <td><textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
+        </tr>
+            <td><label for="Tags"><b>Tags:</b></label></td>
+            <td colspan='2'>
+                <div class="form-group">
+                    <input type="text" id='taggin' name='tags_Beleg[]' placeholder='Add Tags' class="form-control" />
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
 <!--  COPY FIELD END -->
-
-
 <!-- Das kopierende Feld bei Windhund oder Bewerbung  ENDE -->
 
-     <!-- Wenn Windhund oder Bewerbungsverfahren gewählt wurde...  -->
-            <feld2>
-                <div id="WindUndBew">
-                <div class="form_ueberschrift">Themenangaben</div><br>
-                     <table>
-                    <div class="form-group fieldGroup">  
-                            <tr>
-                                <td class='first_td'><label for="titel"><b>Titel:</b></label></td>
-                                <td><space><input type="text" name="themenbezeichnungwindhund[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
-                                <td><a href="javascript:void(0)" class="btn btn-success addMore2">+</a></td>
-                            </tr>
-                            <tr>
-                            <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
-                            <td>
-                                <textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea>
-                            </td>
-                            </tr>
-                            </tr>
-                             <tr>
-                                <td> <label for="Tags"><b>Tags</b> </label></td>
-                                <td colspan='2'>
-                                    <div class="form-group">
-                                        <input type="text" name='tags_WiBe[]' placeholder='Add Tags' class="tagsinput-typeahead" />
-                                    </div>
-                                </td>
-                            </tr>
-                             <tr>
-                                <td colspan='3'>
-                                    <input style='float:right;'type="submit" name="modul_eintrag1" class="btn btn-primary" value="Modul eintragen"/> 
-                                </td>
-                            </tr>
+<!-- Wenn Windhund oder Bewerbungsverfahren gewählt wurde...  -->
+<feld2>
+    <div id="WindUndBew">
+        <div class="form_ueberschrift">Themenangaben</div><br>
+        <table>
+            <div class="form-group fieldGroup"> 
+                <tr>
+                    <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
+                    <td><space><input type="text" class="form-control" id="betreuer" name='betreuer' placeholder="Betreuer des Themas" required></space> </td>
+                    <td><a href="javascript:void(0)" class="btn btn-success addMore2">+</a></td>
+                </tr>
+                <tr>
+                    <td class='first_td'><label for="titel"><b>Titel:</b></label></td>
+                    <td><space><input type="text" name="themenbezeichnungwindhund[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
+                </tr>
+                <tr>
+                    <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
+                    <td><textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
+                </tr>
+                <tr>
+                    <td> <label for="Tags"><b>Tags:</b> </label></td>
+                    <td colspan='2'>
+                        <div class="form-group">
+                            <input type="text" name='tags_WiBe[]' placeholder='Add Tags' class="tagsinput-typeahead" />                            
                         </div>
-                     </table> 
-                </div>     
-            </feld2>
-<!-- ENDE-->
-  <!-- Wenn BELEGWUNSCH gewählt wurde...  -->
-  <feld3> 
-                <div id="Belegwunschverfahren">
-                <div class="form_ueberschrift">Themenangaben</div><br>
-                      <table>
-                          <div class="form-group fieldGroup">
-                        <!-- 1 -->
-                            <tr>
-                                <td class='first_td'><label for="titel"><b>Titel: <red> * </red> </b></label></td>
-                                <td><space><input type="text" name="themenbezeichnungbelegwunsch[]" id="validationCustom03" class="form-control" placeholder="Titel des Themas"/><space></td>  
-                                <td><a href="javascript:void(0)" class="btn btn-success addMore3">+</a></td>
-                            </tr>
-                            <tr>
-                                <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
-                                <td>
-                                    <textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label for="Tags"><b>Tags</b></label></td>
-                                <td colspan='2'>
-                                    <div class="form-group">
-                                        <input type="text" name='tags_Beleg[]' placeholder='Add Tags' class="tagsinput-typeahead" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <!-- 2 -->
-                            <tr>
-                                <td><label for="titel"><b>Titel: <red style="color: red"> * </red> </b></label></td>
-                                <td><space><input type="text" name="themenbezeichnungbelegwunsch[]" id="validationCustom03" class="form-control" placeholder="Titel des Themas"/></space></td>  
-                            </tr>
-                            <tr>
-                            <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
-                                <td>
-                                    <textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label for="Tags"><b>Tags</b></label></td>
-                                <td colspan='2'>
-                                    <div class="form-group">
-                                        <input type="text" name='tags_Beleg[]' placeholder='Add Tags' class="tagsinput-typeahead" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <!-- 3 -->
-                            <tr>
-                                <td><label for="titel"><b>Titel: <red style="color: red"> * </red></b></label></td>
-                                <td><space><input type="text" name="themenbezeichnungbelegwunsch[]" id="validationCustom03" class="form-control" placeholder="Titel des Themas"/></space></td>  
-                            </tr>
-                            <tr>
-                            <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
-                                <td>
-                                    <textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label for="Tags"><b>Tags</b></label></td>
-                                <td colspan='2'>
-                                    <div class="form-group">
-                                        <input type="text" name='tags_Beleg[]' placeholder='Add Tags' class="tagsinput-typeahead" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <!-- button -->
-                        </div>
-                    </table>  
-                    
-                    <input type="submit" name="modul_eintrag2" class="btn btn-primary" value="Modul eintragen"/>
-                </div>
-            </feld3>         
-            </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='3'><input style='float:right;'type="submit" name="modul_eintrag1" class="btn btn-primary" value="Modul eintragen"/> </td>
+                </tr>
             </div>
+        </table> 
+    </div>     
+</feld2>
+<!-- ENDE-->
+<!-- Wenn BELEGWUNSCH gewählt wurde...  -->
+<feld3> 
+<div id="Belegwunschverfahren">
+    <div class="form_ueberschrift">Themenangaben</div><br>
+    <table>
+        <div class="form-group fieldGroup">
+        <!-- 1 -->
+            <tr>
+                <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
+                <td><space><input type="text" class="form-control" id="betreuer" name='betreuer' placeholder="Betreuer des Themas" required></space> </td>
+                <td><a href="javascript:void(0)" class="btn btn-success addMore3">+</a></td>
+            </tr>
+            <tr>
+                <td class='first_td'><label for="titel"><b>Titel: <red> * </red> </b></label></td>
+                <td><space><input type="text" name="themenbezeichnungbelegwunsch[]" id="validationCustom03" class="form-control" placeholder="Titel des Themas"/><space></td>  
+            </tr>
+            <tr>
+                <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
+                <td><textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="Tags"><b>Tags:</b></label></td>
+                <td colspan='2'>
+                    <div class="form-group">
+                        <input type="text" name='tags_Beleg[]' placeholder='Add Tags' class="tagsinput-typeahead" />
+                    </div>
+                </td>
+            </tr>
+        <!-- 2 -->
+            <tr>
+                <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
+                <td><space><input type="text" class="form-control" id="betreuer" name='betreuer' placeholder="Betreuer des Themas" required></space> </td>
+            </tr>
+            <tr>
+                <td><label for="titel"><b>Titel: <red style="color: red"> * </red> </b></label></td>
+                <td><space><input type="text" name="themenbezeichnungbelegwunsch[]" id="validationCustom03" class="form-control" placeholder="Titel des Themas"/></space></td>  
+            </tr>
+            <tr>
+                <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
+                <td><textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="Tags"><b>Tags:</b></label></td>
+                <td colspan='2'>
+                    <div class="form-group">
+                        <input type="text" name='tags_Beleg[]' placeholder='Add Tags' class="tagsinput-typeahead" />
+                    </div>
+                </td>
+            </tr>
+        <!-- 3 -->
+            <tr>
+                <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
+                <td><space><input type="text" class="form-control" id="betreuer" name='betreuer' placeholder="Betreuer des Themas" required></space> </td>
+            </tr>
+            <tr>
+                <td><label for="titel"><b>Titel: <red style="color: red"> * </red></b></label></td>
+                <td><space><input type="text" name="themenbezeichnungbelegwunsch[]" id="validationCustom03" class="form-control" placeholder="Titel des Themas"/></space></td>  
+            </tr>
+            <tr>
+                <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
+                <td><textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="Tags"><b>Tags:</b></label></td>
+                <td colspan='2'>
+                    <div class="form-group">
+                        <input type="text" name='tags_Beleg[]' placeholder='Add Tags' class="tagsinput-typeahead" />
+                    </div>
+                </td>
+            </tr>
+        <!-- button -->
+        </div>
+    </table>  
+    <input type="submit" name="modul_eintrag2" class="btn btn-primary" value="Modul eintragen"/>
+</div>
+</feld3>         
+</form>
+</div>

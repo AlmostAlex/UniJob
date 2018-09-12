@@ -55,15 +55,10 @@ class bewerbung_controller
                 include 'app/view/bewerbung/belegwunsch_view.php';
 
             }
-        } else
+        } else //Wenn man sich auf Abschlussthemen bewirbt
         {
             include 'app/view/bewerbung/abschluss_view.php';
         }
-        /* sollte das Formular bei Abschlussthemen sich auch zu windhund ändern, dann in etwa diese Lösung hier nehmen
-        if($modul[0]['kategorie'] == 'Abschlussarbeit' && $modul[0]['nachrueckv_status'] == 'true')
-        {
-            include 'app/view/bewerbung/windhund_view.php';
-        } elseif($modul[0]['kategorie'] == 'Aschlussarbeit' && $modul[0]['nachrueckv_status'] == ''){ */
     }
 
     public function Windhundbewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $modul_id) 
