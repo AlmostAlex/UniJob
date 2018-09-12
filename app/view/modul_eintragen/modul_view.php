@@ -1,8 +1,3 @@
-<div class="form-group">
-    <input type="text" name='tags_WiBe[]' placeholder='Add Tags' class="tagsinput-typeahead" />
-</div>
-
-
 
 <div class="verwaltungsbox">
     <h4 class='card-title'><i class="fa fa-info-circle" aria-hidden="true"></i>  Zum Eintrag eines Moduls</h4>
@@ -30,28 +25,37 @@
                     <td><input id="Kategorie" type="radio" name="Kategorie" value="Abschlussarbeit" class="Kategorie" /><space>Abschlussarbeit</space></input></td>
                     <td></td>
                 </tr>
-                <!-- Solange noch keine Kategorie gewählt ist 
+                </table>
+                <!-- Solange noch keine Kategorie gewählt ist -->
                 <div id='kategorie_meldung'> 
                     <div class="alert alert-warning" role="alert">
                         <i class="fas fa-info"></i> Wähle eine Kategorie aus.
                     </div>
                 </div>
-                <!-- Wenn Seminar Gewählt wird 
+
+                <!-- Wenn Seminar Gewählt wird -->
                 <div id='Seminarmodul'> 
+                <table>
                     <tr>
                         <td><label for="Modul"><b>Seminarbezeichnung:</b><red>*</red></label></td>
                         <td colspan='2'><input type="text" class="form-control" id="modulbezeichnung" name='modulbezeichnung' placeholder="Bezeichnung der Veranstaltung" name="Bezeichnung" required> </td>
                         <td></td>
                     </tr> 
+                </table>
                 </div>
-                <!-- Wenn Abschlussarbeit Gewählt wird 
+
+                <!-- Wenn Abschlussarbeit Gewählt wird -->
                 <div id='Professur'> 
+                <table>
                     <tr>
                         <td><label for="Modul"><b>Professur:</b><red>*</red></label></td>
                         <td colspan='2'><input type="text" class="form-control" id="professur" placeholder="Name der Professur" name="Professur" required> </td>
                         <td></td>
                     </tr> 
-                </div> -->
+                    </table>
+                </div> 
+                
+                <table>
                 <tr>
                     <td><label for="Modul"><b>Fakultätsbezeichnung:</b><red>*</red></label></td>
                     <td colspan='2'><input type="text" class="form-control" id="fakultätsbezeichnung" name='fakultätsbezeichnung' placeholder="Bezeichnung der Fakultät" required> </td>
