@@ -25,67 +25,95 @@
                 <tr>
                     <td><label for="Kategorie"><b>Kategorie:</b><red>*</red></label></td>
                     <td>
-                        <input autocomplete='off' type="radio" name="Kategorie" value="Seminararbeit" class="Kategorie" /><space>Seminararbeit</space></input> 
+                        <input id="Kategorie" autocomplete='off' type="radio" name="Kategorie" value="Seminararbeit" class="Kategorie" /><space>Seminararbeit</space></input> 
                     </td>
-                    <td><input type="radio" name="Kategorie" value="Abschlussarbeit" class="Kategorie" /><space>Abschlussarbeit</space></input></td>
+                    <td><input id="Kategorie" type="radio" name="Kategorie" value="Abschlussarbeit" class="Kategorie" /><space>Abschlussarbeit</space></input></td>
                     <td></td>
-                </tr>   
+                </tr>
+                <!-- Solange noch keine Kategorie gewählt ist 
+                <div id='kategorie_meldung'> 
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fas fa-info"></i> Wähle eine Kategorie aus.
+                    </div>
+                </div>
+                <!-- Wenn Seminar Gewählt wird 
+                <div id='Seminarmodul'> 
+                    <tr>
+                        <td><label for="Modul"><b>Seminarbezeichnung:</b><red>*</red></label></td>
+                        <td colspan='2'><input type="text" class="form-control" id="modulbezeichnung" name='modulbezeichnung' placeholder="Bezeichnung der Veranstaltung" name="Bezeichnung" required> </td>
+                        <td></td>
+                    </tr> 
+                </div>
+                <!-- Wenn Abschlussarbeit Gewählt wird 
+                <div id='Professur'> 
+                    <tr>
+                        <td><label for="Modul"><b>Professur:</b><red>*</red></label></td>
+                        <td colspan='2'><input type="text" class="form-control" id="professur" placeholder="Name der Professur" name="Professur" required> </td>
+                        <td></td>
+                    </tr> 
+                </div> -->
                 <tr>
-                    <td><label for="Modul"><b>Modulbezeichnung:</b><red>*</red></label></td>
-                    <td colspan='2'><input type="text" class="form-control" id="modulbezeichnung" name='modulbezeichnung' placeholder="Bezeichnung der Veranstaltung" name="Bezeichnung" required> </td>
+                    <td><label for="Modul"><b>Fakultätsbezeichnung:</b><red>*</red></label></td>
+                    <td colspan='2'><input type="text" class="form-control" id="fakultätsbezeichnung" name='fakultätsbezeichnung' placeholder="Bezeichnung der Fakultät" required> </td>
                     <td></td>
                 </tr> 
                 <tr>
+                    <td><label for="Modul"><b>Seminarbezeichnung:</b><red>*</red></label></td>
+                    <td colspan='2'><input type="text" class="form-control" id="modulbezeichnung" name='modulbezeichnung' placeholder="Bezeichnung der Veranstaltung" name="Bezeichnung" required> </td>
+                    <td></td>
+                </tr>
+                <tr>
                     <td><label for="Termine"><b>Bewerbungsfristen:</b><red>*</red></label></td>
                     <td>
-                    <div class='input-group date' id='datetimepicker1'>
-                    <input type="text" class="form-control" name="Start" autocomplete="off" placeholder="TT-MM-JJJJ" id="datepicker_Start" required>
-                    <span id='datebox' class="input-group-addon">
-                    <i class="far fa-calendar-alt"></i>
-                    </span>
-                </div>
-                </td>
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type="text" class="form-control" name="Start" autocomplete="off" placeholder="TT-MM-JJJJ" id="datepicker_Start" required>
+                            <span id='datebox' class="input-group-addon">
+                                <i class="far fa-calendar-alt"></i>
+                            </span>
+                        </div>
+                    </td>
                     <td>
                         <div class='input-group date' id='datetimepicker1'>
-                        <input type="text" class="form-control" name="Ende" autocomplete="off" placeholder="TT-MM-JJJJ" id="datepicker_Ende" required>
-                         <span id='datebox' class="input-group-addon">
-                    <i class="far fa-calendar-alt"></i>
-                    </span>                    
+                            <input type="text" class="form-control" name="Ende" autocomplete="off" placeholder="TT-MM-JJJJ" id="datepicker_Ende" required>
+                            <span id='datebox' class="input-group-addon">
+                                <i class="far fa-calendar-alt"></i>
+                            </span>
+                        </div>
                     </td>                              
-                    </tr> 
+                </tr> 
                 <!-- Auswahl Semester-->
                 <tr>
                     <td><label for="Semester"><b>Semester:</b><red>*</red></label></td>
                     <td style='height:45px;'> 
-                    <select  class="form-control" name="Semester" id="Semester" required>
-                         <option value=""></option>
-                        <option value="SoSe">SoSe</option>
-                         <option value="WiSe">WiSe</option>
+                        <select  class="form-control" name="Semester" id="Semester" required>
+                            <option value=""></option>
+                            <option value="SoSe">SoSe</option>
+                            <option value="WiSe">WiSe</option>
                         </select> 
-                        </td>
-                        <td>
+                    </td>
+                    <td>
 
-                    <!-- Wenn SoSe Gewählt wird-->
+                    <!-- Solange noch kein Semester gewählt ist-->
                         <div id='semester_meldung'> 
                             <div class="alert alert-warning" role="alert">
-                            <i class="fas fa-info"></i> Wähle ein Semester aus.
+                                <i class="fas fa-info"></i> Wähle ein Semester aus.
                             </div>
                         </div>
                     <!-- Wenn SoSe Gewählt wird-->
                         <div id='SoSe'> 
-                        <input type="text" name='Semester_input1' class="form-control"/>
+                            <input type="text" name='Semester_input1' class="form-control"/>
                         </div>
                     <!-- Wenn WiSe Gewählt wird-->
                         <div id='WiSe'> 
-                        <div class="input-group">
-                        <input type="text" name='Semester_input2' class="form-control"/>
-                        <div class="input-group-append"><span class="input-group-text" style='border-right: 0px;'>&nbsp;/</span></div>
-                        <input type="text"  name='Semester_input3' class="form-control"/>
-                        </div> 
+                            <div class="input-group">
+                                <input type="text" name='Semester_input2' class="form-control"/>
+                                <div class="input-group-append"><span class="input-group-text" style='border-right: 0px;'>&nbsp;/</span></div>
+                                <input type="text"  name='Semester_input3' class="form-control"/>
+                            </div> 
                         </div>  
-                        <!-- Auswahl Semester Ende -->
+                    <!-- Auswahl Semester Ende -->
                     </td>          
-                   </tr>    
+                </tr>    
                 <tr>
                     <td><label for="Studiengang"><b>Bevorzugter Studiengang:</b></label></td>
                     <td colspan='2'>
@@ -112,7 +140,7 @@
                 <tr>
                     <td></td>
                     <td colspan='2'>
-                    <div id='meldung_verfahren' class='alert alert-danger'> Wähle ein Verfahren aus!</div>
+                        <div id='meldung_verfahren' class='alert alert-danger'> Wähle ein Verfahren aus!</div>
                     </td>
                 </tr>
             </table>
@@ -148,7 +176,7 @@
 <!--  COPY FIELD END -->
 
 <!--  COPY FIELDS BELEGWUNSCH --> 
-<div class="form-group fieldGroupCopy2" style="display: none;">     
+<div class="form-group fieldGroupCopy2" style="display: none;">
     <table>
         <tr>
             <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>

@@ -92,7 +92,25 @@ $(function() {
     $("#Belegwunschverfahren").css("display", "none");
     $("#SoSe").css("display", "none");
     $("#WiSe").css("display", "none");
+    
+    /*
+    $("#Seminarmodul").css("display", "none");
+    $("#Professur").css("display", "none");
 
+
+    $('.Kategorie').click(function() {
+        
+        if ($('input[name=Seminar]:checked')) {
+            $('#Seminarmodul').slideDown("slow");
+            $('#kategorie_meldung').slideUp("slow");
+            $('#Professur').slideUp("slow");
+        } else if ($('input[name=Abschluss]:checked')) {
+            $('#Professur').slideDown("slow");
+            $('#kategorie_meldung').slideUp("slow");
+            $('#Seminarmodul').slideUp("slow");
+        }
+    }); 
+*/
     $('#Semester').change(function() {
 
         if ($('#Semester').val() == '') {
