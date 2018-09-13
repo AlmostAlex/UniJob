@@ -115,11 +115,11 @@
                             <tr data-status='<?php echo $module[$i]["modul_verfuegbarkeit"]; ?>'>
                                 <td style='width:7%;'></td>
                                 <td style='width:50%;'>
-                                    <?php echo $themen[$j]["themenbezeichnung"] ?>
+                                    <?php echo $themen[$j]["themenbezeichnung"]; ?>
                                 </td>
                                 <td style='width:15%;'>
                                     <center>
-                                        <?php echo $themen[$j]["thema_verfuegbarkeit"] ?>
+                                        <?php echo $themen[$j]["thema_verfuegbarkeit"]; ?>
                                     </center>
                                 </td>
                                 <td style='width:28%;' align='center'>

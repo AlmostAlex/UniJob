@@ -72,6 +72,9 @@
 </form>
 
     <div id="semester_f" class='modul_anzeige'>
+<br><br>
+<h4>Seminar- und Abschlussarbeiten</h4>
+
     <?php for($k = 0; $k < count($module); $k++){ ?>
         <table class='modul_table_uebersicht'>
             <tr>
@@ -94,26 +97,29 @@
                         <th style='width:15%' class='bold_title'><center>Betreuer</center></th>
                         <th style='width:20%' class='bold_title'><center>Verfügbarkeit</center></th>
                     </tr>
+                    <?php $themen = $this->modulUebersichtThemen($module[$k]['modul_id']); for ($p = 0; $p < count($themen); $p++) {?>   
                     <tr>
-                        <td><a class='collapsed' id='coll' data-toggle='collapse' data-parent='#accordion' href='#inhalt_1' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></td>
-                        <td>{$themenbezeichnung}</td>
+                        <td><a class='collapsed' id='coll' data-toggle='collapse' data-parent='#accordion' href='#inhalt_<?php echo $themen[$p]["thema_id"];?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></td>
+                        <td><?php echo $themen[$p]["themenbezeichnung"];?> </td>
                         <td><center>{$this->benutzer->getDozent($benutzer_id)}</center></td>
-                        <td><center><div $vergeben>{$thema_verfügbarkeit}</div></center></td>
+                        <td><center><div $vergeben><?php echo $themen[$p]["thema_verfuegbarkeit"];?></div></center></td>
                     </tr>
                     <tr class='nopadding'>
                         <td class='nopadding' colspan='6'>
-                            <div id='inhalt_1' class='collapse' role='tabpanel' aria-labelledby='headingOne' data-parent='#accordion'>
+                            <div id='inhalt_<?php echo $themen[$p]["thema_id"];?>' class='collapse' role='tabpanel' aria-labelledby='headingOne' data-parent='#accordion'>
                                 <div class='information_content'>
                                     <b class='information_titel'>Inhaltliche Informationen:</b><br>
                                         <div class='information_content_inhalt'> <b>Bevorzugter Studiengang:</b> {$studiengang}<br>
-                                            <b>Beschreibung:</b> {$beschreibung} 
+                                            <b>Beschreibung:</b> <?php echo $themen[$p]["themenbeschreibung"];?>
                                         </div>
                                 </div>
                             </div>
                         </td>
                     </tr>
+                    <?php } ?>
                 </table>
+                <br>
             </div>
-        </inside>
+        </inside><br>
     <?php } ?>
     </div>

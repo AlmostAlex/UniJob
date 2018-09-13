@@ -35,11 +35,11 @@ class thema_model
 
     public function getThemen($modul_id)
     {
-        $statement_thema = $this->dbh->prepare("SELECT thema_id, themenbezeichnung, thema_verfuegbarkeit
+        $statement_thema = $this->dbh->prepare("SELECT thema_id, themenbezeichnung, beschreibung, thema_verfuegbarkeit
                     FROM thema Where modul_id =?");
         $statement_thema->bind_param('i', $modul_id);
         $statement_thema->execute();
-        $statement_thema->bind_result($thema_id, $themenbezeichnung, $thema_verfuegbarkeit);
+        $statement_thema->bind_result($thema_id, $themenbezeichnung,$beschreibung, $thema_verfuegbarkeit);
         $statement_thema->store_result();
 
 // es wird alles in ein Array gepackt und dann an den Controller weitergeleitet, dieser return die Ausgabe an die View
@@ -48,7 +48,8 @@ class thema_model
             $row = array(
                 'thema_id' => $thema_id,
                 'themenbezeichnung' => $themenbezeichnung,
-                'thema_verfuegbarkeit' => $thema_verfuegbarkeit,
+                'themenbeschreibung' => $beschreibung,
+                'thema_verfuegbarkeit' => $thema_verfuegbarkeit
             );
             $rows[] = $row;
         }

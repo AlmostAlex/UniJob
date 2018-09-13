@@ -18,6 +18,10 @@ class modul_uebersicht_controller
         $this->tags_model = new tags_model();
     }
 
+public function modulUebersichtThemen($modul_id){
+    return $this->thema_model->getThemen($modul_id);
+}
+
     public function modulUebersicht($semester,$art,$betreuer,$tags,$state){
         $s_row = $this->modul_model->count_s(); // Anzahl der Semester, Betreuer und Kategorien für die Filteranzeige - Ausgangssicht
         $b_row = $this->modul_model->count_b();
@@ -26,11 +30,11 @@ class modul_uebersicht_controller
 
         switch ($state) {
             case 'true':
-                include 'app/view/modul_uebersicht/modul_uebersicht_view.php';
+                include 'app/view/modul_uebersicht/modul_uebersicht_view.php';  
             break;
 
             case 'false':
-                $tags_string=str_replace("\\","",$tags);
+               /* $tags_string=str_replace("\\","",$tags);
                 $tags_string=str_replace("'","",$tags);
                 $tags_array = explode(",", $tags_string); // heraus kommt [0] --> blubb [1] --> bla etc
                 $i=0;
@@ -39,7 +43,7 @@ class modul_uebersicht_controller
                     //  $tags_array[$i]=str_replace("'","",$tags_array[$i]);
                     echo $tags_array[$i].'<br>';
                     $i++;
-                }
+                } */
             break;
         }        
     }
