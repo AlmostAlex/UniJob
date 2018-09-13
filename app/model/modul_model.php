@@ -227,7 +227,54 @@ class modul_model
         $modul_vergeben = $this->dbh->prepare("UPDATE modul SET frist_ende = ?, nachrueckverfahren = ? WHERE modul_id = ?");
         $modul_vergeben->bind_param('ssi', $frist_ende_neu, $nachrueckverfahren, $modul_id);
         $modul_vergeben->execute();
-        echo "MODELLLLL";
+    }
+
+
+    public function count_s() {
+        $statement = $this->dbh->prepare("SELECT semester, count(modul_id) AS anzahl FROM modul WHERE archivierung='false' GROUP BY semester");
+        $statement->execute();
+        $statement->bind_result($semester, $anzahl);
+    
+        $s_row = array();
+        while ($statement->fetch()) {
+            $row = array(
+                'anzahl' => $anzahl,
+                'semester' => $semester
+            );
+            $s_row[] = $row;          
+        }   
+        return $s_row;
+    }
+
+    public function count_b() {
+        $statement = $this->dbh->prepare("SELECT benutzername, count(modul_id) AS anzahl FROM modul, user WHERE modul.benutzer_id = user.benutzer_id AND modul.archivierung='false' GROUP BY benutzername");
+        $statement->execute();
+        $statement->bind_result($benutzername, $anzahl);
+
+        $b_row = array();
+        while ($statement->fetch()) {
+            $row = array(
+                'benutzername' => $benutzername,
+                'anzahl' => $anzahl
+            );
+            $b_row[] = $row;          
+        }   
+        return $b_row;
+    }
+    public function count_k() {
+        $statement = $this->dbh->prepare("SELECT kategorie, count(modul_id) AS anzahl FROM modul WHERE archivierung='false' GROUP BY kategorie");
+        $statement->execute();
+        $statement->bind_result($kategorie, $anzahl);
+
+        $k_row = array();
+        while ($statement->fetch()) {
+            $row = array(
+                'kategorie' => $kategorie,
+                'anzahl' => $anzahl
+            );
+            $k_row[] = $row;          
+        }   
+        return $k_row;
     }
 
 }

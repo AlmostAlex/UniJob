@@ -1,4 +1,5 @@
 
+
 <div class="verwaltungsbox">
     <h4 class='card-title'><i class="fa fa-info-circle" aria-hidden="true"></i>  Zum Eintrag eines Moduls</h4>
     Um erfolgreich einen Kurs anzulegen, ist es zunächst erforderlich, dass:<br>
@@ -20,9 +21,9 @@
                 <tr>
                     <td><label for="Kategorie"><b>Kategorie:</b><red>*</red></label></td>
                     <td>
-                        <input id="Kategorie" autocomplete='off' type="radio" name="Seminararbeit" value="Seminararbeit" class="Kategorie" /><space>Seminararbeit</space></input> 
+                        <input id="Kategorie" autocomplete='off' type="radio" name="Kategorie" value="Seminararbeit" class="Kategorie" /><space>Seminararbeit</space></input> 
                     </td>
-                    <td><input id="Kategorie" autocomplete='off' type="radio" name="Abschlussarbeit" value="Abschlussarbeit" class="Kategorie" /><space>Abschlussarbeit</space></input></td>
+                    <td><input id="Kategorie" type="radio" name="Kategorie" value="Abschlussarbeit" class="Kategorie" /><space>Abschlussarbeit</space></input></td>
                     <td></td>
                 </tr>
                 </table>
@@ -58,12 +59,12 @@
                 <table>
                 <tr>
                     <td><label for="Modul"><b>Fakultätsbezeichnung:</b><red>*</red></label></td>
-                    <td colspan='2'><input type="text" class="form-control" id="fakultätsbezeichnung" name='fakultätsbezeichnung' placeholder="Bezeichnung der Fakultät" required> </td>
+                    <td><input type="text" class="form-control" id="fakultätsbezeichnung" name='fakultätsbezeichnung' placeholder="Bezeichnung der Fakultät" required> </td>
                     <td></td>
                 </tr> 
                 <tr>
                     <td><label for="Modul"><b>Seminarbezeichnung:</b><red>*</red></label></td>
-                    <td colspan='2'><input type="text" class="form-control" id="modulbezeichnung" name='modulbezeichnung' placeholder="Bezeichnung der Veranstaltung" name="Bezeichnung" required> </td>
+                    <td><input type="text" class="form-control" id="modulbezeichnung" name='modulbezeichnung' placeholder="Bezeichnung der Veranstaltung" name="Bezeichnung" required> </td>
                     <td></td>
                 </tr>
                 <tr>

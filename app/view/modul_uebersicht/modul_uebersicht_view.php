@@ -33,8 +33,9 @@
 
             <select class='form-control' id='art' name='art2' onchange="filter();">
             <option value=""></option>
-                <option value='Abschlussarbeit' name='Abschlussarbeit'>Abschlussarbeiten1</option>
-                <option value='Seminararbeiten' name='Seminararbeiten'>Seminararbeiten1</option>
+                <?php for($l = 0; $l < count($k_row); $l++){ ?>
+                <option value='<?php echo $k_row[$l]['kategorie']; ?>'> <?php echo $k_row[$l]['kategorie'] .' ('. $k_row[$l]['anzahl'] .')'; ?> </option>
+                <?php } ?>
             </select>
 
         </td>
@@ -42,16 +43,18 @@
 
             <select class='form-control' id='semester' name='semester2' onchange="filter();">
                 <option value=""></option>
-                <option value='s12'>s12</option>
-                <option value='s11'>s11</option>
+                <?php for($i = 0; $i < count($s_row); $i++){ ?>
+                <option value='<?php echo $s_row[$i]['semester']; ?>'> <?php echo $s_row[$i]['semester'] .' ('. $s_row[$i]['anzahl'] .')'; ?> </option>
+                <?php } ?>
             </select>
         </td>
 
          <td>
             <select class='form-control' id='betreuer' name='betreuer' onchange="filter();">
                 <option value=""></option>
-                <option value='schuhmann'>boss</option>
-                <option value='kolbe'>boss!</option>
+                <?php for($j = 0; $j < count($b_row); $j++){ ?>
+                <option value='<?php echo $b_row[$j]['benutzername']; ?>'> <?php echo $b_row[$j]['benutzername'] .' ('. $b_row[$j]['anzahl'] .')'; ?> </option>
+                <?php } ?>
             </select>
        </td>
        <td> <!-- data-selected-text-format="count > 2" -->
@@ -72,20 +75,22 @@
 </form>
 
     <div id="semester_f" class='modul_anzeige'>
+    <?php for($k = 0; $k < count($module); $k++){ ?>
+
         <table class='modul_table_uebersicht'>
             <tr>
-                <th><a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#modul_1' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></th>
-                <th><b><titel>{$nachrueck_nachricht} {$modulbezeichnung}</titel></b><br>
-                    <div class='border_round'><b>{$kategorie}</b></div>
+                <th><a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#modul_<?php echo $module[$k]['modul_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></th>
+                <th><b><titel>{$nachrueck_nachricht} <?php echo $module[$k]['modulbezeichnung']; ?></titel></b><br>
+                    <div class='border_round'><b><?php echo $module[$k]['kategorie']; ?></b></div>
                     <div class='border_round'><b>{$verfahren_scheinvariable}</b></div>
-                    <div class='border_round'><i class='far fa-calendar'></i> <b>{$semester}</b></div>
-                    <div class='border_round'><i class='far fa-clock'></i> <b>{$start_anzeige} - {$ende_anzeige}</b></div>
+                    <div class='border_round'><i class='far fa-calendar'></i> <b><?php echo $module[$k]['semester']; ?></b></div>
+                    <div class='border_round'><i class='far fa-clock'></i> <b><?php echo $module[$k]['start_anzeige'] .' - '. $module[$k]['ende_anzeige']; ?> </b></div>
                 </th>
                 <th>$btn</th>
             </tr>
         </table>
         <inside>
-            <div id='modul_1' class='collapse' role='tabpanel' aria-labelledby='headingOne' data-parent='#accordion'>
+            <div id='modul_<?php echo $module[$k]['modul_id']; ?>' class='collapse' role='tabpanel' aria-labelledby='headingOne' data-parent='#accordion'>
                 <table class='th_table'>
                     <tr>
                         <th style='width:5%' class='bold_title'><center>Info</center></th>
@@ -114,4 +119,5 @@
                 </table>
             </div>
         </inside>
+    <?php } ?>
     </div>

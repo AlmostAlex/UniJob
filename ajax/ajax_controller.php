@@ -3,6 +3,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 require_once('../app/controller/modul_uebersicht_controller.php');
+require_once('../db.php');
 
 if(isset($_GET["action"]) && $_GET["action"] =='filter'){
 if(isset($_GET["semester"])){ $semester = $_GET["semester"];} else{$semester = "";}
@@ -23,7 +24,7 @@ if(isset($_GET["action"]) && $_GET["action"] =='tags'){
     $statement->bind_result($tag_bezeichnung); 
 
     $json = [];
-    
+     $json[] ="Industrie";
     while ($statement->fetch()) {
     $json[] = $tag_bezeichnung; 
     }           
