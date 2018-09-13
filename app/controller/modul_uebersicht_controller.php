@@ -42,22 +42,25 @@ public function modulUebersichtThemen($modul_id){
                 $f_abfrage = '';
 
                 // $module = $this->modul_model->getModuleFilter($semester);
-                if($semester == ''){ $s_abfrage =''; }else{ $s_abfrage = " AND semester = '{$semester}'";}
-                if($art == ''){ $a_abfrage =''; }else{ $a_abfrage = " AND kategorie = '{$art}'";}
+                if($semester == ''){ $s_abfrage =''; }else{ $s_abfrage = " AND modul.semester = '{$semester}'";}
+                if($art == ''){ $a_abfrage =''; }else{ $a_abfrage = " AND modul.kategorie = '{$art}'";}
                 if($betreuer == ''){ $b_abfrage =''; }else{ $b_abfrage = " AND thema.benutzer_id = '{$betreuer}'";}
 
                 if(count(array_filter($tags_array)) == 0) {
                     $f_abfrage = $f_abfrage_s ='';
                 }else{
                     for ($i = 0; $i < count($tags_array)-1; $i++) {
-                    $tags_array[$i];  
-                    $f_abfrage =  $f_abfrage. ' ' . $tags_array[$i] .' AND ';                            
+                    
+                    $f_abfrage = $f_abfrage. "'". $tags_array[$i] ."' AND ";                            
                  }
-                $f_abfrage_s = ' AND tags = '. $f_abfrage .''.  $tags_array[$i]; 
+                $f_abfrage_s = " AND tags = ". $f_abfrage ."'".  $tags_array[$i]."'"; 
                 }
-                
-                $abfrage_all = $s_abfrage .''. $a_abfrage .''. $b_abfrage .''. $f_abfrage_s;
-                $module = $this->modul_model->getModuleFilter($abfrage_all);
+
+                $abfrage_modul = $s_abfrage .''. $a_abfrage;
+
+                $abfrage_th =  $b_abfrage .''. $f_abfrage_s;
+
+                $module = $this->modul_model->getModule($abfrage_modul);
 
 
                 $betreuer_anzeige = $this->user_model->getIDBenutzername($betreuer);

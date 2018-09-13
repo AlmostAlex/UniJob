@@ -82,11 +82,11 @@ class modul_model
         }
     }
 
-    public function getModule($filter)
+    public function getModule($filter_modul)
     {
         
         $statement = $this->dbh->prepare("SELECT modul_id,modulbezeichnung,kategorie,verfahren,semester,frist_start,frist_ende,studiengang,modul_verfuegbarkeit,archivierung,nachrueckverfahren
-               FROM modul Where archivierung = 'false'");    
+               FROM modul Where archivierung = 'false'". $filter_modul);    
         $statement->execute();
         $statement->bind_result($modul_id, $modulbezeichnung, $kategorie, $verfahren, $semester, $frist_start, $frist_ende, $studiengang, $modul_verfuegbarkeit,$archivierung,$nachrueckverfahren);
         $statement->store_result();
