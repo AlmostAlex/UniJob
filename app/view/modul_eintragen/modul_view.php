@@ -20,22 +20,20 @@
                 <div class="form_ueberschrift">Allgemeine Informationen</div><br>
                 <tr>
                     <td><label for="Kategorie"><b>Kategorie:</b><red>*</red></label></td>
-                    <td>
-                        <input id="Kategorie" autocomplete='off' type="radio" name="Kategorie" value="Seminararbeit" class="Kategorie" /><space>Seminararbeit</space></input> 
-                    </td>
+                    <td><input id="Kategorie" autocomplete='off' type="radio" name="Kategorie" value="Seminararbeit" class="Kategorie" /><space>Seminararbeit</space></input></td>
                     <td><input id="Kategorie" type="radio" name="Kategorie" value="Abschlussarbeit" class="Kategorie" /><space>Abschlussarbeit</space></input></td>
                     <td></td>
                 </tr>
-                </table>
-                <!-- Solange noch keine Kategorie gewählt ist -->
-                <div id='kategorie_meldung'> 
-                    <div class="alert alert-warning" role="alert">
-                        <i class="fas fa-info"></i> Wähle eine Kategorie aus.
-                    </div>
+            </table>
+            <!-- Solange noch keine Kategorie gewählt ist -->
+            <div id='kategorie_meldung'> 
+                <div class="alert alert-warning" role="alert">
+                    <i class="fas fa-info"></i> Wähle eine Kategorie aus.
                 </div>
+            </div>
 
-                <!-- Wenn Seminar Gewählt wird -->
-                <div id='Seminarmodul'> 
+            <!-- Wenn Seminar Gewählt wird -->
+            <div id='Seminarmodul'> 
                 <table>
                     <tr>
                         <td><label for="Modul"><b>Seminarbezeichnung:</b><red>*</red></label></td>
@@ -43,20 +41,20 @@
                         <td></td>
                     </tr> 
                 </table>
-                </div>
+            </div>
 
-                <!-- Wenn Abschlussarbeit Gewählt wird -->
-                <div id='Professur'> 
+            <!-- Wenn Abschlussarbeit Gewählt wird -->
+            <div id='Professur'> 
                 <table>
                     <tr>
                         <td><label for="Modul"><b>Professur:</b><red>*</red></label></td>
-                        <td colspan='2'><input type="text" class="form-control" id="professur" placeholder="Name der Professur" name="Professur" required> </td>
+                        <td colspan='2'><input type="text" class="form-control" id="professur" placeholder="Name der Professur" name="Professur"> </td>
                         <td></td>
                     </tr> 
-                    </table>
-                </div> 
+                </table>
+            </div> 
                 
-                <table>
+            <table>
                 <tr>
                     <td><label for="Modul"><b>Fakultätsbezeichnung:</b><red>*</red></label></td>
                     <td><input type="text" class="form-control" id="fakultätsbezeichnung" name='fakultätsbezeichnung' placeholder="Bezeichnung der Fakultät" required> </td>
@@ -92,7 +90,6 @@
                         </select> 
                     </td>
                     <td>
-
                     <!-- Solange noch kein Semester gewählt ist-->
                         <div id='semester_meldung'> 
                             <div class="alert alert-warning" role="alert">
@@ -147,12 +144,12 @@
                 <!-- Wenn Windhund oder Bewerbungsverfahren gewählt wurde...  -->
    
     <!-- Das kopierende Feld bei Windhund oder Bewerbung  -->
-        <!--  COPY FIELDS --> 
+    <!--  COPY FIELDS --> 
 <div class="form-group fieldGroupCopy" style="display: none;">     
     <table>
         <tr>
             <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
-            <td><space><input type="text" class="form-control" name='betreuerwindhund[]' placeholder="Betreuer des Themas" required></space> </td>
+            <td><space><input type="text" class="form-control" name='betreuerwindhund[]' placeholder="Betreuer des Themas"></space> </td>
             <td><a href="javascript:void(0)" class="btn btn-danger remove">-</a></td>
         </tr>
         <tr>
@@ -180,7 +177,7 @@
     <table>
         <tr>
             <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
-            <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas" required></space> </td>
+            <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas"></space> </td>
             <td><a href="javascript:void(0)" class="btn btn-danger remove">-</a></td>
         </tr>
         <tr>
@@ -210,7 +207,7 @@
             <div class="form-group fieldGroup"> 
                 <tr>
                     <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
-                    <td><space><input type="text" class="form-control" name='betreuerwindhund[]' placeholder="Betreuer des Themas" required></space> </td>
+                    <td><space><input type="text" class="form-control" name='betreuerwindhund[]' placeholder="Betreuer des Themas"></space> </td>
                     <td><a href="javascript:void(0)" class="btn btn-success addMore2">+</a></td>
                 </tr>
                 <tr>
@@ -246,7 +243,7 @@
         <!-- 1 -->
             <tr>
                 <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
-                <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas" required></space> </td>
+                <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas"></space> </td>
                 <td><a href="javascript:void(0)" class="btn btn-success addMore3">+</a></td>
             </tr>
             <tr>
@@ -268,7 +265,7 @@
         <!-- 2 -->
             <tr>
                 <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
-                <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas" required></space> </td>
+                <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas" ></space> </td>
             </tr>
             <tr>
                 <td><label for="titel"><b>Titel: <red style="color: red"> * </red> </b></label></td>
@@ -289,7 +286,7 @@
         <!-- 3 -->
             <tr>
                 <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
-                <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas" required></space> </td>
+                <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas"></space> </td>
             </tr>
             <tr>
                 <td><label for="titel"><b>Titel: <red style="color: red"> * </red></b></label></td>
@@ -312,6 +309,6 @@
     </table>  
     <input type="submit" name="modul_eintrag2" class="btn btn-primary" value="Modul eintragen"/>
 </div>
-</feld3>         
+</feld3>
 </form>
 </div>

@@ -10,6 +10,7 @@ class modul_model
         $this->dbh = $dbh;
         $this->thema = new thema_model();
         $this->tags_model = new tags_model();
+        $this->user = new Model();
     }
 
     public function insertModul($thema, $modulbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $tags, $betreuer)
@@ -52,7 +53,7 @@ class modul_model
                     $betreuer_string = $betreuer[$j];
 
                     //davon ausgehend, dass der Benutzername eingegeben wird !!!!! BEI UNIDB ZUGRIFF NEU SCHREIBEN!!!!!
-                    $benutzer_id = $this->user_model->getNachnameID($betreuer_string);
+                    $benutzer_id = $this->user->getNachnameID($betreuer_string);
                     if ($tag_string == '') {
                         $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$benutzer_id);
                     } else {
