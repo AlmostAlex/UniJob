@@ -47,20 +47,19 @@ class Controller
     }
 
     public function logout(){
+        $login['title'] = $login['logged'] ='';
         if(isset($_SESSION['login'])){
             ob_start (); 
             session_unset (); 
             session_destroy (); 
-            ob_end_flush ();
-            header("refresh:2;url=index");
+            ob_end_flush (); 
+            
             $login['title'] = 'Ausgeloggt!';
             $login['logged'] = 'Du hast dich erfolgreich ausgeloggt!<br> 
                                 Du wirst in wenigen Sekunden zur <b><a href="/index">Hauptseite</a></b> weitergeleitet.';
-        } else{
-            $login['title'] = 'Bereits ausgeloggt!';
-            $login['logged'] = " Du wirst in wenigen Sekunden zur <b><a href='/index'>Hauptseite</a></b> weitergeleitet.";
         }
-        include 'app/view/login/logout_view.php';            
         header("refresh:2;url=index");
+        include 'app/view/login/logout_view.php';            
+       
     }
 }

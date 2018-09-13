@@ -2,6 +2,7 @@
 include_once "app/model/modul_model.php";
 include_once "app/model/thema_model.php";
 include_once "app/model/tags_model.php";
+include_once "app/model/user_model.php";
 include_once "db.php";
 
 class modul_eintragen_controller

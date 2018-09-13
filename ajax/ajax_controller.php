@@ -1,4 +1,3 @@
-
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -24,7 +23,6 @@ if(isset($_GET["action"]) && $_GET["action"] =='tags'){
     $statement->bind_result($tag_bezeichnung); 
 
     $json = [];
-     $json[] ="Industrie";
     while ($statement->fetch()) {
     $json[] = $tag_bezeichnung; 
     }           

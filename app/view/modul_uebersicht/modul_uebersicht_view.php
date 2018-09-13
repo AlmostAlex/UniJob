@@ -50,7 +50,7 @@
             <select class='form-control' id='betreuer' name='betreuer' onchange="filter();">
                 <option value=""></option>
                 <?php for($j = 0; $j < count($b_row); $j++){ ?>
-                <option value='<?php echo $b_row[$j]['benutzername']; ?>'> <?php echo $b_row[$j]['benutzername'] .' ('. $b_row[$j]['anzahl'] .')'; ?> </option>
+                <option value='<?php echo $b_row[$j]['benutzer_id']; ?>'> <?php echo $b_row[$j]['benutzername'] .' ('. $b_row[$j]['anzahl'] .')'; ?> </option>
                 <?php } ?>
             </select>
        </td>
@@ -118,7 +118,6 @@
                     </tr>
                     <?php } ?>
                 </table>
-                <br>
             </div>
         </inside><br>
     <?php } ?>

@@ -1,5 +1,4 @@
 <?php
-require_once "app/model/user_model.php";
 
 class Model
 {
@@ -43,6 +42,16 @@ class Model
         return $benutzer_id;
     }
 
+    public function getIDBenutzername($benutzer_id)
+    {
+        $statement = $this->dbh->prepare("SELECT benutzername FROM user WHERE benutzer_id= ?");
+        $statement->bind_param('i', $benutzer_id);
+        $statement->execute();
+        $statement->bind_result($benutzername);
+        $statement->fetch();
+        return $benutzername;
+    }
+    
     public function logout()
     {
         session_destroy();

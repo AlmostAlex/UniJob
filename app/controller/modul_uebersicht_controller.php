@@ -3,6 +3,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 include_once(__DIR__."/../model/modul_model.php");
 include_once(__DIR__."/../model/thema_model.php");
+include_once(__DIR__."/../model/user_model.php");
 include_once(__DIR__."/../model/tags_model.php");
 include_once(__DIR__."/../../db.php"); 
 
@@ -13,6 +14,7 @@ class modul_uebersicht_controller
 
     public function __construct()
     {
+        $this->user_model = new Model();
         $this->modul_model = new modul_model();
         $this->thema_model = new thema_model();
         $this->tags_model = new tags_model();
@@ -34,16 +36,32 @@ public function modulUebersichtThemen($modul_id){
             break;
 
             case 'false':
-               /* $tags_string=str_replace("\\","",$tags);
+                $tags_string=str_replace("\\","",$tags);
                 $tags_string=str_replace("'","",$tags);
                 $tags_array = explode(",", $tags_string); // heraus kommt [0] --> blubb [1] --> bla etc
-                $i=0;
-    
-                while($i < count($tags_array) ){
-                    //  $tags_array[$i]=str_replace("'","",$tags_array[$i]);
-                    echo $tags_array[$i].'<br>';
-                    $i++;
-                } */
+                $f_abfrage = '';
+
+                // $module = $this->modul_model->getModuleFilter($semester);
+                if($semester == ''){ $s_abfrage =''; }else{ $s_abfrage = " AND semester = '{$semester}'";}
+                if($art == ''){ $a_abfrage =''; }else{ $a_abfrage = " AND kategorie = '{$art}'";}
+                if($betreuer == ''){ $b_abfrage =''; }else{ $b_abfrage = " AND thema.benutzer_id = '{$betreuer}'";}
+
+                if(count(array_filter($tags_array)) == 0) {
+                    $f_abfrage = $f_abfrage_s ='';
+                }else{
+                    for ($i = 0; $i < count($tags_array)-1; $i++) {
+                    $tags_array[$i];  
+                    $f_abfrage =  $f_abfrage. ' ' . $tags_array[$i] .' AND ';                            
+                 }
+                $f_abfrage_s = ' AND tags = '. $f_abfrage .''.  $tags_array[$i]; 
+                }
+
+                //$module = $this->modul_model->getModuleFilter();
+
+                $abfrage_all = $s_abfrage .''. $a_abfrage .''. $b_abfrage .''. $f_abfrage_s;
+
+                $betreuer_anzeige = $this->user_model->getIDBenutzername($betreuer);
+                include(__DIR__."/../view/modul_uebersicht/modul_uebersicht_mt_view.php"); 
             break;
         }        
     }

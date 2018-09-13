@@ -83,6 +83,7 @@ class modul_model
 
     public function getModule()
     {
+        
         $statement = $this->dbh->prepare("SELECT modul_id,modulbezeichnung,kategorie,verfahren,semester,frist_start,frist_ende,studiengang,modul_verfuegbarkeit,archivierung,nachrueckverfahren
                FROM modul Where archivierung = 'false'");    
         $statement->execute();
@@ -255,14 +256,15 @@ class modul_model
     }
 
     public function count_b() {
-        $statement = $this->dbh->prepare("SELECT benutzername, count(modul_id) AS anzahl FROM modul, user WHERE modul.benutzer_id = user.benutzer_id AND modul.archivierung='false' GROUP BY benutzername");
+        $statement = $this->dbh->prepare("SELECT user.benutzername, user.benutzer_id, count(modul_id) AS anzahl FROM modul, user WHERE modul.benutzer_id = user.benutzer_id AND modul.archivierung='false' GROUP BY benutzername");
         $statement->execute();
-        $statement->bind_result($benutzername, $anzahl);
+        $statement->bind_result($benutzername, $benutzer_id, $anzahl);
 
         $b_row = array();
         while ($statement->fetch()) {
             $row = array(
                 'benutzername' => $benutzername,
+                'benutzer_id' => $benutzer_id,
                 'anzahl' => $anzahl
             );
             $b_row[] = $row;          
