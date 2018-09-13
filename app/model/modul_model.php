@@ -12,11 +12,11 @@ class modul_model
         $this->tags_model = new tags_model();
     }
 
-    public function insertModul($thema, $modulbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $tags)
+    public function insertModul($thema, $modulbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $tags, $betreuer)
     {
         //Erst eintragung des Moduls
-        $statement = $this->dbh->prepare("INSERT INTO `modul` (`modulbezeichnung`, `kategorie`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`)
-        VALUES (?,?,?,?,?,?,?,?,'Offen','false')");
+        $statement = $this->dbh->prepare("INSERT INTO `modul` (`modulbezeichnung`, `kategorie`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren` )
+        VALUES (?,?,?,?,?,?,?,?,'Offen','false', 'false')");
         $statement->bind_param('sssssssi', $modulbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $_SESSION['login']);
         $statement->execute();
 
@@ -49,12 +49,15 @@ class modul_model
                     $beschreibung_array = $beschreibung[$j];
                     $thema_array = $thema[$j];
                     $tag_string = $tags[$j];
+                    $betreuer_string = $betreuer[$j];
 
+                    //davon ausgehend, dass der Benutzername eingegeben wird !!!!! BEI UNIDB ZUGRIFF NEU SCHREIBEN!!!!!
+                    $benutzer_id = $this->user_model->getNachnameID($betreuer_string);
                     if ($tag_string == '') {
-                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$_SESSION['login']);
+                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$benutzer_id);
                     } else {
                         $eintrag = $this->tags_model->getTagString($tag_string);
-                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$_SESSION['login']);
+                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$benutzer_id);
                         $thema_id = $this->thema->lastThemaID();
                         $this->tags_model->insertTags($tag_string, $thema_id);
                     }

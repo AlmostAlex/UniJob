@@ -32,6 +32,16 @@ class Model
         $_SESSION['login'] = $benutzer_id;
         return $_SESSION['login'];
     }
+    // !!!!! BEI UNIDB ZUGRIFF NEUSCHREIBEN!!!!!!
+    public function getNachnameID($nachname)
+    {
+        $statement = $this->dbh->prepare("SELECT benutzer_id FROM user WHERE benutzername = ?");
+        $statement->bind_param('s', $nachname);
+        $statement->execute();
+        $statement->bind_result($benutzer_id);
+        $statement->fetch();
+        return $benutzer_id;
+    }
 
     public function logout()
     {

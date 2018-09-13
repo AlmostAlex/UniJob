@@ -39,7 +39,7 @@
                 <table>
                     <tr>
                         <td><label for="Modul"><b>Seminarbezeichnung:</b><red>*</red></label></td>
-                        <td colspan='2'><input type="text" class="form-control" id="modulbezeichnung" name='modulbezeichnung' placeholder="Bezeichnung der Veranstaltung" name="Bezeichnung" required> </td>
+                        <td colspan='2'><input type="text" class="form-control" id="modulbezeichnung" name='modulbezeichnung' placeholder="Bezeichnung der Veranstaltung" required> </td>
                         <td></td>
                     </tr> 
                 </table>
@@ -62,11 +62,6 @@
                     <td><input type="text" class="form-control" id="fakultätsbezeichnung" name='fakultätsbezeichnung' placeholder="Bezeichnung der Fakultät" required> </td>
                     <td></td>
                 </tr> 
-                <tr>
-                    <td><label for="Modul"><b>Seminarbezeichnung:</b><red>*</red></label></td>
-                    <td><input type="text" class="form-control" id="modulbezeichnung" name='modulbezeichnung' placeholder="Bezeichnung der Veranstaltung" name="Bezeichnung" required> </td>
-                    <td></td>
-                </tr>
                 <tr>
                     <td><label for="Termine"><b>Bewerbungsfristen:</b><red>*</red></label></td>
                     <td>
@@ -157,7 +152,7 @@
     <table>
         <tr>
             <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
-            <td><space><input type="text" class="form-control" id="betreuerwindhund" name='betreuer' placeholder="Betreuer des Themas" required></space> </td>
+            <td><space><input type="text" class="form-control" name='betreuerwindhund[]' placeholder="Betreuer des Themas" required></space> </td>
             <td><a href="javascript:void(0)" class="btn btn-danger remove">-</a></td>
         </tr>
         <tr>
