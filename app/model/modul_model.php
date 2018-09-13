@@ -99,9 +99,13 @@ class modul_model
                 $archivBtn = 'badge badge-warning';
             } else { $archivBtn = 'btn_false';}
 
-            if ($nachrueckverfahren=='true') { $nachrueckv_status = '[Nachrückverfahren]';
-            } else { $nachrueckv_status  = ''; }
-
+            if ($nachrueckverfahren=='true') { 
+                $nachrueckv_status = '[Nachrückverfahren]';
+                $verfahren_anzeige = 'Windhundverfahren';
+            } else { 
+                $nachrueckv_status  = '';  
+                $verfahren_anzeige = $verfahren;
+            }
 
             $start_dt = new DateTime($frist_start);
             $row = array(
@@ -119,7 +123,8 @@ class modul_model
                 'archivierung' => $archivierung,
                 'checkDeleteBtn' => $deleteBtn,
                 'checkArchivBtn'=> $archivBtn,
-                'nachrueckv_status'=> $nachrueckv_status
+                'nachrueckv_status'=> $nachrueckv_status,
+                'verfahren_anzeige'=> $verfahren_anzeige
             );
             $rows[] = $row;
         }

@@ -30,7 +30,6 @@
 <form method="post" action="">
     <tr>
         <td>
-
             <select class='form-control' id='art' name='art2' onchange="filter();">
             <option value=""></option>
                 <?php for($l = 0; $l < count($k_row); $l++){ ?>
@@ -40,7 +39,6 @@
 
         </td>
         <td>
-
             <select class='form-control' id='semester' name='semester2' onchange="filter();">
                 <option value=""></option>
                 <?php for($i = 0; $i < count($s_row); $i++){ ?>
@@ -48,7 +46,6 @@
                 <?php } ?>
             </select>
         </td>
-
          <td>
             <select class='form-control' id='betreuer' name='betreuer' onchange="filter();">
                 <option value=""></option>
@@ -76,13 +73,12 @@
 
     <div id="semester_f" class='modul_anzeige'>
     <?php for($k = 0; $k < count($module); $k++){ ?>
-
         <table class='modul_table_uebersicht'>
             <tr>
                 <th><a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#modul_<?php echo $module[$k]['modul_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></th>
-                <th><b><titel>{$nachrueck_nachricht} <?php echo $module[$k]['modulbezeichnung']; ?></titel></b><br>
+                <th><b><titel><?php echo $module[$k]['nachrueckv_status']; ?> <?php echo $module[$k]['modulbezeichnung']; ?></titel></b><br>
                     <div class='border_round'><b><?php echo $module[$k]['kategorie']; ?></b></div>
-                    <div class='border_round'><b>{$verfahren_scheinvariable}</b></div>
+                    <div class='border_round'><b><?php echo $module[$k]['verfahren_anzeige']; ?></b></div>
                     <div class='border_round'><i class='far fa-calendar'></i> <b><?php echo $module[$k]['semester']; ?></b></div>
                     <div class='border_round'><i class='far fa-clock'></i> <b><?php echo $module[$k]['start_anzeige'] .' - '. $module[$k]['ende_anzeige']; ?> </b></div>
                 </th>
