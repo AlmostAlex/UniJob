@@ -35,7 +35,7 @@ class Model
     // !!!!! BEI UNIDB ZUGRIFF NEUSCHREIBEN!!!!!!
     public function getNachnameID($nachname)
     {
-        $statement = $this->dbh->prepare("SELECT benutzer_id FROM user WHERE benutzername = ?");
+        $statement = $this->dbh->prepare("SELECT benutzer_id FROM user WHERE nachname = ?");
         $statement->bind_param('s', $nachname);
         $statement->execute();
         $statement->bind_result($benutzer_id);
