@@ -68,7 +68,7 @@ class modul_controller
     {
         switch ($state) {
             case 'false':
-                $module = $this->modul_model->getModule();
+                $module = $this->modul_model->getModule('');
                 include 'app/view/modul_verwaltung/modul_verwaltung_view.php';
                 break;
             // Wenn die Themen in Abh. mehrerer Module geholt werden sollen (dh es werden erst die Modul IDs generiert, dann muss der Controller)
