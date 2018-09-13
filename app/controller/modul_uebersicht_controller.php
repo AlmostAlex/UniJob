@@ -55,10 +55,10 @@ public function modulUebersichtThemen($modul_id){
                  }
                 $f_abfrage_s = ' AND tags = '. $f_abfrage .''.  $tags_array[$i]; 
                 }
-
-                //$module = $this->modul_model->getModuleFilter();
-
+                
                 $abfrage_all = $s_abfrage .''. $a_abfrage .''. $b_abfrage .''. $f_abfrage_s;
+                $module = $this->modul_model->getModuleFilter($abfrage_all);
+
 
                 $betreuer_anzeige = $this->user_model->getIDBenutzername($betreuer);
                 include(__DIR__."/../view/modul_uebersicht/modul_uebersicht_mt_view.php"); 

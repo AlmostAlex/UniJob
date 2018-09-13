@@ -82,7 +82,7 @@ class modul_model
         }
     }
 
-    public function getModule()
+    public function getModule($filter)
     {
         
         $statement = $this->dbh->prepare("SELECT modul_id,modulbezeichnung,kategorie,verfahren,semester,frist_start,frist_ende,studiengang,modul_verfuegbarkeit,archivierung,nachrueckverfahren
