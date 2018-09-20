@@ -16,6 +16,18 @@
 </style>
 
 
+
+<script>
+function r_art(){
+$("#art").find("option[value='']").attr('selected', true);
+$("#art option[value='']").prop("selected", true);
+filter();
+} 
+
+</script>
+
+
+
 <h2 style='margin-top: 20px;' class='card-title'>Übersicht der Seminar- / Abschlussarbeitsthemen</h2>
 <div style='text-align: center'>
 <div class='suche'>

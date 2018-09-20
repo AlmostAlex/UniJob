@@ -207,6 +207,11 @@ function filter() {
 
     var semester = document.getElementById("semester").value;
     var art = document.getElementById("art").value;
+
+    // $("art").find("option[value=" + art + "]").attr('selected', true);
+    //$("art option[value='" + art + "']").prop("selected", true);
+
+
     var betreuer = document.getElementById("betreuer").value;
 
     if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -222,7 +227,6 @@ function filter() {
     }
     var tags = "'" + tagsarray.join("','") + "'";
     var url = "ajax/ajax_controller.php?action=filter&semester=" + semester + "&art=" + art + "&betreuer=" + betreuer;
-    //var url = "app/controller/ajax_controller.php?action=filter&semester=" + semester + "&art=" + art + "&betreuer=" + betreuer;
     url = url + "&tags=" + tags;
 
 
