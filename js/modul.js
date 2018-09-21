@@ -199,6 +199,9 @@ $(document).ready(function() {
 
 function filter() {
 
+   //  $('#r_s').css('display','none');
+   
+
     var tagsarray = new Array();
     $('#tags option:selected').each(
         function(i) {
@@ -207,12 +210,9 @@ function filter() {
 
     var semester = document.getElementById("semester").value;
     var art = document.getElementById("art").value;
-
-    // $("art").find("option[value=" + art + "]").attr('selected', true);
-    //$("art option[value='" + art + "']").prop("selected", true);
-
-
     var betreuer = document.getElementById("betreuer").value;
+
+    //if(semester == ''){  } else{ $('#r_s').css('display','block');}
 
     if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();

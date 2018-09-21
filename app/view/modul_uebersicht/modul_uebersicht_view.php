@@ -19,8 +19,21 @@
 
 <script>
 function r_art(){
-$("#art").find("option[value='']").attr('selected', true);
+//$("#art").find("option[value='']").attr('selected', true);
 $("#art option[value='']").prop("selected", true);
+filter();
+} 
+
+function r_betreuer(){
+//$("#betreuer").find("option[value='']").attr('selected', true);
+$("#betreuer option[value='']").prop("selected", true);
+filter();
+} 
+
+function r_semester(){
+//$("#semester").find("option[value='']").attr('selected', true);
+$("#semester option[value='']").prop("selected", true);
+$('#r_s').hide();
 filter();
 } 
 
