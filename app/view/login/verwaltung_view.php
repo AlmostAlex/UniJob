@@ -11,8 +11,8 @@
 <div class="Verwaltungsbereich">
         <ul>
                 <li class='Thema_uebersicht'><a href='/mt_verwaltung'>Übersicht &<br>Verwaltung<span></span></a></li>
-                <li class='thema_hochladen'><a href=''>Archivierung<br><span></span></a></li>
-                <li class='inf_verwalten'><a href='/modul_eintragen'>Modul <br>eintragen<span></span></a></li>
                 <li class='report_erstellen'><a href='/report_wahl'>Report <br>erstellen<span></span></a></li>
+                <li class='inf_verwalten'><a href='/seminar_eintragen'>Seminar <br>eintragen<span></span></a></li>
+                <li class='thema_hochladen'><a href='/abschlussarbeit_eintragen'>Abschlussarbeit<br>eintragen<span></span></a></li>
         </ul>
 </div>

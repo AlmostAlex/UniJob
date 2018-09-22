@@ -13,23 +13,18 @@ class modul_model
         $this->user = new Model();
     }
 
-    public function insertModul($thema, $modulbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $tags, $betreuer)
+    public function insertSeminar($thema, $modulbezeichnung, $fakultätsbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $tags, $betreuer)
     {
         //Erst eintragung des Moduls
-        $statement = $this->dbh->prepare("INSERT INTO `modul` (`modulbezeichnung`, `kategorie`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren` )
-        VALUES (?,?,?,?,?,?,?,?,'Offen','false', 'false')");
-        $statement->bind_param('sssssssi', $modulbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $_SESSION['login']);
+        $statement = $this->dbh->prepare("INSERT INTO `modul` (`modulbezeichnung`, `fakultaet`, `kategorie`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren` )
+        VALUES (?,?,?,?,?,?,?,?,?,'Offen','false', 'false')");
+        $statement->bind_param('ssssssssi', $modulbezeichnung, $fakultätsbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $_SESSION['login']);
         $statement->execute();
 
         //dann die hierdurch entstandene modul_id holen
-        $statement = $this->dbh->prepare("SELECT modul_id FROM modul WHERE modulbezeichnung = ?");
-        $statement->bind_param('s', $modulbezeichnung);
-        $statement->execute();
-        $statement->bind_result($modul_id);
-        $statement->fetch();
+        $modul_id = lastModulID();
 
         // Leere Arrays entfernen
-        //array_filter($_POST['themenbezeichnungbelegwunsch']);
         array_filter($_POST['themenbezeichnungwindhund']);
         array_filter($_POST['themenbezeichnungbelegwunsch']);
         array_filter($_POST['themenbeschreibung']);
@@ -48,38 +43,85 @@ class modul_model
             if (!empty($thema[$j])) {
                 if (!empty($beschreibung[$j])) {
                     $beschreibung_array = $beschreibung[$j];
+                    echo $beschreibung_array;
+                } else{
+                    $beschreibung_array = '';
+                }
                     $thema_array = $thema[$j];
                     $tag_string = $tags[$j];
                     $betreuer_string = $betreuer[$j];
+                    echo $betreuer_string;
 
                     //davon ausgehend, dass der Benutzername eingegeben wird !!!!! BEI UNIDB ZUGRIFF NEU SCHREIBEN!!!!!
                     $benutzer_id = $this->user->getNachnameID($betreuer_string);
+                    echo $benutzer_id;
                     if ($tag_string == '') {
                         $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$benutzer_id);
                     } else {
-                        $eintrag = $this->tags_model->getTagString($tag_string);
                         $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$benutzer_id);
                         $thema_id = $this->thema->lastThemaID();
                         $this->tags_model->insertTags($tag_string, $thema_id);
                     }
-                } else {
-                    $tag_string = $tags[$j];
-
-                    if ($tag_string == '') {
-                        $thema_array = $thema[$j];
-                        $beschreibung_array = '';
-                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$_SESSION['login']);
-                    } else {
-                        $thema_array = $thema[$j];
-                        $beschreibung_array = '';
-                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$_SESSION['login']);
-                        $thema_id = $this->thema->lastThemaID();
-                        $this->tags_model->insertTags($tag_string, $thema_id);
-                    }
-                }
             } else {echo "thema bitte ausfüllen";}
             $j = $j + 1;
         }
+    }
+
+    public function insertAbschluss($thema, $professurbezeichnung, $fakultätsbezeichnung, $kategorie, $semester, $start, $ende, $studiengang, $tags, $betreuer)
+    {
+        //Erst eintragung des Moduls
+        $statement = $this->dbh->prepare("INSERT INTO `modul` (`professur`, `fakultaet`, `kategorie`, `semester`, `frist_start`, `frist_ende`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren` )
+        VALUES (?,?,?,?,?,?,?,?,'Offen','false', 'false')");
+        $statement->bind_param('sssssssi', $professurbezeichnung, $fakultätsbezeichnung, $kategorie, $semester, $start, $ende, $studiengang, $_SESSION['login']);
+        $statement->execute();
+
+        //dann die hierdurch entstandene modul_id holen
+        $modul_id = $this->lastModulID();
+
+        // Leere Arrays entfernen
+        array_filter($_POST['themenbezeichnungwindhund']);
+        array_filter($_POST['themenbeschreibung']);
+        //  array_filter($_POST['tags']);
+
+        $j = 0;
+        $beschreibung = $_POST['themenbeschreibung'];
+
+        //Und hier alle Themen mit den passenden Beschreibungen zu dem gerade angelegten Modul hinzufügen
+        while ($j < count($thema)) {
+            if (!empty($thema[$j])) {
+                if (!empty($beschreibung[$j])) {
+                    $beschreibung_array = $beschreibung[$j];
+                    echo $beschreibung_array;
+                } else{
+                    $beschreibung_array = '';
+                }
+                    $thema_array = $thema[$j];
+                    $tag_string = $tags[$j];
+                    $betreuer_string = $betreuer[$j];
+                    echo $betreuer_string;
+
+                    //davon ausgehend, dass der Benutzername eingegeben wird !!!!! BEI UNIDB ZUGRIFF NEU SCHREIBEN!!!!!
+                    $benutzer_id = $this->user->getNachnameID($betreuer_string);
+                    echo $benutzer_id;
+                    if ($tag_string == '') {
+                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$benutzer_id);
+                    } else {
+                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$benutzer_id);
+                        $thema_id = $this->thema->lastThemaID();
+                        $this->tags_model->insertTags($tag_string, $thema_id);
+                    }
+            } else {echo "thema bitte ausfüllen";}
+            $j = $j + 1;
+        }
+    }
+
+    public function lastModulID()
+    {
+        $statement = $this->dbh->prepare("SELECT max(modul_id) FROM modul");
+        $statement->execute();
+        $statement->bind_result($modul_id);
+        $statement->fetch();
+        return $modul_id;
     }
 
     public function getModule($filter_modul)

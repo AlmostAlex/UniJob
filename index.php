@@ -8,6 +8,7 @@ include("app/controller/login_controller.php");
 include("app/controller/modul_controller.php"); 
 include("app/controller/bewerbung_controller.php"); 
 include("app/controller/modul_eintragen_controller.php"); 
+include("app/controller/abschluss_eintragen_controller.php"); 
 include("app/controller/modul_uebersicht_controller.php"); 
 $router = new Router();
 
@@ -53,8 +54,13 @@ $router->map(["GET", "POST"],["/{action}","/{action}/{action2}/{action3}/{id}"],
     $modul->Route($action,$action2,$action3,$id); 
 });
 
-$router->map(["GET", "POST"],["/modul_eintragen"], function () {
+$router->map(["GET", "POST"],["/seminar_eintragen"], function () {
     $modul_add = new modul_eintragen_controller();
+    $modul_add->modulEintragung();
+});
+
+$router->map(["GET", "POST"],["/abschlussarbeit_eintragen"], function () {
+    $modul_add = new abschluss_eintragen_controller();
     $modul_add->modulEintragung();
 });
 

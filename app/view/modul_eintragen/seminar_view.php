@@ -18,46 +18,16 @@
         <feld>
             <table id='general'> 
                 <div class="form_ueberschrift">Allgemeine Informationen</div><br>
-                <tr>
-                    <td><label for="Kategorie"><b>Kategorie:</b><red>*</red></label></td>
-                    <td><input id="Kategorie" autocomplete='off' type="radio" name="Kategorie" value="Seminararbeit" class="Kategorie" /><space>Seminararbeit</space></input></td>
-                    <td><input id="Kategorie" type="radio" name="Kategorie" value="Abschlussarbeit" class="Kategorie" /><space>Abschlussarbeit</space></input></td>
-                    <td></td>
-                </tr>
             </table>
-            <!-- Solange noch keine Kategorie gewählt ist -->
-            <div id='kategorie_meldung'> 
-                <div class="alert alert-warning" role="alert">
-                    <i class="fas fa-info"></i> Wähle eine Kategorie aus.
-                </div>
-            </div>
-
-            <!-- Wenn Seminar Gewählt wird -->
-            <div id='Seminarmodul'> 
-                <table>
-                    <tr>
-                        <td><label for="Modul"><b>Seminarbezeichnung:</b><red>*</red></label></td>
-                        <td colspan='2'><input type="text" class="form-control" id="modulbezeichnung" name='modulbezeichnung' placeholder="Bezeichnung der Veranstaltung" required> </td>
-                        <td></td>
-                    </tr> 
-                </table>
-            </div>
-
-            <!-- Wenn Abschlussarbeit Gewählt wird -->
-            <div id='Professur'> 
-                <table>
-                    <tr>
-                        <td><label for="Modul"><b>Professur:</b><red>*</red></label></td>
-                        <td colspan='2'><input type="text" class="form-control" id="professur" placeholder="Name der Professur" name="Professur"> </td>
-                        <td></td>
-                    </tr> 
-                </table>
-            </div> 
-                
             <table>
                 <tr>
+                    <td><label for="Modul"><b>Seminarbezeichnung:</b><red>*</red></label></td>
+                    <td colspan = 2><input type="text" class="form-control" id="modulbezeichnung" name='modulbezeichnung' placeholder="Bezeichnung der Veranstaltung" required> </td>
+                    <td></td>
+                </tr>
+                <tr>
                     <td><label for="Modul"><b>Fakultätsbezeichnung:</b><red>*</red></label></td>
-                    <td><input type="text" class="form-control" id="fakultätsbezeichnung" name='fakultätsbezeichnung' placeholder="Bezeichnung der Fakultät" required> </td>
+                    <td colspan = 2><input type="text" class="form-control" id="fakultätsbezeichnung" name='fakultätsbezeichnung' placeholder="Bezeichnung der Fakultät" required> </td>
                     <td></td>
                 </tr> 
                 <tr>
