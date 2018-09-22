@@ -28,7 +28,7 @@
         <nav class="navbereich" style="background-color: #3979b5"> 
             <a href="https://www.uni-goettingen.de/de/2165.html">Wiwi-Fakultät</a>
             <a href="/index">Informationsseite</a>
-            <a href="Themen_uebersicht_student.php">Themenübersicht</a>
+            <a href="/modul_uebersicht">Themenübersicht</a>
             <?php if (isset($_SESSION['login'])) { ?> 
                 <a href='/logout'>logout</a>
             <?php } else { ?>

@@ -1,13 +1,15 @@
 
 <script>
     $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 </script>
 
 <div class="verwaltungsbox">
-    <h4 class='card-title'><i class="fa fa-info-circle" aria-hidden="true"></i> Zur Verwaltung der Module und Themen</h4>
-    Auf der Verwaltungsseite für Modul(-themen), können folgende Funktionen ausgeführt werden:
+    <h4 class='card-title'><i class="fa fa-info-circle" aria-hidden="true"></i> 
+        Zur Verwaltung der Module und Themen
+    </h4>
+        Auf der Verwaltungsseite für Modul(-themen), können folgende Funktionen ausgeführt werden:
     <ul>
         <li>Module und Themen können <b>bearbeitet</b> und <b>gelöscht</b> werden.</li>
         <li>Existiert nur <b>ein Thema im Modul</b>, das gelöscht werden soll, wird das <b>gesamte Modul</b> gelöscht.</li>
@@ -70,7 +72,11 @@
                             </center>
                         </td>
                         <td style='width:50%;'><b>
-                                <?php echo $module[$i]["nachrueckv_status"] .' '. $module[$i]["modulbezeichnung"]; ?>
+                            <?php if($module[$i]["kategorie"] == "Seminararbeit"){
+                                echo $module[$i]["nachrueckv_status"] .' '. $module[$i]["modulbezeichnung"];
+                            }else{ 
+                                echo $module[$i]["nachrueckv_status"] .' Professur: '. $module[$i]["professur"];
+                            }?>
                             </b>
                             <br>
                             <div class='border_round'>

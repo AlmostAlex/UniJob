@@ -70,9 +70,9 @@ class modul_model
     public function insertAbschluss($thema, $professurbezeichnung, $fakultätsbezeichnung, $kategorie, $semester, $start, $ende, $studiengang, $tags, $betreuer)
     {
         //Erst eintragung des Moduls
-        $statement = $this->dbh->prepare("INSERT INTO `modul` (`professur`, `fakultaet`, `kategorie`, `semester`, `frist_start`, `frist_ende`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren` )
-        VALUES (?,?,?,?,?,?,?,?,'Offen','false', 'false')");
-        $statement->bind_param('sssssssi', $professurbezeichnung, $fakultätsbezeichnung, $kategorie, $semester, $start, $ende, $studiengang, $_SESSION['login']);
+        $statement = $this->dbh->prepare("INSERT INTO `modul` (`professur`, `fakultaet`, `kategorie`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren` )
+        VALUES (?,?,?,'Windhundverfahren',?,?,?,?,'Offen','false', 'false')");
+        $statement->bind_param('ssssssssi', $professurbezeichnung, $fakultätsbezeichnung, $kategorie, $semester, $start, $ende, $studiengang, $_SESSION['login']);
         $statement->execute();
 
         //dann die hierdurch entstandene modul_id holen
@@ -127,10 +127,10 @@ class modul_model
     public function getModule($filter_modul)
     {
         
-        $statement = $this->dbh->prepare("SELECT modul_id,modulbezeichnung,kategorie,verfahren,semester,frist_start,frist_ende,studiengang,modul_verfuegbarkeit,archivierung,nachrueckverfahren
+        $statement = $this->dbh->prepare("SELECT modul_id,modulbezeichnung,professur,fakultaet,kategorie,verfahren,semester,frist_start,frist_ende,studiengang,modul_verfuegbarkeit,archivierung,nachrueckverfahren
                FROM modul Where archivierung = 'false'". $filter_modul);    
         $statement->execute();
-        $statement->bind_result($modul_id, $modulbezeichnung, $kategorie, $verfahren, $semester, $frist_start, $frist_ende, $studiengang, $modul_verfuegbarkeit,$archivierung,$nachrueckverfahren);
+        $statement->bind_result($modul_id, $modulbezeichnung, $professur,$fakultaet,$kategorie, $verfahren, $semester, $frist_start, $frist_ende, $studiengang, $modul_verfuegbarkeit,$archivierung,$nachrueckverfahren);
         $statement->store_result();
 
         $rows = array();
@@ -158,6 +158,8 @@ class modul_model
             $row = array(
                 'modul_id' => $modul_id,
                 'modulbezeichnung' => $modulbezeichnung,
+                'professur' => $professur,
+                'fakultaet' => $fakultaet,
                 'kategorie' => $kategorie,
                 'verfahren' => $verfahren,
                 'semester' => $semester,
@@ -180,16 +182,18 @@ class modul_model
 
     public function getModulById($modul_id)
     {
-        $statement = $this->dbh->prepare("SELECT modulbezeichnung,kategorie,verfahren,semester,frist_start,frist_ende,studiengang,modul_verfuegbarkeit,nachrueckverfahren From modul Where modul_id =?");
+        $statement = $this->dbh->prepare("SELECT modulbezeichnung,professur,fakultaet,kategorie,verfahren,semester,frist_start,frist_ende,studiengang,modul_verfuegbarkeit,nachrueckverfahren From modul Where modul_id =?");
         $statement->bind_param('i', $modul_id);
         $statement->execute();
-        $statement->bind_result($modulbezeichnung, $kategorie, $verfahren, $semester, $frist_start, $frist_ende, $studiengang, $modul_verfuegbarkeit, $nachrueckverfahren);
+        $statement->bind_result($modulbezeichnung, $professur, $fakultaet, $kategorie, $verfahren, $semester, $frist_start, $frist_ende, $studiengang, $modul_verfuegbarkeit, $nachrueckverfahren);
 
         $modul = array();
         while ($statement->fetch()) {
             $row = array(
                 'modul_id' => $modul_id,
                 'modulbezeichnung' => $modulbezeichnung,
+                'professur' => $professur,
+                'fakultaet' => $fakultaet,
                 'kategorie' => $kategorie,
                 'verfahren' => $verfahren,
                 'semester' => $semester,

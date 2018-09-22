@@ -18,7 +18,8 @@
             <h5 class="mt-0">Admin Navigation</h5>
             <p>
                 <i class="fas fa-angle-right"></i> <a href="/verwaltung">Verwaltung</a><br>
-                <i class="fas fa-angle-right"></i> <a href="/modul_eintragen">Module eintragen</a><br>
+                <i class="fas fa-angle-right"></i> <a href="/seminar_eintragen">Seminarthemen eintragen</a><br>
+                <i class="fas fa-angle-right"></i> <a href="/abschlussarbeit_eintragen">Abschlussthemen eintragen</a><br>
                 <i class="fas fa-angle-right"></i> <a href="/mt_verwaltung">Modul- und Themenverwaltung</a><br>
                 <i class="fas fa-angle-right"></i> <a href="/report_wahl">Report erstellen</a><br>
             </p>
