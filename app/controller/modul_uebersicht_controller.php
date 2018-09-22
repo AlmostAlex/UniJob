@@ -42,9 +42,9 @@ public function modulUebersichtThemen($modul_id){
                 $f_abfrage = '';
 
                 // $module = $this->modul_model->getModuleFilter($semester);
-                if($semester == ''){ $s_abfrage =''; }else{ $s_abfrage = " AND modul.semester = '{$semester}'";}
-                if($art == ''){ $a_abfrage =''; }else{ $a_abfrage = " AND modul.kategorie = '{$art}'";}
-                if($betreuer == ''){ $b_abfrage =''; }else{ $b_abfrage = " AND thema.benutzer_id = '{$betreuer}'";}
+                if($semester == ''){ $s_abfrage =  $search_s = $x_s = ''; }else{ $s_abfrage = " AND modul.semester = '{$semester}'"; $search_s = 'badge badge-info'; $x_s = 'x';}
+                if($art == ''){ $a_abfrage =  $search_a = $x_a = ''; }else{ $a_abfrage = " AND modul.kategorie = '{$art}'"; $search_a = 'badge badge-info'; $x_a = 'x';}
+                if($betreuer == ''){ $b_abfrage =  $search_b = $x_b = ''; }else{ $b_abfrage = " AND thema.benutzer_id = '{$betreuer}'"; $search_b = 'badge badge-info'; $x_b = 'x';}
 
                 if(count(array_filter($tags_array)) == 0) {
                     $f_abfrage = $f_abfrage_s ='';
@@ -62,7 +62,7 @@ public function modulUebersichtThemen($modul_id){
 
                 $module = $this->modul_model->getModule($abfrage_modul);
 
-
+                
                 $betreuer_anzeige = $this->user_model->getIDBenutzername($betreuer);
                 include(__DIR__."/../view/modul_uebersicht/modul_uebersicht_mt_view.php"); 
             break;

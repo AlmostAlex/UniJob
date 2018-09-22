@@ -15,9 +15,8 @@
 
 </style>
 
-
-
 <script>
+
 function r_art(){
 //$("#art").find("option[value='']").attr('selected', true);
 $("#art option[value='']").prop("selected", true);
@@ -33,7 +32,16 @@ filter();
 function r_semester(){
 //$("#semester").find("option[value='']").attr('selected', true);
 $("#semester option[value='']").prop("selected", true);
-$('#r_s').hide();
+filter();
+
+} 
+
+function r_t(){
+var t = $(this).value;
+var foo = $(this);
+$('#tags option[value='t']').prop('selected', false);
+//$("#semester option[value='']").prop("selected", true);
+
 filter();
 } 
 

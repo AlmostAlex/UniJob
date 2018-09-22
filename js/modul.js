@@ -199,20 +199,16 @@ $(document).ready(function() {
 
 function filter() {
 
-   //  $('#r_s').css('display','none');
-   
-
     var tagsarray = new Array();
     $('#tags option:selected').each(
         function(i) {
             tagsarray[i] = $(this).text();
         });
 
+
     var semester = document.getElementById("semester").value;
     var art = document.getElementById("art").value;
     var betreuer = document.getElementById("betreuer").value;
-
-    //if(semester == ''){  } else{ $('#r_s').css('display','block');}
 
     if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
