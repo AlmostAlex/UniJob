@@ -16,39 +16,47 @@
 </style>
 
 <script>
-
 function r_art(){
 //$("#art").find("option[value='']").attr('selected', true);
 $("#art option[value='']").prop("selected", true);
 filter();
 } 
-
 function r_betreuer(){
 //$("#betreuer").find("option[value='']").attr('selected', true);
 $("#betreuer option[value='']").prop("selected", true);
 filter();
 } 
-
 function r_semester(){
 //$("#semester").find("option[value='']").attr('selected', true);
 $("#semester option[value='']").prop("selected", true);
 filter();
-
-} 
-
-function r_t(){
-var t = $(this).value;
-var foo = $(this);
-$('#tags option[value='t']').prop('selected', false);
-//$("#semester option[value='']").prop("selected", true);
-
-filter();
-} 
-
+}
 </script>
 
+<script>
+function getvalue(t) {
+var r = event.target.value;
+console.log(t.value);
+alert(JSON.stringify(t.value)); 
+$(this).remove(); 
+//$('#tags').multiselect('refresh');
+//$('#tags option[value='t']').prop('selected', false);
+//$("#semester option[value='']").prop("selected", true);
+var t = $('#t').val()
+$( this ).slideUp();
+}
 
 
+  $(document).ready(function() {
+   $('#test').click(function(){
+      alert(JSON.stringify($(this).text())); 
+   });
+ });
+</script>
+
+<span value='hihi' id="test">Hide me</span> x
+
+ 
 <h2 style='margin-top: 20px;' class='card-title'>Übersicht der Seminar- / Abschlussarbeitsthemen</h2>
 <div style='text-align: center'>
 <div class='suche'>
