@@ -148,6 +148,25 @@ $(function() {
         }
     });
 
+    $('#SemesterEdit').ready(function() {
+        if ($('#SemesterEdit').val() == 'SoSe') {
+            $('#SoSe').show();
+            $('#WiSe').slideUp("slow");
+        } else if ($('#SemesterEdit').val() == 'WiSe') {
+            $('#SoSe').slideUp("slow");
+            $('#WiSe').show();
+        }
+    });
+    $('#SemesterEdit').change(function() {
+        if ($('#SemesterEdit').val() == 'SoSe') {
+            $('#SoSe').slideDown("slow");
+            $('#WiSe').slideUp("slow");
+        } else if ($('#SemesterEdit').val() == 'WiSe') {
+            $('#SoSe').slideUp("slow");
+            $('#WiSe').slideDown("slow");
+        }
+    });
+
     $('#verfahren').change(function() {
         if ($('#verfahren').val() == '') {
             $('#meldung_verfahren').slideDown("slow");

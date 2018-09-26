@@ -32,12 +32,29 @@
       </tr>
       </tr>
       <tr>
-        <td><label for='Semester'><b>Semester:</b>
-            <red style='color: red'>*</red>
-          </label></td>
-        <td colspan='2'><input type'text' class='form-control' id='Semester' name='Semester' value='<?php echo $modul["semester"] ?>'
-            required></td>
-      </tr>
+        <td><label for="SemesterEdit"><b>Semester:</b><red>*</red></label></td>
+        <td style='height:45px;'> 
+          <select  class="form-control" name="SemesterEdit" id="SemesterEdit" required>
+            <option value="SoSe" <?php if($semester[0] == "SoSe"){echo "selected";} ?>>SoSe</option>
+            <option value="WiSe" <?php if($semester[0] == "WiSe"){echo "selected";} ?>>WiSe</option>
+          </select> 
+        </td>
+        <td>
+        <!-- Wenn SoSe Gewählt wird-->
+          <div id='SoSe'> 
+            <input type="text" name='Semester_input1' class="form-control" value='<?php if($semester[0] == "SoSe"){echo $semester[1];} ?>'/>
+          </div>
+          <!-- Wenn WiSe Gewählt wird-->
+          <div id='WiSe'> 
+            <div class="input-group">
+              <input type="text" name='Semester_input2' class="form-control" value='<?php if($semester[0] == "WiSe"){echo $semsterjahr[0];} ?>'/>
+                <div class="input-group-append"><span class="input-group-text" style='border-right: 0px;'>&nbsp;/</span></div>
+                <input type="text"  name='Semester_input3' class="form-control" value='<?php if($semester[0] == "WiSe"){echo $semsterjahr[1];} ?>'/>
+            </div> 
+          </div>  
+          <!-- Auswahl Semester Ende -->
+          </td>          
+        </tr>    
       <tr>
         <td><label for='bevStudiengang'><b>bevorzugter Studiengang:</b></label></td>
         <td colspan='2'>
