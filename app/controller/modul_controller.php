@@ -153,6 +153,11 @@ class modul_controller
         $start_anzeige = date("d-m-Y", strtotime($modul['frist_start']));
         $ende_anzeige = date("d-m-Y", strtotime($modul['frist_ende']));
 
+        $semester = explode(" ", $modul["semester"]);
+        if($semester[0] == "WiSe")
+        {
+            $semesterjahr = explode("/", $semeser[1]);
+        }
         if ($start_dt <= $this->heute_dt) {
             $check['fristen'] = 'readonly';
             $check['verfahren_select'] = 'readonly';
