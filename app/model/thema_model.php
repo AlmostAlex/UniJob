@@ -10,6 +10,7 @@ class thema_model
         require(__DIR__."/../../db.php");
         $this->dbh = $dbh;
         $this->tags_model = new tags_model();
+        $this->user = new Model();
     }
 
     public function insertThema($modul_id, $themenbezeichnung, $themenbeschreibung,$id)
@@ -35,21 +36,25 @@ class thema_model
 
     public function getThemen($modul_id)
     {
-        $statement_thema = $this->dbh->prepare("SELECT thema_id, themenbezeichnung, beschreibung, thema_verfuegbarkeit
+        $statement_thema = $this->dbh->prepare("SELECT thema_id, themenbezeichnung, beschreibung, thema_verfuegbarkeit, benutzer_id
                     FROM thema Where modul_id =?");
         $statement_thema->bind_param('i', $modul_id);
         $statement_thema->execute();
-        $statement_thema->bind_result($thema_id, $themenbezeichnung,$beschreibung, $thema_verfuegbarkeit);
+        $statement_thema->bind_result($thema_id, $themenbezeichnung,$beschreibung, $thema_verfuegbarkeit, $benutzer_id);
         $statement_thema->store_result();
 
 // es wird alles in ein Array gepackt und dann an den Controller weitergeleitet, dieser return die Ausgabe an die View
         $rows = array();
         while ($statement_thema->fetch()) {
+
+            $benutzer =  $this->user->getIDNachname($benutzer_id);
+
             $row = array(
                 'thema_id' => $thema_id,
                 'themenbezeichnung' => $themenbezeichnung,
                 'themenbeschreibung' => $beschreibung,
-                'thema_verfuegbarkeit' => $thema_verfuegbarkeit
+                'thema_verfuegbarkeit' => $thema_verfuegbarkeit,
+                'benutzer' => $benutzer
             );
             $rows[] = $row;
         }

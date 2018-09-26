@@ -131,6 +131,14 @@
             <td><textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
         </tr>
         <tr>
+            <td><label for="Vorkenntnisse"><b>Vorkentnisse:</b></label></td>
+            <td colspan='2'>
+                <div class="form-group">
+                    <input type="text" id='taggin' name='vorkenntnisse_WiBe[]' placeholder='Vorkenntnisse' class="form-control" />
+                </div>
+            </td>
+        </tr>
+        <tr>
             <td><label for="Tags"><b>Tags:</b></label></td>
             <td colspan='2'>
                 <div class="form-group">
@@ -157,6 +165,15 @@
             <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
             <td><textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
         </tr>
+        <tr>
+            <td> <label for="Vorkenntnisse"><b>Vorkenntnisse:</b> </label></td>
+                    <td colspan='2'>
+                        <div class="form-group">
+                            <input type="text" name='vorkenntnisse_Beleg[]' placeholder='erforderlichen Vorkenntnisse' class="tagsinput-typeahead2" />                            
+                        </div>
+                    </td>
+             </tr>
+        <tr>
             <td><label for="Tags"><b>Tags:</b></label></td>
             <td colspan='2'>
                 <div class="form-group">
@@ -188,6 +205,14 @@
                     <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
                     <td><textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
                 </tr>
+                <tr>
+            <td> <label for="Vorkenntnisse"><b>Vorkenntnisse:</b> </label></td>
+                    <td colspan='2'>
+                        <div class="form-group">
+                            <input type="text" name='vorkenntnisse_WiBe[]' placeholder='erforderlichen Vorkenntnisse' class="tagsinput-typeahead2" />                            
+                        </div>
+                    </td>
+             </tr>
                 <tr>
                     <td> <label for="Tags"><b>Tags:</b> </label></td>
                     <td colspan='2'>
@@ -225,6 +250,14 @@
                 <td><textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
             </tr>
             <tr>
+            <td> <label for="Vorkenntnisse"><b>Vorkenntnisse:</b> </label></td>
+                    <td colspan='2'>
+                        <div class="form-group">
+                            <input type="text" name='vorkenntnisse_Beleg[]' placeholder='erforderlichen Vorkenntnisse' class="tagsinput-typeahead2" />                            
+                        </div>
+                    </td>
+             </tr>
+            <tr>
                 <td><label for="Tags"><b>Tags:</b></label></td>
                 <td colspan='2'>
                     <div class="form-group">
@@ -246,6 +279,14 @@
                 <td><textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
             </tr>
             <tr>
+            <td> <label for="Vorkenntnisse"><b>Vorkenntnisse:</b> </label></td>
+                    <td colspan='2'>
+                        <div class="form-group">
+                            <input type="text" name='vorkenntnisse_Beleg[]' placeholder='erforderlichen Vorkenntnisse' class="tagsinput-typeahead2" />                            
+                        </div>
+                    </td>
+             </tr>
+            <tr>
                 <td><label for="Tags"><b>Tags:</b></label></td>
                 <td colspan='2'>
                     <div class="form-group">
@@ -266,6 +307,14 @@
                 <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
                 <td><textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
             </tr>
+            <tr>
+            <td> <label for="Vorkenntnisse"><b>Vorkenntnisse:</b> </label></td>
+                    <td colspan='2'>
+                        <div class="form-group">
+                            <input type="text" name='vorkenntnisse_Beleg[]' placeholder='erforderlichen Vorkenntnisse' class="tagsinput-typeahead2" />                            
+                        </div>
+                    </td>
+             </tr>
             <tr>
                 <td><label for="Tags"><b>Tags:</b></label></td>
                 <td colspan='2'>

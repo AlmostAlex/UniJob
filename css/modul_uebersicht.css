@@ -1,3 +1,17 @@
+.bootstrap-select show-tick{
+    width:140px;
+}
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
+    width:140px;
+}
+.show{
+    display:none;
+}
+
+.bootstrap-select:not(.input-group-btn), .bootstrap-select[class*="col-"]{
+    display:inline;
+}
+
 .suche {
     padding: 2%;
     background-color: rgba(34, 36, 38, .01);
@@ -138,6 +152,9 @@ th {
     font-weight: normal;
 }
 
+#hide {
+    display:none;
+}
 .vergeben {
     background-color: red;
 }
