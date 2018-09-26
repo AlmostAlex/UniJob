@@ -10,20 +10,10 @@
 <span  class="<?php echo $search_a; ?>"><?php echo $art; ?> <delete onclick="r_art();"><?php echo $x_a; ?></delete> </span>
 <span  class="<?php echo $search_b; ?>"><?php echo $betreuer_anzeige; ?> <delete onclick="r_betreuer();"><?php echo $x_b; ?></delete> </span>
 
-<script>
-$(".t").click(function(){
-var test = true;
-alert("test" + t); 
-location.reload();
-//$('#tags').multiselect('refresh');
-//$('#tags option[value='t']').prop('selected', false);
-//$("#semester option[value='']").prop("selected", true);
-
-});
-</script>
-
 <?php for ($i = 0; $i < count($tags_array); $i++) {?>
-    <span class="badge badge-info"><?php echo $tags_array[$i]; ?> <input id='t' name='t'  class='t' value='<?php echo $tags_array[$i];?>' onclick="getvalue(this)"> x </input> </span> 
+    <span class="badge badge-info"><?php echo $tags_array[$i]; ?> 
+    <div style='float:right;' value='<?php echo $tags_array[$i];?>' id='remove'> &nbsp; x </div>
+    </span> 
 <?php }?>
 <div class='listprice' id='listprice'></div>
 <br><br>

@@ -34,28 +34,52 @@ filter();
 </script>
 
 <script>
-function getvalue(t) {
-var r = event.target.value;
-console.log(t.value);
-alert(JSON.stringify(t.value)); 
-$(this).remove(); 
-//$('#tags').multiselect('refresh');
-//$('#tags option[value='t']').prop('selected', false);
-//$("#semester option[value='']").prop("selected", true);
-var t = $('#t').val()
-$( this ).slideUp();
-}
+$(document).on("click", '#remove', function (a) {
+var tag = this.getAttribute("value");
+$('#tags').find('[value='+tag+']').prop('selected', false);
 
 
-  $(document).ready(function() {
-   $('#test').click(function(){
-      alert(JSON.stringify($(this).text())); 
-   });
- });
+});
 </script>
 
-<span value='hihi' id="test">Hide me</span> x
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#example-disable-javascript').multiselect({
+            includeSelectAllOption: true
+        });
 
+        $('#example-disable-javascript-disable').on('click', function() {
+            var input = $('#example-disable-javascript-container input[value="3"]');
+            var option = $('#example-disable-javascript-container option[value="3"]');
+
+            input.prop('disabled', true);
+            option.prop('disabled', true);
+
+            input.parent('label').parent('a').parent('li').addClass('disabled');
+        });
+
+        $('#example-disable-javascript-check').on('click', function() {
+            var options = '';
+            $('#example-disable-javascript option:selected').each(function() {
+                options += $(this).val() + ', ';
+            });
+
+            alert(options.substr(0, options.length - 2));
+        });
+    });
+</script>
+<div class="btn-group" id="example-disable-javascript-container">
+    <select id="example-disable-javascript" multiple="multiple">
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+        <option value="4">Option 4</option>
+        <option value="5">Option 5</option>
+        <option value="6">Option 6</option>
+    </select>
+    <button id="example-disable-javascript-disable" class="btn btn-primary">Disable an option!</button>
+    <button id="example-disable-javascript-check" class="btn btn-primary">Check</button>
+</div>
  
 <h2 style='margin-top: 20px;' class='card-title'>Übersicht der Seminar- / Abschlussarbeitsthemen</h2>
 <div style='text-align: center'>
@@ -96,10 +120,10 @@ $( this ).slideUp();
             </select>
        </td>
        <td> <!-- data-selected-text-format="count > 2" -->
-       <select class="selectpicker" title="Tags" multiple data-live-search="true" multiple="multiple" name='tags' id="tags" onchange="filter();">
+       <select class="selectpicker" title="Tags" data-live-search="true" multiple="multiple" name='tags' id="tags" onchange="filter();">
        <option value=""></option>
-       <option value="him">Him</option>
-       <option value="her">Her</option>
+       <option value="him" selected="selected">Him</option>
+       <option value="her" selected>Her</option>
        <option value="kids">Kids</option>
        <option value="h2im">H2im</option>
        <option value="h3er">He3r</option>
