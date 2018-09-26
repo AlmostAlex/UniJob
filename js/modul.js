@@ -1,12 +1,10 @@
 $(document).ready(function(e) {
-
-
-    //group add limit
     var maxGroup = 100;
 
     //add more fields group        
     $(".addMore2").click(function() {
-        $(".tagging").css("display", "none");
+        $(".taggin").css("display", "none");
+
         if ($('feld2').find('.fieldGroup').length < maxGroup) {
             var fieldHTML = $('<div class="form-group fieldGroup" style="opacity:1.0;">' + $(".fieldGroupCopy").html() + '</div>').fadeIn(1000);
             $('feld2').find('.fieldGroup:last').after(fieldHTML);
@@ -21,6 +19,25 @@ $(document).ready(function(e) {
                         var result = null;
                         $.ajax({
                             url: "/ajax/tags.php?term=" + query,
+                            type: "get",
+                            dataType: "html",
+                            async: false,
+                            success: function(data) {
+                                result = data;
+                            }
+                        });
+                        console.log(result);
+                        return JSON.parse(result);
+                    }
+                }
+            });
+            fieldHTML.find('#vork').tagsinput({
+                typeahead: {
+                    afterSelect: function(val) { this.$element.val(""); },
+                    source: function(query) {
+                        var result = null;
+                        $.ajax({
+                            url: "/ajax/vorkenntnisse.php?term=" + query,
                             type: "get",
                             dataType: "html",
                             async: false,
@@ -48,7 +65,8 @@ $(document).ready(function(e) {
 
     // Für Belegwunschverfahren
     $(".addMore3").click(function() {
-        $(".tagging").css("display", "none");
+        $(".taggin").css("display", "none");
+
         if ($('feld3').find('.fieldGroup').length < maxGroup) {
             var fieldHTML = $('<div class="form-group fieldGroup">' + $(".fieldGroupCopy2").html() + '</div>').fadeIn(1000);
             $('feld3').find('.fieldGroup:last').after(fieldHTML);
@@ -70,9 +88,27 @@ $(document).ready(function(e) {
                             }
                         });
                         console.log(result);
-
                         return JSON.parse(result);
-
+                    }
+                }
+            });
+            
+            fieldHTML.find('#vork').tagsinput({
+                typeahead: {
+                    afterSelect: function(val) { this.$element.val(""); },
+                    source: function(query) {
+                        var result = null;
+                        $.ajax({
+                            url: "/ajax/tags.php?term=" + query,
+                            type: "get",
+                            dataType: "html",
+                            async: false,
+                            success: function(data) {
+                                result = data;
+                            }
+                        });
+                        console.log(result);
+                        return JSON.parse(result);
                     }
                 }
             });
@@ -112,24 +148,6 @@ $(function() {
     $("#SoSe").css("display", "none");
     $("#WiSe").css("display", "none");
 
-    /*
-    $("#Seminarmodul").css("display", "none");
-    $("#Professur").css("display", "none");
-
-
-    $('.Kategorie').click(function() {
-        
-        if ($('input[name=Seminar]:checked')) {
-            $('#Seminarmodul').slideDown("slow");
-            $('#kategorie_meldung').slideUp("slow");
-            $('#Professur').slideUp("slow");
-        } else if ($('input[name=Abschluss]:checked')) {
-            $('#Professur').slideDown("slow");
-            $('#kategorie_meldung').slideUp("slow");
-            $('#Seminarmodul').slideUp("slow");
-        }
-    }); 
-*/
     $('#Semester').change(function() {
 
         if ($('#Semester').val() == '') {
