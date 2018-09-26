@@ -11,9 +11,8 @@
 <span  class="<?php echo $search_b; ?>"><?php echo $betreuer_anzeige; ?> <delete onclick="r_betreuer();"><?php echo $x_b; ?></delete> </span>
 
 <?php for ($i = 0; $i < count($tags_array); $i++) {?>
-    <span class="badge badge-info"><?php echo $tags_array[$i]; ?> 
-    <!--<div style='float:right;' value='<?php echo $tags_array[$i];?>' id='remove'> &nbsp; x </div> -->
-    <div value='<?php echo $tags_array[$i];?>' id='remove'>x</div>
+    <span style='float:left;' class="<?php echo $search_f;?>"> &nbsp; <?php echo $tags_array[$i]; ?> 
+    <div style='float:right; <?php echo $display;?>' value='<?php echo $tags_array[$i];?>' id='remove'>&nbsp; x &nbsp;</div>
     </span> 
 <?php }?>
 <div class='listprice' id='listprice'></div>

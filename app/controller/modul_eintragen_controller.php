@@ -3,6 +3,7 @@ include_once "app/model/modul_model.php";
 include_once "app/model/thema_model.php";
 include_once "app/model/tags_model.php";
 include_once "app/model/user_model.php";
+include_once "app/model/vorkenntnisse_model.php";
 include_once "db.php";
 
 class modul_eintragen_controller
@@ -46,8 +47,9 @@ class modul_eintragen_controller
                     if (!empty(array_filter($_POST['themenbezeichnungwindhund']))) {
                         $thema = $_POST['themenbezeichnungwindhund'];
                         $tags = $_POST["tags_WiBe"];
+                        $vorkenntnisse = $_POST["vorkenntnisse_WiBe"]; 
                         $betreuer = $_POST["betreuerwindhund"];
-                        $eintrag = $this->modul_model->insertSeminar($thema, $modulbezeichnung, $fakultätsbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $tags, $betreuer);
+                        $eintrag = $this->modul_model->insertSeminar($thema, $modulbezeichnung, $fakultätsbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $tags, $vorkenntnisse, $betreuer);
                         echo "erfolgreich eingetragen";
                     } else {
                         echo "Alles ausfüllen<br>";

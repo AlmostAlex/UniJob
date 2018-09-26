@@ -216,6 +216,35 @@ $(document).ready(function() {
     });
 });
 
+$(document).ready(function() {
+    /**
+     * Typeahead
+     */ 
+    var elt = $(".tagsinput-typeahead2"); //tagsinput input
+    elt.tagsinput({
+
+        typeahead: {
+            afterSelect: function(val) { this.$element.val(""); },
+            source: function(query) {
+                var result = null;
+                $.ajax({
+                    url: "/ajax/vorkenntnisse.php?term=" + query,
+                    type: "get",
+                    dataType: "html",
+                    async: false,
+                    success: function(data) {
+                        result = data;
+                    }
+                });
+                console.log(result);
+
+                return JSON.parse(result);
+
+            }
+        }
+    });
+});
+
 function filter() {
 
     var tagsarray = new Array();
@@ -244,8 +273,31 @@ function filter() {
     var url = "ajax/ajax_controller.php?action=filter&semester=" + semester + "&art=" + art + "&betreuer=" + betreuer;
     url = url + "&tags=" + tags;
 
-
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
-
 }
+
+function r_art(){
+    //$("#art").find("option[value='']").attr('selected', true);
+    $("#art option[value='']").prop("selected", true);
+    filter();
+    } 
+    function r_betreuer(){
+    //$("#betreuer").find("option[value='']").attr('selected', true);
+    $("#betreuer option[value='']").prop("selected", true);
+    filter();
+    } 
+    function r_semester(){
+    //$("#semester").find("option[value='']").attr('selected', true);
+    $("#semester option[value='']").prop("selected", true);
+    filter();
+    }
+    
+    $(document).on("click", '#remove', function(a) {
+      var tag = this.getAttribute("value");
+      var values = $('#tags').val();
+    
+      $('#tags').selectpicker('deselectAll');
+      $('#tags').selectpicker('val', values.filter(function(e) {return e !== tag }));
+      $('#tags').selectpicker('refresh');
+    });

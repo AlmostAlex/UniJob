@@ -11,9 +11,10 @@ class modul_model
         $this->thema = new thema_model();
         $this->tags_model = new tags_model();
         $this->user = new Model();
+        $this->vorkenntnisse_model = new vorkenntnisse_model();
     }
 
-    public function insertSeminar($thema, $modulbezeichnung, $fakultätsbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $tags, $betreuer)
+    public function insertSeminar($thema, $modulbezeichnung, $fakultätsbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $tags, $vorkenntnisse, $betreuer)
     {
         //Erst eintragung des Moduls
         $statement = $this->dbh->prepare("INSERT INTO `modul` (`modulbezeichnung`, `fakultaet`, `kategorie`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren` )
@@ -22,13 +23,12 @@ class modul_model
         $statement->execute();
 
         //dann die hierdurch entstandene modul_id holen
-        $modul_id = lastModulID();
+        $modul_id = $this->lastModulID();
 
         // Leere Arrays entfernen
         array_filter($_POST['themenbezeichnungwindhund']);
         array_filter($_POST['themenbezeichnungbelegwunsch']);
         array_filter($_POST['themenbeschreibung']);
-        //  array_filter($_POST['tags']);
 
         if ($verfahren == 'Windhundverfahren' || $verfahren == 'Bewerbungsverfahren') {
             $j = 1;
@@ -49,19 +49,26 @@ class modul_model
                 }
                     $thema_array = $thema[$j];
                     $tag_string = $tags[$j];
+                    $vorkenntnisse_string = $vorkenntnisse[$j];
                     $betreuer_string = $betreuer[$j];
-                    echo $betreuer_string;
 
                     //davon ausgehend, dass der Benutzername eingegeben wird !!!!! BEI UNIDB ZUGRIFF NEU SCHREIBEN!!!!!
                     $benutzer_id = $this->user->getNachnameID($betreuer_string);
                     echo $benutzer_id;
                     if ($tag_string == '') {
                         $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$benutzer_id);
+                        $thema_id = $this->thema->lastThemaID();
                     } else {
                         $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$benutzer_id);
                         $thema_id = $this->thema->lastThemaID();
                         $this->tags_model->insertTags($tag_string, $thema_id);
                     }
+                    if($vorkenntnisse_string == ''){
+
+                    }else{
+                        $this->vorkenntnisse_model->insertVorkenntnisse($vorkenntnisse_string, $thema_id);
+                    }
+
             } else {echo "thema bitte ausfüllen";}
             $j = $j + 1;
         }
@@ -144,7 +151,11 @@ class modul_model
             $anzahl_thema_verfuegbar = $this->getModulThemaAnzahlVerfuegbar($modul_id, "Verfügbar");
             if ((new DateTime(date("Y-m-d")) > new DateTime($frist_ende) || ($anzahl_thema_verfuegbar == "0"))) {
                 $archivBtn = 'badge badge-warning';
-            } else { $archivBtn = 'btn_false';}
+                $btn_form  = 'btn btn-primary btn-lg disabled';
+                
+            } else { $archivBtn = 'btn_false';
+                  $btn_form  = 'btn btn-lg btn-primary';  
+            }
 
             if ($nachrueckverfahren=='true') { 
                 $nachrueckv_status = '[Nachrückverfahren]';
@@ -173,7 +184,8 @@ class modul_model
                 'checkDeleteBtn' => $deleteBtn,
                 'checkArchivBtn'=> $archivBtn,
                 'nachrueckv_status'=> $nachrueckv_status,
-                'verfahren_anzeige'=> $verfahren_anzeige
+                'verfahren_anzeige'=> $verfahren_anzeige,
+                'btn_form'=> $btn_form 
             );
             $rows[] = $row;
         }

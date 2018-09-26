@@ -25,7 +25,7 @@ if(isset($_GET["action"]) && $_GET["action"] =='tags'){
     $json = [];
     while ($statement->fetch()) {
     $json[] = $tag_bezeichnung; 
-    }           
+    }    
     echo json_encode($json); 
 }
 

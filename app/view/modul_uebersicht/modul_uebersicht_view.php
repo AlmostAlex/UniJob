@@ -1,46 +1,3 @@
-<style>
-.bootstrap-select show-tick{
-    width:140px;
-}
-.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
-    width:140px;
-}
-.show{
-    display:none;
-}
-
-.bootstrap-select:not(.input-group-btn), .bootstrap-select[class*="col-"]{
-    display:inline;
-}
-
-</style>
-
-<script>
-function r_art(){
-//$("#art").find("option[value='']").attr('selected', true);
-$("#art option[value='']").prop("selected", true);
-filter();
-} 
-function r_betreuer(){
-//$("#betreuer").find("option[value='']").attr('selected', true);
-$("#betreuer option[value='']").prop("selected", true);
-filter();
-} 
-function r_semester(){
-//$("#semester").find("option[value='']").attr('selected', true);
-$("#semester option[value='']").prop("selected", true);
-filter();
-}
-
-$(document).on("click", '#remove', function(a) {
-  var tag = this.getAttribute("value");
-  var values = $('#tags').val();
-
-  $('#tags').selectpicker('deselectAll');
-  $('#tags').selectpicker('val', values.filter(function(e) {return e !== tag }));
-  $('#tags').selectpicker('refresh');
-});
-</script>
 
  
 
@@ -110,13 +67,13 @@ $(document).on("click", '#remove', function(a) {
         <table class='modul_table_uebersicht'>
             <tr>
                 <th><a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#modul_<?php echo $module[$k]['modul_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></th>
-                <th><b><titel><?php echo $module[$k]['nachrueckv_status']; ?> <?php echo $module[$k]['modulbezeichnung']; ?></titel></b><br>
+                <th><b><titel><?php echo $module[$k]['nachrueckv_status']; ?> <?php if($module[$k]["kategorie"]=='Seminararbeit'){ echo $module[$k]["modulbezeichnung"]; } else { echo $module[$k]["professur"];} ?></titel></b><br>
                     <div class='border_round'><b><?php echo $module[$k]['kategorie']; ?></b></div>
                     <div class='border_round'><b><?php echo $module[$k]['verfahren_anzeige']; ?></b></div>
                     <div class='border_round'><i class='far fa-calendar'></i> <b><?php echo $module[$k]['semester']; ?></b></div>
                     <div class='border_round'><i class='far fa-clock'></i> <b><?php echo $module[$k]['start_anzeige'] .' - '. $module[$k]['ende_anzeige']; ?> </b></div>
                 </th>
-                <th>$btn</th>
+                <th><button type="button" class="<?php echo $module[$k]['btn_form']?>">Anmeldung</button></th>
             </tr>
         </table>
         <inside>
@@ -132,7 +89,7 @@ $(document).on("click", '#remove', function(a) {
                     <tr>
                         <td><a class='collapsed' id='coll' data-toggle='collapse' data-parent='#accordion' href='#inhalt_<?php echo $themen[$p]["thema_id"];?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></td>
                         <td><?php echo $themen[$p]["themenbezeichnung"];?> </td>
-                        <td><center>{$this->benutzer->getDozent($benutzer_id)}</center></td>
+                        <td><center><?php echo $themen[$p]["benutzer"];?></center></td>
                         <td><center><div $vergeben><?php echo $themen[$p]["thema_verfuegbarkeit"];?></div></center></td>
                     </tr>
                     <tr class='nopadding'>
@@ -140,7 +97,7 @@ $(document).on("click", '#remove', function(a) {
                             <div id='inhalt_<?php echo $themen[$p]["thema_id"];?>' class='collapse' role='tabpanel' aria-labelledby='headingOne' data-parent='#accordion'>
                                 <div class='information_content'>
                                     <b class='information_titel'>Inhaltliche Informationen:</b><br>
-                                        <div class='information_content_inhalt'> <b>Bevorzugter Studiengang:</b> {$studiengang}<br>
+                                        <div class='information_content_inhalt'> <b>Bevorzugter Studiengang:</b>  <?php echo $module[$k]["studiengang"];?><br>
                                             <b>Beschreibung:</b> <?php echo $themen[$p]["themenbeschreibung"];?>
                                         </div>
                                 </div>
@@ -153,3 +110,4 @@ $(document).on("click", '#remove', function(a) {
         </inside><br>
     <?php } ?>
     </div>
+<br><br>
