@@ -156,7 +156,7 @@ class modul_controller
         $semester = explode(" ", $modul["semester"]);
         if($semester[0] == "WiSe")
         {
-            $semesterjahr = explode("/", $semeser[1]);
+            $semesterjahr = explode("/", $semester[1]);
         }
         if ($start_dt <= $this->heute_dt) {
             $check['fristen'] = 'readonly';
