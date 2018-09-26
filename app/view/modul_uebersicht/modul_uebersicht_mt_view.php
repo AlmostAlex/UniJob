@@ -12,7 +12,8 @@
 
 <?php for ($i = 0; $i < count($tags_array); $i++) {?>
     <span class="badge badge-info"><?php echo $tags_array[$i]; ?> 
-    <div style='float:right;' value='<?php echo $tags_array[$i];?>' id='remove'> &nbsp; x </div>
+    <!--<div style='float:right;' value='<?php echo $tags_array[$i];?>' id='remove'> &nbsp; x </div> -->
+    <div value='<?php echo $tags_array[$i];?>' id='remove'>x</div>
     </span> 
 <?php }?>
 <div class='listprice' id='listprice'></div>
