@@ -66,6 +66,7 @@ $(document).ready(function(e) {
     // Für Belegwunschverfahren
     $(".addMore3").click(function() {
         $(".taggin").css("display", "none");
+        $(".vork").css("display", "none");
 
         if ($('feld3').find('.fieldGroup').length < maxGroup) {
             var fieldHTML = $('<div class="form-group fieldGroup">' + $(".fieldGroupCopy2").html() + '</div>').fadeIn(1000);
@@ -99,7 +100,7 @@ $(document).ready(function(e) {
                     source: function(query) {
                         var result = null;
                         $.ajax({
-                            url: "/ajax/tags.php?term=" + query,
+                            url: "/ajax/vorkenntnisse.php?term=" + query,
                             type: "get",
                             dataType: "html",
                             async: false,

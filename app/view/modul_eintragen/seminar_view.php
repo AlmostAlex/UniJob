@@ -168,9 +168,9 @@
         <tr>
             <td> <label for="Vorkenntnisse"><b>Vorkenntnisse:</b> </label></td>
                     <td colspan='2'>
-                        <div class="form-group">
-                            <input type="text" id='vork' name='vorkenntnisse_Beleg[]' placeholder='erforderlichen Vorkenntnisse' class="tagsinput-typeahead2" />                            
-                        </div>
+                    <div class="form-group">
+                    <input type="text" id='vork' name='vorkenntnisse_Beleg[]' placeholder='erforderlichen Vorkenntnisse' class="form-control" />
+                </div>
                     </td>
              </tr>
         <tr>
