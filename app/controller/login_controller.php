@@ -35,7 +35,7 @@ class Controller
                                         <img src="img/ajax-loader.gif"> ';
                     // session_start();
                     $this->model->setSessionID($this->benutzername);
-                    header("refresh:3;url=verwaltung");
+                    header("refresh:1;url=verwaltung");
                 } else {
                     $render = 'danger';
                     $message['alert'] = '<b>Achtung!</b><br>Das Passwort und der Benutzername stimmen nicht überein.';

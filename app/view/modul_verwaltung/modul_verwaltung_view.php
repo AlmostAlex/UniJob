@@ -95,13 +95,13 @@
                         </td>
                         <td style='width:28%;' align='center'>
                             <span data-toggle='tooltip' data-placement='top' title='Modul editieren' class='badge badge-secondary'>
-                                <a href='/mt_verwaltung/modul/edit/<?php echo $module[$i]["modul_id"]; ?>'><i class='far fa-edit'></i></a>
+                                <a href='/mt_verwaltung/modul/edit/<?php echo $module[$i]["kategorie"]; ?>/<?php echo $module[$i]["modul_id"]; ?>'><i class='far fa-edit'></i></a>
                             </span>
                             <span data-toggle='tooltip' data-placement='top' title='Modul löschen' class='<?php echo $module[$i]["checkDeleteBtn"] ?>'>
                                 <a href='#' data-toggle='modal' data-target='#Sicherheitsabfrage_<?php echo $module[$i]["modul_id"]; ?>'><i class='far fa-trash-alt'></i></a>
                             </span>
                             <span data-toggle='tooltip' data-placement='top' title='Thema hinzufügen' class='badge badge-success'>
-                                <a href='/mt_verwaltung/modul/add_thema/<?php echo $module[$i]["modul_id"]; ?>'><i class='far fa-plus-square'></i></a>
+                                <a href='/mt_verwaltung/modul/add_thema/<?php echo $module[$i]["kategorie"]; ?>/<?php echo $module[$i]["modul_id"]; ?>'><i class='far fa-plus-square'></i></a>
                             </span>
                             <span data-toggle='tooltip' data-placement='top' title='Modul archvieren' class='<?php echo $module[$i]["checkArchivBtn"] ?>'>
                             <a href='#' data-toggle='modal' data-target='#Abfrage_<?php echo $module[$i]["modul_id"]; ?>'><i class='far fa-file-archive'></i></a>

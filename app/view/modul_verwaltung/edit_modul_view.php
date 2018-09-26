@@ -8,23 +8,17 @@
         </td>
       </tr>
       <tr>
-        <td><label for='Kategorie'><b>Kategorie:</b>
-            <red style='color: red'>*</red>
-          </label></td>
-        <td>
-          <center><input style='margin-right: 5px;' type='radio' name='Kategorie' value='Seminararbeit' class='Kategorie'
-              <?php echo (($modul["kategorie"]=='Seminararbeit' )? " checked='checked' " : "" ); ?> />Seminararbeit</input></center>
-        </td>
-        <td>
-          <center><input style='margin-right: 5px;' type='radio' name='Kategorie' value='Abschlussarbeit' class='Kategorie'
-              <?php echo (($modul["kategorie"]=='Abschlussarbeit' )? " checked='checked' " : "" ); ?> />Abschlussarbeit</input></center>
-        </td>
-      </tr>
-      <tr>
-        <td><label for='Kategorie'><b>Modulbezeichnung:</b>
+        <td><label for='Bezeichnung'><b>Modulbezeichnung:</b>
             <red style='color: red'>*</red>
           </label></td>
         <td colspan='2'><input type='text' id='bezeichnung' name='Bezeichnung' class='form-control' value='<?php echo $modul["modulbezeichnung"] ?>'
+            required></td>
+      </tr>
+      <tr>
+        <td><label for='Fakultät'><b>Fakultät:</b>
+            <red style='color: red'>*</red>
+          </label></td>
+        <td colspan='2'><input type='text' id='fakultät' name='fakultät' class='form-control' value='<?php echo $modul["fakultaet"] ?>'
             required></td>
       </tr>
       <tr>

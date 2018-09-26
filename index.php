@@ -49,9 +49,9 @@ $router->map(["GET", "POST"],["/ajax/tags/{term}"], function ($term) {
 // gilt für mt_verwaltung, modul_eintragen, mt_verwaltung/modul/add(thema hinzufügen)
 // für jeden neuen controller neue Route anlegen
 // (Modul edit muss noch in den modul_controller)
-$router->map(["GET", "POST"],["/{action}","/{action}/{action2}/{action3}/{id}"], function ($action,$action2,$action3,$id) {
+$router->map(["GET", "POST"],["/{action}","/{action}/{action2}/{action3}/{action4}/{id}"], function ($action,$action2,$action3,$action4,$id) {
     $modul = new modul_controller();
-    $modul->Route($action,$action2,$action3,$id); 
+    $modul->Route($action,$action2,$action3,$action4,$id); 
 });
 
 $router->map(["GET", "POST"],["/seminar_eintragen"], function () {

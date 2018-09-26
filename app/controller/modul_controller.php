@@ -18,7 +18,7 @@ class modul_controller
         $this->heute_dt = new DateTime(date("Y-m-d"));
     }
 
-    public function Route($action, $action2, $action3, $id)
+    public function Route($action, $action2, $action3, $action4, $id)
     {
 
      /*  if ($action == 'modul_eintragen' && $action2 == '' && $action3 =='') {
@@ -59,7 +59,7 @@ class modul_controller
                 $this->addThema($id);  
 
         }else if ($action == 'mt_verwaltung' && $action2 == 'modul' && $action3 == 'edit') { 
-                $this->editModul($id);  
+                $this->editModul($id);
           
         }
     }
@@ -153,38 +153,37 @@ class modul_controller
         $start_anzeige = date("d-m-Y", strtotime($modul['frist_start']));
         $ende_anzeige = date("d-m-Y", strtotime($modul['frist_ende']));
 
-    if ($start_dt <= $this->heute_dt) {
-        $check['fristen'] = 'readonly';
-        $check['verfahren_select'] = 'readonly';
-        $check['verfahren_select'] = 'disabled';
-    } else {
-        $check['fristen'] = $check['verfahren_select'] = $check['verfahren_select'] = '';
-    }
-
-    if (isset($_POST['modul_edit'])) {
-        $start_anzeige = date("d-m-Y", strtotime($_POST['Start']));
-        $ende_anzeige = date("d-m-Y", strtotime($_POST['Ende']));
-        $start = date("Y-m-d", strtotime($_POST['Start']));
-        $ende = date("Y-m-d", strtotime($_POST['Ende']));
-        
-        if ($check['verfahren_select'] == 'disabled') {
-            $verfahren = $modul['verfahren'];
+        if ($start_dt <= $this->heute_dt) {
+            $check['fristen'] = 'readonly';
+            $check['verfahren_select'] = 'readonly';
+            $check['verfahren_select'] = 'disabled';
         } else {
-            $verfahren = $_POST['Verfahren'];
+            $check['fristen'] = $check['verfahren_select'] = $check['verfahren_select'] = '';
         }
-        $this->modul_model->updateModul($_POST['Kategorie'], $_POST['Bezeichnung'], $start, $ende, $_POST['Semester'], $_POST['Studiengang'], $verfahren, $modul_id);
-        $modul['kategorie'] = $_POST['Kategorie'];
-        $modul['modulbezeichnung'] = $_POST['Bezeichnung'];
-        $modul['frist_start'] = $start;
-        $modul['frist_ende'] = $ende;
-        $modul['semester'] = $_POST['Semester'];
-        $modul['studiengang'] = $_POST['Studiengang'];
-        $modul['verfahren'] = $verfahren;
-        $this->getModal('edit_modul_success', $modul_id);
-    }
-    $themen = $this->thema_model->getThemen($modul_id);
-    include 'app/view/modul_verwaltung/edit_modul_view.php';
 
+        if (isset($_POST['modul_edit'])) {
+            $start_anzeige = date("d-m-Y", strtotime($_POST['Start']));
+            $ende_anzeige = date("d-m-Y", strtotime($_POST['Ende']));
+            $start = date("Y-m-d", strtotime($_POST['Start']));
+            $ende = date("Y-m-d", strtotime($_POST['Ende']));
+        
+            if ($check['verfahren_select'] == 'disabled') {
+                $verfahren = $modul['verfahren'];
+            } else {
+                $verfahren = $_POST['Verfahren'];
+            }
+            $this->modul_model->updateModul($_POST['Kategorie'], $_POST['Bezeichnung'], $start, $ende, $_POST['Semester'], $_POST['Studiengang'], $verfahren, $modul_id);
+            $modul['kategorie'] = $_POST['Kategorie'];
+            $modul['modulbezeichnung'] = $_POST['Bezeichnung'];
+            $modul['frist_start'] = $start;
+            $modul['frist_ende'] = $ende;
+            $modul['semester'] = $_POST['Semester'];
+            $modul['studiengang'] = $_POST['Studiengang'];
+            $modul['verfahren'] = $verfahren;
+            $this->getModal('edit_modul_success', $modul_id);
+        }
+        $themen = $this->thema_model->getThemen($modul_id);
+        include 'app/view/modul_verwaltung/edit_modul_view.php';
 }
 
 // gehört in den Model 

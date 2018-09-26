@@ -51,6 +51,16 @@ class Model
         $statement->fetch();
         return $benutzername;
     }
+
+    public function getIDNachname($benutzer_id)
+    {
+        $statement = $this->dbh->prepare("SELECT nachname FROM user WHERE benutzer_id= ?");
+        $statement->bind_param('i', $benutzer_id);
+        $statement->execute();
+        $statement->bind_result($nachname);
+        $statement->fetch();
+        return $nachname;
+    }
     
     public function logout()
     {
