@@ -47,9 +47,9 @@
           <!-- Wenn WiSe Gewählt wird-->
           <div id='WiSe'> 
             <div class="input-group">
-              <input type="text" name='Semester_input2' class="form-control" value='<?php if($semester[0] == "WiSe"){echo $semsterjahr[0];} ?>'/>
+              <input type="text" name='Semester_input2' class="form-control" value='<?php if($semester[0] == "WiSe"){echo $semesterjahr[0];} ?>'/>
                 <div class="input-group-append"><span class="input-group-text" style='border-right: 0px;'>&nbsp;/</span></div>
-                <input type="text"  name='Semester_input3' class="form-control" value='<?php if($semester[0] == "WiSe"){echo $semsterjahr[1];} ?>'/>
+                <input type="text"  name='Semester_input3' class="form-control" value='<?php if($semester[0] == "WiSe"){echo $semesterjahr[1];} ?>'/>
             </div> 
           </div>  
           <!-- Auswahl Semester Ende -->
