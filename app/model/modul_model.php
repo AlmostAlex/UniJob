@@ -151,10 +151,12 @@ class modul_model
             $anzahl_thema_verfuegbar = $this->getModulThemaAnzahlVerfuegbar($modul_id, "Verfügbar");
             if ((new DateTime(date("Y-m-d")) > new DateTime($frist_ende) || ($anzahl_thema_verfuegbar == "0"))) {
                 $archivBtn = 'badge badge-warning';
-                $btn_form  = 'btn btn-primary btn-lg disabled';
+                $btn_form  = 'btn btn-secondary disabled btn';
+                $btn_msg ='Geschlossen'; 
                 
             } else { $archivBtn = 'btn_false';
-                  $btn_form  = 'btn btn-lg btn-primary';  
+                  $btn_form  = 'button-two'; 
+                  $btn_msg ='Anmeldung'; 
             }
 
             if ($nachrueckverfahren=='true') { 
@@ -185,7 +187,8 @@ class modul_model
                 'checkArchivBtn'=> $archivBtn,
                 'nachrueckv_status'=> $nachrueckv_status,
                 'verfahren_anzeige'=> $verfahren_anzeige,
-                'btn_form'=> $btn_form 
+                'btn_form'=> $btn_form,
+                'btn_msg'=> $btn_msg
             );
             $rows[] = $row;
         }
