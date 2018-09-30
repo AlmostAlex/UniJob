@@ -33,23 +33,24 @@ class tags_model
         $statement->bind_param('i', $modul_id);
         $statement->execute();
 
-    } 
-/*
-public function searchTag($term){
-    
-$query = $term;
-$likeVar = "%" . $query . "%";
-$statement = $this->dbh->prepare("SELECT DISTINCT tag_bezeichnung FROM `tags` WHERE tag_bezeichnung like '{$likeVar}'");
-$statement->execute();
-$statement->bind_result($tag_bezeichnung);
+    }
 
-$json = [];
-   while ($statement->fetch()) {
-   $json[] = $tag_bezeichnung;
-   }
-   echo json_encode($json);
-}
-*/
+    public function TagsByThemaID($thema_id)
+    {
+        $statement = $this->dbh->prepare("SELECT tag_bezeichnung FROM tags WHERE thema_id =?");
+        $statement->bind_param('i', $thema_id);
+        $statement->bind_result($tag_bezeichnung);
+        $statement->execute();
+
+        $tags = array();
+        while ($statement->fetch()) {
+            $row = array(
+                'tag_bezeichnung' => $tag_bezeichnung
+            );
+            $tags[] = $row;
+        }
+        return $tags;
+    }
 
     public function getTagString($tags)
     {

@@ -15,7 +15,7 @@
     <div style='float:right; <?php echo $display;?>' value='<?php echo $tags_array[$i];?>' id='remove'>&nbsp; x &nbsp;</div>
     </span> 
 <?php }?>
-<div class='listprice' id='listprice'></div>
+
 <br><br>
 modul abfrage: <br>
 <?php echo $abfrage_modul;?>

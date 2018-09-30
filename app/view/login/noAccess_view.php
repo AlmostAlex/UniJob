@@ -1,1 +1,1 @@
-Du bist nicht eingeloggt oder hast keine Rechte um den geschützen Bereich z betreten.
+Du bist nicht eingeloggt oder hast keine Rechte um den geschützen Bereich zu betreten.

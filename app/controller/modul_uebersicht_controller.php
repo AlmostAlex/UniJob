@@ -19,10 +19,19 @@ class modul_uebersicht_controller
         $this->modul_model = new modul_model();
         $this->thema_model = new thema_model();
         $this->tags_model = new tags_model();
+        $this->vorkenntnisse_model = new vorkenntnisse_model();
     }
 
 public function modulUebersichtThemen($modul_id){
     return $this->thema_model->getThemen($modul_id);
+}
+
+public function modulUebersichtVorkenntisse($thema_id){
+    return $this->vorkenntnisse_model->VorkenntnisseByThemaID($thema_id);
+}
+
+public function modulUebersichtTags($thema_id){
+    return $this->tags_model->TagsByThemaID($thema_id);
 }
 
     public function modulUebersicht($semester,$art,$betreuer,$tags,$state){

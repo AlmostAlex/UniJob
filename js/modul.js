@@ -93,7 +93,7 @@ $(document).ready(function(e) {
                     }
                 }
             });
-            
+
             fieldHTML.find('#vork').tagsinput({
                 typeahead: {
                     afterSelect: function(val) { this.$element.val(""); },
@@ -238,7 +238,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     /**
      * Typeahead
-     */ 
+     */
     var elt = $(".tagsinput-typeahead2"); //tagsinput input
     elt.tagsinput({
 
@@ -296,27 +296,56 @@ function filter() {
     xmlhttp.send();
 }
 
-function r_art(){
+function r_art() {
     //$("#art").find("option[value='']").attr('selected', true);
     $("#art option[value='']").prop("selected", true);
     filter();
-    } 
-    function r_betreuer(){
+}
+
+function r_betreuer() {
     //$("#betreuer").find("option[value='']").attr('selected', true);
     $("#betreuer option[value='']").prop("selected", true);
     filter();
-    } 
-    function r_semester(){
+}
+
+function r_semester() {
     //$("#semester").find("option[value='']").attr('selected', true);
     $("#semester option[value='']").prop("selected", true);
     filter();
-    }
-    
-    $(document).on("click", '#remove', function(a) {
-      var tag = this.getAttribute("value");
-      var values = $('#tags').val();
-    
-      $('#tags').selectpicker('deselectAll');
-      $('#tags').selectpicker('val', values.filter(function(e) {return e !== tag }));
-      $('#tags').selectpicker('refresh');
-    });
+}
+
+$(document).on("click", '#remove', function(a) {
+    var tag = this.getAttribute("value");
+    var values = $('#tags').val();
+
+    $('#tags').selectpicker('deselectAll');
+    $('#tags').selectpicker('val', values.filter(function(e) { return e !== tag }));
+    $('#tags').selectpicker('refresh');
+});
+
+function r_art() {
+    //$("#art").find("option[value='']").attr('selected', true);
+    $("#art option[value='']").prop("selected", true);
+    filter();
+}
+
+function r_betreuer() {
+    //$("#betreuer").find("option[value='']").attr('selected', true);
+    $("#betreuer option[value='']").prop("selected", true);
+    filter();
+}
+
+function r_semester() {
+    //$("#semester").find("option[value='']").attr('selected', true);
+    $("#semester option[value='']").prop("selected", true);
+    filter();
+}
+
+$(document).on("click", '#remove', function(a) {
+    var tag = this.getAttribute("value");
+    var values = $('#tags').val();
+
+    $('#tags').selectpicker('deselectAll');
+    $('#tags').selectpicker('val', values.filter(function(e) { return e !== tag }));
+    $('#tags').selectpicker('refresh');
+});

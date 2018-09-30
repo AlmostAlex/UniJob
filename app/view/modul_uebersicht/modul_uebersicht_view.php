@@ -1,35 +1,3 @@
-
-
-<script>
-function r_art(){
-//$("#art").find("option[value='']").attr('selected', true);
-$("#art option[value='']").prop("selected", true);
-filter();
-} 
-function r_betreuer(){
-//$("#betreuer").find("option[value='']").attr('selected', true);
-$("#betreuer option[value='']").prop("selected", true);
-filter();
-} 
-function r_semester(){
-//$("#semester").find("option[value='']").attr('selected', true);
-$("#semester option[value='']").prop("selected", true);
-filter();
-}
-
-$(document).on("click", '#remove', function(a) {
-  var tag = this.getAttribute("value");
-  var values = $('#tags').val();
-
-  $('#tags').selectpicker('deselectAll');
-  $('#tags').selectpicker('val', values.filter(function(e) {return e !== tag }));
-  $('#tags').selectpicker('refresh');
-});
-
-
-</script>
-
-
 <h2 style='margin-top: 20px;' class='card-title'>Übersicht der Seminar- / Abschlussarbeitsthemen</h2>
 <div style='text-align: center'>
 <div class='suche'>
@@ -91,11 +59,13 @@ $(document).on("click", '#remove', function(a) {
 <h4>Seminar- und Abschlussarbeiten</h4>
 
     <?php for($k = 0; $k < count($module); $k++){ ?>
-        <div style='width: 100px; height:20px; background-color: #3979b5; font-size: 12px; margin-bottom: -3px; color: white;text-align: center;'><?php echo $module[$k]['kategorie']; ?></div>
-        <table class='modul_table_uebersicht'>
+        <!--<div style='width: 100px; height:20px; background-color: #3979b5; font-size: 12px; margin-bottom: -3px; color: white;text-align: center;'><?php echo $module[$k]['kategorie']; ?></div>
+    --><table class='modul_table_uebersicht'>
             <tr>
                 <th><a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#modul_<?php echo $module[$k]['modul_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></th>
-                <th><b><titel><?php echo $module[$k]['nachrueckv_status']; ?> <?php echo $module[$k]['modulbezeichnung']; ?></titel></b><br>
+                <th><b><titel><?php echo $module[$k]['nachrueckv_status']; ?> <?php if($module[$i]["kategorie"] == "Seminararbeit"){
+                                echo $module[$i]["nachrueckv_status"] .' '. $module[$i]["modulbezeichnung"]; }else{ echo $module[$i]["nachrueckv_status"] .' '. $module[$i]["professur"];
+                            }?> <?php echo $module[$k]['modulbezeichnung']; ?></titel></b><br>
                     <div class='border_round'><b><?php echo $module[$k]['kategorie']; ?></b></div>
                     <div class='border_round'><b><?php echo $module[$k]['verfahren_anzeige']; ?></b></div>
                     <div class='border_round'><i class='far fa-calendar'></i> <b><?php echo $module[$k]['semester']; ?></b></div>
@@ -117,7 +87,7 @@ $(document).on("click", '#remove', function(a) {
                     <tr>
                         <td><a class='collapsed' id='coll' data-toggle='collapse' data-parent='#accordion' href='#inhalt_<?php echo $themen[$p]["thema_id"];?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></td>
                         <td><?php echo $themen[$p]["themenbezeichnung"];?> </td>
-                        <td><center>{$this->benutzer->getDozent($benutzer_id)}</center></td>
+                        <td><center> <?php echo $themen[$p]["benutzer"];?></center></td>
                         <td><center><div $vergeben><?php echo $themen[$p]["thema_verfuegbarkeit"];?></div></center></td>
                     </tr>
                     <tr class='nopadding'>
@@ -125,8 +95,21 @@ $(document).on("click", '#remove', function(a) {
                             <div id='inhalt_<?php echo $themen[$p]["thema_id"];?>' class='collapse' role='tabpanel' aria-labelledby='headingOne' data-parent='#accordion'>
                                 <div class='information_content'>
                                     <b class='information_titel'>Inhaltliche Informationen:</b><br>
-                                        <div class='information_content_inhalt'> <b>Bevorzugter Studiengang:</b> {$studiengang}<br>
-                                            <b>Beschreibung:</b> <?php echo $themen[$p]["themenbeschreibung"];?>
+                                        <div class='information_content_inhalt'> 
+                                            <b>Bevorzugter Studiengang:</b>  <?php echo $module[$k]["studiengang"];?><br>
+                                            <b>Empfohlenen Vorkenntnisse: </b>
+                                            <?php $vorkenntnisse = $this->modulUebersichtVorkenntisse($themen[$p]['thema_id']); for ($l = 0; $l < count($vorkenntnisse); $l++) {?> 
+                                            <?php  echo $vorkenntnisse[$l]['bezeichnung']; }?> <br>
+                                            <b>Beschreibung:</b> <?php echo $themen[$p]["themenbeschreibung"];?> <br>
+                                                    <br>
+                                         
+                                          <tags>
+                                            <?php $tags = $this->modulUebersichtTags($themen[$p]['thema_id']); for ($y = 0; $y < count($tags); $y++) {?>   
+                                                
+                                                <a href="#" class="badge badge-primary"><?php echo $tags[$y]['tag_bezeichnung'];?></a>
+                                                           
+                                            <?php }?>
+                                             </tags>         
                                         </div>
                                 </div>
                             </div>

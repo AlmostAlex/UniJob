@@ -113,6 +113,14 @@
                         <td><textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
                     </tr>
                     <tr>
+            <td><label for="Vorkenntnisse"><b>Vorkentnisse:</b></label></td>
+            <td colspan='2'>
+                <div class="form-group">
+                    <input type="text" id='vork'  style='display:none;' name='vorkenntnisse_WiBe[]' placeholder='Vorkenntnisse' class="form-control" />
+                </div>
+            </td>
+        </tr>
+                    <tr>
                         <td> <label for="Tags"><b>Tags:</b> </label></td>
                         <td colspan='1'>
                             <div class="form-group">

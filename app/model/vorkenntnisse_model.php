@@ -30,4 +30,23 @@ class vorkenntnisse_model
         $statement->bind_param('i', $modul_id);
         $statement->execute();
     }
+
+    
+    public function VorkenntnisseByThemaID($thema_id)
+    {
+        $statement = $this->dbh->prepare("SELECT bezeichnung FROM vorkenntnisse WHERE thema_id =?");
+        $statement->bind_param('i', $thema_id);
+        $statement->bind_result($bezeichnung);
+        $statement->execute();
+
+        $vorkenntnisse = array();
+        while ($statement->fetch()) {
+            $row = array(
+                'bezeichnung' => $bezeichnung
+            );
+            $vorkenntnisse[] = $row;
+        }
+        return $vorkenntnisse;
+    
+    }
 }
