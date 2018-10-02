@@ -20,6 +20,7 @@
 <br><br>
 <h4>Seminar- und Abschlussarbeiten</h4>
 
+<?php if(empty($module)){echo "Es wurden keine Module/Themen der Filterung entsprechend gefunden!";} ?>
     <?php for($k = 0; $k < count($module); $k++){ ?>
         <!--<div style='width: 100px; height:20px; background-color: #3979b5; font-size: 12px; margin-bottom: -3px; color: white;text-align: center;'><?php echo $module[$k]['kategorie']; ?></div>
     --><table class='modul_table_uebersicht'>

@@ -38,7 +38,7 @@ public function modulUebersichtTags($thema_id){
         $s_row = $this->modul_model->count_s(); // Anzahl der Semester, Betreuer und Kategorien für die Filteranzeige - Ausgangssicht
         $b_row = $this->modul_model->count_b();
         $k_row = $this->modul_model->count_k();
-        $module = $this->modul_model->getModule('');
+        $module = $this->modul_model->getModule('', '');
 
         switch ($state) {
             case 'true':
@@ -63,9 +63,10 @@ public function modulUebersichtTags($thema_id){
                 }else{
                     for ($i = 0; $i < count($tags_array)-1; $i++) {
                         
-                    $f_abfrage = $f_abfrage. "'". $tags_array[$i] ."' AND tags.tag_bezeichnung = ";                            
+                    $f_abfrage = $f_abfrage. "'". $tags_array[$i] ."' THEN 1 ELSE 0 END) > 0 AND
+                    SUM(CASE WHEN tag_bezeichnung = ";                            
                  }
-                $f_abfrage_s = " AND tags.tag_bezeichnung = ". $f_abfrage ."'".  $tags_array[$i]."'"; 
+                $f_abfrage_s = "HAVING SUM(CASE WHEN tag_bezeichnung = ". $f_abfrage ."'".  $tags_array[$i]."' THEN 1 ELSE 0 END) > 0"; 
                 }
 
                 $abfrage_modul = $s_abfrage .''. $a_abfrage;

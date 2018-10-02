@@ -37,7 +37,9 @@ class thema_model
     public function getThemen($modul_id,$abfrage_th)
     {
         $statement_thema = $this->dbh->prepare("SELECT thema.thema_id, thema.themenbezeichnung, thema.beschreibung, thema.thema_verfuegbarkeit, thema.benutzer_id
-                    FROM thema,tags Where thema.modul_id =? AND thema.thema_id = tags.thema_id ". $abfrage_th);
+                    FROM tags JOIN thema on tags.thema_id = thema.thema_id 
+                    WHERE thema.modul_id = ?
+                    GROUP BY tags.thema_id ".$abfrage_th);
         $statement_thema->bind_param('i', $modul_id);
         $statement_thema->execute();
         $statement_thema->bind_result($thema_id, $themenbezeichnung,$beschreibung, $thema_verfuegbarkeit, $benutzer_id);
