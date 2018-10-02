@@ -3,6 +3,7 @@ include_once "app/model/modul_model.php";
 include_once "app/model/thema_model.php";
 include_once "app/model/tags_model.php";
 include_once "app/model/user_model.php";
+include_once "app/model/vorkenntnisse_model.php";
 include_once "db.php";
 
 class abschluss_eintragen_controller
@@ -43,9 +44,10 @@ class abschluss_eintragen_controller
 // SEMINAR UND ABSCHLUSS BEI WINDHUND UND BEWERBUNGSVERFAHREN
                 if (!empty(array_filter($_POST['themenbezeichnungwindhund']))) {
                         $thema = $_POST['themenbezeichnungwindhund'];
+                        $vorkenntnisse = $_POST["vorkenntnisse_WiBe"];
                         $tags = $_POST["tags_WiBe"];
                         $betreuer = $_POST["betreuerwindhund"];
-                        $eintrag = $this->modul_model->insertAbschluss($thema, $professurbezeichnung, $fakultätsbezeichnung, $kategorie, $semester, $start, $ende, $studiengang, $tags, $betreuer);
+                        $eintrag = $this->modul_model->insertAbschluss($thema, $professurbezeichnung, $fakultätsbezeichnung, $kategorie, $semester, $start, $ende, $studiengang, $tags, $vorkenntnisse, $betreuer);
                         echo "erfolgreich eingetragen";
                 } else {
                     echo "Alles ausfüllen<br>";
