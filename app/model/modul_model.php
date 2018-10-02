@@ -74,7 +74,7 @@ class modul_model
         }
     }
 
-    public function insertAbschluss($thema, $professurbezeichnung, $fakultätsbezeichnung, $kategorie, $semester, $start, $ende, $studiengang, $tags, $betreuer)
+    public function insertAbschluss($thema, $professurbezeichnung, $fakultätsbezeichnung, $kategorie, $semester, $start, $ende, $studiengang, $tags, $vorkenntnisse, $betreuer)
     {
         //Erst eintragung des Moduls
         $statement = $this->dbh->prepare("INSERT INTO `modul` (`professur`, `fakultaet`, `kategorie`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren` )
@@ -104,8 +104,8 @@ class modul_model
                 }
                     $thema_array = $thema[$j];
                     $tag_string = $tags[$j];
+                    $vorkenntnisse_string = $vorkenntnisse[$j];
                     $betreuer_string = $betreuer[$j];
-                    echo $betreuer_string;
 
                     //davon ausgehend, dass der Benutzername eingegeben wird !!!!! BEI UNIDB ZUGRIFF NEU SCHREIBEN!!!!!
                     $benutzer_id = $this->user->getNachnameID($betreuer_string);
@@ -131,7 +131,7 @@ class modul_model
         return $modul_id;
     }
 
-    public function getModule($filter_modul)
+    public function getModule($filter_modul, $abfrage_th)
     {
         
         $statement = $this->dbh->prepare("SELECT modul.modul_id,modul.modulbezeichnung,modul.professur,modul.fakultaet,modul.kategorie,modul.verfahren,modul.semester,modul.frist_start,modul.frist_ende,modul.studiengang,modul.modul_verfuegbarkeit,modul.archivierung,modul.nachrueckverfahren
@@ -142,7 +142,26 @@ class modul_model
 
         $rows = array();
         while ($statement->fetch()) {
-
+        if($abfrage_th != '')
+        {
+        $statement_thema = $this->dbh->prepare("SELECT thema.thema_id
+        FROM tags JOIN thema on tags.thema_id = thema.thema_id 
+        WHERE thema.modul_id = ?
+        GROUP BY tags.thema_id ".$abfrage_th);
+        $statement_thema->bind_param('i', $modul_id);
+        $statement_thema->execute();
+        $statement_thema->bind_result($thema_id);
+        $statement_thema->store_result();
+        }else{
+            $statement_thema = $this->dbh->prepare("SELECT thema.thema_id
+            FROM tags JOIN thema on tags.thema_id = thema.thema_id 
+            WHERE thema.modul_id = ?");
+            $statement_thema->bind_param('i', $modul_id);
+            $statement_thema->execute();
+            $statement_thema->bind_result($thema_id);
+            $statement_thema->store_result();}
+        if($statement_thema->num_rows !== 0)
+        {
             if (new DateTime($frist_start) > new DateTime(date("Y-m-d"))) {
                 $deleteBtn = 'badge badge-danger';
             } else {  $deleteBtn = 'btn_false';}
@@ -192,8 +211,10 @@ class modul_model
             );
             $rows[] = $row;
         }
+        }
         return $rows;
     }
+
 
     public function getModulById($modul_id)
     {
