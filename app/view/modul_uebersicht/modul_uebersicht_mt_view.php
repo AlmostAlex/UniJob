@@ -22,7 +22,7 @@
 
     <?php for($k = 0; $k < count($module); $k++){ ?>
         <!--<div style='width: 100px; height:20px; background-color: #3979b5; font-size: 12px; margin-bottom: -3px; color: white;text-align: center;'><?php echo $module[$k]['kategorie']; ?></div>
-    --><table class='modul_table_uebersicht'>
+    --><table class='modul_table_uebersicht_<?php echo $module[$k]['kategorie'];?>'>
             <tr>
                 <th><a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#modul_<?php echo $module[$k]['modul_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></th>
                 <th><b><titel><?php echo $module[$k]['nachrueckv_status']; ?> <?php if($module[$k]["kategorie"] == "Seminararbeit"){

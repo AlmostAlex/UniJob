@@ -59,11 +59,16 @@
 <h4>Seminar- und Abschlussarbeiten</h4>
 
     <?php for($k = 0; $k < count($module); $k++){ ?>
-        <!--<div style='width: 100px; height:20px; background-color: #3979b5; font-size: 12px; margin-bottom: -3px; color: white;text-align: center;'><?php echo $module[$k]['kategorie']; ?></div>
-    --><table class='modul_table_uebersicht'>
+        <div class='modul_text_<?php echo $module[$k]['kategorie']; ?>'>
+            <?php echo $module[$k]['kategorie']; ?></div>
+
+            <div class='modul_shadow_<?php echo $module[$k]['kategorie']; ?>'></div>
+            <div class='modul_shadow_white'></div>
+    <table class='modul_table_uebersicht_<?php echo $module[$k]['kategorie'];?>'>
+
             <tr>
                 <th><a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#modul_<?php echo $module[$k]['modul_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></th>
-                <th><b><titel><?php echo $module[$k]['nachrueckv_status']; ?> <?php if($module[$i]["kategorie"] == "Seminararbeit"){
+                <th><b><titel><br><br><?php echo $module[$k]['nachrueckv_status']; ?> <?php if($module[$i]["kategorie"] == "Seminararbeit"){
                                 echo $module[$i]["nachrueckv_status"] .' '. $module[$i]["modulbezeichnung"]; }else{ echo $module[$i]["nachrueckv_status"] .' '. $module[$i]["professur"];
                             }?> <?php echo $module[$k]['modulbezeichnung']; ?></titel></b><br>
                     <div class='border_round'><b><?php echo $module[$k]['kategorie']; ?></b></div>
@@ -88,7 +93,7 @@
                         <td><a class='collapsed' id='coll' data-toggle='collapse' data-parent='#accordion' href='#inhalt_<?php echo $themen[$p]["thema_id"];?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></td>
                         <td><?php echo $themen[$p]["themenbezeichnung"];?> </td>
                         <td><center> <?php echo $themen[$p]["benutzer"];?></center></td>
-                        <td><center><div $vergeben><?php echo $themen[$p]["thema_verfuegbarkeit"];?></div></center></td>
+                        <td><center><div class='<?php echo $themen[$p]["thema_verfuegbarkeit"];?>'.><?php echo $themen[$p]["thema_verfuegbarkeit"];?></div></center></td>
                     </tr>
                     <tr class='nopadding'>
                         <td class='nopadding' colspan='6'>

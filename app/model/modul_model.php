@@ -131,7 +131,7 @@ class modul_model
         return $modul_id;
     }
 
-    public function getModule($filter_modul,$abfrage_th)
+    public function getModule($filter_modul)
     {
         
         $statement = $this->dbh->prepare("SELECT modul.modul_id,modul.modulbezeichnung,modul.professur,modul.fakultaet,modul.kategorie,modul.verfahren,modul.semester,modul.frist_start,modul.frist_ende,modul.studiengang,modul.modul_verfuegbarkeit,modul.archivierung,modul.nachrueckverfahren

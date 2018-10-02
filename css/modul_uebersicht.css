@@ -88,13 +88,108 @@
 
 /* Modulübersicht CSS*/
 
-.modul_table_uebersicht {
+.modul_table_uebersicht_Abschlussarbeit {
     border-top: 4px solid #3979b5;
+}
+.modul_table_uebersicht_Seminararbeit {
+    border-top: 4px solid rgb(19, 48, 106);
 }
 
 .modul_anzeige .collapsed {
     margin-left: 10px;
 }
+
+
+
+.modul_text_Abschlussarbeit {
+width: 100px;
+height: 20px;
+position: relative;
+background-color: #3979b5; 
+font-size: 12px;
+margin-bottom: -3px;
+color: white;
+text-align: center;
+top: 20px;
+right: 10px;
+}
+.modul_text_Seminararbeit {
+    width: 100px;
+    height: 20px;
+    position: relative;
+    background-color: #13306a;
+    font-size: 12px;
+    margin-bottom: -3px;
+    color: white;
+    text-align: center;
+    top: 20px;
+    right: 10px;
+    }
+
+    .modul_shadow_Abschlussarbeit {
+        width: 11px;
+        height: 10px;
+        position: relative;
+        background-color: #3979b5; 
+        font-size: 12px;
+        margin-bottom: -3px;
+        color: white;
+        text-align: center;
+        top: 20px;
+        right: 10px;
+        }
+        
+    .modul_shadow_Seminararbeit {
+        width: 11px;
+        height: 10px;
+        position: relative;
+        background-color: #13306a;
+        font-size: 12px;
+        margin-bottom: -3px;
+        color: white;
+        text-align: center;
+        top: 20px;
+        right: 10px;
+        }
+
+    .modul_shadow_white {
+        width: 11px;
+        height: 10px;
+        position: relative;
+        background-color: white;
+        font-size: 12px;
+        margin-bottom: -3px;
+        color: white;
+        text-align: center;
+        top: 15px;
+        right: 15.6px;
+        padding: 5px;
+        content: " ";
+        transform: skew(60.67deg, 0deg);
+        }
+    
+/*
+.modul_side_Abschlussarbeit{
+    width: 13.5px;
+    height: 10px;
+    top: 3;
+    position: relative;
+    background-color:#3979b5; 
+    left: 80px;
+    transform: skew(40.67deg, 0deg);
+}
+
+.modul_side_Seminararbeit{
+    width: 15.5px;
+    height: 20px;
+    top: 3;
+    position: relative;
+    background-color: #13306a;
+    left: 84px;
+    transform: skew(40.67deg, 0deg);
+    margin-bottom: -10;
+}
+ */
 
 .modul_anzeige table {
     width: 100%;
@@ -257,17 +352,18 @@ th {
     border: 1px solid #efc2c2;
     border-radius: 5px;
 }
-
 .verfügbar {
     width: 90%;
     font-size: 11.4px;
-    color: #658752;
+    color: rgb(101, 135, 82);
+    background-color: rgb(232, 238, 223);
     padding: 3px;
-    background-color: #E8EEDF;
-    border: 1px solid #ACC18A;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(172, 193, 138);
+    border-image: initial;
     border-radius: 5px;
 }
-
 
 /* BUTTON  */
 
