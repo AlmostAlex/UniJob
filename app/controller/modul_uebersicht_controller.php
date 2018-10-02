@@ -22,8 +22,8 @@ class modul_uebersicht_controller
         $this->vorkenntnisse_model = new vorkenntnisse_model();
     }
 
-public function modulUebersichtThemen($modul_id){
-    return $this->thema_model->getThemen($modul_id);
+public function modulUebersichtThemen($modul_id,$abfrage_th){
+    return $this->thema_model->getThemen($modul_id,$abfrage_th);
 }
 
 public function modulUebersichtVorkenntisse($thema_id){
@@ -63,18 +63,17 @@ public function modulUebersichtTags($thema_id){
                 }else{
                     for ($i = 0; $i < count($tags_array)-1; $i++) {
                         
-                    $f_abfrage = $f_abfrage. "'". $tags_array[$i] ."' AND ";                            
+                    $f_abfrage = $f_abfrage. "'". $tags_array[$i] ."' AND tags.tag_bezeichnung = ";                            
                  }
-                $f_abfrage_s = " AND tags = ". $f_abfrage ."'".  $tags_array[$i]."'"; 
+                $f_abfrage_s = " AND tags.tag_bezeichnung = ". $f_abfrage ."'".  $tags_array[$i]."'"; 
                 }
 
                 $abfrage_modul = $s_abfrage .''. $a_abfrage;
 
                 $abfrage_th =  $b_abfrage .''. $f_abfrage_s;
 
-                $module = $this->modul_model->getModule($abfrage_modul);
-
-                
+                $module = $this->modul_model->getModule($abfrage_modul, $abfrage_th);
+         
                 $betreuer_anzeige = $this->user_model->getIDBenutzername($betreuer);
                 include(__DIR__."/../view/modul_uebersicht/modul_uebersicht_mt_view.php"); 
             break;

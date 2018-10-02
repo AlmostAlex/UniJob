@@ -83,7 +83,7 @@
                         <th style='width:15%' class='bold_title'><center>Betreuer</center></th>
                         <th style='width:20%' class='bold_title'><center>Verfügbarkeit</center></th>
                     </tr>
-                    <?php $themen = $this->modulUebersichtThemen($module[$k]['modul_id']); for ($p = 0; $p < count($themen); $p++) {?>   
+                    <?php $themen = $this->modulUebersichtThemen($module[$k]['modul_id'],''); for ($p = 0; $p < count($themen); $p++) {?>   
                     <tr>
                         <td><a class='collapsed' id='coll' data-toggle='collapse' data-parent='#accordion' href='#inhalt_<?php echo $themen[$p]["thema_id"];?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></td>
                         <td><?php echo $themen[$p]["themenbezeichnung"];?> </td>
@@ -101,7 +101,7 @@
                                             <?php $vorkenntnisse = $this->modulUebersichtVorkenntisse($themen[$p]['thema_id']); for ($l = 0; $l < count($vorkenntnisse); $l++) {?> 
                                             <?php  echo $vorkenntnisse[$l]['bezeichnung']; }?> <br>
                                             <b>Beschreibung:</b> <?php echo $themen[$p]["themenbeschreibung"];?> <br>
-                                                    <br>
+                                             <br>
                                          
                                           <tags>
                                             <?php $tags = $this->modulUebersichtTags($themen[$p]['thema_id']); for ($y = 0; $y < count($tags); $y++) {?>   

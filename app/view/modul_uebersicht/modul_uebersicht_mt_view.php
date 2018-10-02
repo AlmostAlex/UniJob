@@ -45,7 +45,7 @@
                         <th style='width:15%' class='bold_title'><center>Betreuer</center></th>
                         <th style='width:20%' class='bold_title'><center>Verfügbarkeit</center></th>
                     </tr>
-                    <?php $themen = $this->modulUebersichtThemen($module[$k]['modul_id']); for ($p = 0; $p < count($themen); $p++) {?>   
+                    <?php $themen = $this->modulUebersichtThemen($module[$k]['modul_id'],$abfrage_th); for ($p = 0; $p < count($themen); $p++) {?>   
                     <tr>
                         <td><a class='collapsed' id='coll' data-toggle='collapse' data-parent='#accordion' href='#inhalt_<?php echo $themen[$p]["thema_id"];?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></td>
                         <td><?php echo $themen[$p]["themenbezeichnung"];?> </td>

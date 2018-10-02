@@ -34,10 +34,10 @@ class thema_model
         return $thema_id;
     }
 
-    public function getThemen($modul_id)
+    public function getThemen($modul_id,$abfrage_th)
     {
-        $statement_thema = $this->dbh->prepare("SELECT thema_id, themenbezeichnung, beschreibung, thema_verfuegbarkeit, benutzer_id
-                    FROM thema Where modul_id =?");
+        $statement_thema = $this->dbh->prepare("SELECT thema.thema_id, thema.themenbezeichnung, thema.beschreibung, thema.thema_verfuegbarkeit, thema.benutzer_id
+                    FROM thema,tags Where thema.modul_id =? AND thema.thema_id = tags.thema_id ". $abfrage_th);
         $statement_thema->bind_param('i', $modul_id);
         $statement_thema->execute();
         $statement_thema->bind_result($thema_id, $themenbezeichnung,$beschreibung, $thema_verfuegbarkeit, $benutzer_id);

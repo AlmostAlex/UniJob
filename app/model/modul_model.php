@@ -131,10 +131,10 @@ class modul_model
         return $modul_id;
     }
 
-    public function getModule($filter_modul)
+    public function getModule($filter_modul,$abfrage_th)
     {
         
-        $statement = $this->dbh->prepare("SELECT modul_id,modulbezeichnung,professur,fakultaet,kategorie,verfahren,semester,frist_start,frist_ende,studiengang,modul_verfuegbarkeit,archivierung,nachrueckverfahren
+        $statement = $this->dbh->prepare("SELECT modul.modul_id,modul.modulbezeichnung,modul.professur,modul.fakultaet,modul.kategorie,modul.verfahren,modul.semester,modul.frist_start,modul.frist_ende,modul.studiengang,modul.modul_verfuegbarkeit,modul.archivierung,modul.nachrueckverfahren
                FROM modul Where archivierung = 'false'". $filter_modul);    
         $statement->execute();
         $statement->bind_result($modul_id, $modulbezeichnung, $professur,$fakultaet,$kategorie, $verfahren, $semester, $frist_start, $frist_ende, $studiengang, $modul_verfuegbarkeit,$archivierung,$nachrueckverfahren);
