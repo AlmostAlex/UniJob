@@ -61,7 +61,6 @@
     <?php for($k = 0; $k < count($module); $k++){ ?>
         <div class='modul_text_<?php echo $module[$k]['kategorie']; ?>'>
             <?php echo $module[$k]['kategorie']; ?></div>
-
             <div class='modul_shadow_<?php echo $module[$k]['kategorie']; ?>'></div>
             <div class='modul_shadow_white'></div>
     <table class='modul_table_uebersicht_<?php echo $module[$k]['kategorie'];?>'>
