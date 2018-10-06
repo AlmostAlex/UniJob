@@ -167,12 +167,12 @@
         </tr>
         <tr>
             <td> <label for="Vorkenntnisse"><b>Vorkenntnisse:</b> </label></td>
-                    <td colspan='2'>
+                <td colspan='2'>
                     <div class="form-group">
-                    <input type="text" id='vork' name='vorkenntnisse_Beleg[]' placeholder='erforderlichen Vorkenntnisse' class="form-control" />
-                </div>
-                    </td>
-             </tr>
+                        <input type="text" id='vork' name='vorkenntnisse_Beleg[]' placeholder='erforderlichen Vorkenntnisse' class="form-control" />
+                    </div>
+                </td>
+            </tr>
         <tr>
             <td><label for="Tags"><b>Tags:</b></label></td>
             <td colspan='2'>
@@ -206,13 +206,13 @@
                     <td><textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
                 </tr>
                 <tr>
-            <td> <label for="Vorkenntnisse"><b>Vorkenntnisse:</b> </label></td>
+                    <td> <label for="Vorkenntnisse"><b>Vorkenntnisse:</b> </label></td>
                     <td colspan='2'>
                         <div class="form-group">
                             <input type="text" name='vorkenntnisse_WiBe[]' placeholder='erforderlichen Vorkenntnisse' class="tagsinput-typeahead2" />                            
                         </div>
                     </td>
-             </tr>
+                </tr>
                 <tr>
                     <td> <label for="Tags"><b>Tags:</b> </label></td>
                     <td colspan='2'>

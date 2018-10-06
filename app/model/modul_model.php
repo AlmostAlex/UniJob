@@ -63,9 +63,7 @@ class modul_model
                         $thema_id = $this->thema->lastThemaID();
                         $this->tags_model->insertTags($tag_string, $thema_id);
                     }
-                    if($vorkenntnisse_string == ''){
-
-                    }else{
+                    if($vorkenntnisse_string != ''){
                         $this->vorkenntnisse_model->insertVorkenntnisse($vorkenntnisse_string, $thema_id);
                     }
 
@@ -78,8 +76,8 @@ class modul_model
     {
         //Erst eintragung des Moduls
         $statement = $this->dbh->prepare("INSERT INTO `modul` (`professur`, `fakultaet`, `kategorie`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren` )
-        VALUES (?,?,?,'Windhundverfahren',?,?,?,?,'Offen','false', 'false')");
-        $statement->bind_param('ssssssssi', $professurbezeichnung, $fakultätsbezeichnung, $kategorie, $semester, $start, $ende, $studiengang, $_SESSION['login']);
+        VALUES (?,?,?,'Windhundverfahren',?,?,?,?,?,'Offen','false', 'false')");
+        $statement->bind_param('sssssssi', $professurbezeichnung, $fakultätsbezeichnung, $kategorie, $semester, $start, $ende, $studiengang, $_SESSION['login']);
         $statement->execute();
 
         //dann die hierdurch entstandene modul_id holen
@@ -116,6 +114,9 @@ class modul_model
                         $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$benutzer_id);
                         $thema_id = $this->thema->lastThemaID();
                         $this->tags_model->insertTags($tag_string, $thema_id);
+                    }
+                     if($vorkenntnisse_string != ''){
+                        $this->vorkenntnisse_model->insertVorkenntnisse($vorkenntnisse_string, $thema_id);
                     }
             } else {echo "thema bitte ausfüllen";}
             $j = $j + 1;
