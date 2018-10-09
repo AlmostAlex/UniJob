@@ -1,20 +1,21 @@
 
-<?php //include(__DIR__."/../../../layout/head.php"); ?>
-<!-- link rel="stylesheet" href="/css/modul_uebersicht.css">  
-<link rel="stylesheet" href="/css/main.css"> -->
 <br>
-<span class="<?php echo $search_s; ?>"><?php echo $semester; ?> <delete onclick="r_semester();"><?php echo $x_s; ?></delete></span>
-<span  class="<?php echo $search_a; ?>"><?php echo $art; ?> <delete onclick="r_art();"><?php echo $x_a; ?></delete> </span>
-<span  class="<?php echo $search_b; ?>"><?php echo $betreuer_anzeige; ?> <delete onclick="r_betreuer();"><?php echo $x_b; ?></delete> </span>
+<uebersichtTags>
+<div class='suche'>
+<ul class="tags">
+<li><a style='<?php echo $search_s; ?>'> <?php echo $semester; ?> <delete onclick="r_semester();"><?php echo $x_s; ?></delete></a></li>
+<li><a style='<?php echo $search_a; ?>'> <?php echo $art; ?> <delete onclick="r_art();"><?php echo $x_a; ?></delete></a></li>
+<li><a style='<?php echo $search_b; ?>'> <?php echo $betreuer_anzeige; ?> <delete onclick="r_betreuer();"><?php echo $x_b; ?></delete></a></li>
 
 <?php for ($i = 0; $i < count($tags_array); $i++) {?>
     <span style='float:left;' class="<?php echo $search_f;?>"> &nbsp; <?php echo $tags_array[$i]; ?> 
     <div style='float:right; <?php echo $display;?>' value='<?php echo $tags_array[$i];?>' id='remove'>&nbsp; x &nbsp;</div>
     </span> 
 <?php }?>
-
-<?php echo $abfrage_th;?>
-
+</ul>
+<br>
+</div>
+</uebersichtTags>
 
 <div id="semester_f" class='modul_anzeige'>
 <br><br>
@@ -88,11 +89,4 @@
         </inside><br>
     <?php } ?>
     </div>
-
-
-
-
-<!--/* $themen = $this->modulUebersichtThemen($module[$k]['modul_id']); for ($p = 0; $p < count($themen); $p++) {?>   
-
-}
                

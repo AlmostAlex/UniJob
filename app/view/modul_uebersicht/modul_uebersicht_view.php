@@ -18,7 +18,6 @@
                 <option value='<?php echo $k_row[$l]['kategorie']; ?>'> <?php echo $k_row[$l]['kategorie'] .' ('. $k_row[$l]['anzahl'] .')'; ?> </option>
                 <?php } ?>
             </select>
-
         </td>
         <td>
             <select class='form-control' id='semester' name='semester2' onchange="filter();">
@@ -37,7 +36,6 @@
             </select>
        </td>
        <td> <!-- data-selected-text-format="count > 2" -->
-
 
     <select class="selectpicker" title=""  style="width:auto;" data-live-search="true" id='tags' data-style="btn-primary" multiple data-max-options="10"  onchange="filter();">
       <option>PHP</option>
