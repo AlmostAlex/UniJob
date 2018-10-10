@@ -3,7 +3,7 @@
     <table class='edit_div_table'>
       <tr>
         <td colspan='3'>
-          <h5>Bearbeitung des Moduls:<br><span>
+          <h5>Bearbeitung des Seminars:<br><span>
               <?php echo $modul["modulbezeichnung"] ?></span></h5>
         </td>
       </tr>

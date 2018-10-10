@@ -43,7 +43,7 @@ $router->map(["GET", "POST"],["/ajax/tags.php"], function (Response $response) {
 
 $router->map(["GET", "POST"],["/ajax/tags/{term}"], function ($term) {
     $modul = new modul_controller();
-    $modul->Ajax($term); 
+    $modul->Ajax($term);
 });
 
 // gilt für mt_verwaltung, modul_eintragen, mt_verwaltung/modul/add(thema hinzufügen)
@@ -52,6 +52,11 @@ $router->map(["GET", "POST"],["/ajax/tags/{term}"], function ($term) {
 $router->map(["GET", "POST"],["/{action}","/{action}/{action2}/{action3}/{action4}/{id}"], function ($action,$action2,$action3,$action4,$id) {
     $modul = new modul_controller();
     $modul->Route($action,$action2,$action3,$action4,$id); 
+});
+
+$router->map(["GET", "POST"],["/{action}","/{action}/{action2}/{action3}/{id}"], function ($action,$action2,$action3,$id) {
+    $modul = new modul_controller();
+    $modul->Route($action,$action2,$action3,'',$id); 
 });
 
 $router->map(["GET", "POST"],["/seminar_eintragen"], function () {

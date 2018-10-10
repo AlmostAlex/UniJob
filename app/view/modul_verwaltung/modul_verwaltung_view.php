@@ -130,7 +130,7 @@
                                 </td>
                                 <td style='width:28%;' align='center'>
                                     <span data-toggle='tooltip' data-placement='top' title='Thema editieren' class='badge badge-secondary'>
-                                        <a href='/edit_thema.php?action=editThema&id=$dec_thema'><i class='far fa-edit'></i></a></span>
+                                        <a href='/mt_verwaltung/thema/edit/<?php echo $themen[$j]["thema_id"]; ?>'><i class='far fa-edit'></i></a></span>
                                 </td>
                             </tr>
                         </table>
