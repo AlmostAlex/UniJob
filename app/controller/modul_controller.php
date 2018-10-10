@@ -68,14 +68,14 @@ class modul_controller
     {
         switch ($state) {
             case 'false':
-                $module = $this->modul_model->getModule('');
+                $module = $this->modul_model->getModule('', '');
                 include 'app/view/modul_verwaltung/modul_verwaltung_view.php';
                 break;
             // Wenn die Themen in Abh. mehrerer Module geholt werden sollen (dh es werden erst die Modul IDs generiert, dann muss der Controller)
             // mit den generierten IDs die Themen holen. Daher --> True.
             // Anders ist es jedoch, wenn man bereits eine Modul_id (wie bei Edit)
             case 'true':
-                return $this->thema_model->getThemen($modul_id);
+                return $this->thema_model->getThemen($modul_id, '');
                 break;
         }
     }
@@ -187,7 +187,7 @@ class modul_controller
             $modul['verfahren'] = $verfahren;
             $this->getModal('edit_modul_success', $modul_id);
         }
-        $themen = $this->thema_model->getThemen($modul_id);
+        $themen = $this->thema_model->getThemen($modul_id, '');
         include 'app/view/modul_verwaltung/edit_modul_view.php';
 }
 
