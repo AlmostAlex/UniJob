@@ -38,12 +38,10 @@
        <td> <!-- data-selected-text-format="count > 2" -->
 
     <select class="selectpicker" title=""  style="width:auto;" data-live-search="true" id='tags' data-style="btn-primary" multiple data-max-options="10"  onchange="filter();">
-      <option>PHP</option>
-      <option>CSS</option>
-      <option>HTML</option>
-      <option>CSS 3</option>
-      <option>Bootstrap</option>
-      <option>JavaScript</option>
+
+    <?php for ($i = 0; $i < count($tagsBezFilter); $i++) { ?>
+        <option><?php echo $tagsBezFilter[$i]['tag_bezeichnung'];?></option>      
+       <?php } ?>
 </select>
 </td>
 </tr>
@@ -65,9 +63,11 @@
 
             <tr>
                 <th><a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#modul_<?php echo $module[$k]['modul_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></th>
-                <th><b><titel><br><br><?php echo $module[$k]['nachrueckv_status']; ?> <?php if($module[$i]["kategorie"] == "Seminararbeit"){
-                                echo $module[$i]["nachrueckv_status"] .' '. $module[$i]["modulbezeichnung"]; }else{ echo $module[$i]["nachrueckv_status"] .' '. $module[$i]["professur"];
-                            }?> <?php echo $module[$k]['modulbezeichnung']; ?></titel></b><br>
+                <th><b><titel><br><br><?php echo $module[$k]['nachrueckv_status']; ?> 
+                <?php if($module[$k]["kategorie"] == "Seminararbeit"){
+                                echo $module[$k]["nachrueckv_status"] .' '. $module[$k]["modulbezeichnung"];
+                            } else{ echo $module[$k]["nachrueckv_status"] .' '. $module[$k]["professur"];} ?> 
+                            <?php echo $module[$k]['modulbezeichnung']; ?></titel></b><br>
                     <div class='border_round'><b><?php echo $module[$k]['kategorie']; ?></b></div>
                     <div class='border_round'><b><?php echo $module[$k]['verfahren_anzeige']; ?></b></div>
                     <div class='border_round'><i class='far fa-calendar'></i> <b><?php echo $module[$k]['semester']; ?></b></div>

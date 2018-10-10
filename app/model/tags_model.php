@@ -52,9 +52,20 @@ class tags_model
         return $tags;
     }
 
-    public function getTagString($tags)
+    public function getTagsBezeichnung()
     {
-        //echo 'StringTag:' . $tags . '<br>';
+        $statement = $this->dbh->prepare("SELECT tags.tag_bezeichnung FROM `tags`,`thema`,`modul`  WHERE tags.thema_id = thema.thema_id AND thema.modul_id = modul.modul_id AND modul.archivierung = 'false' GROUP BY tags.tag_bezeichnung");
+        $statement->bind_result($tag_bezeichnung);
+        $statement->execute();
+
+        $tagsBezFilter = array();
+        while ($statement->fetch()) {
+            $row = array(
+                'tag_bezeichnung' => $tag_bezeichnung
+            );
+            $tagsBezFilter[] = $row;
+        }
+        return $tagsBezFilter;
     }
 
 }

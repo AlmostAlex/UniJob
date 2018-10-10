@@ -153,7 +153,6 @@ info h4 {
 
 .input-group-addon {
     background-color: white;
-    padding: 3%;
     border-style: solid;
     border-width: 1px 0px 1px 1px;
     border-color: #cfd4db;
@@ -175,6 +174,17 @@ info h4 {
 
 .input-group span {
     width: 40px;
+    height: 34px;
+}
+
+.form_thema .input-group span {
+    width: auto;
+    height: auto;
+}
+
+.fa,
+.fas {
+    margin-top: 5px;
 }
 
 .fa-key:hover {
@@ -463,8 +473,12 @@ feld2 .form-group {
     width: 95%;
 }
 
-feld2 .bootstrap-tagsinput {
-    margin-left: 88px;
+feld2 vork .bootstrap-tagsinput {
+    width: 389px;
+}
+
+feld2 tags .bootstrap-tagsinput {
+    width: 446px;
 }
 
 feld3 space input {
@@ -574,7 +588,7 @@ feld3 .bootstrap-tagsinput {
 #datebox {
     margin-bottom: 0px;
     margin-top: 0;
-    padding: 10px;
+    padding: 9px;
     border-right: 1px solid #cfd4db;
 }
 

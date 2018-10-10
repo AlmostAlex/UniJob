@@ -91,6 +91,7 @@
 .modul_table_uebersicht_Abschlussarbeit {
     border-top: 4px solid #3979b5;
 }
+
 .modul_table_uebersicht_Seminararbeit {
     border-top: 4px solid rgb(19, 48, 106);
 }
@@ -99,20 +100,19 @@
     margin-left: 10px;
 }
 
-
-
 .modul_text_Abschlussarbeit {
-width: 100px;
-height: 20px;
-position: relative;
-background-color: #3979b5; 
-font-size: 12px;
-margin-bottom: -3px;
-color: white;
-text-align: center;
-top: 20px;
-right: 10px;
+    width: 100px;
+    height: 23px;
+    position: relative;
+    background-color: #125ba0;
+    font-size: 12px;
+    margin-bottom: -3px;
+    color: white;
+    text-align: center;
+    top: 20px;
+    right: 10px;
 }
+
 .modul_text_Seminararbeit {
     width: 100px;
     height: 20px;
@@ -124,50 +124,85 @@ right: 10px;
     text-align: center;
     top: 20px;
     right: 10px;
-    }
+}
 
-    .modul_shadow_Abschlussarbeit {
-        width: 11px;
-        height: 10px;
-        position: relative;
-        background-color: #3979b5; 
-        font-size: 12px;
-        margin-bottom: -3px;
-        color: white;
-        text-align: center;
-        top: 20px;
-        right: 10px;
-        }
-        
-    .modul_shadow_Seminararbeit {
-        width: 11px;
-        height: 10px;
-        position: relative;
-        background-color: #13306a;
-        font-size: 12px;
-        margin-bottom: -3px;
-        color: white;
-        text-align: center;
-        top: 20px;
-        right: 10px;
-        }
+.modul_shadow_Abschlussarbeit {
+    width: 11px;
+    height: 10px;
+    position: relative;
+    background-color: #3979b5;
+    font-size: 12px;
+    margin-bottom: -3px;
+    color: white;
+    text-align: center;
+    top: 23px;
+    right: 11px;
+}
 
-    .modul_shadow_white {
-        width: 11px;
-        height: 10px;
-        position: relative;
-        background-color: white;
-        font-size: 12px;
-        margin-bottom: -3px;
-        color: white;
-        text-align: center;
-        top: 15px;
-        right: 15.6px;
-        padding: 5px;
-        content: " ";
-        transform: skew(60.67deg, 0deg);
-        }
-    
+.modul_shadow_Abschlussarbeit::after {
+    /* width: 11px; */
+    /* padding-left: 10px; */
+    /* height: 5px; */
+    position: relative;
+    padding: 12px;
+    background-color: white;
+    font-size: 12px;
+    margin-bottom: -3px;
+    color: white;
+    text-align: center;
+    top: 16.5px;
+    right: 1px;
+    /* right: 10px; */
+    content: " ";
+}
+
+.modul_shadow_Seminararbeit {
+    width: 11px;
+    height: 10px;
+    position: relative;
+    background-color: #13306a;
+    font-size: 12px;
+    margin-bottom: -3px;
+    color: white;
+    text-align: center;
+    top: 23px;
+    right: 11px;
+}
+
+.modul_shadow_Seminararbeit::after {
+    /* width: 11px; */
+    /* padding-left: 10px; */
+    /* height: 5px; */
+    position: relative;
+    padding: 12px;
+    background-color: white;
+    font-size: 12px;
+    margin-bottom: -3px;
+    color: white;
+    text-align: center;
+    top: 16.5px;
+    right: 1px;
+    /* right: 10px; */
+    content: " ";
+}
+
+.modul_shadow_white {
+    width: 11.3px;
+    height: 6px;
+    position: relative;
+    background-color: white;
+    font-size: 12px;
+    margin-bottom: -3px;
+    color: white;
+    text-align: center;
+    top: 15.5px;
+    background-color: white;
+    right: 17px;
+    /* padding: 5px; */
+    transform: skew(60.67deg, 0deg);
+}
+
+
 /*
 .modul_side_Abschlussarbeit{
     width: 13.5px;
@@ -352,6 +387,7 @@ th {
     border: 1px solid #efc2c2;
     border-radius: 5px;
 }
+
 .verfügbar {
     width: 90%;
     font-size: 11.4px;
@@ -364,6 +400,7 @@ th {
     border-image: initial;
     border-radius: 5px;
 }
+
 
 /* BUTTON  */
 
@@ -436,72 +473,75 @@ tags .badge-primary {
 
 
 /* TAGS */
+
 uebersichtTags {
-    color:white;
-}
-uebersichtTags .tags{
-	margin:0;
-	padding:0;
-	list-style:none;
+    color: white;
 }
 
-uebersichtTags .tags li, .tags a{
-	float:left;
-	height:24px;
-	line-height:24px;
-	position:relative;
-	font-size:11px;
+uebersichtTags .tags {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-uebersichtTags .tags a{
-  font-family: "Open Sans", sans-serif;
-	margin-left:20px;
-	padding:0 10px 0 12px;
-	background:#0089e0;
-	color:#fff;
-	text-decoration:none;
-	-moz-border-radius-bottomright:4px;
-	-webkit-border-bottom-right-radius:4px;	
-	border-bottom-right-radius:4px;
-	-moz-border-radius-topright:4px;
-	-webkit-border-top-right-radius:4px;	
-	border-top-right-radius:4px;	
+uebersichtTags .tags li,
+.tags a {
+    float: left;
+    height: 24px;
+    line-height: 24px;
+    position: relative;
+    font-size: 11px;
 }
 
-uebersichtTags .tags a:before{
-	content:"";
-	float:left;
-	position:absolute;
-	top:0;
-	left:-12px;
-	width:0;
-	height:0;
-	border-color:transparent #0089e0 transparent transparent;
-	border-style:solid;
-	border-width:12px 12px 12px 0;		
+uebersichtTags .tags a {
+    font-family: "Open Sans", sans-serif;
+    margin-left: 20px;
+    padding: 0 10px 0 12px;
+    background: #0089e0;
+    color: #fff;
+    text-decoration: none;
+    -moz-border-radius-bottomright: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    -moz-border-radius-topright: 4px;
+    -webkit-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
 }
 
-uebersichtTags .tags a:after{
-	content:"";
-	position:absolute;
-	top:10px;
-	left:0;
-	float:left;
-	width:4px;
-	height:4px;
-	-moz-border-radius:2px;
-	-webkit-border-radius:2px;
-	border-radius:2px;
-	background:#fff;
-	-moz-box-shadow:-1px -1px 2px #004977;
-	-webkit-box-shadow:-1px -1px 2px #004977;
-	box-shadow:-1px -1px 2px #004977;
+uebersichtTags .tags a:before {
+    content: "";
+    float: left;
+    position: absolute;
+    top: 0;
+    left: -12px;
+    width: 0;
+    height: 0;
+    border-color: transparent #0089e0 transparent transparent;
+    border-style: solid;
+    border-width: 12px 12px 12px 0;
+}
+
+uebersichtTags .tags a:after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 0;
+    float: left;
+    width: 4px;
+    height: 4px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    background: #fff;
+    -moz-box-shadow: -1px -1px 2px #004977;
+    -webkit-box-shadow: -1px -1px 2px #004977;
+    box-shadow: -1px -1px 2px #004977;
 }
 
 uebersichtTags .tags a:hover {
-	background:#555;
+    background: #555;
 }
 
 uebersichtTags .tags a:hover:before {
-	border-color:transparent #555 transparent transparent;
+    border-color: transparent #555 transparent transparent;
 }

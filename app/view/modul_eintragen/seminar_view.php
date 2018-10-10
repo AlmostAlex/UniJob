@@ -119,33 +119,52 @@
     <table>
         <tr>
             <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
-            <td><space><input type="text" class="form-control" name='betreuerwindhund[]' placeholder="Betreuer des Themas"></space> </td>
+            <td><space><input style='margin-left: 130px;' type="text" class="form-control" name='betreuerwindhund[]' placeholder="Betreuer des Themas"></space> </td>
             <td><a href="javascript:void(0)" class="btn btn-danger remove">-</a></td>
         </tr>
         <tr>
             <td class='first_td'><label for="titel"><b>Titel:</b></label></td>
-            <td><space><input  type="text" name="themenbezeichnungwindhund[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
+            <td><space><input  style='margin-left: 130px;'  type="text" name="themenbezeichnungwindhund[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
         </tr>
-        <tr>
+       <!-- <tr>
             <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
             <td><textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
-        </tr>
+        </tr> 
+        
         <tr>
             <td><label for="Vorkenntnisse"><b>Vorkentnisse:</b></label></td>
             <td colspan='2'>
                 <div class="form-group">
-                    <input type="text" id='vork'  style='display:none;' name='vorkenntnisse_WiBe[]' placeholder='Vorkenntnisse' class="form-control" />
+                        <input type="text" id='vork'  style='display:none;' name='vorkenntnisse_WiBe[]' placeholder='Vorkenntnisse' class="form-control" />               
                 </div>
             </td>
-        </tr>
+        </tr>  -->
+        
+        
         <tr>
-            <td><label for="Tags"><b>Tags:</b></label></td>
+     <td></td>
+      <td>
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span style='margin-left:88px' class="input-group-text">Vorkenntnisse</span>
+  </div>
+  <vork><input  style='margin-left: 130px;'  type="text" id='vork'  style='display:none;' name='vorkenntnisse_WiBe[]' placeholder='Vorkenntnisse' class="form-control" />                            
+</vork></div>
+</td>
+</tr>
+      
+        <tags>
+        <tr>
+            <td><label for="Hashtags"><b>Tags:</b></label></td>
             <td colspan='2'>
                 <div class="form-group">
-                    <input type="text" id='taggin' name='tags_WiBe[]' placeholder='Add Tags' class="form-control" />
+                   
+                        <input type="text" id='taggin' name='tags_WiBe[]' placeholder='Add Tags' class="form-control" />
+                  
                 </div>
             </td>
-        </tr>
+        </tr>  
+    </tags>
     </table>
 </div>
 <!--  COPY FIELD END -->
@@ -205,22 +224,32 @@
                     <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
                     <td><textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
                 </tr>
-                <tr>
-                    <td> <label for="Vorkenntnisse"><b>Vorkenntnisse:</b> </label></td>
-                    <td colspan='2'>
-                        <div class="form-group">
-                            <input type="text" name='vorkenntnisse_WiBe[]' placeholder='erforderlichen Vorkenntnisse' class="tagsinput-typeahead2" />                            
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td> <label for="Tags"><b>Tags:</b> </label></td>
-                    <td colspan='2'>
-                        <div class="form-group">
-                            <input type="text" name='tags_WiBe[]' placeholder='Add Tags' class="tagsinput-typeahead" />                            
-                        </div>
-                    </td>
-                </tr>
+
+ <tr>
+     <td></td>
+      <td>
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span style='margin-left:88px' class="input-group-text">Vorkenntnisse</span>
+  </div>
+  <vork><input style='width:80%;margin-left:0px;' type="text" name='vork_Beleg[]' placeholder='Eingabe' class="tagsinput-typeahead2" />                            
+</vork></div>
+</td>
+</tr>
+
+
+ <tr>
+     <td></td>
+      <td>
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span style='margin-left:88px' class="input-group-text">Tags</span>
+  </div>
+  <tags><input style='width:80%;margin-left:0px;' type="text" name='tags_WiBe[]' placeholder='Add Tags' class="tagsinput-typeahead" />                              
+</tags></div>
+</td>
+</tr>
+
                 <tr>
                     <td colspan='3'><input style='float:right;'type="submit" name="modul_eintrag1" class="btn btn-primary" value="Modul eintragen"/> </td>
                 </tr>
