@@ -1,6 +1,7 @@
 <h2 style='margin-top: 20px;' class='card-title'>Übersicht der Seminar- / Abschlussarbeitsthemen</h2>
 <div style='text-align: center'>
 <div class='suche'>
+    <filter>
 <table>
 <tr>
 <th style='width: 20%; padding-right:2%;' class='tg-py0s'><b>Art</b></th>
@@ -46,6 +47,7 @@
 </td>
 </tr>
 </table>
+<filter>
 </div>
 </div>
 </form>

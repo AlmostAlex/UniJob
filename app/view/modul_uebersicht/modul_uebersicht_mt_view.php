@@ -1,39 +1,41 @@
 
 <br>
+<h4>Seminar- und Abschlussarbeiten</h4>
 <uebersichtTags>
-<div class='suche'>
+<!--<div class='suche'>-->
 <ul class="tags">
 <li><a style='<?php echo $search_s; ?>'> <?php echo $semester; ?> <delete onclick="r_semester();"><?php echo $x_s; ?></delete></a></li>
 <li><a style='<?php echo $search_a; ?>'> <?php echo $art; ?> <delete onclick="r_art();"><?php echo $x_a; ?></delete></a></li>
 <li><a style='<?php echo $search_b; ?>'> <?php echo $betreuer_anzeige; ?> <delete onclick="r_betreuer();"><?php echo $x_b; ?></delete></a></li>
 
 <?php for ($i = 0; $i < count($tags_array); $i++) {?>
-    <span style='float:left;' class="<?php echo $search_f;?>"> &nbsp; <?php echo $tags_array[$i]; ?> 
-    <div style='float:right; <?php echo $display;?>' value='<?php echo $tags_array[$i];?>' id='remove'>&nbsp; x &nbsp;</div>
-    </span> 
+<li>
+    <a style='<?php echo $display;?>'  style='<?php echo $search_f; ?>'> &nbsp; <?php echo $tags_array[$i]; ?> 
+        <div style='float:right; <?php echo $display;?>' value='<?php echo $tags_array[$i];?>' id='remove'>&nbsp; x &nbsp;</div>
+    </a>
+</li>
 <?php }?>
 </ul>
-<br>
-</div>
+<!--</div>-->
 </uebersichtTags>
-
+<br>
 <div id="semester_f" class='modul_anzeige'>
-<br><br>
-<h4>Seminar- und Abschlussarbeiten</h4>
 
 <?php if(empty($module)){echo "Es wurden keine Module/Themen der Filterung entsprechend gefunden!";} ?>
+
 <?php for($k = 0; $k < count($module); $k++){ ?>
         <div class='modul_text_<?php echo $module[$k]['kategorie']; ?>'>
             <?php echo $module[$k]['kategorie']; ?></div>
             <div class='modul_shadow_<?php echo $module[$k]['kategorie']; ?>'></div>
             <div class='modul_shadow_white'></div>
     <table class='modul_table_uebersicht_<?php echo $module[$k]['kategorie'];?>'>
-
             <tr>
                 <th><a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#modul_<?php echo $module[$k]['modul_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></th>
-                <th><b><titel><?php echo $module[$k]['nachrueckv_status']; ?> <?php if($module[$k]["kategorie"] == "Seminararbeit"){
-                                echo $module[$k]["nachrueckv_status"] .' '. $module[$k]["modulbezeichnung"]; }else{ echo $module[$k]["nachrueckv_status"] .' '. $module[$k]["professur"];
-                            }?> <?php echo $module[$k]['modulbezeichnung']; ?></titel></b><br>
+                <th><b><titel><br><br><?php echo $module[$k]['nachrueckv_status']; ?> 
+                <?php if($module[$k]["kategorie"] == "Seminararbeit"){
+                                echo $module[$k]["nachrueckv_status"] .' '. $module[$k]["modulbezeichnung"];
+                            } else{ echo $module[$k]["nachrueckv_status"] .' '. $module[$k]["professur"];} ?> 
+                            <?php echo $module[$k]['modulbezeichnung']; ?></titel></b><br>
                     <div class='border_round'><b><?php echo $module[$k]['kategorie']; ?></b></div>
                     <div class='border_round'><b><?php echo $module[$k]['verfahren_anzeige']; ?></b></div>
                     <div class='border_round'><i class='far fa-calendar'></i> <b><?php echo $module[$k]['semester']; ?></b></div>

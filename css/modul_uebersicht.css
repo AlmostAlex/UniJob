@@ -124,6 +124,7 @@
     text-align: center;
     top: 20px;
     right: 10px;
+    margin-top: 5px;
 }
 
 .modul_shadow_Abschlussarbeit {
@@ -202,29 +203,25 @@
     transform: skew(60.67deg, 0deg);
 }
 
-
-/*
-.modul_side_Abschlussarbeit{
-    width: 13.5px;
-    height: 10px;
-    top: 3;
-    position: relative;
-    background-color:#3979b5; 
-    left: 80px;
-    transform: skew(40.67deg, 0deg);
+.suche .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    /* background-color: #0062cc; */
+    /* border-color: #005cbf; */
 }
 
-.modul_side_Seminararbeit{
-    width: 15.5px;
-    height: 20px;
-    top: 3;
+.bootstrap-select > .dropdown-toggle {
     position: relative;
-    background-color: #13306a;
-    left: 84px;
-    transform: skew(40.67deg, 0deg);
-    margin-bottom: -10;
+    width: 100%;
+    z-index: 1;
+    height: 30px;
+    text-align: right;
+    white-space: nowrap;
 }
- */
+filter .btn-primary {
+    color: #111;
+    /* background-color: #007bff; */
+    /* border-color: #007bff; */
+}
 
 .modul_anzeige table {
     width: 100%;
@@ -323,6 +320,7 @@ titel {
     line-height: 5px;
     text-align: center;
     font-weight: 700;
+    margin-top:5px;
 }
 
 th {
