@@ -30,7 +30,15 @@ $router->map(["GET"], ["/logout"], function () {
     $controller = new Controller();
     $controller->logout(); 
 });
+
+
+$router->map(["GET", "POST"],["/bewerbung/{action}/{id}"], function ($action,$id) {
+    $bewerbung = new bewerbung_controller();
+    $bewerbung->Route($action,$id,'true'); 
+});
 /* PUBLIC END*/ 
+
+
 
 /* ADMIN */
 $router->map(["GET", "GET"], ["/verwaltung"], function (Response $response) {
@@ -40,7 +48,6 @@ $router->map(["GET", "GET"], ["/verwaltung"], function (Response $response) {
 $router->map(["GET", "POST"],["/ajax/tags.php"], function (Response $response) {
 });
 
-
 $router->map(["GET", "POST"],["/ajax/tags/{term}"], function ($term) {
     $modul = new modul_controller();
     $modul->Ajax($term);
@@ -49,12 +56,12 @@ $router->map(["GET", "POST"],["/ajax/tags/{term}"], function ($term) {
 // gilt für mt_verwaltung, modul_eintragen, mt_verwaltung/modul/add(thema hinzufügen)
 // für jeden neuen controller neue Route anlegen
 // (Modul edit muss noch in den modul_controller)
-$router->map(["GET", "POST"],["/{action}","/{action}/{action2}/{action3}/{action4}/{id}"], function ($action,$action2,$action3,$action4,$id) {
+$router->map(["GET", "POST"],["/mt_verwaltung","/mt_verwaltung/{action2}/{action3}/{action4}/{id}"], function ($action,$action2,$action3,$action4,$id) {
     $modul = new modul_controller();
     $modul->Route($action,$action2,$action3,$action4,$id); 
 });
 
-$router->map(["GET", "POST"],["/{action}","/{action}/{action2}/{action3}/{id}"], function ($action,$action2,$action3,$id) {
+$router->map(["GET", "POST"],["/mt_verwaltung","/mt_verwaltung/{action2}/{action3}/{id}"], function ($action,$action2,$action3,$id) {
     $modul = new modul_controller();
     $modul->Route($action,$action2,$action3,'',$id); 
 });
@@ -75,21 +82,6 @@ $router->map(["GET", "POST"],["/modul_uebersicht"], function () {
 });
 
 
-/*
-// Wenn Modul editiert werden soll
-$router->map(["GET", "POST"],["/mt_verwaltung/modul/edit/{id}"], function ($action,$id) {
-            $modul_edit = new modul_edit_controller();
-            $modul_edit->editModul($id);
-});
-*/
-/* ADMIN ENDE */
-
-//Routing für die Bewerbungen. Also weiterleitung von der Themen Übersicht zu dem passenden
-//Formular
-$router->map(["GET", "POST"],["/bewerbung/{action}/{id}"], function ($action,$id) {
-    $modul_bewerbung = new bewerbung_controller();
-    $modul_bewerbung->Route($action,$id); 
-});
 $router->dispatch();
 include('layout/navi.php');
 include('layout/footer.php');

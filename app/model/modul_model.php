@@ -182,10 +182,12 @@ class modul_model
                 $archivBtn = 'badge badge-warning';
                 $btn_form  = 'btn btn-secondary disabled btn';
                 $btn_msg ='Geschlossen'; 
+                $state ='none';
                 
             } else { $archivBtn = 'btn_false';
                   $btn_form  = 'button-two'; 
                   $btn_msg ='Anmeldung'; 
+                  $state ='href="bewerbung/'.$kategorie.'/'.$modul_id.' "';
             }
 
             if ($nachrueckverfahren=='true') { 
@@ -216,7 +218,8 @@ class modul_model
                 'nachrueckv_status'=> $nachrueckv_status,
                 'verfahren_anzeige'=> $verfahren_anzeige,
                 'btn_form'=> $btn_form,
-                'btn_msg'=> $btn_msg
+                'btn_msg'=> $btn_msg,
+                'state'=> $state
             );
             $rows[] = $row;
         }
@@ -260,6 +263,36 @@ class modul_model
         $statement->bind_result($modulbezeichnung);
         $statement->fetch();
         return $modulbezeichnung;
+    }
+
+    public function getModulVerfahrenByID($modul_id)
+    {
+        $statement = $this->dbh->prepare("SELECT verfahren From modul Where modul_id =?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($verfahren);
+        $statement->fetch();
+        return $verfahren;
+    }
+
+    public function getModulNachrueckvByID($modul_id)
+    {
+        $statement = $this->dbh->prepare("SELECT nachrueckverfahren From modul Where modul_id =?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($nachrueckverfahren);
+        $statement->fetch();
+        return $nachrueckverfahren;
+    }
+
+    public function getVerfuegbarkeitID($modul_id)
+    {
+        $statement = $this->dbh->prepare("SELECT modul_verfuegbarkeit From modul Where modul_id =?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($modul_verfuegbarkeit);
+        $statement->fetch();
+        return $modul_verfuegbarkeit;
     }
 
     public function getFristEnde($modul_id)

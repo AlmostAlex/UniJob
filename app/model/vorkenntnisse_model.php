@@ -46,6 +46,8 @@ class vorkenntnisse_model
             );
             $vorkenntnisse[] = $row;
         }
+
+
         return $vorkenntnisse;
     
     }

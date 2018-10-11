@@ -349,3 +349,19 @@ $(document).on("click", '#remove', function(a) {
     $('#tags').selectpicker('val', values.filter(function(e) { return e !== tag }));
     $('#tags').selectpicker('refresh');
 });
+
+function showVorkenntnisse(thema_id) {
+    var xhttp;    
+    if (thema_id == "") {
+      document.getElementById("txtHint").innerHTML = "";
+      return;
+    }
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "/ajax/ajax_controller.php?action=showVorkenntnisse&id="+thema_id, true);
+    xhttp.send();
+  }

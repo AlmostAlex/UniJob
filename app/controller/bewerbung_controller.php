@@ -1,7 +1,8 @@
 <?php
-include_once "app/model/modul_model.php";
-include_once "app/model/thema_model.php";
-include_once "db.php";
+include_once (__DIR__."/../model/modul_model.php");
+include_once(__DIR__."/../model/thema_model.php");
+include_once(__DIR__."/../model/vorkenntnisse_model.php");
+include_once(__DIR__."/../../db.php"); 
 
 class bewerbung_controller
 {
@@ -11,13 +12,70 @@ class bewerbung_controller
     {
         $this->modul_model = new modul_model();
         $this->thema_model = new thema_model();
+        $this->vorkenntnisse_model = new vorkenntnisse_model();
         date_default_timezone_set("Europe/Berlin");
         $this->heute_dt = new DateTime(date("Y-m-d"));
     }
 
-    public function Route($action, $id)
+    public function Route($action,$id,$state)
     {
-        $modul = $this->modul_model->getModulByID($id);
+        if($action == 'Abschlussarbeit'){
+            $this->Bewerbung_Abschlussarbeit($id,$state);
+        }
+        else{
+            $this->Bewerbung_Seminararbeit($id,$state); 
+        }
+    }
+
+    public function Bewerbung_Abschlussarbeit($id,$state)
+    {
+
+        if($state=='false')
+        {
+            $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
+            if(empty($vorkenntnisse)){$vorkenntnisse[0]['bezeichnung'] ='Keine Vorkenntnisse vorhanden';}
+
+            include (__DIR__."/../view/bewerbung/Abschlussarbeit/vorkenntnisse.php");           
+        }
+
+else{
+     if($this->modul_model->getVerfuegbarkeitID($id) == 'Offen'){
+        if($this->modul_model->getModulNachrueckvByID($id) == 'false'){
+            if($this->modul_model->getModulVerfahrenByID($id) == 'Windhundverfahren'){
+                    $modul = $this->modul_model->getModulById($id);
+                    $themen = $this->thema_model->getThemen($id,'');
+                    include 'app/view/bewerbung/Abschlussarbeit/windhund_view_abschluss.php';
+
+            }
+
+            else if($this->modul_model->getModulVerfahrenByID($id) == 'bewerbungsverfahren'){
+                echo"2";
+                include 'app/view/bewerbung/bewerbung_view.php';
+            }
+
+            else if($this->modul_model->getModulVerfahrenByID($id) == 'belegwunschverfahren'){
+                echo"3";
+                include 'app/view/bewerbung/belegwunsch_view.php';
+            }
+        }
+            else{ // Wenn Nachrueckverfahren ist, wird immer winhund-formular angezeigt
+             echo"nachrueckv";
+                include 'app/view/bewerbung/windhund_view.php';
+            } 
+       } 
+        else{
+            echo "nicht gueltig";
+        }
+    }
+}
+
+    public function Bewerbung_Seminararbeit($id,$state)
+    {
+        echo"seminar";
+    }
+
+
+        /*
         $thema = $this->thema_model->getThemen($id);
 
         if($modul[0]['kategorie'] == 'Seminararbeit' && $modul[0]['nachrueckv_status'] == 'true')
@@ -135,6 +193,6 @@ class bewerbung_controller
                 </div>
             </div>
             <?php
-        }
-    }
+        }*/
+    
 }
