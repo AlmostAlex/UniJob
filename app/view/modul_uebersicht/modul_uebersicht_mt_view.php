@@ -41,7 +41,14 @@
                     <div class='border_round'><i class='far fa-calendar'></i> <b><?php echo $module[$k]['semester']; ?></b></div>
                     <div class='border_round'><i class='far fa-clock'></i> <b><?php echo $module[$k]['start_anzeige'] .' - '. $module[$k]['ende_anzeige']; ?> </b></div>
                 </th>
-                <th><button class="<?php echo $module[$k]['btn_form']?>"><span><?php echo $module[$k]['btn_msg']?></span></button></th>
+                <th><button class="<?php echo $module[$k]['btn_form']?>">
+                <span>
+                    <a <?php echo $module[$k]['state']; ?>>  
+                        <?php echo $module[$k]['btn_msg']?>
+                    </a>          
+                    </span>
+                 </button>
+                 </th>
             </tr>
         </table>
         <inside>
@@ -69,7 +76,7 @@
                                             <b>Bevorzugter Studiengang:</b>  <?php echo $module[$k]["studiengang"];?><br>
                                             <b>Empfohlenen Vorkenntnisse: </b>
                                             <?php $vorkenntnisse = $this->modulUebersichtVorkenntisse($themen[$p]['thema_id']); for ($l = 0; $l < count($vorkenntnisse); $l++) {?> 
-                                            <?php  echo $vorkenntnisse[$l]['bezeichnung']; }?> <br>
+                                            <?php echo $vorkenntnisse[$l]['bezeichnung']; }?> <br>
                                             <b>Beschreibung:</b> <?php echo $themen[$p]["themenbeschreibung"];?> <br>
                                                     <br>
                                          

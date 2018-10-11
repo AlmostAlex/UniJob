@@ -1,6 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+require_once('../app/controller/bewerbung_controller.php');
 require_once('../app/controller/modul_uebersicht_controller.php');
 require_once('../db.php');
 
@@ -28,5 +29,12 @@ if(isset($_GET["action"]) && $_GET["action"] =='tags'){
     }    
     echo json_encode($json); 
 }
+
+if(isset($_GET["action"]) && $_GET["action"] =='showVorkenntnisse'){
+    $controller = new bewerbung_controller();
+    $controller->Bewerbung_Abschlussarbeit($_GET["id"],'false'); 
+}
+
+
 
 ?>
