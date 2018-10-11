@@ -24,10 +24,11 @@ class modul_eintragen_controller
 
         if (isset($_SESSION['login'])) { // erstmal wird die Authentifizierung überprüft
             if (isset($_POST['modul_eintrag1']) || isset($_POST['modul_eintrag2'])) { // WINDHUND UND BEWERBUNG
-                $fakultätsbezeichnung = $_POST["fakultätsbezeichnung"];
+                $professurbezeichnung = $_POST["professurbezeichnung"];
                 $modulbezeichnung = $_POST["modulbezeichnung"];
                 $start = date("Y-m-d", strtotime($_POST["Start"]));
                 $ende = date("Y-m-d", strtotime($_POST["Ende"]));
+                $kickoff = date("Y-m-d", strtotime($_POST["Kickoff"]));
                 $semester = $_POST["Semester"];
                 $studiengang = $_POST["Studiengang"];
                 $verfahren = $_POST["verfahren"];
@@ -47,9 +48,9 @@ class modul_eintragen_controller
                     if (!empty(array_filter($_POST['themenbezeichnungwindhund']))) {
                         $thema = $_POST['themenbezeichnungwindhund'];
                         $tags = $_POST["tags_WiBe"];
-                        $vorkenntnisse = $_POST["vorkenntnisse_WiBe"]; 
+                        $vorkenntnisse = $_POST["vorkenntnisse_WiBe"];
                         $betreuer = $_POST["betreuerwindhund"];
-                        $eintrag = $this->modul_model->insertSeminar($thema, $modulbezeichnung, $fakultätsbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $tags, $vorkenntnisse, $betreuer);
+                        $eintrag = $this->modul_model->insertSeminar($thema, $modulbezeichnung, $professurbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer);
                         echo "erfolgreich eingetragen";
                     } else {
                         echo "Alles ausfüllen<br>";
@@ -59,7 +60,7 @@ class modul_eintragen_controller
                         $thema = $_POST['themenbezeichnungbelegwunsch'];
                         $tags = $_POST["tags_Beleg"];
                         $betreuer = $_POST["betreuerbelegwunsch"];
-                        $eintrag = $this->modul_model->insertSeminar($thema, $modulbezeichnung, $fakultätsbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $tags, $betreuer);
+                        $eintrag = $this->modul_model->insertSeminar($thema, $modulbezeichnung, $professurbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $betreuer);
                         echo "erfolgreich eingetragen";
                     } else {
                         echo "Alles ausfüllen<br>";

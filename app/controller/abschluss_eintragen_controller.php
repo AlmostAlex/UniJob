@@ -23,13 +23,13 @@ class abschluss_eintragen_controller
         $modulbezeichnung = $start = $ende = $jahr = $jahr1 = $jahr2 = $semester = '';
 
         if (isset($_SESSION['login'])) { // erstmal wird die Authentifizierung überprüft
-            if (isset($_POST['modul_eintrag1']) || isset($_POST['modul_eintrag2'])) { // WINDHUND UND BEWERBUNG
-                $fakultätsbezeichnung = $_POST["fakultätsbezeichnung"]; // muss noch geändert werden zu $this->kategorie etc.
+            if (isset($_POST['modul_eintrag1']) || isset($_POST['modul_eintrag2'])) { // WINDHUND UND BEWERBUNG // muss noch geändert werden zu $this->kategorie etc.
                 $professurbezeichnung = $_POST["professurbezeichnung"];
                 $start = date("Y-m-d", strtotime($_POST["Start"]));
                 $ende = date("Y-m-d", strtotime($_POST["Ende"]));
                 $semester = $_POST["Semester"];
                 $studiengang = $_POST["Studiengang"];
+                $verfahren = $_POST["verfahren"];
 
                 if ($semester == 'WiSe') {
                     $jahr1 = $_POST["Semester_input2"];
@@ -41,16 +41,29 @@ class abschluss_eintragen_controller
 
                 $semester = $semester . ' ' . $jahr;
 
-// SEMINAR UND ABSCHLUSS BEI WINDHUND UND BEWERBUNGSVERFAHREN
-                if (!empty(array_filter($_POST['themenbezeichnungwindhund']))) {
+//ABSCHLUSS BEI WINDHUND UND BEWERBUNGSVERFAHREN
+                if ($verfahren == "Windhundverfahren" || $verfahren == "Bewerbungsverfahren") {
+                    if (!empty(array_filter($_POST['themenbezeichnungwindhund']))) {
                         $thema = $_POST['themenbezeichnungwindhund'];
-                        $vorkenntnisse = $_POST["vorkenntnisse_WiBe"];
                         $tags = $_POST["tags_WiBe"];
+                        $vorkenntnisse = $_POST["vorkenntnisse_WiBe"];
                         $betreuer = $_POST["betreuerwindhund"];
-                        $eintrag = $this->modul_model->insertAbschluss($thema, $professurbezeichnung, $fakultätsbezeichnung, $kategorie, $semester, $start, $ende, $studiengang, $tags, $vorkenntnisse, $betreuer);
+                        $eintrag = $this->modul_model->insertAbschluss($thema, $professurbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $tags, $vorkenntnisse, $betreuer);
                         echo "erfolgreich eingetragen";
-                } else {
-                    echo "Alles ausfüllen<br>";
+                    } else {
+                        echo "Alles ausfüllen<br>";
+                    }
+                } else if ($verfahren == "Belegwunschverfahren") {
+                    if (!empty(array_filter($_POST['themenbezeichnungbelegwunsch']))) {
+                        $thema = $_POST['themenbezeichnungbelegwunsch'];
+                        $tags = $_POST["tags_Beleg"];
+                        $vorkenntnisse = $_POST["vorkenntnisse_Beleg"];
+                        $betreuer = $_POST["betreuerbelegwunsch"];
+                        $eintrag = $this->modul_model->insertAbschluss($thema, $professurbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $tags,$vorkenntnisse, $betreuer);
+                        echo "erfolgreich eingetragen";
+                    } else {
+                        echo "Alles ausfüllen<br>";
+                    }
                 }
             }
             include 'app/view/modul_eintragen/abschluss_view.php';
@@ -58,5 +71,4 @@ class abschluss_eintragen_controller
             include 'app/view/login/noAccess_view.php';
         }
     }
-
 }

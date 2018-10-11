@@ -21,15 +21,15 @@
             </table>
             <table>
                 <tr>
-                    <td><label for="Modul"><b>Professur:</b><red>*</red></label></td>
-                    <td colspan='2'><input type="text" class="form-control" id="professurbezeichnung" placeholder="Name der Professur" name="professurbezeichnung"> </td>
-                    <td></td>
-                </tr> 
+                    <th style="padding-left: 250px;">
+                    <th>
+                    <th>
+                </tr>
                 <tr>
-                    <td><label for="Modul"><b>Fakultätsbezeichnung:</b><red>*</red></label></td>
-                    <td colspan = 2><input type="text" class="form-control" id="fakultätsbezeichnung" name='fakultätsbezeichnung' placeholder="Bezeichnung der Fakultät" required> </td>
+                    <td><label for="Modul"><b>Professur:</b><red>*</red></label></td>
+                    <td colspan = 3><input type="text" class="form-control" id="professurbezeichnung" name='professurbezeichnung' placeholder="Bezeichnung der Veranstaltung" required> </td>
                     <td></td>
-                </tr> 
+                </tr>
                 <tr>
                     <td><label for="Termine"><b>Bewerbungsfristen:</b><red>*</red></label></td>
                     <td>
@@ -47,19 +47,27 @@
                                 <i class="far fa-calendar-alt"></i>
                             </span>
                         </div>
-                    </td>                              
+                    </td>
+                    <td>
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type="text" class="form-control" name="Kickoff" autocomplete="off" placeholder="TT-MM-JJJJ" id="datepicker_kickoff" required>
+                            <span id='datebox' class="input-group-addon">
+                                <i class="far fa-calendar-alt"></i>
+                            </span>
+                        </div>
+                    </td>                      
                 </tr> 
                 <!-- Auswahl Semester-->
                 <tr>
                     <td><label for="Semester"><b>Semester:</b><red>*</red></label></td>
-                    <td style='height:45px;'> 
+                    <td colspan = 1 style='height:45px;'> 
                         <select  class="form-control" name="Semester" id="Semester" required>
                             <option value=""></option>
                             <option value="SoSe">SoSe</option>
                             <option value="WiSe">WiSe</option>
                         </select> 
                     </td>
-                    <td>
+                    <td colspan = 2>
                     <!-- Solange noch kein Semester gewählt ist-->
                         <div id='semester_meldung'> 
                             <div class="alert alert-warning" role="alert">
@@ -83,7 +91,7 @@
                 </tr>    
                 <tr>
                     <td><label for="Studiengang"><b>Bevorzugter Studiengang:</b></label></td>
-                    <td colspan='2'>
+                    <td colspan='3'>
                         <select class="form-control" name="Studiengang" id="Studiengang" required>
                             <option value="None">Keiner</option>
                             <option value="Betriebswirtschaftlehre">Betriebswirtschaftslehre</option>
@@ -93,49 +101,25 @@
                         </select>
                     </td>
                 </tr>
+
+                <!-- Verfahrenauswahl -->   
+                <tr>
+                    <td><label for="Verfahren"><b>Verfahren:</b></label></td>  
+                    <td colspan='3'><select  name="verfahren" id="verfahren" class="form-control">
+                            <option value=""></option>
+                            <option value="Windhundverfahren">Windhundverfahren</option>
+                            <option value="Bewerbungsverfahren">Bewerbungsverfahren</option>
+                            <option value="Belegwunschverfahren">Belegwunschverfahren</option>
+                        </select></td>  
+                </tr>            
+                <tr>
+                    <td></td>
+                    <td colspan='3'>
+                        <div id='meldung_verfahren' class='alert alert-danger'> Wähle ein Verfahren aus!</div>
+                    </td>
+                </tr>
             </table>
-            </br>
-            <div class="form_ueberschrift">Themenangaben</div><br>
-            <feld2>
-            <table>
-                <div class="form-group fieldGroup"> 
-                    <tr>
-                        <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
-                        <td><space><input type="text" class="form-control" name='betreuerwindhund[]' placeholder="Betreuer des Themas"></space> </td>
-                        <td><a href="javascript:void(0)" class="btn btn-success addMore2">+</a></td>
-                    </tr>
-                    <tr>
-                        <td class='first_td'><label for="titel"><b>Titel:</b></label></td>
-                        <td><space><input type="text" name="themenbezeichnungwindhund[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
-                    </tr>
-                    <tr>
-                        <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
-                        <td><textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
-                    </tr>
-                    <tr>
-                        <td> <label for="Vorkenntnisse"><b>Vorkenntnisse:</b> </label></td>
-                        <td colspan='2'>
-                            <div class="form-group">
-                                <input type="text" name='vorkenntnisse_WiBe[]' placeholder='erforderlichen Vorkenntnisse' class="tagsinput-typeahead2" />                            
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> <label for="Tags"><b>Tags:</b> </label></td>
-                        <td colspan='1'>
-                            <div class="form-group">
-                                <input type="text" name='tags_WiBe[]' placeholder='Add Tags' class="tagsinput-typeahead" />                            
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan='3'><input style='float:right;'type="submit" name="modul_eintrag1" class="btn btn-primary" value="Modul eintragen"/> </td>
-                    </tr>
-                </div>
-            </table> 
-        </feld2>
-    
-            <!-- Wenn Windhund oder Bewerbungsverfahren gewählt wurde...  -->
+                <!-- Wenn Windhund oder Bewerbungsverfahren gewählt wurde...  -->
    
     <!-- Das kopierende Feld bei Windhund oder Bewerbung  -->
     <!--  COPY FIELDS --> 
@@ -143,35 +127,258 @@
     <table>
         <tr>
             <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
-            <td><space><input type="text" class="form-control" name='betreuerwindhund[]' placeholder="Betreuer des Themas"></space> </td>
+            <td><space><input style='margin-left: 90px;' type="text" class="form-control" name='betreuerwindhund[]' placeholder="Betreuer des Themas"></space> </td>
             <td><a href="javascript:void(0)" class="btn btn-danger remove">-</a></td>
         </tr>
         <tr>
             <td class='first_td'><label for="titel"><b>Titel:</b></label></td>
-            <td><space><input  type="text" name="themenbezeichnungwindhund[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
+            <td><space><input  style='margin-left: 90px;'  type="text" name="themenbezeichnungwindhund[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
         </tr>
-        <tr>
+       <tr>
             <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
-            <td><textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
-        </tr>
+            <td><textarea style='margin-left: 90px;' type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
+        </tr> 
         <tr>
-            <td><label for="Vorkenntnisse"><b>Vorkentnisse:</b></label></td>
-            <td colspan='2'>
-                <div class="form-group">
-                    <input type="text" id='vork'  style='display:none;' name='vorkenntnisse_WiBe[]' placeholder='Vorkenntnisse' class="form-control" />
+            <td></td>
+            <td>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span style='margin-left:90px' class="input-group-text">Vorkenntnisse</span>
+                    </div>
+                    <vork><input  style='margin-left: 130px;'  type="text" id='vork'  style='display:none;' name='vorkenntnisse_WiBe[]' placeholder='Vorkenntnisse' class="form-control" /></vork>
                 </div>
             </td>
         </tr>
         <tr>
-            <td><label for="Tags"><b>Tags:</b></label></td>
-            <td colspan='2'>
-                <div class="form-group">
-                    <input type="text" id='taggin' name='tags_WiBe[]' placeholder='Add Tags' class="form-control" />
+            <td></td>
+            <td>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span style='margin-left:90px' class="input-group-text">Tags</span>
+                    </div>
+                    <tags><input type="text" id='taggin' name='tags_WiBe[]' placeholder='Add Tags' class="form-control" /></tags>
                 </div>
             </td>
         </tr>
     </table>
 </div>
+<!--  COPY FIELD END -->
 
+<!--  COPY FIELDS BELEGWUNSCH --> 
+<div class="form-group fieldGroupCopy2" style="display: none;">
+    <table>
+        <tr>
+            <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
+            <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas"></space> </td>
+            <td><a href="javascript:void(0)" class="btn btn-danger remove">-</a></td>
+        </tr>
+        <tr>
+            <td class='first_td'><label for="titel"><b>Titel:</b></label></td>
+            <td><space><input type="text" name="themenbezeichnungbelegwunsch[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
+        </tr>
+            <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
+            <td><textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span style='margin-left:88px' class="input-group-text">Vorkenntnisse</span>
+                    </div>
+                    <vork><input style='width:80%;margin-left:0px;'  type="text" id='vork' name='vorkenntnisse_Beleg[]' placeholder='erforderlichen Vorkenntnisse' class="form-control" /></vork>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span style='margin-left:88px' class="input-group-text">Tags</span>
+                    </div>
+                    <tags><input style='width:80%;margin-left:0px;' type="text" id='taggin' name='tags_Beleg[]' placeholder='Add Tags' class="form-control" /></tags>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--  COPY FIELD END -->
+<!-- Das kopierende Feld bei Windhund oder Bewerbung  ENDE -->
+
+<!-- Wenn Windhund oder Bewerbungsverfahren gewählt wurde...  -->
+<feld2>
+    <div id="WindUndBew">
+        <div class="form_ueberschrift">Themenangaben</div><br>
+        <table>
+            <div class="form-group fieldGroup"> 
+                <tr>
+                    <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
+                    <td><space><input type="text" class="form-control" name='betreuerwindhund[]' placeholder="Betreuer des Themas"></space> </td>
+                    <td><a href="javascript:void(0)" class="btn btn-success addMore2">+</a></td>
+                </tr>
+                <tr>
+                    <td class='first_td'><label for="titel"><b>Titel:</b></label></td>
+                    <td><space><input type="text" name="themenbezeichnungwindhund[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
+                </tr>
+                <tr>
+                    <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
+                    <td><textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span style='margin-left:88px' class="input-group-text">Vorkenntnisse</span>
+                            </div>
+                            <vork><input style='width:80%;margin-left:0px;' type="text" name='vorkenntnisse_WiBe[]' placeholder='Eingabe' class="tagsinput-typeahead2" /></vork>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span style='margin-left:88px' class="input-group-text">Tags</span>
+                            </div>
+                            <tags><input style='width:80%;margin-left:0px;' type="text" name='tags_WiBe[]' placeholder='Add Tags' class="tagsinput-typeahead" /></tags>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='3'><input style='float:right;'type="submit" name="modul_eintrag1" class="btn btn-primary" value="Modul eintragen"/> </td>
+                </tr>
+            </div>
+        </table> 
+    </div>     
+</feld2>
+<!-- ENDE-->
+<!-- Wenn BELEGWUNSCH gewählt wurde...  -->
+<feld3> 
+<div id="Belegwunschverfahren">
+    <div class="form_ueberschrift">Themenangaben</div><br>
+    <table>
+        <div class="form-group fieldGroup">
+        <!-- 1 -->
+            <tr>
+                <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
+                <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas"></space> </td>
+                <td><a href="javascript:void(0)" class="btn btn-success addMore3">+</a></td>
+            </tr>
+            <tr>
+                <td class='first_td'><label for="titel"><b>Titel: <red> * </red> </b></label></td>
+                <td><space><input type="text" name="themenbezeichnungbelegwunsch[]" id="validationCustom03" class="form-control" placeholder="Titel des Themas"/><space></td>  
+            </tr>
+            <tr>
+                <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
+                <td><textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span style='margin-left:88px' class="input-group-text">Vorkenntnisse</span>
+                        </div>
+                        <vork>
+                            <input style='width:80%;margin-left:0px;' type="text" name='vorkenntnisse_Beleg[]' placeholder='erforderlichen Vorkenntnisse' class="tagsinput-typeahead2" />                            
+                        </vork>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span style='margin-left:88px' class="input-group-text">Tags</span>
+                        </div>
+                        <tags><input style='width:80%;margin-left:0px;' type="text" name='tags_Beleg[]' placeholder='Add Tags' class="tagsinput-typeahead" /></tags>
+                    </div>
+                </td>
+            </tr>
+
+        <!-- 2 -->
+            <tr>
+                <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
+                <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas" ></space> </td>
+            </tr>
+            <tr>
+                <td><label for="titel"><b>Titel: <red style="color: red"> * </red> </b></label></td>
+                <td><space><input type="text" name="themenbezeichnungbelegwunsch[]" id="validationCustom03" class="form-control" placeholder="Titel des Themas"/></space></td>  
+            </tr>
+            <tr>
+                <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
+                <td><textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span style='margin-left:88px' class="input-group-text">Vorkenntnisse</span>
+                        </div>
+                        <vork>
+                            <input style='width:80%;margin-left:0px;' type="text" name='vorkenntnisse_Beleg[]' placeholder='erforderlichen Vorkenntnisse' class="tagsinput-typeahead2" />                            
+                        </vork>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span style='margin-left:88px' class="input-group-text">Tags</span>
+                        </div>
+                        <tags><input style='width:80%;margin-left:0px;' type="text" name='tags_Beleg[]' placeholder='Add Tags' class="tagsinput-typeahead" /></tags>
+                    </div>
+                </td>
+            </tr>
+        <!-- 3 -->
+            <tr>
+                <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
+                <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas"></space> </td>
+            </tr>
+            <tr>
+                <td><label for="titel"><b>Titel: <red style="color: red"> * </red></b></label></td>
+                <td><space><input type="text" name="themenbezeichnungbelegwunsch[]" id="validationCustom03" class="form-control" placeholder="Titel des Themas"/></space></td>  
+            </tr>
+            <tr>
+                <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
+                <td><textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span style='margin-left:88px' class="input-group-text">Vorkenntnisse</span>
+                        </div>
+                        <vork>
+                            <input style='width:80%;margin-left:0px;' type="text" name='vorkenntnisse_Beleg[]' placeholder='erforderlichen Vorkenntnisse' class="tagsinput-typeahead2" />                            
+                        </vork>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span style='margin-left:88px' class="input-group-text">Tags</span>
+                        </div>
+                        <tags><input style='width:80%;margin-left:0px;' type="text" name='tags_Beleg[]' placeholder='Add Tags' class="tagsinput-typeahead" /></tags>
+                    </div>
+                </td>
+            </tr>
+        <!-- button -->
+        </div>
+    </table>
+    <input type="submit" name="modul_eintrag2" class="btn btn-primary" value="Modul eintragen"/>
+</div>
+</feld3>
 </form>
 </div>

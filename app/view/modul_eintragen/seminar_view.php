@@ -21,15 +21,20 @@
             </table>
             <table>
                 <tr>
+                    <th style="padding-left: 250px;">
+                    <th>
+                    <th>
+                </tr>
+                <tr>
                     <td><label for="Modul"><b>Seminarbezeichnung:</b><red>*</red></label></td>
-                    <td colspan = 2><input type="text" class="form-control" id="modulbezeichnung" name='modulbezeichnung' placeholder="Bezeichnung der Veranstaltung" required> </td>
+                    <td colspan = 3><input type="text" class="form-control" id="modulbezeichnung" name='modulbezeichnung' placeholder="Bezeichnung der Veranstaltung" required> </td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td><label for="Modul"><b>Fakultätsbezeichnung:</b><red>*</red></label></td>
-                    <td colspan = 2><input type="text" class="form-control" id="fakultätsbezeichnung" name='fakultätsbezeichnung' placeholder="Bezeichnung der Fakultät" required> </td>
+                    <td><label for="Modul"><b>Professur:</b><red>*</red></label></td>
+                    <td colspan = 3><input type="text" class="form-control" id="professurbezeichnung" name='professurbezeichnung' placeholder="Bezeichnung der Fakultät" required> </td>
                     <td></td>
-                </tr> 
+                </tr>
                 <tr>
                     <td><label for="Termine"><b>Bewerbungsfristen:</b><red>*</red></label></td>
                     <td>
@@ -47,19 +52,27 @@
                                 <i class="far fa-calendar-alt"></i>
                             </span>
                         </div>
-                    </td>                              
-                </tr> 
+                    </td>
+                    <td>
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type="text" class="form-control" name="Kickoff" autocomplete="off" placeholder="TT-MM-JJJJ" id="datepicker_kickoff" required>
+                            <span id='datebox' class="input-group-addon">
+                                <i class="far fa-calendar-alt"></i>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
                 <!-- Auswahl Semester-->
                 <tr>
                     <td><label for="Semester"><b>Semester:</b><red>*</red></label></td>
-                    <td style='height:45px;'> 
+                    <td colspan = 1 style='height:45px;'> 
                         <select  class="form-control" name="Semester" id="Semester" required>
                             <option value=""></option>
                             <option value="SoSe">SoSe</option>
                             <option value="WiSe">WiSe</option>
                         </select> 
                     </td>
-                    <td>
+                    <td colspan = 2>
                     <!-- Solange noch kein Semester gewählt ist-->
                         <div id='semester_meldung'> 
                             <div class="alert alert-warning" role="alert">
@@ -83,7 +96,7 @@
                 </tr>    
                 <tr>
                     <td><label for="Studiengang"><b>Bevorzugter Studiengang:</b></label></td>
-                    <td colspan='2'>
+                    <td colspan='3'>
                         <select class="form-control" name="Studiengang" id="Studiengang" required>
                             <option value="None">Keiner</option>
                             <option value="Betriebswirtschaftlehre">Betriebswirtschaftslehre</option>
@@ -97,7 +110,7 @@
                 <!-- Verfahrenauswahl -->   
                 <tr>
                     <td><label for="Verfahren"><b>Verfahren:</b></label></td>  
-                    <td colspan='2'><select  name="verfahren" id="verfahren" class="form-control">
+                    <td colspan='3'><select  name="verfahren" id="verfahren" class="form-control">
                             <option value=""></option>
                             <option value="Windhundverfahren">Windhundverfahren</option>
                             <option value="Bewerbungsverfahren">Bewerbungsverfahren</option>
@@ -106,7 +119,7 @@
                 </tr>            
                 <tr>
                     <td></td>
-                    <td colspan='2'>
+                    <td colspan='3'>
                         <div id='meldung_verfahren' class='alert alert-danger'> Wähle ein Verfahren aus!</div>
                     </td>
                 </tr>
@@ -236,7 +249,7 @@
   <div class="input-group-prepend">
     <span style='margin-left:88px' class="input-group-text">Vorkenntnisse</span>
   </div>
-  <vork><input style='width:80%;margin-left:0px;' type="text" name='vork_Beleg[]' placeholder='Eingabe' class="tagsinput-typeahead2" />                            
+  <vork><input style='width:80%;margin-left:0px;' type="text" name='vorkenntnisse_WiBe[]' placeholder='Eingabe' class="tagsinput-typeahead2" />                            
 </vork></div>
 </td>
 </tr>
