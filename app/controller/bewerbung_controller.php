@@ -56,6 +56,11 @@ else{
                             if(isset($_POST['Zulassung'])) { $Zulassung  = $_POST['Zulassung']; } else{ $Zulassung = '';}                   
 
                         if (isset($_POST['bewerbung_ab_WH_weiter'])) {
+
+// FEHLER NOCH DRIN
+// WENN THEMA DA WAR UND DANN VERGEBEN UND DANN WEITER UND DANN FEHLERMELDUNG UND DANN ANDERES THEMA 
+// NIMMT ER DAS ALTE THEMA WAS VERGEBEN WAR
+
                             // AB HIER ALLES CHECKEN LASSEN
                            $check_modul = $this->modul_model->checkModul($id);
                            $check_thema = $this->thema_model->checkThema($thema_id); 
