@@ -43,7 +43,7 @@
                 <div class="header">
                     <div class="container">
                         <a href="https://www.uni-goettingen.de">
-                            <img id="logo" src="img/GAU_Logo.png" alt="Georg-August-Universit Göttingen">
+                            <img id="logo" src="/img/GAU_Logo.png" alt="Georg-August-Universit Göttingen">
                         </a>
                         <div class="headerunter">
                             <a href="/index">

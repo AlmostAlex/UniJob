@@ -59,7 +59,6 @@ class thema_model
         $statement_thema->bind_result($thema_id, $themenbezeichnung,$beschreibung, $thema_verfuegbarkeit, $benutzer_id);
         $statement_thema->store_result();
         }
-
 // es wird alles in ein Array gepackt und dann an den Controller weitergeleitet, dieser return die Ausgabe an die View
         $rows = array();
         while ($statement_thema->fetch()) {
@@ -73,6 +72,28 @@ class thema_model
                 'thema_verfuegbarkeit' => $thema_verfuegbarkeit,
                 'benutzer' => $benutzer
             );
+            $rows[] = $row;
+        }
+        return $rows;
+    }
+
+    public function getThemenVG($modul_id)
+        {
+            $vg = "Verfügbar";
+            $statement = $this->dbh->prepare("SELECT thema_id, themenbezeichnung
+                    FROM thema Where modul_id =? AND thema_verfuegbarkeit = ?");
+            $statement->bind_param('is', $modul_id, $vg);
+            $statement->execute();
+            $statement->bind_result($thema_id, $themenbezeichnung);
+            $statement->store_result();
+              
+// es wird alles in ein Array gepackt und dann an den Controller weitergeleitet, dieser return die Ausgabe an die View
+        $rows = array();
+        while ($statement->fetch()) {
+            $row = array(
+                'thema_id' => $thema_id,
+                'themenbezeichnung' => $themenbezeichnung
+           );
             $rows[] = $row;
         }
 
@@ -121,4 +142,30 @@ class thema_model
         return $anzahl_thema_verfuegbar;
     }
 
+    public function getThemenbezeichnung($thema_id)
+    {
+        $statement = $this->dbh->prepare("SELECT themenbezeichnung FROM thema WHERE thema_id = ? ");
+        $statement->bind_param('i', $thema_id);
+        $statement->execute();
+        $statement->bind_result($themenbezeichnung);
+        $statement->fetch();
+        $statement->fetch();
+        return $themenbezeichnung;
+    }
+
+
+    public function checkThema($thema_id)
+    {
+        $statement = $this->dbh->prepare("SELECT thema_verfuegbarkeit FROM thema WHERE thema_id = ? ");
+        $statement->bind_param('i', $thema_id);
+        $statement->execute();
+        $statement->bind_result($thema_verfuegbarkeit);
+        $statement->fetch();
+
+        if($thema_verfuegbarkeit == 'Vergeben'){
+            return "false_TH_Verfuegbarkeit";
+        } else {
+        return "true";
+        }
+    }
 }

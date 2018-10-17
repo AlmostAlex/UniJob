@@ -82,7 +82,7 @@
             <tr>
                 <td>
                     <br>
-            <input type='submit' name='bewerbung_ab_WH' class='btn btn-primary' value='Formular absenden'> 
+            <input type='submit' name='bewerbung_ab_WH_weiter' class='btn btn-primary' value='Weiter'> 
         </tr> 
     </td>
         </table> 

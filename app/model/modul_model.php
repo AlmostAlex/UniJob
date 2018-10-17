@@ -411,8 +411,19 @@ class modul_model
         return $k_row;
     }
 
-    public function checkModul(){
-return;
+    public function checkModul($modul_id){
+
+        $statement = $this->dbh->prepare("SELECT frist_ende From modul Where modul_id =?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($frist_ende);
+        $statement->fetch();
+
+        if(new DateTime(date("Y-m-d")) > new DateTime($frist_ende)){
+            return "falseTime";     
+        } else{
+            return "true";
+        }
     }
 
 }

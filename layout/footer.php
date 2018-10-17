@@ -16,16 +16,16 @@
                                 <b>SOZIALE MEDIEN</b><br><br>
                                 <div class="row">
                                     <div class="col-3">
-                                        <a href=""><img src="img/fb.png"></a>
+                                        <a href=""><img src="/img/fb.png"></a>
                                     </div>
                                     <div class="col-3">
-                                        <a href=""><img src="img/insta.png"></a>
+                                        <a href=""><img src="/img/insta.png"></a>
                                     </div>
                                     <div class="col-3">
-                                        <a href=""><img src="img/tw.png"></a>
+                                        <a href=""><img src="/img/tw.png"></a>
                                     </div>
                                     <div class="col-3">
-                                        <a href=""><img src="img/yt.png"></a>
+                                        <a href=""><img src="/img/yt.png"></a>
                                     </div>
                                 </div>
                             </div>
