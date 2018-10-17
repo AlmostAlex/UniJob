@@ -33,19 +33,38 @@ class bewerbung_controller
         if($state=='false')
         {
             $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
-            if(empty($vorkenntnisse)){$vorkenntnisse[0]['bezeichnung'] ='Keine Vorkenntnisse vorhanden';}
-
-            include (__DIR__."/../view/bewerbung/Abschlussarbeit/vorkenntnisse.php");           
+            if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';}
+             
+                include (__DIR__."/../../ajax/showVorkenntnisse.php");                     
         }
-
 else{
+ 
      if($this->modul_model->getVerfuegbarkeitID($id) == 'Offen'){
         if($this->modul_model->getModulNachrueckvByID($id) == 'false'){
             if($this->modul_model->getModulVerfahrenByID($id) == 'Windhundverfahren'){
                     $modul = $this->modul_model->getModulById($id);
                     $themen = $this->thema_model->getThemen($id,'');
-                    include 'app/view/bewerbung/Abschlussarbeit/windhund_view_abschluss.php';
 
+                            if(isset($_POST['Vorname'])) { $vorname = $_POST['Vorname']; } else{ $vorname = '';}
+                            if(isset($_POST['Nachname'])) { $nachname = $_POST['Nachname']; } else{ $nachname = '';}
+                            if(isset($_POST['Matrikelnummer'])) { $matrikelnummer  = $_POST['Matrikelnummer']; } else{ $matrikelnummer = '';}
+                            if(isset($_POST['Email'])) { $email  = $_POST['Email']; } else{ $email = '';}
+                            if(isset($_POST['Thema'])) { $thema_id  = $_POST['Thema']; } else{ $thema_id = '';}
+
+                            if(isset($_POST['Zulassung'])) { $Zulassung  = $_POST['Zulassung']; } else{ $Zulassung = '';}
+                         
+
+                        if (isset($_POST['bewerbung_ab_WH'])) {
+                            // AB HIER ALLES CHECKEN LASSEN
+
+                            $this->modul_model->checkModul($id);
+                            echo "action ja";
+                            include 'app/view/bewerbung/Abschlussarbeit/windhund_view_abschluss.php';
+                        }
+                    else{    
+                        echo"NEINEINEIENIENIENIENEINEINEIN";
+                    include 'app/view/bewerbung/Abschlussarbeit/windhund_view_abschluss.php';
+                    }
             }
 
             else if($this->modul_model->getModulVerfahrenByID($id) == 'bewerbungsverfahren'){

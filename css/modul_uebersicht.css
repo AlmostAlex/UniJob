@@ -203,13 +203,15 @@
     transform: skew(60.67deg, 0deg);
 }
 
-.suche .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show>.btn-primary.dropdown-toggle {
+.suche .btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show>.btn-primary.dropdown-toggle {
     color: #fff;
     /* background-color: #0062cc; */
     /* border-color: #005cbf; */
 }
 
-.bootstrap-select > .dropdown-toggle {
+.bootstrap-select>.dropdown-toggle {
     position: relative;
     width: 100%;
     z-index: 1;
@@ -217,6 +219,7 @@
     text-align: right;
     white-space: nowrap;
 }
+
 filter .btn-primary {
     color: #111;
     /* background-color: #007bff; */
@@ -320,7 +323,7 @@ titel {
     line-height: 5px;
     text-align: center;
     font-weight: 700;
-    margin-top:5px;
+    margin-top: 5px;
 }
 
 th {
@@ -542,4 +545,13 @@ uebersichtTags .tags a:hover {
 
 uebersichtTags .tags a:hover:before {
     border-color: transparent #555 transparent transparent;
+}
+
+
+/* FORMULARE BEWERBUNGEN */
+
+.abfrageZulassung {
+    padding: 10px;
+    margin-left: 60px;
+    border: 1px solid #adadad80;
 }

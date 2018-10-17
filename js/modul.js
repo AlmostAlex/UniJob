@@ -351,17 +351,22 @@ $(document).on("click", '#remove', function(a) {
 });
 
 function showVorkenntnisse(thema_id) {
-    var xhttp;    
+    var xhttp;
+    $("#txtHint").hide();
+    $("#txtHint").fadeIn();
     if (thema_id == "") {
-      document.getElementById("txtHint").innerHTML = "";
-      return;
+        document.getElementById("txtHint").innerHTML = "";
+        return;
     }
+    // code for IE6, IE5
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("txtHint").innerHTML = this.responseText;
-      }
+
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("txtHint").innerHTML = this.responseText;
+
+        }
     };
-    xhttp.open("GET", "/ajax/ajax_controller.php?action=showVorkenntnisse&id="+thema_id, true);
+    xhttp.open("GET", "/ajax/ajax_controller.php?action=showVorkenntnisse&id=" + thema_id, true);
     xhttp.send();
-  }
+}

@@ -35,6 +35,4 @@ if(isset($_GET["action"]) && $_GET["action"] =='showVorkenntnisse'){
     $controller->Bewerbung_Abschlussarbeit($_GET["id"],'false'); 
 }
 
-
-
 ?>

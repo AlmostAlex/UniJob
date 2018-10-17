@@ -1,9 +1,9 @@
-rwqrwerwe rwerwef werfwerwqrwerwe rwerwef werfwerwqrwerwe
- rwerwef werfwerwqrwerwe rwerwef werfwerwqrwerwe rwerwef 
- werfwerwqrwerwe rwerwef werfwerwqrwerwe rwerwef werfwerwq
- rwerwe rwerwef werfwerwqrwerwe rwerwef werfwerwqrwerwe rwerwef 
- werfwerwqrwerwe rwerwef werfwerwqrwerwe rwerwef werfwerwqrwerwe rwerw
- ef werfwerwqrwerwe rwerwef werfwerwqrwerwe rwerwef werfwerwqrwerwe rwerwef w
- erfwerwqrwerwe rwerwef werfwe
-rwqrwerwe rwerwef werfwerwqrwerwe rwerwef werfwerwqrwe
-rwe rwerwef werfwe
+<td>
+
+     <small>   
+       <?php echo $msg_vork; ?>
+        <?php for($j = 0; $j < count($vorkenntnisse); $j++){  ?>     
+              <?php echo  $vorkenntnisse[$j]['bezeichnung'] .';';?> 
+                <?php } ?>
+</small>
+</td>

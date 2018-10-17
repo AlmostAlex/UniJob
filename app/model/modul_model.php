@@ -411,4 +411,8 @@ class modul_model
         return $k_row;
     }
 
+    public function checkModul(){
+return;
+    }
+
 }
