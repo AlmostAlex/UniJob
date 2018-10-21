@@ -144,10 +144,10 @@ class modul_model
     public function getModule($filter_modul, $abfrage_th)
     {
         
-        $statement = $this->dbh->prepare("SELECT modul.modul_id,modul.modulbezeichnung,modul.professur,modul.kategorie,modul.verfahren,modul.semester,modul.frist_start,modul.frist_ende,modul.studiengang,modul.modul_verfuegbarkeit,modul.archivierung,modul.nachrueckverfahren
+        $statement = $this->dbh->prepare("SELECT modul.modul_id,modul.modulbezeichnung,modul.professur,modul.kategorie,modul.abschlusstyp,modul.hinweise,modul.verfahren,modul.semester,modul.frist_start,modul.frist_ende,modul.kickoff,modul.studiengang,modul.modul_verfuegbarkeit,modul.archivierung,modul.nachrueckverfahren
                FROM modul Where archivierung = 'false'". $filter_modul);    
         $statement->execute();
-        $statement->bind_result($modul_id, $modulbezeichnung, $professur,$kategorie, $verfahren, $semester, $frist_start, $frist_ende, $studiengang, $modul_verfuegbarkeit,$archivierung,$nachrueckverfahren);
+        $statement->bind_result($modul_id, $modulbezeichnung, $professur,$kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $frist_start, $frist_ende, $kickoff, $studiengang, $modul_verfuegbarkeit,$archivierung,$nachrueckverfahren);
         $statement->store_result();
 
         $rows = array();
@@ -204,12 +204,16 @@ class modul_model
                 'modulbezeichnung' => $modulbezeichnung,
                 'professur' => $professur,
                 'kategorie' => $kategorie,
+                'abschlusstyp' => $abschlusstyp,
+                'hinweise' => $hinweise,
                 'verfahren' => $verfahren,
                 'semester' => $semester,
                 'frist_start' => $frist_start,
                 'start_anzeige' => date("d.m.Y", strtotime($frist_start)),
                 'frist_ende' => $frist_ende,
                 'ende_anzeige' => date("d.m.Y", strtotime($frist_ende)),
+                'kickoff' => $kickoff,
+                'kickoff_anzeige' => date("d.m.Y", strtotime($kickoff)),
                 'studiengang' => $studiengang,
                 'modul_verfuegbarkeit' => $modul_verfuegbarkeit,
                 'archivierung' => $archivierung,
@@ -242,10 +246,13 @@ class modul_model
                 'modulbezeichnung' => $modulbezeichnung,
                 'professur' => $professur,
                 'kategorie' => $kategorie,
+                'abschlusstyp' => $abschlusstyp,
+                'hinweise' => $hinweise,
                 'verfahren' => $verfahren,
                 'semester' => $semester,
                 'frist_start' => $frist_start,
                 'frist_ende' => $frist_ende,
+                'kickoff' => $kickoff,
                 'studiengang' => $studiengang,
                 'modul_verfuegbarkeit' => $modul_verfuegbarkeit,
                 'nachrueckv_status' => $nachrueckverfahren

@@ -70,7 +70,9 @@
                                 echo $module[$k]["nachrueckv_status"] .' '. $module[$k]["modulbezeichnung"];
                             } else{ echo $module[$k]["nachrueckv_status"] .' '. $module[$k]["professur"];} ?> 
                             <?php echo $module[$k]['modulbezeichnung']; ?></titel></b><br>
-                    <div class='border_round'><b><?php echo $module[$k]['kategorie']; ?></b></div>
+                            <?php if($module[$k]["kategorie"] == "Abschlussarbeit"){
+                                ?><div class='border_round'><b><?php echo $module[$k]['abschlusstyp']; ?></b></div>
+                            <?php } ?>
                     <div class='border_round'><b><?php echo $module[$k]['verfahren_anzeige']; ?></b></div>
                     <div class='border_round'><i class='far fa-calendar'></i> <b><?php echo $module[$k]['semester']; ?></b></div>
                     <div class='border_round'><i class='far fa-clock'></i> <b><?php echo $module[$k]['start_anzeige'] .' - '. $module[$k]['ende_anzeige']; ?> </b></div>
