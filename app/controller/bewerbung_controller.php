@@ -45,6 +45,13 @@ class bewerbung_controller
              
                 include (__DIR__."/../../ajax/showVorkenntnisse_AB_BW.php");                     
         }
+        else if($state=='false' && $kat =='BEL1')
+        {
+            $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
+            if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';}
+             
+                include (__DIR__."/../../ajax/vorkenntnisse_BEL/showVorkenntnisse_AB_BEL1.php");                     
+        }
 
 
 else{
@@ -96,12 +103,9 @@ else{
             if(isset($_POST['Fachsemester'])) { $fachsemester  = $_POST['Fachsemester']; } else{ $fachsemester = '';}
             if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
             if(isset($_POST['Credits'])) { $credits  = $_POST['Credits']; } else{ $credits = '';}
-            echo "jojojo";
             $modul = $this->modul_model->getModulById($id);
             $themen = $this->thema_model->getThemenVG($id,'');
-            echo "00jojojo00";
             if (isset($_POST['bewerbung_ab_BW'])) {
-                echo "jojojo11111";
                 // AB HIER ALLES CHECKEN LASSEN
                     if($check_modul == 'falseTime'){
                         $this->getModal("modulFalseTime_AB_WH", $id);
@@ -111,18 +115,52 @@ else{
                         include 'app/view/bewerbung/Abschlussarbeit/bewerbung_view_abschluss.php';  
                     } else {
                         // HIER INSERT BEWERBUNG
-                        $this->getModal("AB_WH_erfolgreich", $thema_id);
+                        $this->getModal("AB_BW_erfolgreich", $thema_id);
                        // include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
                     }      
             }
         else{     
-            include 'app/view/bewerbung/Abschlussarbeit/bewerbung_view.php';
+            include 'app/view/bewerbung/Abschlussarbeit/bewerbung_view_abschluss.php';
         }
     }
 
 // BELEGWUNSCHVERFAHREN ABSCHLUSS
             else if($this->modul_model->getModulVerfahrenByID($id) == 'Belegwunschverfahren'){
+
+                if(isset($_POST['Thema'])) { $thema_id  = $_POST['Thema']; 
+                $j=0;
+                while ($j < count($thema_id)) {
+                echo $thema_id[$j];
+                $j++;
+                }
+}               
+                if(isset($_POST['Vorname'])) { $vorname = $_POST['Vorname']; } else{ $vorname = '';}
+                if(isset($_POST['Nachname'])) { $nachname = $_POST['Nachname']; } else{ $nachname = '';}
+                if(isset($_POST['Matrikelnummer'])) { $matrikelnummer  = $_POST['Matrikelnummer']; } else{ $matrikelnummer = '';}
+                if(isset($_POST['Email'])) { $email  = $_POST['Email']; } else{ $email = '';}
+
+                $modul = $this->modul_model->getModulById($id);
+                $themen = $this->thema_model->getThemenVG($id,'');
+
+                if (isset($_POST['bewerbung_ab_BEL'])) {
+                   
+                    // AB HIER ALLES CHECKEN LASSEN
+                        if($check_modul == 'falseTime'){
+                            $this->getModal("modulFalseTime_AB_WH", $id);
+                            include 'app/view/bewerbung/Abschlussarbeit/belegwunsch_view_abschluss.php';     
+                        } else if($check_thema == 'false_TH_Verfuegbarkeit'){
+                            $this->getModal("themaFalseVG_AB_WH", $thema_id);
+                            include 'app/view/bewerbung/Abschlussarbeit/belegwunsch_view_abschluss.php';  
+                        } else {
+                            // HIER INSERT BEWERBUNG
+                            $this->getModal("AB_BW_erfolgreich", $thema_id);
+                            include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
+                        }      
+                }
+            else{     
                 include 'app/view/bewerbung/Abschlussarbeit/belegwunsch_view_abschluss.php';
+            }
+
             }
         }
             else{ // Wenn Nachrueckverfahren ist, wird immer winhund-formular angezeigt
@@ -278,6 +316,16 @@ else{
                 $modal['img'] = '/img/checked.png';
                 include 'app/view/modul_verwaltung/modals/modal_modul.php';                
                 break;
+
+                case 'AB_BW_erfolgreich':
+                $modal['case'] = 'automatic';
+                $modal['title'] = 'Erfolgreich angemeldet!';
+                $modal['body_class'] = 'alert alert-success';
+                $modal['content'] = 'Du hast dich erfolgreich für das Modul mit dem dazugehörigen Thema angemeldet.<br><br>';
+                $modal['img'] = '/img/checked.png';
+                include 'app/view/modul_verwaltung/modals/modal_modul.php';                
+                break;
+
 
 
 

@@ -67,16 +67,17 @@
                     <select class='form-control' id='Thema' name='Thema' onchange="showVorkenntnisseBW(this.value)" required>
                     <option></option>
                     <?php for($i = 0; $i < count($themen); $i++){  ?>
-                        <option value='<?php echo $themen[$i]['thema_id'] ?>' <?php if($thema_id == $themen[$i]['thema_id']){echo "selected";} ?> > <?php echo $themen[$i]['themenbezeichnung'] ?> </option>
+                        <option value='<?php echo $themen[$i]['thema_id'] ?>'> <?php echo $themen[$i]['themenbezeichnung'] ?> </option>
                     <?php } ?>
                     </select>
                 </td>
             </tr>
 
          </table>
-
-            <div style='margin-bottom:-7px;' id="txtHint"></div>
         <table>
+            <div style='margin-bottom:-7px;' id="txtHint"></div>
+        </table>
+<table>
     <tr>
          <td colspan=3><br>
          <div class="abfrageZulassung" role="alert">
@@ -93,7 +94,7 @@
             <tr>
                 <td><br>
                
-                <a data-toggle='modal' data-target='#bewerbung_senden' href='#'><i class='far fa-clock'></i></a>
+                <a data-toggle='modal' data-target='#bewerbung_senden' href='#'>button</a>
                 <!-- <input type='submit' name='bewerbung_ab_BW' class='btn btn-primary' value='Formular abschicken'>  -->
                  <?php $this->getModal('bewerbung_senden', $module["modul_id"]);?>
                 </td>

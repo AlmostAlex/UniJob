@@ -39,5 +39,10 @@ if(isset($_GET["action"]) && $_GET["action"] =='showVorkenntnisseBW'){
     $controller = new bewerbung_controller();
     $controller->Bewerbung_Abschlussarbeit($_GET["id"],'false','BW'); 
 }
+// VORKENNTNISSE BELEGWUNSCH THEMA 1
+if(isset($_GET["action"]) && $_GET["action"] =='showVorkenntnisseBEL1'){
+    $controller = new bewerbung_controller();
+    $controller->Bewerbung_Abschlussarbeit($_GET["id"],'false','BEL1'); 
+}
 
 ?>

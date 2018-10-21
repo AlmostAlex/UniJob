@@ -1,3 +1,7 @@
+$(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+
 $(document).ready(function(e) {
     var maxGroup = 100;
 
@@ -359,6 +363,7 @@ function showVorkenntnisse(thema_id) {
         return;
     }
     // code for IE6, IE5
+
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
 
@@ -391,3 +396,48 @@ function showVorkenntnisseBW(thema_id) {
     xhttp.open("GET", "/ajax/ajax_controller.php?action=showVorkenntnisseBW&id=" + thema_id, true);
     xhttp.send();
 }
+// VORKENNTNISSE FÜR BELEGWUNSCH ABSCHLUSS
+
+$(document).on('inserted.bs.tooltip', function(e) {
+    var tooltip = $(e.target).data('bs.tooltip');
+    $(tooltip.tip).addClass($(e.target).data('tooltip-custom-classes'));
+});
+
+
+
+function showVorkenntnisseBEL(thema_id) {
+    var xhttp;
+    $("#v1").hide();
+
+    if (thema_id == "") {
+        $("#pr1").show();
+        document.getElementById("v1").innerHTML = "";
+        return;
+    } else {
+        $("#pr1").hide();
+        $("#v1").show();
+    }
+
+
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    // code for IE6, IE5
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("v1").innerHTML = this.responseText;
+
+        }
+    };
+
+    xhttp.open("GET", "/ajax/ajax_controller.php?action=showVorkenntnisseBEL1&id=" + thema_id, true);
+    xhttp.send();
+}
+
+
+// ENDE

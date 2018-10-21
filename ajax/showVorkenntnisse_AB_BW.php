@@ -1,5 +1,5 @@
-</table>
-<table>
+
+
 <tr>
 <td><label for='Vorkenntnisse'><b>Vorkenntnisse:</b><red style='color: red'>*</red></label></td>
 <td>     
@@ -19,8 +19,7 @@
   </tr>
   </table>
   </inner>       
-                <?php } ?>
+<?php } ?>
 
 </td>
 </tr>
-</table>
