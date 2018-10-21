@@ -24,7 +24,7 @@ class modul_controller
      /*  if ($action == 'modul_eintragen' && $action2 == '' && $action3 =='') {
             $this->modulEintragung();
         */
-
+        
         if ($action == 'mt_verwaltung' && $action2 == '' && $action3 =='') {
             $this->Modul_Verwaltung('false', 0, 'none');
 

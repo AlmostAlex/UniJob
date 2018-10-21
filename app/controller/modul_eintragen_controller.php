@@ -60,6 +60,7 @@ class modul_eintragen_controller
                     if (!empty(array_filter($_POST['themenbezeichnungbelegwunsch']))) {
                         $thema = $_POST['themenbezeichnungbelegwunsch'];
                         $tags = $_POST["tags_Beleg"];
+                        $vorkenntnisse = $_POST["vorkenntnisse_Beleg"];
                         $betreuer = $_POST["betreuerbelegwunsch"];
                         $eintrag = $this->modul_model->insertSeminar($thema, $modulbezeichnung, $professurbezeichnung, $kategorie, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer);
                         echo "erfolgreich eingetragen";

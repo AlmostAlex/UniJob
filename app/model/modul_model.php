@@ -49,7 +49,9 @@ class modul_model
                 }
                     $thema_array = $thema[$j];
                     $tag_string = $tags[$j];
+                    print_r($vorkenntnisse);
                     $vorkenntnisse_string = $vorkenntnisse[$j];
+                    echo $vorkenntnisse_string;
                     $betreuer_string = $betreuer[$j];
 
                     //davon ausgehend, dass der Benutzername eingegeben wird !!!!! BEI UNIDB ZUGRIFF NEU SCHREIBEN!!!!!

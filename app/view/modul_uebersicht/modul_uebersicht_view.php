@@ -65,7 +65,7 @@
 
             <tr>
                 <th><a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#modul_<?php echo $module[$k]['modul_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></th>
-                <th><b><titel><br><br><?php echo $module[$k]['nachrueckv_status']; ?> 
+                <th><b><titel style="line-height:15px;"><?php echo $module[$k]['nachrueckv_status']; ?> 
                 <?php if($module[$k]["kategorie"] == "Seminararbeit"){
                                 echo $module[$k]["nachrueckv_status"] .' '. $module[$k]["modulbezeichnung"];
                             } else{ echo $module[$k]["nachrueckv_status"] .' '. $module[$k]["professur"];} ?> 
@@ -81,7 +81,7 @@
                     <span>
                     <a  style='color:white;'  <?php echo $module[$k]['state']; ?>>  
                         <?php echo $module[$k]['btn_msg']?>
-                    </a>          
+                    </a>
                     </span>
                     </button>
                     </th>
