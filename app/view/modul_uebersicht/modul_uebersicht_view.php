@@ -75,9 +75,9 @@
                     <div class='border_round'><i class='far fa-calendar'></i> <b><?php echo $module[$k]['semester']; ?></b></div>
                     <div class='border_round'><i class='far fa-clock'></i> <b><?php echo $module[$k]['start_anzeige'] .' - '. $module[$k]['ende_anzeige']; ?> </b></div>
                 </th>
-                <th><button class="<?php echo $module[$k]['btn_form']?>">
+                <th><button style='color:white;' class="<?php echo $module[$k]['btn_form']?>">
                     <span>
-                    <a <?php echo $module[$k]['state']; ?>>  
+                    <a  style='color:white;'  <?php echo $module[$k]['state']; ?>>  
                         <?php echo $module[$k]['btn_msg']?>
                     </a>          
                     </span>

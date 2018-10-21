@@ -34,7 +34,7 @@ $router->map(["GET"], ["/logout"], function () {
 
 $router->map(["GET", "POST"],["/bewerbung/{action}/{id}"], function ($action,$id) {
     $bewerbung = new bewerbung_controller();
-    $bewerbung->Route($action,$id,'true'); 
+    $bewerbung->Route($action,$id,'true','show'); 
 });
 /* PUBLIC END*/ 
 

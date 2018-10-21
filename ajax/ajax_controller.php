@@ -32,7 +32,12 @@ if(isset($_GET["action"]) && $_GET["action"] =='tags'){
 
 if(isset($_GET["action"]) && $_GET["action"] =='showVorkenntnisse'){
     $controller = new bewerbung_controller();
-    $controller->Bewerbung_Abschlussarbeit($_GET["id"],'false'); 
+    $controller->Bewerbung_Abschlussarbeit($_GET["id"],'false','WH'); 
+}
+
+if(isset($_GET["action"]) && $_GET["action"] =='showVorkenntnisseBW'){
+    $controller = new bewerbung_controller();
+    $controller->Bewerbung_Abschlussarbeit($_GET["id"],'false','BW'); 
 }
 
 ?>

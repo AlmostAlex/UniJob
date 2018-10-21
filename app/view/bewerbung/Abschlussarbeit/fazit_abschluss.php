@@ -24,12 +24,9 @@
         </tr>   
     </table>
 <br><br>
-Mit "Absenden" werden die Angaben bestätigt und vermittelt.<br>
     </div>
 </div>
 
 <p align="right" style='float: right;'>
 
-    <INPUT TYPE="button" class='btn btn-primary' VALUE="Zurück" onClick="history.go(-1);">
-    <INPUT TYPE="button" class='btn btn-primary' VALUE="Formular abschicken" onClick="history.go(-1);">
 </p>

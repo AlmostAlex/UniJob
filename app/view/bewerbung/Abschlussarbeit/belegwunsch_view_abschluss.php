@@ -13,7 +13,7 @@
 
 <div style='margin-bottom: 100px; border-top: 4px solid #3979b5;' class='form_thema'>
     <form method='post'>
-        <h5>Bewerbungsmodul: {$modulbezeichnung}</h5>
+        <h5>Bewerbungsmodul: '<?php echo $modul['professur']; ?>'</h5>
         <h6>Belegwunschverfahren</h6><br>
         
         <table  style='width: 67%;'>
