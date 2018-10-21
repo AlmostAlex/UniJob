@@ -14,12 +14,12 @@ class modul_model
         $this->vorkenntnisse_model = new vorkenntnisse_model();
     }
 
-    public function insertSeminar($thema, $modulbezeichnung, $professurbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer)
+    public function insertSeminar($thema, $modulbezeichnung, $professurbezeichnung, $kategorie, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer)
     {
         //Erst eintragung des Moduls
-        $statement = $this->dbh->prepare("INSERT INTO `modul` (`modulbezeichnung`, `professur`, `kategorie`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `kickoff`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren` )
-        VALUES (?,?,?,?,?,?,?,?,?,?,'Offen','false', 'false')");
-        $statement->bind_param('ssssssssi', $modulbezeichnung, $professurbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $_SESSION['login']);
+        $statement = $this->dbh->prepare("INSERT INTO `modul` (`modulbezeichnung`, `professur`, `kategorie`, `hinweise`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `kickoff`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren`)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,'Offen','false','false')");
+        $statement->bind_param('ssssssssssi', $modulbezeichnung, $professurbezeichnung, $kategorie, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $_SESSION['login']);
         $statement->execute();
 
         //dann die hierdurch entstandene modul_id holen
@@ -72,12 +72,12 @@ class modul_model
         }
     }
 
-    public function insertAbschluss($thema, $professurbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $tags, $vorkenntnisse, $betreuer)
+    public function insertAbschluss($thema, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer)
     {
         //Erst eintragung des Moduls
-        $statement = $this->dbh->prepare("INSERT INTO `modul` (`professur`, `kategorie`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren` )
-        VALUES (?,?,?,?,?,?,?,?,'Offen','false', 'false')");
-        $statement->bind_param('sssssssi', $professurbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $_SESSION['login']);
+        $statement = $this->dbh->prepare("INSERT INTO `modul` (`professur`, `kategorie`, `abschlusstyp`, `hinweise`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `kickoff`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren` )
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,'Offen','false','false')");
+        $statement->bind_param('ssssssssssi', $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $_SESSION['login']);
         $statement->execute();
 
         //dann die hierdurch entstandene modul_id holen

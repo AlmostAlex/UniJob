@@ -20,13 +20,16 @@ class abschluss_eintragen_controller
     public function modulEintragung()
     {
         $kategorie = "Abschlussarbeit";
-        $modulbezeichnung = $start = $ende = $jahr = $jahr1 = $jahr2 = $semester = '';
+        $professurbezeichnung = $abschlusstyp = $hinweise = $start = $ende = $kickoff = $jahr = $jahr1 = $jahr2 = $semester = '';
 
         if (isset($_SESSION['login'])) { // erstmal wird die Authentifizierung überprüft
             if (isset($_POST['modul_eintrag1']) || isset($_POST['modul_eintrag2'])) { // WINDHUND UND BEWERBUNG // muss noch geändert werden zu $this->kategorie etc.
+                $abschlusstyp = $_POST["Abschlusstyp"];
                 $professurbezeichnung = $_POST["professurbezeichnung"];
+                $hinweise = $_POST["hinweise"];
                 $start = date("Y-m-d", strtotime($_POST["Start"]));
                 $ende = date("Y-m-d", strtotime($_POST["Ende"]));
+                $kickoff = date("Y-m-d", strtotime($_POST["Kickoff"]));
                 $semester = $_POST["Semester"];
                 $studiengang = $_POST["Studiengang"];
                 $verfahren = $_POST["verfahren"];
@@ -48,7 +51,7 @@ class abschluss_eintragen_controller
                         $tags = $_POST["tags_WiBe"];
                         $vorkenntnisse = $_POST["vorkenntnisse_WiBe"];
                         $betreuer = $_POST["betreuerwindhund"];
-                        $eintrag = $this->modul_model->insertAbschluss($thema, $professurbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $tags, $vorkenntnisse, $betreuer);
+                        $eintrag = $this->modul_model->insertAbschluss($thema, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer);
                         echo "erfolgreich eingetragen";
                     } else {
                         echo "Alles ausfüllen<br>";
@@ -59,7 +62,7 @@ class abschluss_eintragen_controller
                         $tags = $_POST["tags_Beleg"];
                         $vorkenntnisse = $_POST["vorkenntnisse_Beleg"];
                         $betreuer = $_POST["betreuerbelegwunsch"];
-                        $eintrag = $this->modul_model->insertAbschluss($thema, $professurbezeichnung, $kategorie, $verfahren, $semester, $start, $ende, $studiengang, $tags,$vorkenntnisse, $betreuer);
+                        $eintrag = $this->modul_model->insertAbschluss($thema, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags,$vorkenntnisse, $betreuer);
                         echo "erfolgreich eingetragen";
                     } else {
                         echo "Alles ausfüllen<br>";

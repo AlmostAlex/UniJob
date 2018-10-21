@@ -26,6 +26,12 @@
                     <th>
                 </tr>
                 <tr>
+                    <td><label for="Abschlusstyp"><b>Kategorie:</b><red style="color: red" >*</red></label></td>
+                    <td><input type="radio" name="Abschlusstyp" value="Bachelor" class="Kategorie" />Bachelor</input> </td>
+                    <td><input type="radio" name="Abschlusstyp" value="Master" class="Kategorie" />Master</input></td>
+                    <td></td>
+                </tr>
+                <tr>
                     <td><label for="Modul"><b>Professur:</b><red>*</red></label></td>
                     <td colspan = 3><input type="text" class="form-control" id="professurbezeichnung" name='professurbezeichnung' placeholder="Bezeichnung der Veranstaltung" required> </td>
                     <td></td>
@@ -56,7 +62,13 @@
                             </span>
                         </div>
                     </td>                      
-                </tr> 
+                </tr>                
+                <tr>
+                    <td></td>
+                    <td><label style="margin-left:10px;font-size:10pt;" for="starttermin">Bewerbungsstart</label></td>
+                    <td><label style="margin-left:20px;font-size:10pt;" for="endtermin">Bewerbungsende</label></td>
+                    <td><label style="margin-left:30px;font-size:10pt;" for="kickofftermin">Kickofftermin</label></td>
+                </tr>  
                 <!-- Auswahl Semester-->
                 <tr>
                     <td><label for="Semester"><b>Semester:</b><red>*</red></label></td>
@@ -88,7 +100,11 @@
                         </div>  
                     <!-- Auswahl Semester Ende -->
                     </td>          
-                </tr>    
+                </tr>   
+                <tr>
+                    <td><label for="Beschreibung"><b>Zusätzliche Hinweise:</b></label></td>
+                    <td colspan = "3"><textarea type="text" name="hinweise" id="hinweise" class="form-control" placeholder="Hinweise zur Professur, zum Ablauf o.ä."></textarea></td>
+                </tr>     
                 <tr>
                     <td><label for="Studiengang"><b>Bevorzugter Studiengang:</b></label></td>
                     <td colspan='3'>

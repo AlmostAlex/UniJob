@@ -61,6 +61,12 @@
                             </span>
                         </div>
                     </td>
+                </tr>                
+                <tr>
+                    <td></td>
+                    <td><label style="margin-left:10px;font-size:10pt;" for="starttermin">Bewerbungsstart</label></td>
+                    <td><label style="margin-left:20px;font-size:10pt;" for="endtermin">Bewerbungsende</label></td>
+                    <td><label style="margin-left:30px;font-size:10pt;" for="kickofftermin">Kickofftermin</label></td>
                 </tr>
                 <!-- Auswahl Semester-->
                 <tr>
@@ -93,7 +99,11 @@
                         </div>  
                     <!-- Auswahl Semester Ende -->
                     </td>          
-                </tr>    
+                </tr>   
+                <tr>
+                    <td><label for="Beschreibung"><b>Zusätzliche Hinweise:</b></label></td>
+                    <td colspan = "3"><textarea type="text" name="hinweise" id="hinweise" class="form-control" placeholder="Hinweise zur Professur, zum Ablauf o.ä."></textarea></td>
+                </tr>     
                 <tr>
                     <td><label for="Studiengang"><b>Bevorzugter Studiengang:</b></label></td>
                     <td colspan='3'>
