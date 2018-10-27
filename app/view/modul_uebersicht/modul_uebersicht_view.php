@@ -69,7 +69,7 @@
                 <?php if($module[$k]["kategorie"] == "Seminararbeit"){
                                 echo $module[$k]["nachrueckv_status"] .' '. $module[$k]["modulbezeichnung"];
                             } else{ echo $module[$k]["nachrueckv_status"] .' '. $module[$k]["professur"];} ?> 
-                            <?php echo $module[$k]['modulbezeichnung']; ?></titel></b><br>
+                            </titel></b><br>
                             <?php if($module[$k]["kategorie"] == "Abschlussarbeit"){
                                 ?><div class='border_round'><b><?php echo $module[$k]['abschlusstyp']; ?></b></div>
                             <?php } ?>
@@ -77,14 +77,16 @@
                     <div class='border_round'><i class='far fa-calendar'></i> <b><?php echo $module[$k]['semester']; ?></b></div>
                     <div class='border_round'><i class='far fa-clock'></i> <b><?php echo $module[$k]['start_anzeige'] .' - '. $module[$k]['ende_anzeige']; ?> </b></div>
                 </th>
-                <th><button style='color:white;' class="<?php echo $module[$k]['btn_form']?>">
-                    <span>
-                    <a  style='color:white;'  <?php echo $module[$k]['state']; ?>>  
-                        <?php echo $module[$k]['btn_msg']?>
-                    </a>
-                    </span>
-                    </button>
-                    </th>
+                <th style="width:192px; height:85px">
+                    <button align="center" style='color:white;' class="<?php echo $module[$k]['btn_form']?>">
+                        <span>
+                            <a align="center" style='color:white;'  <?php echo $module[$k]['state']; ?>>  
+                                <?php echo $module[$k]['btn_msg']?>
+                            </a>
+                        </span>
+                    </button></br>
+                        <div style="margin-left:34px" class='border_round'><b><?php echo "Kickoff: ".$module[$k]['kickoff']; ?> </b></div>
+                </th></center>
             </tr>
         </table>
         <inside>
