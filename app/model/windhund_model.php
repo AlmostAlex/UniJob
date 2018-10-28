@@ -20,6 +20,8 @@ class windhund_model
         VALUES (?,?,?,?,?,'angenommen',".$this->heute_dt.",?)")) {
             $statement->bind_param('ssisisss', $vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetungen);
             $statement->execute();
+
+            $this->thema->updateStatus($thema_id);
         } else {
             $error = $this->dbh->errno . ' ' . $this->dbh->error;
             echo "Fehlercode: " . $error . "<br/> Eintragung der Bewerbung ist fehlgeschlagen.";

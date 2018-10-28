@@ -10,6 +10,7 @@ class bewerbung_model
         require(__DIR__."/../../db.php");
         $this->dbh = $dbh;
         $this->thema = new thema_model();
+        $this->bewerb_vorkennt = new bewerb_vorkennt_model();
         date_default_timezone_set("Europe/Berlin");
         $this->heute_dt = new DateTime(date("Y-m-d"));
     }
@@ -20,6 +21,8 @@ class bewerbung_model
         VALUES (?,?,?,?,?,'angenommen',?)")) {
             $statement->bind_param('ssisiss', $vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetungen);
             $statement->execute();
+            $last_id = $this->lastBewerbungID();
+            $this->bewerb_vorkennt->insertBewerbVorkennt($last_id, $thema_id, $vorkenntnisse);
 
         } else {
             $error = $this->dbh->errno . ' ' . $this->dbh->error;
@@ -27,21 +30,37 @@ class bewerbung_model
         }
     }
 
-    public function duplicateBewerbungCheck($matrikelnummer, $thema)
+    
+    public function updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $voraussetungen)
     {
-        $statement = $this->dbh->prepare("SELECT bewerbung_id FROM Modul, Thema, Bewerbung
-                                            WHERE bewerbung.matrikelnummer = ? 
-                                            AND bewerbung.thema_id = thema.thema_id 
+        if ($statement = $this->dbh->prepare("UPDATE bewerbung SET vorname = ?, nachname = ?, email = ?, thema_id = ?, status = ?, voraussetungen = ? WHERE matrikelnummer = ?)
+        VALUES (?,?,?,?,'offen',?,?)")) {
+            $statement->bind_param('sssissi', $vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetungen);
+            $statement->execute();
+
+        } else {
+            $error = $this->dbh->errno . ' ' . $this->dbh->error;
+            echo "Fehlercode: " . $error . "<br/> Update der Bewerbung ist fehlgeschlagen.";
+        }
+    }
+
+    public function duplicateBewerbungCheck($matrikelnummer, $thema_id)
+    {
+        $statement = $this->dbh->prepare("SELECT bewerbung_id FROM modul, thema, bewerbung
+                                            WHERE bewerbung.matrikelnummer = ?
+                                            AND bewerbung.thema_id = thema.thema_id
                                             AND thema.modul_id = modul.modul_id
-                                            AND modul.semester = (SELECT semester   
+                                            AND modul.semester = (SELECT semester 
                                                                 FROM modul, thema
-                                                                WHERE thema.modul_id = modul.modul_id 
+                                                                WHERE thema.modul_id = modul.modul_id
                                                                 AND thema.thema_id = ?)");
+        $statement->bind_param('ii', $matrikelnummer, $thema_id);
         $statement->execute();
         $statement->bind_result($duplicate);
         $statement->fetch();
         return $duplicate;
     }
+
 
     public function lastBewerbungID()
     {

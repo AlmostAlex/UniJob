@@ -1,15 +1,16 @@
 <?php
-class vorkenntnisse_model
+class bewerb_vorkennt_model
 {
     public $dbh;
 
     public function __construct()
     {
         require(__DIR__."/../../db.php");
-        $this->dbh = $dbh;    
+        $this->dbh = $dbh;
+        $this->vorkenntnisse = new vorkenntnisse_model();    
     }
 
-    public function insertVorkenntnisse($vorkenntnisse, $thema_id)
+    public function insertBewerbVorkennt($vorkenntnisse, $thema_id)
     {
         $vorkenntnisse_array = explode(",", $vorkenntnisse); // heraus kommt [0] --> blubb [1] --> bla etc
         $k = 0;
@@ -29,27 +30,5 @@ class vorkenntnisse_model
          AND thema.modul_id =?");
         $statement->bind_param('i', $modul_id);
         $statement->execute();
-    }
-
-    
-    public function VorkenntnisseByThemaID($thema_id)
-    {
-        $statement = $this->dbh->prepare("SELECT vorkenntnisse_id, bezeichnung FROM vorkenntnisse WHERE thema_id =?");
-        $statement->bind_param('i', $thema_id);
-        $statement->bind_result($bezeichnung);
-        $statement->execute();
-
-        $vorkenntnisse = array();
-        while ($statement->fetch()) {
-            $row = array(
-                'vorkenntnisse_id' => $vorkenntnisse_id,
-                'bezeichnung' => $bezeichnung
-            );
-            $vorkenntnisse[] = $row;
-        }
-
-
-        return $vorkenntnisse;
-    
     }
 }
