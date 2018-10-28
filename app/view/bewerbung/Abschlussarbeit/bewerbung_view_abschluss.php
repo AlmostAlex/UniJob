@@ -94,9 +94,9 @@
             <tr>
                 <td><br>
                
-                <a data-toggle='modal' data-target='#bewerbung_senden' href='#'>button</a>
-                <!-- <input type='submit' name='bewerbung_ab_BW' class='btn btn-primary' value='Formular abschicken'>  -->
-                 <?php $this->getModal('bewerbung_senden', $module["modul_id"]);?>
+
+                <input data-toggle='modal' data-target='#anmeldung_senden' type='submit' name='bewerbung_ab_WH' class='btn btn-primary' value='Formular abschicken'> 
+            <?php $this->getModal('anmeldung_senden', $modul["modul_id"]);?>
                 </td>
             </tr>
         </table>

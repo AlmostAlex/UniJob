@@ -64,7 +64,6 @@
             <div id="txtHint"></div>
         </td>
         </tr>
-
         <tr>
          <td colspan=3><br>
          <div class="abfrageZulassung" role="alert">
@@ -75,17 +74,15 @@
                             <input type="radio" id="Zulassung" name="Zulassung" value="Nein" <?php if($Zulassung == "Nein"){echo "checked";} ?> >
                             <label for="Nein">Nein</label> 
                 </label></center>
-                    </div>
+            </div>
          </td>
         </tr>
-
             <tr>
                 <td>
                     <br>
-            <!-- <input type='submit' name='bewerbung_ab_WH' class='btn btn-primary' value='Formular abschicken'>  -->
-            <a data-toggle='modal' data-target='#bewerbung_senden' href='#'><i class='far fa-clock'></i></a>
+            <a data-toggle='modal' data-target='#anmeldung_senden' type='submit' name='bewerbung_ab_WH' href='#'>hi</a>
             <?php $this->getModal('anmeldung_senden', $modul["modul_id"]);?>
-        </tr> 
+  </tr> 
     </td>
         </table> 
 </div>

@@ -45,8 +45,9 @@ class bewerbung_controller
             if($this->modul_model->getModulVerfahrenByID($id) == 'Windhundverfahren'){
                     $modul = $this->modul_model->getModulById($id);
                     $themen = $this->thema_model->getThemenVG($id,'');
-
+                    echo "hiii";
                         if (isset($_POST['bewerbung_ab_WH'])) {
+                            echo "heeeei";
                             // AB HIER ALLES CHECKEN LASSEN
                                 if($check_modul == 'falseTime'){
                                     $this->getModal("modulFalseTime_AB_WH", $id);
@@ -76,6 +77,8 @@ class bewerbung_controller
             if(isset($_POST['Fachsemester'])) { $fachsemester  = $_POST['Fachsemester']; } else{ $fachsemester = '';}
             if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
             if(isset($_POST['Credits'])) { $credits  = $_POST['Credits']; } else{ $credits = '';}
+
+
             $modul = $this->modul_model->getModulById($id);
             $themen = $this->thema_model->getThemenVG($id,'');
             if (isset($_POST['bewerbung_ab_BW'])) {
@@ -155,7 +158,7 @@ class bewerbung_controller
         public function getModal($form, $id) // Modal Konfigurationen
         {
            $modal['case'] = $modal['title'] = $modal['body_class'] = $modal['content'] = $modal['img'] = $modal['btn'] = $modal['btn_class'] = $modal['btn_url'] = '';
-
+           $modal['type'] = $modal['linkage'] = $modal['name'] = '';
             switch ($form) {
                 case 'modulFalseTime_AB_WH':
                 $modal['case'] = 'automatic';
@@ -176,13 +179,13 @@ class bewerbung_controller
                 break;
 
                 case 'anmeldung_senden':
-                $modal['case'] = 'bewerbung_senden';
-                $modal['title'] = 'Sicherheitsabfrage: Modul archvieren?';
+                $modal['case'] = 'anmeldung_senden';
+                $modal['title'] = 'Sicherheitsabfrage: Anmelden?';
                 $modal['body_class'] = 'well';
-                $modal['content'] = 'Wollen sie das Modul "<b></b>" mit den dazgehörigen Daten sicher archivieren?';
-                $modal['btn'] = 'Modul archivieren';
+                $modal['content'] = 'Möchtest du wirklich dich da wirklich anmelden?';
+                $modal['btn'] = 'Anmeldung versenden';
                 $modal['btn_class'] = 'btn btn-primary';
-                $modal['btn_url'] = '/mt_verwaltung/modul/archivierung/' . $id;
+                $modal['btn_url'] = '#';
                 include 'app/view/modul_verwaltung/modals/modal_modul.php';
                 break;
 
@@ -193,7 +196,9 @@ class bewerbung_controller
                 $modal['content'] = 'Wollen sie das Modul "<b></b>" mit den dazgehörigen Daten sicher archivieren?';
                 $modal['btn'] = 'Modul archivieren';
                 $modal['btn_class'] = 'btn btn-primary';
-                $modal['btn_url'] = '/mt_verwaltung/modul/archivierung/' . $id;
+                $modal['type'] = 'submit';
+                $modal['name'] = 'bewerbung_ab_WH';
+                $modal['btn_url'] = '#';
                 include 'app/view/modul_verwaltung/modals/modal_modul.php';
                 break;
 
