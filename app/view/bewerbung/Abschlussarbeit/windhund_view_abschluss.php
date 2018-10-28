@@ -84,8 +84,7 @@
                     <br>
             <!-- <input type='submit' name='bewerbung_ab_WH' class='btn btn-primary' value='Formular abschicken'>  -->
             <a data-toggle='modal' data-target='#bewerbung_senden' href='#'><i class='far fa-clock'></i></a>
-             
-            <?php $this->getModal('anmeldung_senden', $module["modul_id"]);?>
+            <?php $this->getModal('anmeldung_senden', $modul["modul_id"]);?>
         </tr> 
     </td>
         </table> 
