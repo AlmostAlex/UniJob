@@ -2,6 +2,8 @@
 include_once (__DIR__."/../model/modul_model.php");
 include_once(__DIR__."/../model/thema_model.php");
 include_once(__DIR__."/../model/vorkenntnisse_model.php");
+include_once(__DIR__."/../model/windhund_model.php");
+include_once(__DIR__."/../model/bewerbung_model.php");
 include_once(__DIR__."/../../db.php"); 
 
 class bewerbung_controller
@@ -13,8 +15,11 @@ class bewerbung_controller
         $this->modul_model = new modul_model();
         $this->thema_model = new thema_model();
         $this->vorkenntnisse_model = new vorkenntnisse_model();
+        $this->windhund_model = new windhund_model();
+        $this->bewerbung_model = new bewerbung_model();
         date_default_timezone_set("Europe/Berlin");
         $this->heute_dt = new DateTime(date("Y-m-d"));
+
     }
 
     public function Route($action,$id,$state,$kat)
@@ -27,7 +32,7 @@ class bewerbung_controller
         }
     }
 
-    public function Bewerbung_Abschlussarbeit($id,$state,$kat){
+    public function Bewerbung_Abschlussarbeit($id,$state,$kat){  //$id = $modul_id
 
     if(isset($_POST['Thema'])) { $thema_id  = $_POST['Thema']; $themenbezeichnung = $this->thema_model->getThemenbezeichnung($thema_id); } 
     else{ $thema_id = $themenbezeichnung = '';}
@@ -35,7 +40,7 @@ class bewerbung_controller
     if(isset($_POST['Nachname'])) { $nachname = $_POST['Nachname']; } else{ $nachname = '';}
     if(isset($_POST['Matrikelnummer'])) { $matrikelnummer  = $_POST['Matrikelnummer']; } else{ $matrikelnummer = '';}
     if(isset($_POST['Email'])) { $email  = $_POST['Email']; } else{ $email = '';}
-    if(isset($_POST['Zulassung'])) { $Zulassung  = $_POST['Zulassung']; } else{ $Zulassung = '';} 
+    if(isset($_POST['Zulassung'])) { $zulassung  = $_POST['Zulassung']; } else{ $zulassung = '';}
     $check_modul = $this->modul_model->checkModul($id);
     $check_thema = $this->thema_model->checkThema($thema_id); 
      if($this->modul_model->getVerfuegbarkeitID($id) == 'Offen'){
@@ -58,12 +63,14 @@ class bewerbung_controller
                                 } else {
                                     // HIER INSERT BEWERBUNG
                                     echo"AB WH";
+                                    $this->windhund_model->insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $zulassung);
                                     $this->getModal("AB_WH_erfolgreich", $thema_id);
                                     include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
                                 }      
                         }
                     else{     
                         echo"luluul";
+                    else{
                         include 'app/view/bewerbung/Abschlussarbeit/windhund_view_abschluss.php';
                     }
             }
@@ -87,15 +94,25 @@ class bewerbung_controller
                 // AB HIER ALLES CHECKEN LASSEN
                     if($check_modul == 'falseTime'){
                         $this->getModal("modulFalseTime_AB_WH", $id);
-                        include 'app/view/bewerbung/Abschlussarbeit/bewerbung_view_abschluss.php';     
+                        include 'app/view/bewerbung/Abschlussarbeit/bewerbung_view_abschluss.php';
                     } else if($check_thema == 'false_TH_Verfuegbarkeit'){
                         $this->getModal("themaFalseVG_AB_WH", $thema_id);
-                        include 'app/view/bewerbung/Abschlussarbeit/bewerbung_view_abschluss.php';  
+                        include 'app/view/bewerbung/Abschlussarbeit/bewerbung_view_abschluss.php';
                     } else {
                         // HIER INSERT BEWERBUNG
                         $this->getModal("AB_BW_erfolgreich", $thema_id);
                     
                        // include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
+                        if(($this->bewerbung_model->duplicateBewerbungCheck($matrikelnummer, $thema_id)) == "duplikat"){
+                            $this->bewerbung_model->updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung);
+                            $this->getModal("AB_BW_erfolgreich", $thema_id);
+                            // include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
+                            
+                        } else {
+                            $this->bewerbung_model->insertBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung);
+                            $this->getModal("AB_BW_erfolgreich", $thema_id);
+                            // include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
+                        }
                     }      
             }
         else{     
