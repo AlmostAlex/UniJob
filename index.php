@@ -63,8 +63,8 @@ $router->map(["GET", "POST"],["/mt_verwaltung","/mt_verwaltung/{action2}/{action
 
 $router->map(["GET", "POST"],["/mt_verwaltung","/mt_verwaltung/{action2}/{action3}/{id}"], function ($action,$action2,$action3,$id) {
     $modul = new modul_controller();
-    echo"hihihi";
-    $modul->Route($action,$action2,$action3,'',$id); 
+    echo $action;
+    $modul->Route('mt_verwaltung',$action2,$action3,'',$id); 
 });
 
 $router->map(["GET", "POST"],["/seminar_eintragen"], function () {

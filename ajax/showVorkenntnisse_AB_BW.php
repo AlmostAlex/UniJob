@@ -9,11 +9,11 @@
 <table>
 
 <tr>
-<td><?php echo  $vorkenntnisse[$j]['bezeichnung'];?></td>
+<td><b><?php echo  $vorkenntnisse[$j]['bezeichnung'];?></b>:</td>
 <td style='width:50%;'>
-    <input type="radio" id="mc" name="Vorkenntnisse" value="Mastercard">
+    <input type="radio" id='<?php echo $j?>' name="Vorkenntnisse_<?php echo $j?>" value="<?php echo $vorkenntnisse[$j]['bezeichnung'];?>">
     <label for="Nein"> Nein</label> 
-    <input style='margin-left:10px;' type="radio" id="vi" name="Vorkenntnisse" value="Visa">
+    <input style='margin-left:10px;' type="radio"  id='<?php echo $j?>' name="Vorkenntnisse_<?php echo $j?>" value="<?php echo  $vorkenntnisse[$j]['bezeichnung'];?>">
     <label for="Ja"> Ja</label> 
     </td>
   </tr>

@@ -67,8 +67,8 @@
                 <th><a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#modul_<?php echo $module[$k]['modul_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></th>
                 <th><b><titel style="line-height:15px;"><?php echo $module[$k]['nachrueckv_status']; ?> 
                 <?php if($module[$k]["kategorie"] == "Seminararbeit"){
-                                echo $module[$k]["nachrueckv_status"] .' '. $module[$k]["modulbezeichnung"];
-                            } else{ echo $module[$k]["nachrueckv_status"] .' '. $module[$k]["professur"];} ?> 
+                                echo  $module[$k]["modulbezeichnung"];
+                            } else {  echo  $module[$k]["professur"];} ?> 
                             </titel></b><br>
                             <?php if($module[$k]["kategorie"] == "Abschlussarbeit"){
                                 ?><div class='border_round'><b><?php echo $module[$k]['abschlusstyp']; ?></b></div>
@@ -85,7 +85,7 @@
                             </a>
                         </span>
                     </button></br>
-                        <div style="margin-left:34px" class='border_round'><b><?php echo "Kickoff: ".$module[$k]['kickoff']; ?> </b></div>
+                        <div style="margin-left:34px" class='border_round'><b><?php echo "Kickoff: ".$module[$k]['kickoff_anzeige']; ?> </b></div>
                 </th></center>
             </tr>
         </table>
@@ -115,8 +115,10 @@
                                             <b>Empfohlenen Vorkenntnisse: </b>
                                             <?php $vorkenntnisse = $this->modulUebersichtVorkenntisse($themen[$p]['thema_id']); for ($l = 0; $l < count($vorkenntnisse); $l++) {?> 
                                             <?php  echo $vorkenntnisse[$l]['bezeichnung']; }?> <br>
+                                            <b>Hinweise:</b> <?php echo $module[$k]["hinweise"];?> <br>
                                             <b>Beschreibung:</b> <?php echo $themen[$p]["themenbeschreibung"];?> <br>
                                              <br>
+
                                          
                                           <tags>
                                             <?php $tags = $this->modulUebersichtTags($themen[$p]['thema_id']); for ($y = 0; $y < count($tags); $y++) {?>   

@@ -29,26 +29,30 @@
             <div class='modul_shadow_<?php echo $module[$k]['kategorie']; ?>'></div>
             <div class='modul_shadow_white'></div>
     <table class='modul_table_uebersicht_<?php echo $module[$k]['kategorie'];?>'>
-            <tr>
+    <tr>
                 <th><a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#modul_<?php echo $module[$k]['modul_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></th>
-                <th><b><titel><br><br><?php echo $module[$k]['nachrueckv_status']; ?> 
+                <th><b><titel style="line-height:15px;"><?php echo $module[$k]['nachrueckv_status']; ?> 
                 <?php if($module[$k]["kategorie"] == "Seminararbeit"){
-                                echo $module[$k]["nachrueckv_status"] .' '. $module[$k]["modulbezeichnung"];
-                            } else{ echo $module[$k]["nachrueckv_status"] .' '. $module[$k]["professur"];} ?> 
-                            <?php echo $module[$k]['modulbezeichnung']; ?></titel></b><br>
-                    <div class='border_round'><b><?php echo $module[$k]['kategorie']; ?></b></div>
+                                echo  $module[$k]["modulbezeichnung"];
+                            } else {  echo  $module[$k]["professur"];} ?> 
+                            </titel></b><br>
+                            <?php if($module[$k]["kategorie"] == "Abschlussarbeit"){
+                                ?><div class='border_round'><b><?php echo $module[$k]['abschlusstyp']; ?></b></div>
+                            <?php } ?>
                     <div class='border_round'><b><?php echo $module[$k]['verfahren_anzeige']; ?></b></div>
                     <div class='border_round'><i class='far fa-calendar'></i> <b><?php echo $module[$k]['semester']; ?></b></div>
                     <div class='border_round'><i class='far fa-clock'></i> <b><?php echo $module[$k]['start_anzeige'] .' - '. $module[$k]['ende_anzeige']; ?> </b></div>
                 </th>
-                <th><button style='color:white;' class="<?php echo $module[$k]['btn_form']?>">
-                <span>
-                    <a style='color:white;' <?php echo $module[$k]['state']; ?>>  
-                        <?php echo $module[$k]['btn_msg']?>
-                    </a>          
-                    </span>
-                 </button>
-                 </th>
+                <th style="width:192px; height:85px">
+                    <button align="center" style='color:white;' class="<?php echo $module[$k]['btn_form']?>">
+                        <span>
+                            <a align="center" style='color:white;'  <?php echo $module[$k]['state']; ?>>  
+                                <?php echo $module[$k]['btn_msg']?>
+                            </a>
+                        </span>
+                    </button></br>
+                        <div style="margin-left:34px" class='border_round'><b><?php echo "Kickoff: ".$module[$k]['kickoff_anzeige']; ?> </b></div>
+                </th></center>
             </tr>
         </table>
         <inside>
@@ -65,8 +69,8 @@
                         <td><a class='collapsed' id='coll' data-toggle='collapse' data-parent='#accordion' href='#inhalt_<?php echo $themen[$p]["thema_id"];?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></td>
                         <td><?php echo $themen[$p]["themenbezeichnung"];?> </td>
                         <td><center> <?php echo $themen[$p]["benutzer"];?></center></td>
-                        <td><center><div $vergeben><?php echo $themen[$p]["thema_verfuegbarkeit"];?></div></center></td>
-                    </tr>
+                        <td><center><div class='<?php echo $themen[$p]["thema_verfuegbarkeit"];?>'.><?php echo $themen[$p]["thema_verfuegbarkeit"];?></div></center></td>
+                            </tr>
                     <tr class='nopadding'>
                         <td class='nopadding' colspan='6'>
                             <div id='inhalt_<?php echo $themen[$p]["thema_id"];?>' class='collapse' role='tabpanel' aria-labelledby='headingOne' data-parent='#accordion'>
@@ -77,6 +81,7 @@
                                             <b>Empfohlenen Vorkenntnisse: </b>
                                             <?php $vorkenntnisse = $this->modulUebersichtVorkenntisse($themen[$p]['thema_id']); for ($l = 0; $l < count($vorkenntnisse); $l++) {?> 
                                             <?php echo $vorkenntnisse[$l]['bezeichnung']; }?> <br>
+                                            <b>Hinweise:</b> <?php echo $module[$k]["hinweise"];?> <br>
                                             <b>Beschreibung:</b> <?php echo $themen[$p]["themenbeschreibung"];?> <br>
                                                     <br>
                                          

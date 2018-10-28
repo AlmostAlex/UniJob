@@ -13,7 +13,7 @@
 
 <div class='windhund'><div style='margin-bottom: 100px; border-top: 4px solid #3979b5;' class='form_thema'>
     <form action='' method='POST'>
-        <h4 class='bew_ue'>Abschlussarbeitsthemen der Professur '<?php echo $modul['professur']; ?>' </h4>
+        <h4 class='bew_ue'>Seminarthemen zum Modul '<?php echo $modul['modulbezeichnung']; ?>' </h4>
         <h6>Windhundverfahren</h6><br>
         <table>
             <tr>
@@ -68,7 +68,7 @@
          <td colspan=3><br>
          <div class="abfrageZulassung" role="alert">
                 <center><label for='Vorkenntnisse'>
-                            <b>Erfüllst du alle Vorraussetzungen zur Zulassung deiner Abschlussarbeit?</b> <br><br>
+                            <b>Erfüllst du alle Vorraussetzungen zur Zulassung deiner Seminararbeit?</b> <br><br>
                             <input type="radio" id="Zulassung" name="Zulassung" value="Ja" <?php if($zulassung == "Ja"){echo "checked";} ?>>
                             <label for="Ja">Ja</label> 
                             <input type="radio" id="Zulassung" name="Zulassung" value="Nein" <?php if($zulassung == "Nein"){echo "checked";} ?> >

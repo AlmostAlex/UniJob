@@ -13,7 +13,7 @@
 </div><br>
 
 <div class='form_thema'>
-    <form method='post'>
+<form action='' method='POST'>
     <h4 class='bew_ue'>Abschlussarbeitsthemen der Professur '<?php echo $modul['professur']; ?>' </h4>
         <h6>Bewerbungsverfahren</h6><br>
         
@@ -83,9 +83,9 @@
          <div class="abfrageZulassung" role="alert">
                 <center><label for='Vorkenntnisse'>
                 <b>Erfüllst du alle Vorraussetzungen zur Zulassung deiner Abschlussarbeit?</b> <br><br>
-                            <input type="radio" id="Zulassung" name="Zulassung" value="Ja" <?php if($Zulassung == "Ja"){echo "checked";} ?>>
+                            <input type="radio" id="Zulassung" name="Zulassung" value="Ja" <?php if($zulassung == "Ja"){echo "checked";} ?>>
                             <label for="Ja">Ja</label> 
-                            <input type="radio" id="Zulassung" name="Zulassung" value="Nein" <?php if($Zulassung == "Nein"){echo "checked";} ?> >
+                            <input type="radio" id="Zulassung" name="Zulassung" value="Nein" <?php if($zulassung == "Nein"){echo "checked";} ?> >
                             <label for="Nein">Nein</label> 
                 </label></center>
             </div>
@@ -93,10 +93,10 @@
         </tr>
             <tr>
                 <td><br>
-               
 
-                <input data-toggle='modal' data-target='#anmeldung_senden' type='submit' name='bewerbung_ab_WH' class='btn btn-primary' value='Formular abschicken'> 
-            <?php $this->getModal('anmeldung_senden', $modul["modul_id"]);?>
+            <a data-toggle='modal' data-target='#bewerbung_senden' href='#'>hi</a>
+            <?php $this->getModal('bewerbung_senden', $modul["modul_id"]);?>
+
                 </td>
             </tr>
         </table>

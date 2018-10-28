@@ -21,9 +21,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Fenster schließen</button>
-        <button href='<?php echo $modal['btn_url']?>' <?php echo $modal['type']?> <?php echo $modal['name']?>   class='
+        <button href='<?php echo $modal['btn_url']?>' type='<?php echo $modal['type']?>' name='<?php echo $modal['name']?>' class='
           <?php echo $modal['btn_class']?>'>
-          <?php echo $modal['btn'];?></button>
+          <?php echo $modal['btn'];?>hhh</button>
       </div>
     </div>
   </div>
