@@ -58,11 +58,12 @@ $router->map(["GET", "POST"],["/ajax/tags/{term}"], function ($term) {
 // (Modul edit muss noch in den modul_controller)
 $router->map(["GET", "POST"],["/mt_verwaltung","/mt_verwaltung/{action2}/{action3}/{action4}/{id}"], function ($action,$action2,$action3,$action4,$id) {
     $modul = new modul_controller();
-    $modul->Route($action,$action2,$action3,$action4,$id); 
+    $modul->Route('mt_verwaltung',$action2,$action3,$action4,$id); 
 });
 
 $router->map(["GET", "POST"],["/mt_verwaltung","/mt_verwaltung/{action2}/{action3}/{id}"], function ($action,$action2,$action3,$id) {
     $modul = new modul_controller();
+    echo"hihihi";
     $modul->Route($action,$action2,$action3,'',$id); 
 });
 

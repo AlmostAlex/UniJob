@@ -24,9 +24,10 @@ class modul_controller
      /*  if ($action == 'modul_eintragen' && $action2 == '' && $action3 =='') {
             $this->modulEintragung();
         */
-        
+    echo"RRR";
         if ($action == 'mt_verwaltung' && $action2 == '' && $action3 =='') {
             $this->Modul_Verwaltung('false', 0, 'none');
+            echo"RRR111";
 
         } else if ($action == 'mt_verwaltung' && $action2 == 'modul' && $action3 == 'archivierung') {          
            // $this->modul_actions('archivierung', $id);
