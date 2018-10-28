@@ -36,7 +36,7 @@ class vorkenntnisse_model
     {
         $statement = $this->dbh->prepare("SELECT vorkenntnisse_id, bezeichnung FROM vorkenntnisse WHERE thema_id =?");
         $statement->bind_param('i', $thema_id);
-        $statement->bind_result($bezeichnung);
+        $statement->bind_result($vorkenntnisse_id, $bezeichnung);
         $statement->execute();
 
         $vorkenntnisse = array();
@@ -47,8 +47,6 @@ class vorkenntnisse_model
             );
             $vorkenntnisse[] = $row;
         }
-
-
         return $vorkenntnisse;
     
     }
