@@ -57,11 +57,13 @@ class bewerbung_controller
                                     include 'app/view/bewerbung/Abschlussarbeit/windhund_view_abschluss.php';  
                                 } else {
                                     // HIER INSERT BEWERBUNG
+                                    echo"AB WH";
                                     $this->getModal("AB_WH_erfolgreich", $thema_id);
                                     include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
                                 }      
                         }
                     else{     
+                        echo"luluul";
                         include 'app/view/bewerbung/Abschlussarbeit/windhund_view_abschluss.php';
                     }
             }
@@ -92,6 +94,7 @@ class bewerbung_controller
                     } else {
                         // HIER INSERT BEWERBUNG
                         $this->getModal("AB_BW_erfolgreich", $thema_id);
+                    
                        // include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
                     }      
             }
@@ -185,8 +188,8 @@ class bewerbung_controller
                 $modal['content'] = 'Möchtest du wirklich dich da wirklich anmelden?';
                 $modal['btn'] = 'Anmeldung versenden';
                 $modal['btn_class'] = 'btn btn-primary';
-                $modal['btn_url'] = '#';
-                include 'app/view/modul_verwaltung/modals/modal_modul.php';
+                $modal['btn_url'] = '';
+                include 'app/view/modals/bewerbung_modal.php';
                 break;
 
                 case 'bewerbung_senden':
@@ -199,7 +202,7 @@ class bewerbung_controller
                 $modal['type'] = 'submit';
                 $modal['name'] = 'bewerbung_ab_WH';
                 $modal['btn_url'] = '#';
-                include 'app/view/modul_verwaltung/modals/modal_modul.php';
+                include 'app/view/modals/bewerbung_modal.php';
                 break;
 
                 case 'AB_WH_erfolgreich':
