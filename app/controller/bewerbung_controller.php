@@ -27,35 +27,8 @@ class bewerbung_controller
         }
     }
 
-    public function Bewerbung_Abschlussarbeit($id,$state,$kat)
-    {
-        $module = $this->modul_model->getModulById($id);
+    public function Bewerbung_Abschlussarbeit($id,$state,$kat){
 
-        if($state=='false' && $kat =='WH')
-        {
-            $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
-            if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';}
-             
-                include (__DIR__."/../../ajax/showVorkenntnisse_AB_WH.php");                     
-        }
-        else if($state=='false' && $kat =='BW')
-        {
-            $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
-            if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';}
-             
-                include (__DIR__."/../../ajax/showVorkenntnisse_AB_BW.php");                     
-        }
-        else if($state=='false' && $kat =='BEL1')
-        {
-            $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
-            if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';}
-             
-                include (__DIR__."/../../ajax/vorkenntnisse_BEL/showVorkenntnisse_AB_BEL1.php");                     
-        }
-
-
-else{
- 
     if(isset($_POST['Thema'])) { $thema_id  = $_POST['Thema']; $themenbezeichnung = $this->thema_model->getThemenbezeichnung($thema_id); } 
     else{ $thema_id = $themenbezeichnung = '';}
     if(isset($_POST['Vorname'])) { $vorname = $_POST['Vorname']; } else{ $vorname = '';}
@@ -171,97 +144,13 @@ else{
         else{
             echo "nicht gueltig";
         }
-    }
+    
 }
 
     public function Bewerbung_Seminararbeit($id,$state)
     {
         echo"seminar";
     }
-
-
-        /*
-        $thema = $this->thema_model->getThemen($id);
-
-        if($modul[0]['kategorie'] == 'Seminararbeit' && $modul[0]['nachrueckv_status'] == 'true')
-        {
-            if (isset($_POST['bewerbung_windhund'])) 
-            {
-            $vorname = $_POST["Vorname"];
-            $nachname = $_POST["Nachname"];
-            $matrikelnummer = $_POST["Matrikelnummer"];
-            $email = $_POST["Email"];
-            $thema_id = $_POST["Thema"];
-            $this->Windhundbewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $modul_id);
-            }
-            include 'app/view/bewerbung/windhund_view.php';
-
-        } elseif($modul[0]['kategorie'] == 'Seminararbeit' && $modul[0]['nachrueckv_status'] == ''){
-
-            if ($modul[0]['verfahren'] == 'Windhundverfahren')
-            {
-                if (isset($_POST['bewerbung_windhund'])) 
-                {
-                $vorname = $_POST["Vorname"];
-                $nachname = $_POST["Nachname"];
-                $matrikelnummer = $_POST["Matrikelnummer"];
-                $email = $_POST["Email"];
-                $thema_id = $_POST["Thema"];
-                $this->Windhundbewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $modul_id);
-                }
-                include 'app/view/bewerbung/windhund_view.php';
-
-            } else if ($modul[0]['verfahren'] == 'bewerbung'){
-                include 'app/view/bewerbung/bewerbung_view.php';
-
-            } else if ($modul[0]['verfahren'] == 'belegwunsch'){
-                include 'app/view/bewerbung/belegwunsch_view.php';
-
-            }
-        } else //Wenn man sich auf Abschlussthemen bewirbt
-        {
-            include 'app/view/bewerbung/abschluss_view.php';
-        }
-    }
-
-    public function Windhundbewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $modul_id) 
-    {
-        //Hier wird geprüft, ob der Student sich bereits auf ein Thema in dem Modul beworben hat oder schon genommen wurde
-        $prüfung = $this->windhund->duplikatPrüfung($modul_id);
-        $prüfung->bind_result($matrikelDB, $status);
-        $prüfung->store_result();
-        $vorhanden = 0;
-        while ($prüfung->fetch()) 
-        {
-            if (($matrikelnummer == $matrikelDB) && ($status != "abgelehnt")) 
-            {
-                $vorhanden += 1;
-            }
-        }
-
-        //Wenn er sich noch nicht beworben hat, dann werden seine Infromationen dem Thema zugeordnet
-        //Und das Thema wird auf vergeben gestellt
-        if ($vorhanden == 0) 
-        {
-            $this->windhund->insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, "offen");            
-            $this->thema->updateVerfuegbarkeit($thema_id, "Vergeben");
-            $thema = $this->thema_model->getThema($thema_id);
-                     
-            while ($statement->fetch()) 
-            { 
-                //Modal zur erfolgreichen Eintragung anzeigen
-                $modal['case'] = 'Sicherheitsabfrage_';
-                $modal['title'] = 'Eintragung erfolgreich!';
-                $modal['body_class'] = 'well';
-                $modal['content'] = 'Sie haben sich erfolgreich für das Thema <b>"' . $thema[0]['themenbezeichnung'] . '"</b> eingetragen!';
-                $modal['btn'] = '<i class="far fa-trash-alt"></i> Fertig';
-                $modal['btn_class'] = 'btn btn-success';
-                $modal['btn_url'] = '/modul_uebersicht/modul_uebersicht_view.php/';
-                include 'app/view/modul_verwaltung/modals/modal_modul.php';
-            }           
-        }
-        
- */
 
         public function getModal($form, $id) // Modal Konfigurationen
         {
@@ -325,10 +214,51 @@ else{
                 $modal['img'] = '/img/checked.png';
                 include 'app/view/modul_verwaltung/modals/modal_modul.php';                
                 break;
-
-
-
-
             }                          
         }
+
+        public function Abschluss_AJ($id,$state,$kat)
+        {           
+            $modul = $this->modul_model->getModulById($id);
+            if($state=='false' && $kat =='WH')
+            {
+                $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
+                if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';}         
+                    include (__DIR__."/../../ajax/showVorkenntnisse_AB_WH.php");                     
+            }
+            else if($state=='false' && $kat =='BW')
+            {
+                $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
+                if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';}          
+                    include (__DIR__."/../../ajax/showVorkenntnisse_AB_BW.php");                     
+            }
+            else if($state=='false' && $kat =='BEL1')
+            {
+                $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
+                if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';} 
+                 for($j = 0; $j < count($vorkenntnisse); $j++){ 
+                   $vorkenntnisse_msg =  $vorkenntnisse[$j]['bezeichnung'] .'; <br>' ;
+              }          
+                    include (__DIR__."/../../ajax/vorkenntnisse_BEL/showVorkenntnisse_AB_BEL1.php");                     
+            }
+            else if($state=='false' && $kat =='BEL2')
+            {
+                $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
+                for($j = 0; $j < count($vorkenntnisse); $j++){ 
+                    $vorkenntnisse_msg =  $vorkenntnisse[$j]['bezeichnung'] .'; <br>' ;
+               } 
+                if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';}          
+                    include (__DIR__."/../../ajax/vorkenntnisse_BEL/showVorkenntnisse_AB_BEL2.php");                     
+            }
+            else if($state=='false' && $kat =='BEL3')
+            {
+                $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
+                for($j = 0; $j < count($vorkenntnisse); $j++){ 
+                    $vorkenntnisse_msg =  $vorkenntnisse[$j]['bezeichnung'] .'; <br>' ;
+               } 
+                if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';}           
+                    include (__DIR__."/../../ajax/vorkenntnisse_BEL/showVorkenntnisse_AB_BEL3.php");                     
+            }
+        }
+
 }

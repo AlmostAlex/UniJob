@@ -1,3 +1,18 @@
+$(document).ready(function(e) {
+    $("select.positionTypes").change(function() {
+        $("select.positionTypes option[value='" + $(this).data('index') + "']").prop('disabled', false);
+        $(this).data('index', this.value);
+        $("select.positionTypes option[value='" + this.value + "']:not([value=''])").prop('disabled', true);
+    });
+
+    $('form').submit(function(e) {
+        $(':disabled').each(function(e) {
+            $(this).removeAttr('disabled');
+        })
+    });
+});
+
+
 $(function() {
     $('[data-toggle="tooltip"]').tooltip()
 })
@@ -396,6 +411,8 @@ function showVorkenntnisseBW(thema_id) {
     xhttp.open("GET", "/ajax/ajax_controller.php?action=showVorkenntnisseBW&id=" + thema_id, true);
     xhttp.send();
 }
+
+
 // VORKENNTNISSE FÜR BELEGWUNSCH ABSCHLUSS
 
 $(document).on('inserted.bs.tooltip', function(e) {
@@ -403,10 +420,8 @@ $(document).on('inserted.bs.tooltip', function(e) {
     $(tooltip.tip).addClass($(e.target).data('tooltip-custom-classes'));
 });
 
-
-
-function showVorkenntnisseBEL(thema_id) {
-    var xhttp;
+function showVorkenntnisseBEL1(thema_id) {
+    var xmlhttp;
     $("#v1").hide();
 
     if (thema_id == "") {
@@ -418,6 +433,35 @@ function showVorkenntnisseBEL(thema_id) {
         $("#v1").show();
     }
 
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("v1").innerHTML = xmlhttp.responseText;
+            $('[data-toggle="tooltip"]').tooltip();
+        }
+    }
+    xmlhttp.open("GET", "/ajax/ajax_controller.php?action=showVorkenntnisseBEL1&id=" + thema_id, true);
+    xmlhttp.send();
+}
+
+
+function showVorkenntnisseBEL2(thema_id) {
+    var xmlhttp;
+    $("#v2").hide();
+
+    if (thema_id == "") {
+        $("#pr1").show();
+        document.getElementById("v2").innerHTML = "";
+        return;
+    } else {
+        $("#pr1").hide();
+        $("#v2").show();
+    }
 
     if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
@@ -425,18 +469,44 @@ function showVorkenntnisseBEL(thema_id) {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
 
-    // code for IE6, IE5
-    xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("v1").innerHTML = this.responseText;
-
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("v2").innerHTML = xmlhttp.responseText;
+            $('[data-toggle="tooltip"]').tooltip();
         }
-    };
+    }
+    xmlhttp.open("GET", "/ajax/ajax_controller.php?action=showVorkenntnisseBEL2&id=" + thema_id, true);
+    xmlhttp.send();
+}
 
-    xhttp.open("GET", "/ajax/ajax_controller.php?action=showVorkenntnisseBEL1&id=" + thema_id, true);
-    xhttp.send();
+
+function showVorkenntnisseBEL3(thema_id) {
+    var xmlhttp;
+    $("#v3").hide();
+
+    if (thema_id == "") {
+        $("#pr1").show();
+        document.getElementById("v3").innerHTML = "";
+        return;
+    } else {
+        $("#pr1").hide();
+        $("#v3").show();
+    }
+
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("v3").innerHTML = xmlhttp.responseText;
+            $('[data-toggle="tooltip"]').tooltip();
+        }
+    }
+    xmlhttp.open("GET", "/ajax/ajax_controller.php?action=showVorkenntnisseBEL3&id=" + thema_id, true);
+    xmlhttp.send();
 }
 
 

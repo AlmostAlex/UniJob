@@ -236,10 +236,10 @@ class modul_model
 
     public function getModulById($modul_id)
     {
-        $statement = $this->dbh->prepare("SELECT modulbezeichnung,professur,kategorie,verfahren,semester,frist_start,frist_ende,studiengang,modul_verfuegbarkeit,nachrueckverfahren From modul Where modul_id =?");
+        $statement = $this->dbh->prepare("SELECT modulbezeichnung,professur,kategorie,abschlusstyp,hinweise,verfahren,semester,frist_start,frist_ende,kickoff,studiengang,modul_verfuegbarkeit,nachrueckverfahren From modul Where modul_id =?");
         $statement->bind_param('i', $modul_id);
         $statement->execute();
-        $statement->bind_result($modulbezeichnung, $professur, $kategorie, $verfahren, $semester, $frist_start, $frist_ende, $studiengang, $modul_verfuegbarkeit, $nachrueckverfahren);
+        $statement->bind_result($modulbezeichnung, $professur, $kategorie,$abschlusstyp,$hinweise, $verfahren, $semester, $frist_start, $frist_ende,$kickoff, $studiengang, $modul_verfuegbarkeit, $nachrueckverfahren);
 
         $modul = array();
         while ($statement->fetch()) {

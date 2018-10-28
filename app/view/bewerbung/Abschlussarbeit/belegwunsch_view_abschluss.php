@@ -1,4 +1,6 @@
 
+
+
 <br>
 <div style='width: 100%; margin:0%; font-size: 1.0rem;' class='verwaltungsbox'>
     <h4 class='card-title'><i class='fa fa-info-circle' aria-hidden='true'></i> Informationen zur Bewerbung</h4>
@@ -43,9 +45,28 @@
                 </td>           
 </tr>
             <tr>
-                <td><label for='Thema'><b>Thema:</b><red style='color: red'>*</red></label></td>
+                <td><label for='Thema'><b>Thema 1:</b><red style='color: red'>*</red></label></td>
                 <td>
-                    <select class='form-control' id='Thema' name='Thema' onchange="showVorkenntnisseBEL(this.value)" required>
+                    <select class='form-control positionTypes' id='Thema1' name='Thema1' onchange="showVorkenntnisseBEL1(this.value)" required>
+                    <option></option>
+                    <?php for($i = 0; $i < count($themen); $i++){  ?>
+                        <option value='<?php echo $themen[$i]['thema_id'] ?>'> <?php echo $themen[$i]['themenbezeichnung'] ?> </option>
+                    <?php } ?>
+                    </select>
+                </td>
+              <td style='width: 200px;'>
+                 <!-- <div id='pr1' class="alert alert-danger"  style='width: 175px; padding: 8px; padding-left: 10px; margin-bottom: 0px; font-size: 14px;' role="alert">
+                Wähle deine 1. Priorität.
+                </div>
+        -->
+                <div id="v1"></div>
+                </td>
+            </tr>
+
+             <tr>
+            <td><label for='Thema'><b>Thema 2:</b><red style='color: red'>*</red></label></td>
+            <td>
+                    <select class='form-control positionTypes' id='Thema2' name='Thema2' onchange="showVorkenntnisseBEL2(this.value)" required>
                     <option></option>
                     <?php for($i = 0; $i < count($themen); $i++){  ?>
                         <option value='<?php echo $themen[$i]['thema_id'] ?>'> <?php echo $themen[$i]['themenbezeichnung'] ?> </option>
@@ -53,26 +74,42 @@
                     </select>
                 </td>
                 <td style='width: 200px;'>
-
-                <div id='pr1' class="alert alert-danger"  style='width: 175px; padding: 8px; padding-left: 10px; margin-bottom: 0px; font-size: 14px;' role="alert">
-                Wähle deine 1. Priorität.
-                </div>
-        
-                <div id="v1">
-                <i class="fas fa-exclamation-circle custom-tooltip" data-tooltip-custom-classes="tooltip-large tooltip-right tooltip-danger" data-toggle="tooltip" data-placement="right" title="Tooltip on bototm"></i>
-                </div>
-
+                <div id="v2"></div>
                 </td>
-            </tr>
-           <!--  <tr>
-         <td>
-         </td>
-        <td colspan='2'>
-            <div id="v1"></div>
-        </td>
-        </tr>-->
-<tr>
 
+             </tr>
+
+             <tr>
+            <td><label for='Thema'><b>Thema 3:</b><red style='color: red'>*</red></label></td>
+            <td>
+                    <select class='form-control positionTypes' id='Thema3' name='Thema3' onchange="showVorkenntnisseBEL3(this.value)" required>
+                    <option></option>
+                    <?php for($i = 0; $i < count($themen); $i++){  ?>
+                        <option value='<?php echo $themen[$i]['thema_id'] ?>'> <?php echo $themen[$i]['themenbezeichnung'] ?> </option>
+                    <?php } ?>
+                    </select>
+                </td>
+                <td style='width: 200px;'>
+                <div id="v3"></div>
+                </td>
+             </tr>
+             </table>
+             </table>
+<table>
+    <tr>
+         <td colspan=3><br>
+         <div class="abfrageZulassung" role="alert">
+                <center><label for='Vorkenntnisse'>
+                <b>Erfüllst du alle Vorraussetzungen zur Zulassung deiner Abschlussarbeit?</b> <br><br>
+                            <input type="radio" id="Zulassung" name="Zulassung" value="Ja" <?php if($Zulassung == "Ja"){echo "checked";} ?>>
+                            <label for="Ja">Ja</label> 
+                            <input type="radio" id="Zulassung" name="Zulassung" value="Nein" <?php if($Zulassung == "Nein"){echo "checked";} ?> >
+                            <label for="Nein">Nein</label> 
+                </label></center>
+            </div>
+         </td>
+        </tr>
+    <tr>
                 <td>
                 <br>
                  <input type='submit' name='bewerbung_ab_BEL' class='btn btn-primary' value='Formular abschicken'>
@@ -81,3 +118,7 @@
         </table>
     </form>
 </div>
+
+
+
+

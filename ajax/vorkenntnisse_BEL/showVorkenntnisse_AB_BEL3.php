@@ -5,4 +5,3 @@ data-html="true"
 data-toggle="tooltip" data-placement="right" 
 title='<?php echo $vorkenntnisse_msg; ?>'>
 </i>
-

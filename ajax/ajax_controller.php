@@ -32,17 +32,27 @@ if(isset($_GET["action"]) && $_GET["action"] =='tags'){
 
 if(isset($_GET["action"]) && $_GET["action"] =='showVorkenntnisse'){
     $controller = new bewerbung_controller();
-    $controller->Bewerbung_Abschlussarbeit($_GET["id"],'false','WH'); 
+    $controller->Abschluss_AJ($_GET["id"],'false','WH'); 
 }
 
 if(isset($_GET["action"]) && $_GET["action"] =='showVorkenntnisseBW'){
     $controller = new bewerbung_controller();
-    $controller->Bewerbung_Abschlussarbeit($_GET["id"],'false','BW'); 
+    $controller->Abschluss_AJ($_GET["id"],'false','BW'); 
 }
 // VORKENNTNISSE BELEGWUNSCH THEMA 1
 if(isset($_GET["action"]) && $_GET["action"] =='showVorkenntnisseBEL1'){
     $controller = new bewerbung_controller();
-    $controller->Bewerbung_Abschlussarbeit($_GET["id"],'false','BEL1'); 
+    $controller->Abschluss_AJ($_GET["id"],'false','BEL1'); 
+}
+// VORKENNTNISSE BELEGWUNSCH THEMA 2
+if(isset($_GET["action"]) && $_GET["action"] =='showVorkenntnisseBEL2'){
+    $controller = new bewerbung_controller();
+    $controller->Abschluss_AJ($_GET["id"],'false','BEL2'); 
+}
+// VORKENNTNISSE BELEGWUNSCH THEMA 3
+if(isset($_GET["action"]) && $_GET["action"] =='showVorkenntnisseBEL3'){
+    $controller = new bewerbung_controller();
+    $controller->Abschluss_AJ($_GET["id"],'false','BEL3'); 
 }
 
 ?>
