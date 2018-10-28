@@ -4,6 +4,7 @@ include_once(__DIR__."/../model/thema_model.php");
 include_once(__DIR__."/../model/vorkenntnisse_model.php");
 include_once(__DIR__."/../model/windhund_model.php");
 include_once(__DIR__."/../model/bewerbung_model.php");
+include_once(__DIR__."/../model/bewerb_vorkennt_model.php");
 include_once(__DIR__."/../../db.php"); 
 
 class bewerbung_controller
@@ -62,14 +63,11 @@ class bewerbung_controller
                                     include 'app/view/bewerbung/Abschlussarbeit/windhund_view_abschluss.php';  
                                 } else {
                                     // HIER INSERT BEWERBUNG
-                                    echo"AB WH";
                                     $this->windhund_model->insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $zulassung);
                                     $this->getModal("AB_WH_erfolgreich", $thema_id);
                                     include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
                                 }      
                         }
-                    else{     
-                        echo"luluul";
                     else{
                         include 'app/view/bewerbung/Abschlussarbeit/windhund_view_abschluss.php';
                     }
@@ -100,10 +98,8 @@ class bewerbung_controller
                         include 'app/view/bewerbung/Abschlussarbeit/bewerbung_view_abschluss.php';
                     } else {
                         // HIER INSERT BEWERBUNG
-                        $this->getModal("AB_BW_erfolgreich", $thema_id);
-                    
-                       // include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
                         if(($this->bewerbung_model->duplicateBewerbungCheck($matrikelnummer, $thema_id)) == "duplikat"){
+                            $this->punkteBerechnung($fachsemester, $studiengang, $credits, " ");
                             $this->bewerbung_model->updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung);
                             $this->getModal("AB_BW_erfolgreich", $thema_id);
                             // include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
@@ -113,7 +109,7 @@ class bewerbung_controller
                             $this->getModal("AB_BW_erfolgreich", $thema_id);
                             // include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
                         }
-                    }      
+                    }
             }
         else{     
             include 'app/view/bewerbung/Abschlussarbeit/bewerbung_view_abschluss.php';
@@ -167,7 +163,6 @@ class bewerbung_controller
         else{
             echo "nicht gueltig";
         }
-    
 }
 
     public function Bewerbung_Seminararbeit($id,$state)
@@ -205,8 +200,8 @@ class bewerbung_controller
                 $modal['content'] = 'Möchtest du wirklich dich da wirklich anmelden?';
                 $modal['btn'] = 'Anmeldung versenden';
                 $modal['btn_class'] = 'btn btn-primary';
-                $modal['btn_url'] = '';
-                include 'app/view/modals/bewerbung_modal.php';
+                $modal['btn_url'] = '#';
+                include 'app/view/modul_verwaltung/modals/modal_modul.php';
                 break;
 
                 case 'bewerbung_senden':
@@ -219,7 +214,7 @@ class bewerbung_controller
                 $modal['type'] = 'submit';
                 $modal['name'] = 'bewerbung_ab_WH';
                 $modal['btn_url'] = '#';
-                include 'app/view/modals/bewerbung_modal.php';
+                include 'app/view/modul_verwaltung/modals/modal_modul.php';
                 break;
 
                 case 'AB_WH_erfolgreich':
