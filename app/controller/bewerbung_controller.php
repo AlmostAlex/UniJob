@@ -4,6 +4,7 @@ include_once(__DIR__."/../model/thema_model.php");
 include_once(__DIR__."/../model/vorkenntnisse_model.php");
 include_once(__DIR__."/../model/windhund_model.php");
 include_once(__DIR__."/../model/bewerbung_model.php");
+include_once(__DIR__."/../model/bewerb_vorkennt_model.php");
 include_once(__DIR__."/../../db.php"); 
 
 class bewerbung_controller
@@ -98,6 +99,7 @@ class bewerbung_controller
                     } else {
                         // HIER INSERT BEWERBUNG
                         if(($this->bewerbung_model->duplicateBewerbungCheck($matrikelnummer, $thema_id)) == "duplikat"){
+                            $this->punkteBerechnung($fachsemester, $studiengang, $credits, " ");
                             $this->bewerbung_model->updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung);
                             $this->getModal("AB_BW_erfolgreich", $thema_id);
                             // include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
@@ -107,7 +109,7 @@ class bewerbung_controller
                             $this->getModal("AB_BW_erfolgreich", $thema_id);
                             // include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
                         }
-                    }      
+                    }
             }
         else{     
             include 'app/view/bewerbung/Abschlussarbeit/bewerbung_view_abschluss.php';
@@ -161,7 +163,6 @@ class bewerbung_controller
         else{
             echo "nicht gueltig";
         }
-    
 }
 
     public function Bewerbung_Seminararbeit($id,$state)
