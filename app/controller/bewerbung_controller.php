@@ -82,12 +82,9 @@ class bewerbung_controller
             if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
             if(isset($_POST['Credits'])) { $credits  = $_POST['Credits']; } else{ $credits = '';}
             $dup = '';
-            echo "nix nix nix";
             $modul = $this->modul_model->getModulById($id);
             $themen = $this->thema_model->getThemenVG($id,'');
             if (isset($_POST['bewerbung_ab_BW'])) {
-                echo"bew";
-                echo"bew";
                 // AB HIER ALLES CHECKEN LASSEN
                     if($check_modul == 'falseTime'){
                         $this->getModal("modulFalseTime", $id);
@@ -98,7 +95,6 @@ class bewerbung_controller
                     } else {
                         // HIER INSERT BEWERBUNG
                         if( $dup == "duplikat"){
-                            echo "hello6666";
    // Hier hat Alex verkackt   // if(($this->bewerbung_model->duplicateBewerbungCheck($matrikelnummer, $thema_id)) == "duplikat"){
    
     /* Bei der bewerbung wird jedes feld mit den VOrraussetzungen genommen und geprüft und die Punkte vergeben! */ 
@@ -110,7 +106,6 @@ class bewerbung_controller
                            include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
                             
                         } else {
-                            echo "hello";
                             $this->bewerbung_model->insertBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung);
                             $this->getModal("AB_BW_erfolgreich", $thema_id);
                             include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
@@ -204,7 +199,7 @@ class bewerbung_controller
                                     // HIER INSERT BEWERBUNG
                                 //    $this->windhund_model->insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $zulassung);
                                     $this->getModal("AB_WH_erfolgreich", $thema_id);
-                                    include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
+                                    include 'app/view/bewerbung/Seminararbeit/fazit_abschluss.php';
                                 }      
                         }
                     else{
@@ -214,7 +209,7 @@ class bewerbung_controller
 
 
 // TBC
-// BEWERBUNGSVERFAHREN ABSCHLUSS
+// BEWERBUNGSVERFAHREN
 else if($this->modul_model->getModulVerfahrenByID($id) == 'Bewerbungsverfahren'){
             
     if(isset($_POST['Thema'])) { $thema_id  = $_POST['Thema']; $themenbezeichnung = $this->thema_model->getThemenbezeichnung($thema_id); } 
@@ -227,47 +222,40 @@ else if($this->modul_model->getModulVerfahrenByID($id) == 'Bewerbungsverfahren')
     if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
     if(isset($_POST['Credits'])) { $credits  = $_POST['Credits']; } else{ $credits = '';}
     $dup = '';
-    echo "nix nix nix";
     $modul = $this->modul_model->getModulById($id);
     $themen = $this->thema_model->getThemenVG($id,'');
     if (isset($_POST['bewerbung_ab_BW'])) {
-        echo"bew";
-        echo"bew";
+
         // AB HIER ALLES CHECKEN LASSEN
             if($check_modul == 'falseTime'){
                 $this->getModal("modulFalseTime_AB_WH", $id);
-                include 'app/view/bewerbung/Abschlussarbeit/bewerbung_view_abschluss.php';
+                include 'app/view/bewerbung/Seminararbeit/bewerbung_view_seminar.php';
             } else if($check_thema == 'false_TH_Verfuegbarkeit'){
                 $this->getModal("themaFalseVG_AB_WH", $thema_id);
-                include 'app/view/bewerbung/Abschlussarbeit/bewerbung_view_abschluss.php';
+                include 'app/view/bewerbung/Seminararbeit/bewerbung_view_seminar.php';
             } else {
                 // HIER INSERT BEWERBUNG
                 if( $dup == "duplikat"){
-                    echo "hello6666";
 // Hier hat Alex verkackt   // if(($this->bewerbung_model->duplicateBewerbungCheck($matrikelnummer, $thema_id)) == "duplikat"){
-
 /* Bei der bewerbung wird jedes feld mit den VOrraussetzungen genommen und geprüft und die Punkte vergeben! */ 
 /* Das Feld "Vorraussetzung macht hier also beim insert NULL Sinn "*/        
-
                     $this->punkteBerechnung($fachsemester, $studiengang, $credits, " "); //Vorraussetzungen
                     $this->bewerbung_model->updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung);
                     $this->getModal("AB_BW_erfolgreich", $thema_id);
-                   include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
-                    
+                   include 'app/view/bewerbung/Seminararbeit/fazit_seminar.php';                   
                 } else {
-                    echo "hello";
                     $this->bewerbung_model->insertBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung);
                     $this->getModal("AB_BW_erfolgreich", $thema_id);
-                    include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
+                    include 'app/view/bewerbung/Seminararbeit/fazit_seminar.php';
                 }
             }
     }
 else{     
-    include 'app/view/bewerbung/Abschlussarbeit/bewerbung_view_abschluss.php';
+    include 'app/view/bewerbung/Seminararbeit/bewerbung_view_seminar.php';
 }
 }
 
-// BELEGWUNSCHVERFAHREN ABSCHLUSS
+// BELEGWUNSCHVERFAHREN 
     else if($this->modul_model->getModulVerfahrenByID($id) == 'Belegwunschverfahren'){
 
         if(isset($_POST['Thema'])) { $thema_id  = $_POST['Thema']; 
@@ -290,34 +278,30 @@ else{
             // AB HIER ALLES CHECKEN LASSEN
                 if($check_modul == 'falseTime'){
                     $this->getModal("modulFalseTime_AB_WH", $id);
-                    include 'app/view/bewerbung/Abschlussarbeit/belegwunsch_view_abschluss.php';     
+                    include 'app/view/bewerbung/Seminararbeit/belegwunsch_view_seminar.php';     
                 } else if($check_thema == 'false_TH_Verfuegbarkeit'){
                     $this->getModal("themaFalseVG_AB_WH", $thema_id);
-                    include 'app/view/bewerbung/Abschlussarbeit/belegwunsch_view_abschluss.php';  
+                    include 'app/view/bewerbung/Seminararbeit/belegwunsch_view_seminar.php';  
                 } else {
                     // HIER INSERT BEWERBUNG
                     $this->getModal("AB_BW_erfolgreich", $thema_id);
-                    include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
+                    include 'app/view/bewerbung/Seminararbeit/fazit_seminar.php';
                 }      
         }
     else{     
-        include 'app/view/bewerbung/Abschlussarbeit/belegwunsch_view_abschluss.php';
+        include 'app/view/bewerbung/Seminararbeit/belegwunsch_view_seminar.php';
     }
 
     }
 }
     else{ // Wenn Nachrueckverfahren ist, wird immer winhund-formular angezeigt
-     echo"nachrueckv";
-        include 'app/view/bewerbung/windhund_view.php';
+        include 'app/view/bewerbung/Seminararbeit/windhund_view_seminar.php';
     } 
 } 
 else{
     echo "nicht gueltig";
 }
-
-
     }
-
         public function getModal($form, $id) // Modal Konfigurationen
         {
            $modal['case'] = $modal['title'] = $modal['body_class'] = $modal['content'] = $modal['img'] = $modal['btn'] = $modal['btn_class'] = $modal['btn_url'] = '';
