@@ -56,8 +56,7 @@ class modul_controller
                 $this->Modul_Verwaltung('false',$id);
 
         } else if ($action == 'mt_verwaltung' && $action2 == 'modul' && $action3 == 'add_thema') { 
-                $this->addThema($id);  
-
+            $this->addThema($id);  
         }else if ($action == 'mt_verwaltung' && $action2 == 'modul' && $action3 == 'edit' && $action4 == 'Seminararbeit') { 
             $this->editSeminar($id);
         }else if ($action == 'mt_verwaltung' && $action2 == 'modul' && $action3 == 'edit' && $action4 == 'Abschlussarbeit') { 
@@ -287,7 +286,13 @@ public function editThema($thema_id)
         $themen = $this->thema_model->getThemen($modul_id, '');
         include 'app/view/modul_verwaltung/edit_abschluss_view.php';
 }
+// Archivierung
 
+public function archivierung() // Modal Konfigurationen
+{
+ include 'app/view/archivierung/archvierung_view.php';
+
+}
 // gehört in den Model 
     public function getModal($form, $id) // Modal Konfigurationen
     {

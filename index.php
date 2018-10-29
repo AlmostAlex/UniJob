@@ -17,13 +17,9 @@ $router->map(["GET", "GET"], ["/", "/index"], function (Response $response) {
     $response->render("app/view/info/info_view.php");
 });
 
-$router->map(["GET", "GET"], ["app/controller/ajax_controller.php"], function (Response $response) {
-});
-
 $router->map(["GET", "POST"], ["/login"], function () {  
     $controller = new Controller();
     $controller->login(); 
-  
 });
 
 $router->map(["GET"], ["/logout"], function () {  
@@ -31,13 +27,11 @@ $router->map(["GET"], ["/logout"], function () {
     $controller->logout(); 
 });
 
-
 $router->map(["GET", "POST"],["/bewerbung/{action}/{id}"], function ($action,$id) {
     $bewerbung = new bewerbung_controller();
     $bewerbung->Route($action,$id,'true','show'); 
 });
 /* PUBLIC END*/ 
-
 
 
 /* ADMIN */
@@ -82,6 +76,14 @@ $router->map(["GET", "POST"],["/modul_uebersicht"], function () {
     $modul_uebersicht->modulUebersicht('','','','','true');
 });
 
+$router->map(["GET", "POST"],["/archivierung"], function () {
+    $modul = new modul_controller();
+    $modul->archivierung('archivierung'); 
+});
+
+/* Ajax */
+$router->map(["GET", "GET"], ["app/controller/ajax_controller.php"], function (Response $response) {
+});
 
 $router->dispatch();
 include('layout/navi.php');

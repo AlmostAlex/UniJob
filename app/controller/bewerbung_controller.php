@@ -288,10 +288,7 @@ else{
                     include 'app/view/bewerbung/Seminararbeit/fazit_seminar.php';
                 }      
         }
-    else{     
-        include 'app/view/bewerbung/Seminararbeit/belegwunsch_view_seminar.php';
-    }
-
+    else{  include 'app/view/bewerbung/Seminararbeit/belegwunsch_view_seminar.php'; }
     }
 }
     else{ // Wenn Nachrueckverfahren ist, wird immer winhund-formular angezeigt

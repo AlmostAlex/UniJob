@@ -21,6 +21,7 @@
                 <i class="fas fa-angle-right"></i> <a href="/seminar_eintragen">Seminarthemen eintragen</a><br>
                 <i class="fas fa-angle-right"></i> <a href="/abschlussarbeit_eintragen">Abschlussthemen eintragen</a><br>
                 <i class="fas fa-angle-right"></i> <a href="/mt_verwaltung">Modul- und Themenverwaltung</a><br>
+                <i class="fas fa-angle-right"></i> <a href="/archivierung">Archvierungen einsehen</a><br>
                 <i class="fas fa-angle-right"></i> <a href="/report_wahl">Report erstellen</a><br>
             </p>
         </div>
