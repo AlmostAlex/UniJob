@@ -60,7 +60,7 @@ class bewerbung_controller
                                     include 'app/view/bewerbung/Abschlussarbeit/windhund_view_abschluss.php';  
                                 } else {
                                     // HIER INSERT BEWERBUNG
-                                //    $this->windhund_model->insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $zulassung);
+                                    $this->windhund_model->insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $zulassung);
                                     $this->getModal("AB_WH_erfolgreich", $thema_id);
                                     include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
                                 }      

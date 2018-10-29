@@ -14,11 +14,11 @@ class windhund_model
         $this->heute_dt = new DateTime(date("Y-m-d"));
     }
 
-    public function insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetungen)
+    public function insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetzungen)
     {
-        if ($statement = $this->dbh->prepare("INSERT INTO `windhund` (`vorname`, `nachname`, `matrikelnummer`, `email`, `thema_id`, `status`, `timestamp`, `voraussetungen`)
-        VALUES (?,?,?,?,?,'angenommen',".$this->heute_dt.",?)")) {
-            $statement->bind_param('ssisisss', $vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetungen);
+        if ($statement = $this->dbh->prepare("INSERT INTO `windhund` (`vorname`, `nachname`, `matrikelnummer`, `email`, `thema_id`, `status`, `voraussetzungen`)
+        VALUES (?,?,?,?,?,'angenommen',?)")) {
+            $statement->bind_param('ssisis', $vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetzungen);
             $statement->execute();
 
             $this->thema->updateStatus($thema_id);

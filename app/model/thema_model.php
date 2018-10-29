@@ -155,7 +155,7 @@ class thema_model
 
     public function updateStatus($thema_id)
     {
-        $statement = $this->dba->prepare("UPDATE thema SET thema_verfuegbarkeit = Vergeben WHERE thema_id = ?");
+        $statement = $this->dbh->prepare("UPDATE thema SET thema_verfuegbarkeit = 'Vergeben' WHERE thema_id = ?");
         $statement->bind_param('i', $thema_id);
         $statement->execute();
     }
