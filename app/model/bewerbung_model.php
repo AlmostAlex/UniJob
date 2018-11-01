@@ -10,6 +10,7 @@ class bewerbung_model
         require(__DIR__."/../../db.php");
         $this->dbh = $dbh;
         $this->thema = new thema_model();
+        $this->vorkenntnisse = new vorkenntnisse_model();
         $this->bewerb_vorkennt = new bewerb_vorkennt_model();
         date_default_timezone_set("Europe/Berlin");
         $this->heute_dt = new DateTime(date("Y-m-d"));
@@ -22,22 +23,22 @@ class bewerbung_model
             $statement->bind_param('ssisiss', $vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetungen);
             $statement->execute();
             $last_id = $this->lastBewerbungID();
-            $this->bewerb_vorkennt->insertBewerbVorkennt($last_id, $thema_id, $vorkenntnisse);
-
+            $vorkenntnisse_id = $this->vorkenntnisse->VorkenntnisseByThemaID($thema_id);
+            $this->bewerb_vorkennt->insertBewerbVorkennt($last_id, $vorkenntnisse_id, $vorkenntnisse);
         } else {
             $error = $this->dbh->errno . ' ' . $this->dbh->error;
             echo "Fehlercode: " . $error . "<br/> Eintragung der Bewerbung ist fehlgeschlagen.";
         }
     }
 
-    
     public function updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $voraussetungen)
     {
         if ($statement = $this->dbh->prepare("UPDATE bewerbung SET vorname = ?, nachname = ?, email = ?, thema_id = ?, status = ?, voraussetungen = ? WHERE matrikelnummer = ?)
         VALUES (?,?,?,?,'offen',?,?)")) {
             $statement->bind_param('sssissi', $vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetungen);
             $statement->execute();
-
+            $vorkenntnisse_id = $this->vorkenntnisse->VorkenntnisseByThemaID($thema_id);
+            $this->bewerb_vorkennt->updateBewerbVorkennt($matrikelnummer, $vorkenntnisse_id, $vorkenntnisse);
         } else {
             $error = $this->dbh->errno . ' ' . $this->dbh->error;
             echo "Fehlercode: " . $error . "<br/> Update der Bewerbung ist fehlgeschlagen.";
@@ -46,11 +47,11 @@ class bewerbung_model
 
     public function duplicateBewerbungCheck($matrikelnummer, $thema_id)
     {
-        $statement = $this->dbh->prepare("SELECT matrikelnummer, thema_id FROM modul, thema, bewerbung
+        $statement = $this->dbh->prepare("SELECT matrikelnummer, bewerbung.thema_id FROM modul, thema, bewerbung
                                             WHERE bewerbung.matrikelnummer = ?
                                             AND bewerbung.thema_id = thema.thema_id
                                             AND thema.modul_id = modul.modul_id
-                                            AND modul.semester = (SELECT semester 
+                                            AND modul.semester = (SELECT semester
                                                                 FROM modul, thema
                                                                 WHERE thema.modul_id = modul.modul_id
                                                                 AND thema.thema_id = ?)");
@@ -61,7 +62,6 @@ class bewerbung_model
         } else { $duplicate = "neu"; }
         return $duplicate;
     }
-
 
     public function lastBewerbungID()
     {

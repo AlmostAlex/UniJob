@@ -81,7 +81,6 @@ class bewerbung_controller
             if(isset($_POST['Fachsemester'])) { $fachsemester  = $_POST['Fachsemester']; } else{ $fachsemester = '';}
             if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
             if(isset($_POST['Credits'])) { $credits  = $_POST['Credits']; } else{ $credits = '';}
-            $dup = '';
             $modul = $this->modul_model->getModulById($id);
             $themen = $this->thema_model->getThemenVG($id,'');
             if (isset($_POST['bewerbung_ab_BW'])) {
@@ -94,16 +93,11 @@ class bewerbung_controller
                         include 'app/view/bewerbung/Abschlussarbeit/bewerbung_view_abschluss.php';
                     } else {
                         // HIER INSERT BEWERBUNG
-                        if( $dup == "duplikat"){
-   // Hier hat Alex verkackt   // if(($this->bewerbung_model->duplicateBewerbungCheck($matrikelnummer, $thema_id)) == "duplikat"){
-   
-    /* Bei der bewerbung wird jedes feld mit den VOrraussetzungen genommen und geprüft und die Punkte vergeben! */ 
-   /* Das Feld "Vorraussetzung macht hier also beim insert NULL Sinn "*/        
-   
-                            $this->punkteBerechnung($fachsemester, $studiengang, $credits, " "); //Vorraussetzungen
+                        //$punkte = $this->punkteBerechnung($credits, " ", $fachsemester, $studiengang);
+                        if(($this->bewerbung_model->duplicateBewerbungCheck($matrikelnummer, $thema_id)) == "duplikat"){
                             $this->bewerbung_model->updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung);
                             $this->getModal("AB_BW_erfolgreich", $thema_id);
-                           include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
+                            include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
                             
                         } else {
                             $this->bewerbung_model->insertBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung);
@@ -194,7 +188,7 @@ class bewerbung_controller
                                     include 'app/view/bewerbung/Seminararbeit/windhund_view_seminar.php';     
                                 } else if($check_thema == 'false_TH_Verfuegbarkeit'){
                                     $this->getModal("themaFalseVG", $thema_id);
-                                    include 'app/view/bewerbung/Seminararbeit/windhund_view_seminar.php';  
+                                    include 'app/view/bewerbung/Seminararbeit/windhund_view_seminar.php';
                                 } else {
                                     // HIER INSERT BEWERBUNG
                                 //    $this->windhund_model->insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $zulassung);

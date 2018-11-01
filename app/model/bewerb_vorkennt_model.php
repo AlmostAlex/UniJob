@@ -10,16 +10,30 @@ class bewerb_vorkennt_model
         $this->vorkenntnisse = new vorkenntnisse_model();    
     }
 
-    public function insertBewerbVorkennt($vorkenntnisse, $thema_id)
+    public function insertBewerbVorkennt($bewerbung_id, $vorkenntnisse_id, $vorkenntnisse)
     {
         $vorkenntnisse_array = explode(",", $vorkenntnisse); // heraus kommt [0] --> blubb [1] --> bla etc
         $k = 0;
         while ($k < count($vorkenntnisse_array)) {
-            $statement = $this->dbh->prepare("INSERT INTO `vorkenntnisse` (`bezeichnung`,`thema_id`)
-        VALUES (?,?)");
-            $statement->bind_param('si', $vorkenntnisse_array[$k], $thema_id);
+            $statement = $this->dbh->prepare("INSERT INTO `bewerb_vorkennt` (`bewerbung_id`,`vorkenntnisse_id`,`abgeschlossen`)
+                                                VALUES (?,?,?)");
+            $statement->bind_param('iis', $bewerbung_id, $vorkenntnisse_id['vorkenntnisse_id'][$k], $vorkenntnisse_array[$k]);
             $statement->execute();
             $k = $k + 1;
+        }
+    }
+
+    public function updateBewerbVorkennt($bewerbung_id, $vorkenntnisse_id, $vorkenntnisse)
+    {
+        $vorkenntnisse_array = explode(",", $vorkenntnisse); // heraus kommt [0] --> blubb [1] --> bla etc
+        $k = 0;
+        while ($k < count($vorkenntnisse_array)) {
+            $statement = $this->dbh->prepare("UPDATE bewerb_vorkennt SET bewerbung_id = ?, vorkenntnisse_id = ?, abgeschlossen = ? 
+                                            WHERE bewerbung_id = ? AND vorkenntnisse_id = ?)
+                                            VALUES (?,?,?)");
+            $statement->bind_param('iis', $bewerbung_id, $vorkenntnisse_id['vorkenntnisse_id'][$k], $vorkenntnisse_array[$k]);
+            $statement->execute();
+            $k = $k+1;
         }
     }
 

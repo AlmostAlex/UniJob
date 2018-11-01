@@ -149,7 +149,6 @@ class thema_model
         $statement->execute();
         $statement->bind_result($themenbezeichnung);
         $statement->fetch();
-        $statement->fetch();
         return $themenbezeichnung;
     }
 
