@@ -26,13 +26,14 @@ class bewerb_vorkennt_model
 
     public function updateBewerbVorkennt($bewerbung_id, $vorkenntnisse_id, $vorkenntnisse)
     {
-        $vorkenntnisse_array = explode(",", $vorkenntnisse); // heraus kommt [0] --> blubb [1] --> bla etc
+
         $k = 0;
-        while ($k < count($vorkenntnisse_array)) {
-            $statement = $this->dbh->prepare("UPDATE bewerb_vorkennt SET bewerbung_id = ?, vorkenntnisse_id = ?, abgeschlossen = ? 
-                                            WHERE bewerbung_id = ? AND vorkenntnisse_id = ?)
-                                            VALUES (?,?,?)");
-            $statement->bind_param('iis', $bewerbung_id, $vorkenntnisse_id['vorkenntnisse_id'][$k], $vorkenntnisse_array[$k]);
+        while ($k < count($vorkenntnisse)) {
+            if($vorkenntnisse[$k] == "Nein"){ $abgeschlossen = "Nein"; }
+            else{ $abgeschlossen = "Ja"; }
+            $statement = $this->dbh->prepare("UPDATE bewerb_vorkennt SET abgeschlossen = ? 
+                                            WHERE bewerbung_id = ? AND vorkenntnisse_id = ?");
+            $statement->bind_param('sii', $abgeschlossen, $bewerbung_id, $vorkenntnisse_id[$k]['vorkenntnisse_id']);
             $statement->execute();
             $k = $k+1;
         }
