@@ -32,7 +32,7 @@ class vorkenntnisse_model
     }
 
     
-    public function VorkenntnisseByThemaID($thema_id)
+    public function vorkenntnisseByThemaID($thema_id)
     {
         $statement = $this->dbh->prepare("SELECT vorkenntnisse_id, bezeichnung FROM vorkenntnisse WHERE thema_id =?");
         $statement->bind_param('i', $thema_id);

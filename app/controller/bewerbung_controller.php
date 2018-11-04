@@ -93,14 +93,14 @@ class bewerbung_controller
                         include 'app/view/bewerbung/Abschlussarbeit/bewerbung_view_abschluss.php';
                     } else {
                         // HIER INSERT BEWERBUNG
-                        //$punkte = $this->punkteBerechnung($credits, " ", $fachsemester, $studiengang);
+                        $punkte = $this->punkteverteilung($thema_id, $fachsemester, $studiengang, $credits, " ");
                         if(($this->bewerbung_model->duplicateBewerbungCheck($matrikelnummer, $thema_id)) == "duplikat"){
-                            $this->bewerbung_model->updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung);
+                            $this->bewerbung_model->updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung, $fachsemester, $studiengang, $credits, $punkte);
                             $this->getModal("AB_BW_erfolgreich", $thema_id);
                             include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
                             
                         } else {
-                            $this->bewerbung_model->insertBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung);
+                            $this->bewerbung_model->insertBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung, $fachsemester, $studiengang, $credits, $punkte);
                             $this->getModal("AB_BW_erfolgreich", $thema_id);
                             include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
                         }
@@ -293,8 +293,45 @@ else{
     echo "nicht gueltig";
 }
     }
-        public function getModal($form, $id) // Modal Konfigurationen
+
+    public function punkteverteilung($thema_id, $fachsemester, $studiengang, $credits, $seminarteilnahme)
+    {
+        $studiengang_db = $this->thema_model->getStudiengangbyThema($thema_id);
+
+        $creditpunkte = 0;
+        $seminarpunkte = 0;
+        $studiengangpunkte = 0;
+        $semesterpunkte = 0;
+
+        if($seminarteilnahme == "ja" OR $seminarteilnahme == " ")
         {
+	        $seminarpunkte += 0;
+        } else { $seminarpunkte += 10;}
+
+        if($studiengang == $studiengang_db)
+        {
+	        $studiengangpunkte +=15;
+        } else { $studiengangpunkte +=0;}
+
+        $creditpunkte = round($credits/4);
+        $semesterpunkte = $fachsemester*4;
+
+        if(($creditpunkte+$seminarpunkte+$studiengangpunkte+$semesterpunkte) > 100)
+        {
+	        $gesamtpunkte = 100;
+        } else { $gesamtpunkte = $creditpunkte+$seminarpunkte+$studiengangpunkte+$semesterpunkte; }
+        $punkte = array(
+        'fachsemester' => $semesterpunkte,
+        'studiengang' => $studiengangpunkte,
+        'credits' => $creditpunkte,
+        'seminarteilnahme' => $seminarpunkte,
+        'gesamt' => $gesamtpunkte
+        );
+        return $punkte;
+    }
+    
+    public function getModal($form, $id) // Modal Konfigurationen
+    {
            $modal['case'] = $modal['title'] = $modal['body_class'] = $modal['content'] = $modal['img'] = $modal['btn'] = $modal['btn_class'] = $modal['btn_url'] = '';
            $modal['type'] = $modal['linkage'] = $modal['name'] = '';
             switch ($form) {

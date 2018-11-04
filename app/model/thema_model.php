@@ -152,6 +152,16 @@ class thema_model
         return $themenbezeichnung;
     }
 
+    public function getStudiengangbyThema($thema_id)
+    {
+        $statement = $this->dbh->prepare("SELECT modul.studiengang FROM thema, modul WHERE thema.thema_id = ? AND thema.modul_id = modul.modul_id");
+        $statement->bind_param('i', $thema_id);
+        $statement->execute();
+        $statement->bind_result($studiengang);
+        $statement->fetch();
+        return $studiengang;
+    }
+
     public function updateStatus($thema_id)
     {
         $statement = $this->dbh->prepare("UPDATE thema SET thema_verfuegbarkeit = 'Vergeben' WHERE thema_id = ?");

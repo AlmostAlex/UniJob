@@ -16,14 +16,14 @@ class bewerbung_model
         $this->heute_dt = new DateTime(date("Y-m-d"));
     }
 
-    public function insertBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $voraussetungen)
+    public function insertBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $voraussetungen, $fachsemester, $studiengang, $credits, $punkte)
     {
-        if ($statement = $this->dbh->prepare("INSERT INTO `windhund` (`vorname`, `nachname`, `matrikelnummer`, `email`, `thema_id`, `status`, `voraussetungen`)
-        VALUES (?,?,?,?,?,'angenommen',?)")) {
-            $statement->bind_param('ssisiss', $vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetungen);
+        if ($statement = $this->dbh->prepare("INSERT INTO `bewerbung` (`vorname`, `nachname`, `matrikelnummer`, `email`, `thema_id`, `status`, `voraussetung`, `fachsemester`, `fachsemester_punkte`, `studiengang`, `studiengang_punkte`, `credits`, `credits_punkte`, `gesamt_punkte`)
+        VALUES (?,?,?,?,?,'offen',?)")) {
+            $statement->bind_param('ssisissidsiidd', $vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetungen, $fachsemester, $punkte['fachsemester'], $studiengang, $punkte['studiengang'], $credits, $punkte['credits'], $punkte['gesamt']);
             $statement->execute();
             $last_id = $this->lastBewerbungID();
-            $vorkenntnisse_id = $this->vorkenntnisse->VorkenntnisseByThemaID($thema_id);
+            $vorkenntnisse_id = $this->vorkenntnisse->vorkenntnisseByThemaID($thema_id);
             $this->bewerb_vorkennt->insertBewerbVorkennt($last_id, $vorkenntnisse_id, $vorkenntnisse);
         } else {
             $error = $this->dbh->errno . ' ' . $this->dbh->error;
@@ -31,13 +31,13 @@ class bewerbung_model
         }
     }
 
-    public function updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $voraussetungen)
+    public function updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $voraussetungen, $fachsemester, $studiengang, $credits, $punkte)
     {
-        if ($statement = $this->dbh->prepare("UPDATE bewerbung SET vorname = ?, nachname = ?, email = ?, thema_id = ?, status = ?, voraussetungen = ? WHERE matrikelnummer = ?)
-        VALUES (?,?,?,?,'offen',?,?)")) {
-            $statement->bind_param('sssissi', $vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetungen);
+        if ($statement = $this->dbh->prepare("UPDATE bewerbung SET vorname = ?, nachname = ?, email = ?, thema_id = ?, status = ?, voraussetung = ?, fachsemester = ?, fachsemester_punkte = ?, studiengang = ?, studiengang_punkte =?, credits = ?, credits_punkte = ?, gesamt_punkte = ? WHERE matrikelnummer = ?)
+        VALUES (?,?,?,?,'offen',?,?,?,?,?,?,?,?,?)")) {
+            $statement->bind_param('sssissidsiiddi', $vorname, $nachname, $email, $thema_id, $voraussetungen, $fachsemester, $punkte['fachsemester'], $studiengang, $punkte['studiengang'], $credits, $punkte['credits'], $punkte['gesamt'], $matrikelnummer);
             $statement->execute();
-            $vorkenntnisse_id = $this->vorkenntnisse->VorkenntnisseByThemaID($thema_id);
+            $vorkenntnisse_id = $this->vorkenntnisse->vorkenntnisseByThemaID($thema_id);
             $this->bewerb_vorkennt->updateBewerbVorkennt($matrikelnummer, $vorkenntnisse_id, $vorkenntnisse);
         } else {
             $error = $this->dbh->errno . ' ' . $this->dbh->error;
