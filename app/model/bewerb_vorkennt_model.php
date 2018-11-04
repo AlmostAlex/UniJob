@@ -12,12 +12,13 @@ class bewerb_vorkennt_model
 
     public function insertBewerbVorkennt($bewerbung_id, $vorkenntnisse_id, $vorkenntnisse)
     {
-        $vorkenntnisse_array = explode(",", $vorkenntnisse); // heraus kommt [0] --> blubb [1] --> bla etc
         $k = 0;
-        while ($k < count($vorkenntnisse_array)) {
+        while ($k < count($vorkenntnisse)) {
+            if($vorkenntnisse[$k] == "Nein"){ $abgeschlossen = "Nein"; }
+            else{ $abgeschlossen = "Ja"; }
             $statement = $this->dbh->prepare("INSERT INTO `bewerb_vorkennt` (`bewerbung_id`,`vorkenntnisse_id`,`abgeschlossen`)
                                                 VALUES (?,?,?)");
-            $statement->bind_param('iis', $bewerbung_id, $vorkenntnisse_id['vorkenntnisse_id'][$k], $vorkenntnisse_array[$k]);
+            $statement->bind_param('iis', $bewerbung_id, $vorkenntnisse_id[$k]['vorkenntnisse_id'], $abgeschlossen);
             $statement->execute();
             $k = $k + 1;
         }

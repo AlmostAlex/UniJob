@@ -81,6 +81,11 @@ class bewerbung_controller
             if(isset($_POST['Fachsemester'])) { $fachsemester  = $_POST['Fachsemester']; } else{ $fachsemester = '';}
             if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
             if(isset($_POST['Credits'])) { $credits  = $_POST['Credits']; } else{ $credits = '';}
+            $vorkenntnisse = array();
+            for($i=0; isset($_POST['Vorkenntnisse_'.$i]) == true;$i++)
+            { 
+                $vorkenntnisse[$i] = $_POST['Vorkenntnisse_'.$i];
+            }
             $modul = $this->modul_model->getModulById($id);
             $themen = $this->thema_model->getThemenVG($id,'');
             if (isset($_POST['bewerbung_ab_BW'])) {
