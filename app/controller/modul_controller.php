@@ -290,6 +290,10 @@ public function editThema($thema_id)
 
 public function archivierung() // Modal Konfigurationen
 {
+
+    $semester = $this->modul_model->getSemester();
+    $c_all = $this->modul_model->getSemesterCountAll();
+    $module = $this->modul_model->getArchivierteModule();
  include 'app/view/archivierung/archvierung_view.php';
 
 }

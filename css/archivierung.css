@@ -1,0 +1,58 @@
+.archivierung_box {
+    border-top: 3px solid #3979b5;
+    padding: 20px;
+    margin: 10px 10px 0px 10px;
+    background-color: #e8e8e8bf;
+    border-radius: 13px;
+}
+
+.archivierung_box table {
+    width: 100%;
+}
+
+.archivierung_box table tr td select {
+    width: 200px;
+}
+
+table #tr_sem {
+    font-weight: bold;
+    text-align: left;
+    background-color: #3979b5;
+    vertical-align: top;
+    word-wrap: break-word;
+    margin-bottom: 10px;
+}
+
+table #tr_sem td {
+    margin: 10px;
+}
+
+table #tr_sem #td_f {
+    width: 55px;
+    padding: 10px;
+    color: white;
+}
+
+table #tr_sem #td_s {
+    width: 750px;
+    padding: 10px;
+    color: white;
+}
+
+table #tr_sem a {
+    color: white;
+    text-align: left;
+    background-color: #3979b5;
+    word-wrap: break-word;
+}
+
+sem {
+    margin-left: 20px;
+    margin-right: 130px;
+}
+
+#bars {
+    background-color: #94cad4;
+    padding: 5px;
+    border-radius: 100px;
+}

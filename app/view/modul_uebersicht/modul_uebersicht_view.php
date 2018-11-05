@@ -117,14 +117,10 @@
                                             <?php  echo $vorkenntnisse[$l]['bezeichnung']; }?> <br>
                                             <b>Hinweise:</b> <?php echo $module[$k]["hinweise"];?> <br>
                                             <b>Beschreibung:</b> <?php echo $themen[$p]["themenbeschreibung"];?> <br>
-                                             <br>
-
-                                         
+                                             <br>             
                                           <tags>
-                                            <?php $tags = $this->modulUebersichtTags($themen[$p]['thema_id']); for ($y = 0; $y < count($tags); $y++) {?>   
-                                                
-                                                <a href="#" class="badge badge-primary"><?php echo $tags[$y]['tag_bezeichnung'];?></a>
-                                                           
+                                            <?php $tags = $this->modulUebersichtTags($themen[$p]['thema_id']); for ($y = 0; $y < count($tags); $y++) {?>                                                 
+                                                <a href="#" class="badge badge-primary"><?php echo $tags[$y]['tag_bezeichnung'];?></a>                                                           
                                             <?php }?>
                                              </tags>         
                                         </div>

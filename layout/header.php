@@ -18,6 +18,7 @@ session_start();
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css"> 
         <link rel="stylesheet" href="/css/modul_verwaltung.css"> 
         <link rel="stylesheet" href="/css/modul_uebersicht.css"> 
+        <link rel="stylesheet" href="/css/archivierung.css"> 
         <!-- Icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
                                

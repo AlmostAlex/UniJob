@@ -228,7 +228,7 @@ class modul_model
                 'state'=> $state
             );
             $rows[] = $row;
-        }
+            }
         }
         return $rows;
     }
@@ -435,4 +435,51 @@ class modul_model
         }
     }
 
+    
+    public function getSemester()
+    {
+        $statement = $this->dbh->prepare("SELECT semester, count(semester) as count_s FROM modul where archivierung ='true' GROUP BY semester ");
+        $statement->bind_result($semester, $count_s);
+        $statement->execute();
+
+        $sem = array();
+        while ($statement->fetch()) {
+            $row = array(
+                'semester' => $semester,
+                'count_s' => $count_s
+
+            );
+            $sem[] = $row;
+        }
+        return $sem;
+    }
+
+    public function getSemesterCountAll()
+    {
+        $statement = $this->dbh->prepare("SELECT count(semester) as count_all FROM modul where archivierung ='true'");
+        $statement->execute();
+        $statement->bind_result($count_all);
+        $statement->fetch();
+        return $count_all;
+    }
+
+public function getArchivierteModule(){
+    $statement = $this->dbh->prepare("SELECT modul_id, modulbezeichnung, professur, semester, kategorie FROM modul Where archivierung = 'true'");    
+    $statement->execute();
+    $statement->bind_result($modul_id, $modulbezeichnung, $professur, $semester, $kategorie);
+    $statement->store_result();
+
+    $rows = array();  
+while ($statement->fetch()) {
+    $row = array(    
+        'modul_id' => $modul_id,
+        'modulbezeichnung' => $modulbezeichnung,
+        'professur' => $professur,
+        'semester' => $semester,
+        'kategorie' => $kategorie   
+    );     
+    $rows[] = $row;  
+}
+    return $rows;
+    }
 }

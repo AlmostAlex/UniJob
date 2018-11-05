@@ -1,16 +1,13 @@
-
-
 <info>
 <h2 class="card-title">Themenvergabe für Seminar- und Abschlussarbeitsthemen</h2>
    Herzlich Willkommen zum Tool zur Anmeldung und Vergabe von Seminar- und Abschlussarbeitsthemen. <br>
    Hier finden Sie zentrale Informationen zur Vergabe der einzelnen Modulen und der dazugehörigen Themen.<br>
 <br>
 <form>
-<table class="tg" style="width: 100%;  margin: 1px;">
+<table class="tg" style="width: 100%; margin: 1px;">
         <th class="tg-py0s">
-            <div class="accordion-group accordion-caret" data-toggle="collapse" href="#collapseOne" >
-                <div class="accordion-heading">
-     
+            <div class="accordion-group accordion-caret" data-toggle="collapse" href="#collapseOne">
+                <div class="accordion-heading">    
                 <a style='color: #ffffff;' data-toggle='collapse' data-parent='#accordion' href='#collapseOne' aria-expanded='true'>
                         <i class='fa' style='float:left;  margin-right: 10px;  padding: 10px;' aria-hidden='true'></i> 
                         <div style='color:#ffffff;  padding: 10px;'>Allgemeine Informationen</div>
@@ -19,12 +16,10 @@
             </div>       
         </th>
         <tr style="width: 100%;">
-            <td class="tg-28r4" style="padding:0px;"> 
-                
+            <td class="tg-28r4" style="padding:0px;">               
                 <div id='collapseOne' class='collapse show' role='tabpanel' aria-labelledby='headingOne' data-parent='#accordion'> 
                     <div class="card-body">                                
                         <div id='allg_info'>
-
                     <h4 style="margin-bottom: 10px">Vorgehensweise zur Bewerbung auf ein Seminar- oder Abschlussarbeitsthema</h4> 
                     <ol>
                         <li>Informieren Sie sich auf dieser Informationsseite über die verschiedenen Vergabeverfahren.</li>
