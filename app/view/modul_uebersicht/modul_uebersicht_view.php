@@ -13,39 +13,43 @@
 <form method="post" action="">
     <tr>
         <td>
+            <div class='selectparent'>
             <select class='form-control' id='art' name='art2' onchange="filter();">
             <option value=""></option>
                 <?php for($l = 0; $l < count($k_row); $l++){ ?>
                 <option value='<?php echo $k_row[$l]['kategorie']; ?>'> <?php echo $k_row[$l]['kategorie'] .' ('. $k_row[$l]['anzahl'] .')'; ?> </option>
                 <?php } ?>
             </select>
+        </div>
         </td>
         <td>
-            <select class='form-control' id='semester' name='semester2' onchange="filter();">
-                <option value=""></option>
-                <?php for($i = 0; $i < count($s_row); $i++){ ?>
-                <option value='<?php echo $s_row[$i]['semester']; ?>'> <?php echo $s_row[$i]['semester'] .' ('. $s_row[$i]['anzahl'] .')'; ?> </option>
-                <?php } ?>
-            </select>
+            <div class='selectparent'>
+                <select class='form-control' id='semester' name='semester2' onchange="filter();">
+                    <option value=""></option>
+                    <?php for($i = 0; $i < count($s_row); $i++){ ?>
+                    <option value='<?php echo $s_row[$i]['semester']; ?>'> <?php echo $s_row[$i]['semester'] .' ('. $s_row[$i]['anzahl'] .')'; ?> </option>
+                    <?php } ?>
+                </select>
+            </div>
         </td>
          <td>
-            <select class='form-control' id='betreuer' name='betreuer' onchange="filter();">
-                <option value=""></option>
-                <?php for($j = 0; $j < count($b_row); $j++){ ?>
-                <option value='<?php echo $b_row[$j]['benutzer_id']; ?>'> <?php echo $b_row[$j]['benutzername'] .' ('. $b_row[$j]['anzahl'] .')'; ?> </option>
-                <?php } ?>
-            </select>
+            <div class='selectparent'>
+                <select class='form-control' id='betreuer' name='betreuer' onchange="filter();">
+                    <option value=""></option>
+                    <?php for($j = 0; $j < count($b_row); $j++){ ?>
+                    <option value='<?php echo $b_row[$j]['benutzer_id']; ?>'> <?php echo $b_row[$j]['benutzername'] .' ('. $b_row[$j]['anzahl'] .')'; ?> </option>
+                    <?php } ?>
+                </select>
+            </div>
        </td>
        <td> <!-- data-selected-text-format="count > 2" -->
-
-    <select class="selectpicker" title=""  style="width:auto;" data-live-search="true" id='tags' data-style="btn-primary" multiple data-max-options="10"  onchange="filter();">
-
-    <?php for ($i = 0; $i < count($tagsBezFilter); $i++) { ?>
-        <option><?php echo $tagsBezFilter[$i]['tag_bezeichnung'];?></option>      
-       <?php } ?>
-</select>
-</td>
-</tr>
+            <select class="selectpicker" title=""  data-size="5" style="width:auto;height: 10px;" data-live-search="true" id='tags' data-style="btn-primary" multiple data-max-options="10"  onchange="filter();">
+                <?php for ($i = 0; $i < count($tagsBezFilter); $i++) { ?>
+                    <option><?php echo $tagsBezFilter[$i]['tag_bezeichnung'];?></option>      
+                <?php } ?>
+            </select>   
+        </td>
+    </tr>
 </table>
 <filter>
 </div>

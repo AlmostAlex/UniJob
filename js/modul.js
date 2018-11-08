@@ -511,3 +511,37 @@ function showVorkenntnisseBEL3(thema_id) {
 
 
 // ENDE
+
+
+// archivierung
+
+
+function archivierung(semester) {
+    var xmlhttp;
+    $("#archiv").hide();
+
+    if (semester == "") {
+        $("#meldung").show();
+        document.getElementById("archiv").innerHTML = "";
+        return;
+    } else {
+        $("#meldung").hide();
+        $("#archiv").show();
+    }
+
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("archiv").innerHTML = xmlhttp.responseText;
+            $('[data-toggle="tooltip"]').tooltip();
+        }
+    }
+    xmlhttp.open("GET", "/ajax/ajax_controller.php?action=showArchiv&semester=" + semester, true);
+    xmlhttp.send();
+}
+// ende

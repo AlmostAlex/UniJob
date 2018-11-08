@@ -1,9 +1,11 @@
 <?php
-include_once "app/model/modul_model.php";
-include_once "app/model/thema_model.php";
-include_once "app/model/tags_model.php";
-include_once "app/model/user_model.php";
-include_once "db.php";
+
+
+include_once(__DIR__."/../model/modul_model.php");
+include_once(__DIR__."/../model/thema_model.php");
+include_once(__DIR__."/../model/tags_model.php");
+include_once(__DIR__."/../model/user_model.php");
+include_once(__DIR__."/../../db.php"); 
 
 class modul_controller
 {
@@ -288,13 +290,26 @@ public function editThema($thema_id)
 }
 // Archivierung
 
-public function archivierung() // Modal Konfigurationen
+public function ArchivierungThemen($modul_id,$abfrage_th){
+    return $this->thema_model->getThemen($modul_id,$abfrage_th);
+}
+
+public function archivierung($semester_f,$status) // Modal Konfigurationen
 {
 
-    $semester = $this->modul_model->getSemester();
-    $c_all = $this->modul_model->getSemesterCountAll();
-    $module = $this->modul_model->getArchivierteModule();
- include 'app/view/archivierung/archvierung_view.php';
+    if($status=='filter'){
+       $module = $this->modul_model->getArchivierteModule($semester_f,$status);
+        include_once(__DIR__."/../view/archivierung/showArchivierung_view.php"); 
+    }
+
+    if($status=='main'){    
+        $semester_d = $this->modul_model->getSemester();
+        $c_all = $this->modul_model->getSemesterCountAll();
+
+        include_once(__DIR__."/../view/archivierung/archivierung_view.php");
+
+        
+    }
 
 }
 // gehört in den Model 

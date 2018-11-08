@@ -78,7 +78,7 @@ $router->map(["GET", "POST"],["/modul_uebersicht"], function () {
 
 $router->map(["GET", "POST"],["/archivierung"], function () {
     $modul = new modul_controller();
-    $modul->archivierung('archivierung'); 
+    $modul->archivierung('','main'); 
 });
 
 /* Ajax */

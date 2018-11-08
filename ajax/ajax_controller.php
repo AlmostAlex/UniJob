@@ -1,6 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+require_once('../app/controller/modul_controller.php');
 require_once('../app/controller/bewerbung_controller.php');
 require_once('../app/controller/modul_uebersicht_controller.php');
 require_once('../db.php');
@@ -53,6 +54,12 @@ if(isset($_GET["action"]) && $_GET["action"] =='showVorkenntnisseBEL2'){
 if(isset($_GET["action"]) && $_GET["action"] =='showVorkenntnisseBEL3'){
     $controller = new bewerbung_controller();
     $controller->Abschluss_AJ($_GET["id"],'false','BEL3'); 
+}
+
+// archivierung
+if(isset($_GET["action"]) && $_GET["action"] =='showArchiv'){
+    $controller = new modul_controller();
+    $controller->archivierung($_GET["semester"],"filter"); 
 }
 
 ?>

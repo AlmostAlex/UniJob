@@ -46,6 +46,37 @@ table #tr_sem a {
     word-wrap: break-word;
 }
 
+content table {
+    border-spacing: 0px;
+    border-collapse: collapse;
+    border: 1px solid rgba(34, 36, 38, .2);
+    width: 100%;
+}
+
+content table tr th {
+    margin: 10px;
+    border-left: 1px solid rgba(34, 36, 38, .2);
+    border-bottom: 1px solid rgba(34, 36, 38, .2);
+    padding: .78571429em;
+    text-align: inherit;
+    border-radius: 6px;
+    font-size: 14.2px;
+}
+
+content table tr {
+    margin: 5px;
+}
+
+content table tr td {
+    margin: 10px;
+    border-left: 1px solid rgba(34, 36, 38, .2);
+    border-bottom: 1px solid rgba(34, 36, 38, .2);
+    padding: .78571429em;
+    text-align: inherit;
+    border-radius: 6px;
+    font-size: 14.2px;
+}
+
 sem {
     margin-left: 20px;
     margin-right: 130px;

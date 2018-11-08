@@ -40,8 +40,20 @@
     border: 1px solid #ced4da;
 }
 
+.btn-primary:not(:disabled):not(.disabled):focus,
+.btn-primary:not(:disabled):not(.disabled).focus,
+.show>.btn-primary.dropdown-toggle {
+    border: 1px solid red;
+}
+
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
+.show>.btn-primary.dropdown-toggle {
+    border: 1px solid #ced4da;
+}
+
+.btn-primary:not(:disabled):not(.disabled):hover,
+.btn-primary:not(:disabled):not(.disabled).hover,
 .show>.btn-primary.dropdown-toggle {
     border: 1px solid #ced4da;
 }
@@ -57,6 +69,15 @@
 .bootstrap-select:not(.input-group-btn),
 .bootstrap-select[class*="col-"] {
     display: inline;
+}
+
+.selectparent select {
+    background-image: linear-gradient(45deg, transparent 50%, black 60%), linear-gradient(135deg, black 40%, transparent 50%) !important;
+    background-position: calc(100% - 13px) 12px, calc(100% - 8px) 12px, 100% 0;
+    background-size: 5px 4px, 5px 4px;
+    background-repeat: no-repeat;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 .suche {
@@ -213,9 +234,9 @@
 
 .bootstrap-select>.dropdown-toggle {
     position: relative;
-    width: 100%;
+    width: 150px;
     z-index: 1;
-    height: 30px;
+    height: 35px;
     text-align: right;
     white-space: nowrap;
 }
@@ -462,6 +483,7 @@ th {
     width: 150px;
     font-size: 15px;
     border-radius: 20px;
+    margin-left: 18px;
 }
 
 .show {

@@ -1,7 +1,7 @@
 
 
 <div class="verwaltungsbox">
-    <h4 class='card-title'><i class="fa fa-info-circle" aria-hidden="true"></i>  Zum Eintrag eines Moduls</h4>
+    <h4 class='card-title'><i class="fa fa-info-circle" aria-hidden="true"></i>  Zum Eintrag einer Seminararbeit</h4>
     Um erfolgreich einen Kurs anzulegen, ist es zunächst erforderlich, dass:<br>
     <ul>
     <li>  alle <b>Pflichtfelder</b> <red>*</red> ausgefüllt werden,</li>
@@ -64,9 +64,21 @@
                 </tr>                
                 <tr>
                     <td></td>
-                    <td><label style="margin-left:10px;font-size:10pt;" for="starttermin">Bewerbungsstart</label></td>
-                    <td><label style="margin-left:20px;font-size:10pt;" for="endtermin">Bewerbungsende</label></td>
-                    <td><label style="margin-left:30px;font-size:10pt;" for="kickofftermin">Kickofftermin</label></td>
+                    <td>
+                        <dates>
+                            <label style="margin-left:10px;" for="starttermin">Bewerbungsstart</label>
+                        </dates>
+                    </td>
+                    <td>
+                        <dates>
+                            <label style="margin-left:20px;" for="endtermin">Bewerbungsende</label>
+                        </dates>
+                    </td>
+                    <td>
+                    <dates>                       
+                        <label style="margin-left:30px;" for="kickofftermin">Kickofftermin</label>
+                    </dates>                       
+                    </td>
                 </tr>
                 <!-- Auswahl Semester-->
                 <tr>

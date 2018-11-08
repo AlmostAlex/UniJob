@@ -22,23 +22,3 @@ $(document).ready(function() {
         }
     });
 });
-
-
-$(document).ready(function() {
-    $('module table tr').css('display', 'none');
-    $("#semester").change(function() {
-        var $target = $('#semester').val();
-        if ($target == '') {
-            $('#meldung').slideDown("slow");
-            $('module table tbody tr').css('display', 'none').fadeOut('slow');
-        } else if ($target != 'all') {
-            $('#meldung').slideUp("slow");
-            $('module table tr').css('display', 'none');
-            $('table tr[data-status="' + $target + '"]').fadeIn('slow');
-        } else {
-            $('#meldung').slideUp("slow");
-            $('module table tbody tr').css('display', 'none').fadeIn('slow');
-        }
-    });
-
-});

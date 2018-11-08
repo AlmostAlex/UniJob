@@ -185,11 +185,18 @@ class modul_model
                 $btn_form  = 'btn btn-secondary disabled btn';
                 $btn_msg ='Geschlossen'; 
                 $state ='none';
+                $this->updateVerfuegbarkeit($modul_id,"Geschlossen");
                 
             } else { $archivBtn = 'btn_false';
                   $btn_form  = 'button-two'; 
                   $btn_msg ='Anmeldung'; 
                   $state ='href="bewerbung/'.$kategorie.'/'.$modul_id.' "';
+            }
+
+            if ((new DateTime(date("Y-m-d")) > new DateTime($frist_ende) && ($anzahl_thema_verfuegbar > "0"))) {
+                $nachrueckBtn = 'badge badge-primary';
+            }else{
+                $nachrueckBtn = 'btn_false';
             }
 
             if ($nachrueckverfahren=='true') { 
@@ -221,6 +228,7 @@ class modul_model
                 'archivierung' => $archivierung,
                 'checkDeleteBtn' => $deleteBtn,
                 'checkArchivBtn'=> $archivBtn,
+                'checkNachrueckBtn' => $nachrueckBtn,
                 'nachrueckv_status'=> $nachrueckv_status,
                 'verfahren_anzeige'=> $verfahren_anzeige,
                 'btn_form'=> $btn_form,
@@ -355,6 +363,13 @@ class modul_model
         $modul_vergeben->execute();
 
     }
+
+    public function updateVerfuegbarkeit($modul_id, $status) {
+        $modul_vergeben = $this->dbh->prepare("UPDATE modul SET modul_verfuegbarkeit = ? WHERE modul_id = ?");
+        $modul_vergeben->bind_param('si', $status, $modul_id);
+        $modul_vergeben->execute();
+
+    }
     public function getModulThemaAnzahlVerfuegbar($modul_id, $thema_verfuegbarkeit)
     {
         $statement = $this->dbh->prepare("SELECT count(thema_id) as anzahl_thema_verfuegbar FROM thema WHERE modul_id = ? AND thema_verfuegbarkeit= ? ");
@@ -463,23 +478,32 @@ class modul_model
         return $count_all;
     }
 
-public function getArchivierteModule(){
-    $statement = $this->dbh->prepare("SELECT modul_id, modulbezeichnung, professur, semester, kategorie FROM modul Where archivierung = 'true'");    
-    $statement->execute();
-    $statement->bind_result($modul_id, $modulbezeichnung, $professur, $semester, $kategorie);
-    $statement->store_result();
+public function getArchivierteModule($semester, $status){
+       $rows = array();  
 
-    $rows = array();  
-while ($statement->fetch()) {
-    $row = array(    
-        'modul_id' => $modul_id,
-        'modulbezeichnung' => $modulbezeichnung,
-        'professur' => $professur,
-        'semester' => $semester,
-        'kategorie' => $kategorie   
-    );     
-    $rows[] = $row;  
-}
+       if($semester=='all'){
+        $statement = $this->dbh->prepare("SELECT modul_id, semester, modulbezeichnung, professur, kategorie FROM modul 
+        Where archivierung = 'true'"); 
+       } else {
+            $statement = $this->dbh->prepare("SELECT modul_id, semester, modulbezeichnung, professur, kategorie FROM modul 
+            Where archivierung = 'true'
+            AND  semester = '$semester' ");   
+        } 
+            $statement->execute();
+            $statement->bind_result($modul_id, $semester, $modulbezeichnung, $professur, $kategorie);
+            $statement->store_result();
+
+        while ($statement->fetch()) {
+            $row = array(    
+                'modul_id' => $modul_id,
+                'modulbezeichnung' => $modulbezeichnung,
+                'professur' => $professur,
+                'semester' => $semester,
+                'kategorie' => $kategorie   
+            );     
+            $rows[] = $row;  
+        }
+    
     return $rows;
     }
 }

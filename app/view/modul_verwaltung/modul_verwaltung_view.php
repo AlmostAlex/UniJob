@@ -1,10 +1,3 @@
-
-<script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
-
 <div class="verwaltungsbox">
     <h4 class='card-title'><i class="fa fa-info-circle" aria-hidden="true"></i> 
         Zur Verwaltung der Module und Themen
@@ -28,7 +21,7 @@
                 <table>
                     <tr>
                         <td style='width:20%;'>
-                            <h3 class='panel-title-dozent'>Modulübersicht - Admin</h3>
+                            <h3 class='panel-title-dozent'>Übersicht der Seminar- und Abschlussarbeiten Admin</h3>
                         </td>
                         <td style='width:40%;'>
                             <div class='btn-group_dozent' data-toggle='buttons'>
@@ -89,7 +82,9 @@
                         <td style='width:15%;'>
                             <center>
                                 <div class='modul_<?php echo $module[$i]["modul_verfuegbarkeit"]; ?>'>
-                                    <?php echo $module[$i]["modul_verfuegbarkeit"]; ?>
+                                   <div class='border-round-<?php echo $module[$i]["modul_verfuegbarkeit"]; ?>'> 
+                                       <?php echo $module[$i]["modul_verfuegbarkeit"]; ?>
+                                    </div>
                                 </div>
                             </center>
                         </td>
@@ -106,7 +101,7 @@
                             <span data-toggle='tooltip' data-placement='top' title='Modul archvieren' class='<?php echo $module[$i]["checkArchivBtn"] ?>'>
                             <a href='#' data-toggle='modal' data-target='#Abfrage_<?php echo $module[$i]["modul_id"]; ?>'><i class='far fa-file-archive'></i></a>
                             </span>
-                            <span data-toggle='tooltip' data-placement='top' title='Nachrückverfahren einleiten' class='badge badge-primary'>
+                            <span data-toggle='tooltip' data-placement='top' title='Nachrückverfahren einleiten' class='<?php echo $module[$i]["checkNachrueckBtn"] ?>'>
                                 <a data-toggle='modal' data-target='#nachrueckverfahren_<?php echo $module[$i]["modul_id"]; ?>' href='#'><i class='far fa-clock'></i></a>
                             </span>
                             <?php $this->getModal('delete_modul', $module[$i]["modul_id"]); $this->getModal('archivierung', $module[$i]["modul_id"]); $this->getModal('nachrueckverfahren', $module[$i]["modul_id"]);?>
@@ -143,8 +138,21 @@
         <list>
             <div class='panel-footer'>
                 <button type='button' class='btn'>
-                    <a style='color:#444444' href='/modul_eintragen'><i class='far fa-plus-square'></i> Modul
-                        hinzufügen</a></button>
+                    Modul für
+                    <a style='color:#444444' href='/seminar_eintragen'>
+                        <u>
+                            Seminarthemen
+                        </u>
+                    </a> 
+                    / 
+                    <a style='color:#444444' href='/abschlussarbeit_eintragen'>
+                        <u>
+                            Abschlussarbeiten
+                        </u>
+                    </a>
+
+                    hinzufügen             
+                </button>
             </div>
         </list>
     </div>
