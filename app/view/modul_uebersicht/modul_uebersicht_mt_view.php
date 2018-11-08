@@ -88,7 +88,7 @@
                                           <tags>
                                             <?php $tags = $this->modulUebersichtTags($themen[$p]['thema_id']); for ($y = 0; $y < count($tags); $y++) {?>   
                                                 
-                                                <a href="#" class="badge badge-primary"><?php echo $tags[$y]['tag_bezeichnung'];?></a>
+                                                <div class="badge badge-primary" id='add_tf' value='<?php echo $tags[$y]['tag_bezeichnung'];?>'><?php echo $tags[$y]['tag_bezeichnung'];?></div> 
                                                            
                                             <?php }?>
                                              </tags>         

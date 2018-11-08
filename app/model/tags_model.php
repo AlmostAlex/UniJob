@@ -60,12 +60,13 @@ class tags_model
 
         $tagsBezFilter = array();
         while ($statement->fetch()) {
-            $row = array(
+            $rows[] = array(
                 'tag_bezeichnung' => $tag_bezeichnung
-            );
-            $tagsBezFilter[] = $row;
+            );  
         }
-        return $tagsBezFilter;
+        $rows = array_unique($rows,SORT_REGULAR);
+
+        return $rows;
     }
 
 }

@@ -369,6 +369,13 @@ $(document).on("click", '#remove', function(a) {
     $('#tags').selectpicker('refresh');
 });
 
+
+$(document).on("click", '#add_tf', function(a) {
+    var tag = this.getAttribute("value");
+    $('#tags').selectpicker('val', tag);
+    $('#tags').selectpicker('refresh');
+});
+
 function showVorkenntnisse(thema_id) {
     var xhttp;
     $("#txtHint").hide();
