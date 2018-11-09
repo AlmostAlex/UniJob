@@ -62,6 +62,7 @@ class windhund_model
         $statement->bind_result($anzThema,$anzThemaVergeben,$modulbezeichnung,$professur,$kategorie);
         $statement->fetch();
 
+
         $infos = array(
             'anzThema' => $anzThema,
             'anzThemaVergeben' => $anzThemaVergeben,

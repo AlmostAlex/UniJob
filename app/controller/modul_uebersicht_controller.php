@@ -34,15 +34,12 @@ public function modulUebersichtTags($thema_id){
     return $this->tags_model->TagsByThemaID($thema_id);
 }
 
-
-
     public function modulUebersicht($semester,$art,$betreuer,$tags,$state){
         $s_row = $this->modul_model->count_s(); // Anzahl der Semester, Betreuer und Kategorien für die Filteranzeige - Ausgangssicht
         $b_row = $this->modul_model->count_b();
         $k_row = $this->modul_model->count_k();
         $module = $this->modul_model->getModule('', '');
         $tagsBezFilter = $this->tags_model->getTagsBezeichnung();
-
 
         switch ($state) {
             case 'true':

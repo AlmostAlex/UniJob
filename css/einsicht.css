@@ -22,6 +22,15 @@ open .alert-secondary {
     background-color: rgba(34, 36, 38, 0.09);
 }
 
+open a:link {
+    text-decoration: none;
+    color: #1d71a2;
+}
+
+.verf_border {
+    margin-left: 25px;
+}
+
 .bewerbung_verwaltung table {
     font-size: 12.5px;
     width: 100%;
@@ -66,11 +75,12 @@ open .alert-secondary {
     border-bottom: 1px solid rgba(34, 36, 38, .1);
     padding: .58571429em;
     text-align: inherit;
+    padding: 10px;
 }
 
 open .badge {
-    padding: 5px;
-    font-size: 11px;
+    padding: 4px;
+    font-size: 10px;
 }
 
 
@@ -105,4 +115,9 @@ open .badge {
     border-bottom: 1px solid rgba(34, 36, 38, .1);
     padding: .58571429em;
     text-align: inherit;
+    padding: 10px;
+}
+
+table.dataTable.no-footer {
+    border-bottom: 1px solid transparent;
 }

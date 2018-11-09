@@ -19,10 +19,12 @@ session_start();
         <link rel="stylesheet" href="/css/modul_verwaltung.css"> 
         <link rel="stylesheet" href="/css/modul_uebersicht.css"> 
         <link rel="stylesheet" href="/css/archivierung.css"> 
-        <link rel="stylesheet" href="/css/einsicht.css"> 
+        
+        <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.0/css/jquery.dataTables.css"/>
+        <link rel="stylesheet" href="/css/einsicht.css">
         <!-- Icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-                               
+
         <!-- TAGS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
@@ -41,7 +43,9 @@ session_start();
         <script src="/js/modul_verwaltung.js"></script>
         <script src="/js/einsicht.js"></script>
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script> 
+        <script type="text/javascript" src="http://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>             
+        
 </head>
     <body>            
         <!-- Header-Bereich -->      

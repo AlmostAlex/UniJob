@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 require_once('../app/controller/modul_controller.php');
 require_once('../app/controller/bewerbung_controller.php');
 require_once('../app/controller/modul_uebersicht_controller.php');
+require_once('../app/controller/einsicht_controller.php');
 require_once('../db.php');
 
 if(isset($_GET["action"]) && $_GET["action"] =='filter'){
@@ -61,5 +62,6 @@ if(isset($_GET["action"]) && $_GET["action"] =='showArchiv'){
     $controller = new modul_controller();
     $controller->archivierung($_GET["semester"],"filter"); 
 }
+
 
 ?>

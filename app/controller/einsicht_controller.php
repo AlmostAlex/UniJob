@@ -1,11 +1,11 @@
 <?php
-include_once "app/model/modul_model.php";
-include_once "app/model/thema_model.php";
-include_once "app/model/tags_model.php";
-include_once "app/model/user_model.php";
-include_once "app/model/vorkenntnisse_model.php";
-include_once "app/model/windhund_model.php";
-include_once "db.php";
+include_once(__DIR__."/../model/modul_model.php");
+include_once(__DIR__."/../model/thema_model.php");
+include_once(__DIR__."/../model/tags_model.php");
+include_once(__DIR__."/../model/user_model.php");
+include_once(__DIR__."/../model/vorkenntnisse_model.php");
+include_once(__DIR__."/../model/windhund_model.php");
+include_once(__DIR__."/../../db.php"); 
 
 class einsicht_controller
 {
@@ -44,5 +44,4 @@ class einsicht_controller
         }
         
     }
-
 }
