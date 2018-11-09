@@ -12,19 +12,21 @@
         <a href="http://www.uni-goettingen.de/de/department+f%c3%bcr+volkswirtschaftslehre/416738.html">Volkswirtschaftliche Professuren</a><br>
         <a href="">z. B. Downloadlink der Folien der Informationsveranstaltung</a>
     </div>
+    <navihd>
    <?php 
     if(isset($_SESSION['login'])){ ?>
         <div class="nav_box">
             <h5 class="mt-0">Admin Navigation</h5>
             <p>
-                <i class="fas fa-angle-right"></i> <a href="/verwaltung">Verwaltung</a><br>
-                <i class="fas fa-angle-right"></i> <a href="/seminar_eintragen">Seminarthemen eintragen</a><br>
-                <i class="fas fa-angle-right"></i> <a href="/abschlussarbeit_eintragen">Abschlussthemen eintragen</a><br>
-                <i class="fas fa-angle-right"></i> <a href="/mt_verwaltung">Modul- und Themenverwaltung</a><br>
-                <i class="fas fa-angle-right"></i> <a href="/archivierung">Archvierungen einsehen</a><br>
-                <i class="fas fa-angle-right"></i> <a href="/report_wahl">Report erstellen</a><br>
+                <div style='border-top: 1px solid #e7e7e7;' class='navhd'><i class="fas fa-angle-right"></i> <a href="/verwaltung">Verwaltung</a></div>
+                <div class='navhd'><i class="fas fa-list-ul"></i> <a href="/seminar_eintragen">Seminarthemen eintragen</a></div>
+                <div class='navhd'><i class="far fa-plus-square"></i> <a href="/abschlussarbeit_eintragen">Abschlussthemen eintragen</a></div>
+                <div class='navhd'><i class="far fa-plus-square"></i> <a href="/mt_verwaltung">Modul- und Themenverwaltung</a></div>
+                <div class='navhd'><i class="fas fa-archive"></i> <a href="/archivierung">Archvierungen einsehen</a></div>
+                <div class='navhd'><i class="far fa-chart-bar"></i> <a href="/report_wahl">Report erstellen</a></div>
             </p>
         </div>
+    </navihd>       
         <?php } 
             else{
             }
@@ -43,3 +45,5 @@
 </div>
 </div>
 </div>
+
+

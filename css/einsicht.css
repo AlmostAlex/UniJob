@@ -1,0 +1,108 @@
+/* Einsicht WIndhund */
+
+
+/* Keine Anmeldungen vorhanden */
+
+none .fa-exclamation-triangle {
+    color: red;
+}
+
+none .alert-secondary {
+    border-top: 5px solid #1d71a2;
+    background-color: #e2e3e5b5;
+    padding: 15px;
+}
+
+none a {
+    margin: -15px 0 0 -10px;
+    float: right;
+}
+
+open .alert-secondary {
+    background-color: rgba(34, 36, 38, 0.09);
+}
+
+.bewerbung_verwaltung table {
+    font-size: 12.5px;
+    width: 100%;
+    margin: 1em 0;
+    border-top: 4px solid #3979b5;
+    border-bottom: 1px solid rgba(34, 36, 38, .15);
+    border-left: 1px solid rgba(34, 36, 38, .15);
+    border-right: 1px solid rgba(34, 36, 38, .15);
+    box-shadow: none;
+    border-radius: .28571429rem;
+    text-align: left;
+    color: rgba(0, 0, 0, .87);
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.bewerbung_verwaltung table tr {
+    font-size: 12.5px;
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    border-left: 1px solid rgba(34, 36, 38, .1);
+}
+
+.bewerbung_verwaltung table tr th {
+    font-size: 12.5px;
+    cursor: auto;
+    background: #F9FAFB;
+    text-align: inherit;
+    color: rgba(0, 0, 0, .87);
+    padding: .82857143em .78571429em;
+    vertical-align: inherit;
+    font-style: none;
+    font-weight: 700;
+    text-transform: none;
+    border-left: 1px solid rgba(34, 36, 38, .1);
+    border-bottom: 1px solid rgba(34, 36, 38, .1);
+}
+
+.bewerbung_verwaltung table tr td {
+    border-left: 1px solid rgba(34, 36, 38, .1);
+    border-bottom: 1px solid rgba(34, 36, 38, .1);
+    padding: .58571429em;
+    text-align: inherit;
+}
+
+open .badge {
+    padding: 5px;
+    font-size: 11px;
+}
+
+
+/* VERFUEGBARE */
+
+.vgTable {
+    font-size: 12.5px;
+    width: 100%;
+    margin: 0em 0;
+    border-top: 0px solid #3979b5;
+    border-bottom: 0px solid rgba(34, 36, 38, .15);
+    border-left: 0px solid rgba(34, 36, 38, .15);
+    border-right: 0px solid rgba(34, 36, 38, .15);
+    box-shadow: none;
+    border-radius: .28571429rem;
+    text-align: left;
+    color: rgba(0, 0, 0, .87);
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.vgTable tr {
+    font-size: 12.5px;
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    border-left: 1px solid rgba(34, 36, 38, .1);
+}
+
+.vgTable tr td {
+    border-left: 1px solid rgba(34, 36, 38, .1);
+    border-bottom: 1px solid rgba(34, 36, 38, .1);
+    padding: .58571429em;
+    text-align: inherit;
+}

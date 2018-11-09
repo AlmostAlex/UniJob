@@ -23,10 +23,6 @@ class modul_controller
     public function Route($action, $action2, $action3, $action4, $id)
     {
 
-     /*  if ($action == 'modul_eintragen' && $action2 == '' && $action3 =='') {
-            $this->modulEintragung();
-        */
- 
         if ($action == 'mt_verwaltung' && $action2 == '' && $action3 =='') {
             $this->Modul_Verwaltung('false', 0, 'none');
 

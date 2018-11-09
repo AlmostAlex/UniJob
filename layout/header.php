@@ -19,6 +19,7 @@ session_start();
         <link rel="stylesheet" href="/css/modul_verwaltung.css"> 
         <link rel="stylesheet" href="/css/modul_uebersicht.css"> 
         <link rel="stylesheet" href="/css/archivierung.css"> 
+        <link rel="stylesheet" href="/css/einsicht.css"> 
         <!-- Icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
                                
@@ -38,7 +39,7 @@ session_start();
         <script src="/js/datepicker.js"></script>
         <script src="/js/modul.js"></script>
         <script src="/js/modul_verwaltung.js"></script>
-
+        <script src="/js/einsicht.js"></script>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 </head>

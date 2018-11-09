@@ -10,6 +10,7 @@ include("app/controller/bewerbung_controller.php");
 include("app/controller/modul_eintragen_controller.php"); 
 include("app/controller/abschluss_eintragen_controller.php"); 
 include("app/controller/modul_uebersicht_controller.php"); 
+include("app/controller/einsicht_controller.php"); 
 $router = new Router();
 
 /* PUBLIC */  
@@ -57,7 +58,6 @@ $router->map(["GET", "POST"],["/mt_verwaltung","/mt_verwaltung/{action2}/{action
 
 $router->map(["GET", "POST"],["/mt_verwaltung","/mt_verwaltung/{action2}/{action3}/{id}"], function ($action,$action2,$action3,$id) {
     $modul = new modul_controller();
-    echo $action;
     $modul->Route('mt_verwaltung',$action2,$action3,'',$id); 
 });
 
@@ -80,6 +80,12 @@ $router->map(["GET", "POST"],["/archivierung"], function () {
     $modul = new modul_controller();
     $modul->archivierung('','main'); 
 });
+
+$router->map(["GET", "POST"],["/einsicht/{action}/{id}"], function ($action,$id) {
+    $modul = new einsicht_controller();
+    $modul->Einsicht('einsicht',$action,$id); 
+});
+
 
 /* Ajax */
 $router->map(["GET", "GET"], ["app/controller/ajax_controller.php"], function (Response $response) {

@@ -115,7 +115,7 @@ class thema_model
             $row = array(
                 'themenbezeichnung' => $themenbezeichnung,
                 'beschreibung' => $beschreibung,
-                '$modul_id' => $modul_id,
+                'modul_id' => $modul_id,
                 'thema_verfuegbarkeit' => $thema_verfuegbarkeit,
             );
             $rows[] = $row;
@@ -167,6 +167,61 @@ class thema_model
         $statement = $this->dbh->prepare("UPDATE thema SET thema_verfuegbarkeit = 'Vergeben' WHERE thema_id = ?");
         $statement->bind_param('i', $thema_id);
         $statement->execute();
+    }
+
+    public function einsichtThemaModul($modul_id)
+    {
+        $statement = $this->dbh->prepare(
+            "SELECT thema.thema_id, thema.themenbezeichnung, thema.thema_verfuegbarkeit,
+            windhund.matrikelnummer, windhund.vorname, windhund.nachname, windhund.email
+            FROM modul, thema, windhund
+            WHERE thema.modul_id = modul.modul_id
+            AND windhund.thema_id = thema.thema_id
+            AND modul.modul_id = ?
+            AND thema.thema_verfuegbarkeit = 'Vergeben'
+            ");                     
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($thema_id,$themenbezeichnung,$thema_verfuegbarkeit, 
+                                $matrikelnummer, $vorname, $nachname, $email);
+        $statement->store_result();
+
+        while ($statement->fetch()) {       
+
+            $row[] = array(
+                'thema_id' => $thema_id,
+                'themenbezeichnung' => $themenbezeichnung,
+                'thema_verfuegbarkeit' => $thema_verfuegbarkeit,
+                'matrikelnummer' => $matrikelnummer,
+                'vorname' => $vorname,
+                'nachname' => $nachname, 
+                'email' => $email
+            );
+        }
+        return $row;
+    }
+
+    public function einsichtThemaModulVerfuegbar($modul_id)
+    {
+        $statement = $this->dbh->prepare(
+            "SELECT thema.thema_id, thema.themenbezeichnung, thema.thema_verfuegbarkeit
+            FROM modul, thema
+            WHERE thema.modul_id = modul.modul_id
+            AND modul.modul_id = ?
+            AND thema.thema_verfuegbarkeit = 'Verfügbar'
+            ");                     
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($thema_id,$themenbezeichnung,$thema_verfuegbarkeit);
+        $statement->store_result();
+        while ($statement->fetch()) {       
+
+            $row[] = array(
+                'thema_id' => $thema_id,
+                'themenbezeichnung' => $themenbezeichnung
+            );
+        }
+        return $row;
     }
 
     public function checkThema($thema_id)
