@@ -77,7 +77,7 @@ class bewerbung_controller
             if(isset($_POST['Vorname'])) { $vorname = $_POST['Vorname']; } else{ $vorname = '';}
             if(isset($_POST['Nachname'])) { $nachname = $_POST['Nachname']; } else{ $nachname = '';}
             if(isset($_POST['Matrikelnummer'])) { $matrikelnummer  = $_POST['Matrikelnummer']; } else{ $matrikelnummer = '';}
-            if(isset($_POST['Email'])) { $email  = $_POST['Email']; } else{ $email = '';}
+            if(isset($_POST['Email'])) { $email  = $_POST['Email']."@stud.uni-goettingen.de"; } else{ $email = '';}
             if(isset($_POST['Fachsemester'])) { $fachsemester  = $_POST['Fachsemester']; } else{ $fachsemester = '';}
             if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
             if(isset($_POST['Credits'])) { $credits  = $_POST['Credits']; } else{ $credits = '';}
