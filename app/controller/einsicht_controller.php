@@ -5,6 +5,7 @@ include_once(__DIR__."/../model/tags_model.php");
 include_once(__DIR__."/../model/user_model.php");
 include_once(__DIR__."/../model/vorkenntnisse_model.php");
 include_once(__DIR__."/../model/windhund_model.php");
+include_once(__DIR__."/../model/bewerbung_model.php");
 include_once(__DIR__."/../../db.php"); 
 
 class einsicht_controller
@@ -17,11 +18,13 @@ class einsicht_controller
         $this->thema_model = new thema_model();
         $this->tags_model = new tags_model();
         $this->windhund_model = new windhund_model();
+        $this->bewerbung_model = new bewerbung_model();
     }
 
-    public function Einsicht($action, $action1, $modul_id)
+    public function Einsicht($action, $action1, $id)
     {
-        if($action1=='windhundverfahren'){
+        if($action1=='Windhundverfahren'){
+            $modul_id = $id;
             $bew_count = $this->windhund_model->bewerbung_count($modul_id);
             if($bew_count > 0){ // checkt, ob Bewerbungen vorhanden sind
                 $infos = $this->windhund_model->info_windhund($modul_id);
@@ -33,10 +36,20 @@ class einsicht_controller
                 include 'app/view/einsicht/none_view.php';
             }            
         }
-        else if($action1=='bewerbungsverfahren'){
-            echo"!!";
+        else if($action1=='Bewerbungsverfahren'){
+            $thema_id = $id;
+            $bew_count_bw = $this->bewerbung_model->bewerbung_count($thema_id);
+                if($bew_count_bw > 0){ // checkt, ob Bewerbungen vorhanden sind
+                    $infos = $this->bewerbung_model->info_bewerbung($thema_id);
+                    $bewerber= $this->bewerbung_model->bewerber($thema_id);
+                    include 'app/view/einsicht/bewerbung_einsicht_view.php';
+                }
+                else{
+                    $kat = "Bewerbungen"; // Wenn keine Bewerbungen vorhanden sind, dann wird die none Unterseite aufgerufen
+                    include 'app/view/einsicht/none_view.php'; 
+                }
         } 
-        else if($action1=='belegwunschverfahren'){
+        else if($action1=='Belegwunschverfahren'){
             echo"!!";
         }
         else{ // das verfahren existiert nicht

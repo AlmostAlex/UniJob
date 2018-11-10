@@ -4,6 +4,7 @@ include_once "db.php";
 
 class Controller
 {
+    
     public $model;
     public $benutzername;
     public $passwort;
@@ -35,7 +36,8 @@ class Controller
                                         <img src="img/ajax-loader.gif"> ';
                     // session_start();
                     $this->model->setSessionID($this->benutzername);
-                    header("refresh:1;url=verwaltung");
+
+                   echo"<meta http-equiv='refresh' content='1, url=/verwaltung'>";
                 } else {
                     $render = 'danger';
                     $message['alert'] = '<b>Achtung!</b><br>Das Passwort und der Benutzername stimmen nicht überein.';

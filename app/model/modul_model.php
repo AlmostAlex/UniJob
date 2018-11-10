@@ -194,18 +194,16 @@ class modul_model
             }
 
             if ((new DateTime(date("Y-m-d")) > new DateTime($frist_ende) && ($anzahl_thema_verfuegbar > "0"))) {
-                $nachrueckBtn = 'badge badge-primary';
-            }else{
-                $nachrueckBtn = 'btn_false';
-            }
+                $nachrueckBtn = 'badge badge-primary';}else{ $nachrueckBtn = 'btn_false'; }
 
-            if ($nachrueckverfahren=='true') { 
-                $nachrueckv_status = '[Nachrückverfahren]';
-                $verfahren_anzeige = 'Windhundverfahren';
-            } else { 
-                $nachrueckv_status  = '';  
-                $verfahren_anzeige = $verfahren;
-            }
+            if ($nachrueckverfahren=='true') {  $nachrueckv_status = '[Nachrückverfahren]'; $verfahren_anzeige = 'Windhundverfahren';
+            } else {  $nachrueckv_status  = ''; $verfahren_anzeige = $verfahren; }
+
+            if($verfahren=='Windhundverfahren'){$einsicht_wh_btn ='badge badge-info'; }
+            else{ $einsicht_wh_btn ='btn_false'; }
+            
+            if($verfahren=='Bewerbungsverfahren'){ $einsicht_bw_btn ='badge badge-info';} 
+            else{ $einsicht_bw_btn ='btn_false';}
 
             $start_dt = new DateTime($frist_start);
             $row = array(
@@ -233,7 +231,9 @@ class modul_model
                 'verfahren_anzeige'=> $verfahren_anzeige,
                 'btn_form'=> $btn_form,
                 'btn_msg'=> $btn_msg,
-                'state'=> $state
+                'state'=> $state,
+                'einsicht_wh_btn'=> $einsicht_wh_btn,
+                'einsicht_bw_btn'=> $einsicht_bw_btn
             );
             $rows[] = $row;
             }

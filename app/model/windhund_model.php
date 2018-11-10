@@ -48,7 +48,7 @@ class windhund_model
                     (SELECT count(thema.thema_id) 
                     FROM thema, modul 
                     WHERE thema.modul_id = modul.modul_id 
-                    AND modul.modul_id = 24 
+                    AND modul.modul_id = $modul_id 
                     AND thema.thema_verfuegbarkeit = 'Vergeben')
             as anzThemaVergeben,
          modul.modulbezeichnung, 
