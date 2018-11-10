@@ -68,7 +68,7 @@
          <td colspan=3><br>
          <div class="abfrageZulassung" role="alert">
                 <center><label for='Vorkenntnisse'>
-                            <b>Erfüllst du alle Vorraussetzungen zur Zulassung deiner Seminararbeit?</b> <br><br>
+                            <b>Hast du bereits erfolgreich an einem Seminar teilgenommen?</b> <br><br>
                             <input type="radio" id="Zulassung" name="Zulassung" value="Ja" <?php if($zulassung == "Ja"){echo "checked";} ?>>
                             <label for="Ja">Ja</label> 
                             <input type="radio" id="Zulassung" name="Zulassung" value="Nein" <?php if($zulassung == "Nein"){echo "checked";} ?> >

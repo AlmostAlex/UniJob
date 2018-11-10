@@ -39,7 +39,7 @@ class bewerbung_controller
     if(isset($_POST['Vorname'])) { $vorname = $_POST['Vorname']; } else{ $vorname = '';}
     if(isset($_POST['Nachname'])) { $nachname = $_POST['Nachname']; } else{ $nachname = '';}
     if(isset($_POST['Matrikelnummer'])) { $matrikelnummer  = $_POST['Matrikelnummer']; } else{ $matrikelnummer = '';}
-    if(isset($_POST['Email'])) { $email  = $_POST['Email']; } else{ $email = '';}
+    if(isset($_POST['Email'])) { $email  = $_POST['Email']."@stud.uni-goettingen.de"; } else{ $email = '';}
     if(isset($_POST['Zulassung'])) { $zulassung  = $_POST['Zulassung']; } else{ $zulassung = '';}
     $check_modul = $this->modul_model->checkModul($id);
     $check_thema = $this->thema_model->checkThema($thema_id); 
@@ -100,12 +100,12 @@ class bewerbung_controller
                         // HIER INSERT BEWERBUNG
                         $punkte = $this->punkteverteilung($thema_id, $fachsemester, $studiengang, $credits, " ");
                         if(($this->bewerbung_model->duplicateBewerbungCheck($matrikelnummer, $thema_id)) == "duplikat"){
-                            $this->bewerbung_model->updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung, $fachsemester, $studiengang, $credits, $punkte);
+                            $this->bewerbung_model->updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung, $fachsemester, $studiengang, $credits, $seminarteilnahme, $punkte);
                             $this->getModal("AB_BW_erfolgreich", $thema_id);
                             include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
                             
                         } else {
-                            $this->bewerbung_model->insertBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung, $fachsemester, $studiengang, $credits, $punkte);
+                            $this->bewerbung_model->insertBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung, $fachsemester, $studiengang, $credits, $seminarteilnahme, $punkte);
                             $this->getModal("AB_BW_erfolgreich", $thema_id);
                             include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
                         }
@@ -129,7 +129,7 @@ class bewerbung_controller
                 if(isset($_POST['Vorname'])) { $vorname = $_POST['Vorname']; } else{ $vorname = '';}
                 if(isset($_POST['Nachname'])) { $nachname = $_POST['Nachname']; } else{ $nachname = '';}
                 if(isset($_POST['Matrikelnummer'])) { $matrikelnummer  = $_POST['Matrikelnummer']; } else{ $matrikelnummer = '';}
-                if(isset($_POST['Email'])) { $email  = $_POST['Email']; } else{ $email = '';}
+                if(isset($_POST['Email'])) { $email  = $_POST['Email']."@stud.uni-goettingen.de"; } else{ $email = '';}
 
                 $modul = $this->modul_model->getModulById($id);
                 $themen = $this->thema_model->getThemenVG($id,'');
@@ -174,16 +174,16 @@ class bewerbung_controller
         if(isset($_POST['Vorname'])) { $vorname = $_POST['Vorname']; } else{ $vorname = '';}
         if(isset($_POST['Nachname'])) { $nachname = $_POST['Nachname']; } else{ $nachname = '';}
         if(isset($_POST['Matrikelnummer'])) { $matrikelnummer  = $_POST['Matrikelnummer']; } else{ $matrikelnummer = '';}
-        if(isset($_POST['Email'])) { $email  = $_POST['Email']; } else{ $email = '';}
+        if(isset($_POST['Email'])) { $email  = $_POST['Email']."@stud.uni-goettingen.de"; } else{ $email = '';}
         if(isset($_POST['Zulassung'])) { $zulassung  = $_POST['Zulassung']; } else{ $zulassung = '';}
         $check_modul = $this->modul_model->checkModul($id);
         $check_thema = $this->thema_model->checkThema($thema_id); 
 
 
-          if($this->modul_model->getVerfuegbarkeitID($id) == 'Offen'){
-        if($this->modul_model->getModulNachrueckvByID($id) == 'false'){
+        if($this->modul_model->getVerfuegbarkeitID($id) == 'Offen'){
+            if($this->modul_model->getModulNachrueckvByID($id) == 'false'){
  // WINDHNDVERFAHREN SEMINAR
-            if($this->modul_model->getModulVerfahrenByID($id) == 'Windhundverfahren'){
+                if($this->modul_model->getModulVerfahrenByID($id) == 'Windhundverfahren'){
                     $modul = $this->modul_model->getModulById($id);
                     $themen = $this->thema_model->getThemenVG($id,'');
                         if (isset($_POST['bewerbung_SEM_WH'])) {
@@ -220,7 +220,12 @@ else if($this->modul_model->getModulVerfahrenByID($id) == 'Bewerbungsverfahren')
     if(isset($_POST['Fachsemester'])) { $fachsemester  = $_POST['Fachsemester']; } else{ $fachsemester = '';}
     if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
     if(isset($_POST['Credits'])) { $credits  = $_POST['Credits']; } else{ $credits = '';}
-    $dup = '';
+    if(isset($_POST['seminarteilnahme'])) { $seminarteilnahme  = $_POST['seminarteilnahme']; } else{ $seminarteilnahme = '';}
+    $vorkenntnisse = array();
+            for($i=0; isset($_POST['Vorkenntnisse_'.$i]) == true;$i++)
+            { 
+                $vorkenntnisse[$i] = $_POST['Vorkenntnisse_'.$i];
+            }
     $modul = $this->modul_model->getModulById($id);
     $themen = $this->thema_model->getThemenVG($id,'');
     if (isset($_POST['bewerbung_ab_BW'])) {
@@ -234,16 +239,13 @@ else if($this->modul_model->getModulVerfahrenByID($id) == 'Bewerbungsverfahren')
                 include 'app/view/bewerbung/Seminararbeit/bewerbung_view_seminar.php';
             } else {
                 // HIER INSERT BEWERBUNG
-                if( $dup == "duplikat"){
-// Hier hat Alex verkackt   // if(($this->bewerbung_model->duplicateBewerbungCheck($matrikelnummer, $thema_id)) == "duplikat"){
-/* Bei der bewerbung wird jedes feld mit den VOrraussetzungen genommen und geprüft und die Punkte vergeben! */ 
-/* Das Feld "Vorraussetzung macht hier also beim insert NULL Sinn "*/        
-                    $this->punkteBerechnung($fachsemester, $studiengang, $credits, " "); //Vorraussetzungen
-                    $this->bewerbung_model->updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung);
+                $punkte = $this->punkteverteilung($thema_id, $fachsemester, $studiengang, $credits, $seminarteilnahme);
+                if(($this->bewerbung_model->duplicateBewerbungCheck($matrikelnummer, $thema_id)) == "duplikat"){
+                    $this->bewerbung_model->updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung, $fachsemester, $studiengang, $credits, $seminarteilnahme, $punkte);
                     $this->getModal("AB_BW_erfolgreich", $thema_id);
-                   include 'app/view/bewerbung/Seminararbeit/fazit_seminar.php';                   
+                    include 'app/view/bewerbung/Seminararbeit/fazit_seminar.php';
                 } else {
-                    $this->bewerbung_model->insertBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung);
+                    $this->bewerbung_model->insertBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung, $fachsemester, $studiengang, $credits, $seminarteilnahme, $punkte);
                     $this->getModal("AB_BW_erfolgreich", $thema_id);
                     include 'app/view/bewerbung/Seminararbeit/fazit_seminar.php';
                 }

@@ -16,11 +16,11 @@ class bewerbung_model
         $this->heute_dt = new DateTime(date("Y-m-d"));
     }
 
-    public function insertBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $voraussetzungen, $fachsemester, $studiengang, $credits, $punkte)
+    public function insertBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $voraussetzungen, $fachsemester, $studiengang, $credits, $seminarteilnahme, $punkte)
     {
-        if ($statement = $this->dbh->prepare("INSERT INTO `bewerbung` (`vorname`, `nachname`, `matrikelnummer`, `email`, `thema_id`, `status`, `voraussetzung`, `fachsemester`, `fachsemester_punkte`, `studiengang`, `studiengang_punkte`, `credits`, `credits_punkte`, `gesamt_punkte`)
-        VALUES (?,?,?,?,?,'offen',?,?,?,?,?,?,?,?)")) {
-            $statement->bind_param('ssisisidsiidd', $vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetzungen, $fachsemester, $punkte['fachsemester'], $studiengang, $punkte['studiengang'], $credits, $punkte['credits'], $punkte['gesamt']);
+        if ($statement = $this->dbh->prepare("INSERT INTO `bewerbung` (`vorname`, `nachname`, `matrikelnummer`, `email`, `thema_id`, `status`, `voraussetzung`, `fachsemester`, `fachsemester_punkte`, `studiengang`, `studiengang_punkte`, `credits`, `credits_punkte`, `seminarteilnahme`, `seminarteilnahme_punkte`, `gesamt_punkte`)
+        VALUES (?,?,?,?,?,'offen',?,?,?,?,?,?,?,?,?,?)")) {
+            $statement->bind_param('ssisisidsiidsid', $vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetzungen, $fachsemester, $punkte['fachsemester'], $studiengang, $punkte['studiengang'], $credits, $punkte['credits'], $seminarteilnahme, $punkte['seminarteilnahme'], $punkte['gesamt']);
             $statement->execute();
             $last_id = $this->lastBewerbungID();
             $vorkenntnisse_id = $this->vorkenntnisse->vorkenntnisseByThemaID($thema_id);
@@ -31,12 +31,12 @@ class bewerbung_model
         }
     }
 
-    public function updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $voraussetzungen, $fachsemester, $studiengang, $credits, $punkte)
+    public function updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $voraussetzungen, $fachsemester, $studiengang, $credits, $seminarteilnahme, $punkte)
     {
         $status = "offen";
-        if ($statement = $this->dbh->prepare("UPDATE bewerbung, thema SET bewerbung.vorname = ?, bewerbung.nachname = ?, bewerbung.email = ?, bewerbung.thema_id = ?, bewerbung.status = ?, bewerbung.voraussetzung = ?, bewerbung.fachsemester = ?, bewerbung.fachsemester_punkte = ?, bewerbung.studiengang = ?, bewerbung.studiengang_punkte =?, bewerbung.credits = ?, bewerbung.credits_punkte = ?, bewerbung.gesamt_punkte = ? WHERE bewerbung.matrikelnummer = ? AND bewerbung.thema_id = thema.thema_id AND thema.modul_id = (SELECT modul_id FROM thema WHERE thema_id = ?)"))
+        if ($statement = $this->dbh->prepare("UPDATE bewerbung, thema SET bewerbung.vorname = ?, bewerbung.nachname = ?, bewerbung.email = ?, bewerbung.thema_id = ?, bewerbung.status = ?, bewerbung.voraussetzung = ?, bewerbung.fachsemester = ?, bewerbung.fachsemester_punkte = ?, bewerbung.studiengang = ?, bewerbung.studiengang_punkte =?, bewerbung.credits = ?, bewerbung.credits_punkte = ?, bewerbung.seminarteilnahme = ?, bewerbung.seminarteilnahme_punkte = ?, bewerbung.gesamt_punkte = ? WHERE bewerbung.matrikelnummer = ? AND bewerbung.thema_id = thema.thema_id AND thema.modul_id = (SELECT modul_id FROM thema WHERE thema_id = ?)"))
         {
-            $statement->bind_param('sssissidsiiddii', $vorname, $nachname, $email, $thema_id, $status, $voraussetzungen, $fachsemester, $punkte['fachsemester'], $studiengang, $punkte['studiengang'], $credits, $punkte['credits'], $punkte['gesamt'], $matrikelnummer, $thema_id);
+            $statement->bind_param('sssissidsiidsidii', $vorname, $nachname, $email, $thema_id, $status, $voraussetzungen, $fachsemester, $punkte['fachsemester'], $studiengang, $punkte['studiengang'], $credits, $punkte['credits'], $seminarteilnahme, $punkte['seminarteilnahme'], $punkte['gesamt'], $matrikelnummer, $thema_id);
             $statement->execute();
             $vorkenntnisse_id = $this->vorkenntnisse->vorkenntnisseByThemaID($thema_id);
             $bewerbung_id = $this->getIdByMatrikelnummer($matrikelnummer, $thema_id);
