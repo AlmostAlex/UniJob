@@ -24,9 +24,18 @@ class bewerb_vorkennt_model
         }
     }
 
-    public function updateBewerbVorkennt($bewerbung_id, $vorkenntnisse_id, $vorkenntnisse)
+    public function deleteBewerbVorkennt($bewerbung_id)
     {
+        $statement = $this->dbh->prepare("DELETE FROM bewerb_vorkennt
+                                        WHERE bewerbung_id = ?");
+        $statement->bind_param('i', $bewerbung_id);
+        $statement->execute();
+    }
+}
 
+
+/*    public function updateBewerbVorkennt($bewerbung_id, $vorkenntnisse_id, $vorkenntnisse)
+    {
         $k = 0;
         while ($k < count($vorkenntnisse)) {
             if($vorkenntnisse[$k] == "Nein"){ $abgeschlossen = "Nein"; }
@@ -38,13 +47,4 @@ class bewerb_vorkennt_model
             $k = $k+1;
         }
     }
-
-    public function deleteVorkenntnisse($modul_id)
-    {
-         $statement = $this->dbh->prepare("DELETE vorkenntnisse FROM bezeichnung,thema,modul 
-         WHERE vorkenntnisse.thema_id = thema.thema_id 
-         AND thema.modul_id =?");
-        $statement->bind_param('i', $modul_id);
-        $statement->execute();
-    }
-}
+*/

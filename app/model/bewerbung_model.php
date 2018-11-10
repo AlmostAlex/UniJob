@@ -40,7 +40,8 @@ class bewerbung_model
             $statement->execute();
             $vorkenntnisse_id = $this->vorkenntnisse->vorkenntnisseByThemaID($thema_id);
             $bewerbung_id = $this->getIdByMatrikelnummer($matrikelnummer, $thema_id);
-            $this->bewerb_vorkennt->updateBewerbVorkennt($bewerbung_id, $vorkenntnisse_id, $vorkenntnisse);
+            $this->bewerb_vorkennt->deleteBewerbVorkennt($bewerbung_id);
+            $this->bewerb_vorkennt->insertBewerbVorkennt($bewerbung_id, $vorkenntnisse_id, $vorkenntnisse);
         } else {
             $error = $this->dbh->errno . ' ' . $this->dbh->error;
             echo "Fehlercode: " . $error . "<br/> Update der Bewerbung ist fehlgeschlagen.";
