@@ -17,13 +17,12 @@
         <h6>Windhundverfahren</h6><br>
         <table>
             <tr>
-                <td><label for='Vorname'><b>Vorname:</b><red style='color: red'>*</red></label></td>
-                <td><input style='width: 100%' type='text' class='form-control' id='Vorname'  name='Vorname' placeholder='Vorname' value='<?php echo $vorname?>' required> </td>
+                <td><label for='Vorname'><b>Name:</b><red style='color: red'>*</red></label></td>
+                <td>
+                    <input style='width: 48%; float:left; margin-right:5px;' type='text' class='form-control' id='Vorname'  name='Vorname' placeholder='Vorname' value='<?php echo $vorname?>' required> 
+                    <input style='width: 50%' type='text' class='form-control' id='Nachname' name='Nachname' placeholder='Nachname'  value='<?php echo $nachname?>'  required>
+                </td>
             </tr>
-            <tr>
-                <td><label for='Nachname'><b>Nachname:</b><red style='color: red'>*</red></label></td>
-                <td><input style='width: 100%' type='text' class='form-control' id='Nachname' name='Nachname' placeholder='Nachname'  value='<?php echo $nachname?>'  required> </td>
-            </tr> 
 
             <tr>
                 <td><label for='matrikelnummer'><b>Matrikelnummer:</b><red style='color: red'>*</red></label></td>
@@ -42,21 +41,31 @@
                 </td>
             </tr>
             <tr>
+                <td><label for='matrikelnummer'><b>Studiengang:</b><red style='color: red'>*</red></label></td>
+                <td>
+                <select class='form-control' id='Studiengang' name='Studiengang' required>
+                    <option></option>
+                    <option value='Betriebswirtschaftslehre' <?php if($studiengang == 'Betriebswirtschaftslehre'){echo "selected";} ?> >Betriebswirtschaftslehre</option>
+                    <option value='Wirtschaftsinformatik' <?php if($studiengang == 'Wirtschaftsinformatik'){echo "selected";} ?>>Wirtschaftsinformatik</option>
+                    <option value='Wirtschaftspädagogik' <?php if($studiengang == 'Wirtschaftspädagogik'){echo "selected";} ?>>Wirtschaftspädagogik</option>
+                    <option value='Volkswirtschaftslehre' <?php if($studiengang == 'Volkswirtschaftslehre'){echo "selected";} ?>>Volkswirtschaftslehre</option>
+                </td>
+            </tr>
+            <tr>
                 <td style='width: 33%'>
                 <label for='Thema'>
                     <b>Thema:</b><red style='color: red'>*</red>
                     </label>
                     </td>
                     <td>
-                    <select class='form-control' id='Thema' name='Thema' onchange="showVorkenntnisse(this.value)" required>
+                    <select class="form-control dropdown" id='Thema' name='Thema' onchange="showVorkenntnisse(this.value)" required>
                     <option></option>
                     <?php for($i = 0; $i < count($themen); $i++){  ?>
-                        <option value='<?php echo $themen[$i]['thema_id'] ?>' <?php if($thema_id == $themen[$i]['thema_id']){echo "selected";} ?> > <?php echo $themen[$i]['themenbezeichnung'] ?> </option>
+                        <option value='<?php echo $themen[$i]['thema_id'] ?>' <?php if($thema_id == $themen[$i]['thema_id']){echo "selected";} ?> > <?php echo $themen[$i]['themenbezeichnung'] ?> </span>  </option>
                     <?php } ?>
                     </select>
                     </td>
             </tr>
-
          <tr>
          <td>
          </td>
@@ -67,23 +76,26 @@
         <tr>
          <td colspan=3><br>
          <div class="abfrageZulassung" role="alert">
-                <center><label for='Vorkenntnisse'>
+             <center>
+                <label for='Vorkenntnisse'>
                             <b>Hast du bereits erfolgreich an einem Seminar teilgenommen?</b> <br><br>
                             <input type="radio" id="Zulassung" name="Zulassung" value="Ja" <?php if($zulassung == "Ja"){echo "checked";} ?>>
                             <label for="Ja">Ja</label> 
                             <input type="radio" id="Zulassung" name="Zulassung" value="Nein" <?php if($zulassung == "Nein"){echo "checked";} ?> >
                             <label for="Nein">Nein</label> 
-                </label></center>
+                </label>
+            </center>
             </div>
          </td>
         </tr>
             <tr>
-                <td>
-                    <br>
-            <a data-toggle='modal' data-target='#anmeldung_senden' href='#'>hi</a>
-            <?php $this->getModal('anmeldung_senden', $modul["modul_id"]);?>
-  </tr> 
-    </td>
+                <td colspan='2'>
+                    <br>      
+           <!-- <a data-toggle='modal' type="button" class="btn btn-primary" data-target='#anmeldung_senden' href='#'>Anmeldung verschicken</a> -->
+            <button style='float:right;' data-toggle='modal' data-target='#anmeldung_senden_sem' href='#' type="button" class="btn btn-primary">Anmeldung verschicken</button>
+            <?php $this->getModal('anmeldung_senden_sem', $modul["modul_id"]);?>
+     </td> 
+     </tr> 
         </table> 
 </div>
 </form>

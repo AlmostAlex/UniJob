@@ -36,7 +36,7 @@ class Controller
                                         <img src="img/ajax-loader.gif"> ';
                     // session_start();
                     $this->model->setSessionID($this->benutzername);
-
+                    header("refresh:2;url=index");
                    echo"<meta http-equiv='refresh' content='1, url=/verwaltung'>";
                 } else {
                     $render = 'danger';

@@ -20,10 +20,10 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Fenster schließen</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fenster schließen</button>
         <button href='<?php echo $modal['btn_url']?>' type='<?php echo $modal['type']?>' name='<?php echo $modal['name']?>' class='
           <?php echo $modal['btn_class']?>'>
-          <?php echo $modal['btn'];?>hhh</button>
+          <?php echo $modal['btn'];?></button>
       </div>
     </div>
   </div>

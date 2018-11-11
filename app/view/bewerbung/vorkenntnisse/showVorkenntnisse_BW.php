@@ -13,7 +13,8 @@
 <td style='width:50%;'>
     <input type="radio" id='<?php echo $j?>' name="Vorkenntnisse_<?php echo $j?>" value="Nein">
     <label for="Nein"> Nein</label> 
-    <input style='margin-left:10px;' type="radio"  id='<?php echo $j?>' name="Vorkenntnisse_<?php echo $j?>" value="<?php echo  $vorkenntnisse[$j]['bezeichnung'];?>">
+      <input style='margin-left:10px;' type="radio"  id='<?php echo $j?>' name="Vorkenntnisse_<?php echo $j?>" 
+      value="Ja">
     <label for="Ja"> Ja</label> 
     </td>
   </tr>

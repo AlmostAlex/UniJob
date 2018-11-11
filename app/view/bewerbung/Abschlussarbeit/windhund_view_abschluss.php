@@ -17,13 +17,12 @@
         <h6>Windhundverfahren</h6><br>
         <table>
             <tr>
-                <td><label for='Vorname'><b>Vorname:</b><red style='color: red'>*</red></label></td>
-                <td><input style='width: 100%' type='text' class='form-control' id='Vorname'  name='Vorname' placeholder='Vorname' value='<?php echo $vorname?>' required> </td>
+                <td><label for='Vorname'><b>Name:</b><red style='color: red'>*</red></label></td>
+                <td>
+                    <input style='width: 48%; float:left; margin-right:5px;' type='text' class='form-control' id='Vorname'  name='Vorname' placeholder='Vorname' value='<?php echo $vorname?>' required> 
+                    <input style='width: 50%' type='text' class='form-control' id='Nachname' name='Nachname' placeholder='Nachname'  value='<?php echo $nachname?>'  required>
+                </td>
             </tr>
-            <tr>
-                <td><label for='Nachname'><b>Nachname:</b><red style='color: red'>*</red></label></td>
-                <td><input style='width: 100%' type='text' class='form-control' id='Nachname' name='Nachname' placeholder='Nachname'  value='<?php echo $nachname?>'  required> </td>
-            </tr> 
 
             <tr>
                 <td><label for='matrikelnummer'><b>Matrikelnummer:</b><red style='color: red'>*</red></label></td>
@@ -39,6 +38,17 @@
                             <span class="input-group-text" id="basic-addon2">@stud.uni-goettingen.de</span>
                         </div>
                     </div>                              
+                </td>
+            </tr>
+            <tr>
+                <td><label for='matrikelnummer'><b>Studiengang:</b><red style='color: red'>*</red></label></td>
+                <td>
+                <select class='form-control' id='Studiengang' name='Studiengang' required>
+                    <option></option>
+                    <option value='Betriebswirtschaftslehre' <?php if($studiengang == 'Betriebswirtschaftslehre'){echo "selected";} ?> >Betriebswirtschaftslehre</option>
+                    <option value='Wirtschaftsinformatik' <?php if($studiengang == 'Wirtschaftsinformatik'){echo "selected";} ?>>Wirtschaftsinformatik</option>
+                    <option value='Wirtschaftspädagogik' <?php if($studiengang == 'Wirtschaftspädagogik'){echo "selected";} ?>>Wirtschaftspädagogik</option>
+                    <option value='Volkswirtschaftslehre' <?php if($studiengang == 'Volkswirtschaftslehre'){echo "selected";} ?>>Volkswirtschaftslehre</option>
                 </td>
             </tr>
             <tr>
@@ -78,12 +88,13 @@
          </td>
         </tr>
             <tr>
-                <td>
+            <td colspan='2'>
                     <br>
-            <a data-toggle='modal' data-target='#anmeldung_senden' href='#'>hi</a>
-            <?php $this->getModal('anmeldung_senden', $modul["modul_id"]);?>
-  </tr> 
-    </td>
+            <button style='float:right;' data-toggle='modal' data-target='#anmeldung_senden_ab' href='#' type="button" class="btn btn-primary">Anmeldung verschicken</button>
+            <?php $this->getModal('anmeldung_senden_ab', $modul["modul_id"]);?>  
+        </td>
+        </tr> 
+  
         </table> 
 </div>
 </form>

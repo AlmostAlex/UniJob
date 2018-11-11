@@ -41,6 +41,7 @@ class bewerbung_controller
     if(isset($_POST['Matrikelnummer'])) { $matrikelnummer  = $_POST['Matrikelnummer']; } else{ $matrikelnummer = '';}
     if(isset($_POST['Email'])) { $email  = $_POST['Email']."@stud.uni-goettingen.de"; } else{ $email = '';}
     if(isset($_POST['Zulassung'])) { $zulassung  = $_POST['Zulassung']; } else{ $zulassung = '';}
+    if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
     $check_modul = $this->modul_model->checkModul($id);
     $check_thema = $this->thema_model->checkThema($thema_id); 
     $modul = $this->modul_model->getModulById($id);
@@ -49,7 +50,6 @@ class bewerbung_controller
         if($this->modul_model->getModulNachrueckvByID($id) == 'false'){
  // WINDHNDVERFAHREN ABSCHLUSS
             if($this->modul_model->getModulVerfahrenByID($id) == 'Windhundverfahren'){
-
                         if (isset($_POST['bewerbung_ab_WH'])) {
                             // AB HIER ALLES CHECKEN LASSEN
                                 if($check_modul == 'falseTime'){
@@ -60,9 +60,10 @@ class bewerbung_controller
                                     include 'app/view/bewerbung/Abschlussarbeit/windhund_view_abschluss.php';  
                                 } else {
                                     // HIER INSERT BEWERBUNG
-                                    $this->windhund_model->insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $zulassung);
+                                    $this->windhund_model->insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $zulassung, $studiengang);
                                     $this->getModal("AB_WH_erfolgreich", $thema_id);
-                                    include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
+                                    $infos = $this->thema_model->getBetreuerByID($thema_id);
+                                    include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss_WH.php';
                                 }      
                         }
                     else{
@@ -82,12 +83,28 @@ class bewerbung_controller
             if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
             if(isset($_POST['Credits'])) { $credits  = $_POST['Credits']; } else{ $credits = '';}
             $vorkenntnisse = array();
-            for($i=0; isset($_POST['Vorkenntnisse_'.$i]) == true;$i++)
+            $count = 0;
+
+            for($i=0; isset($_POST['Vorkenntnisse_'.$i.'']) == true ;$i++)
+            { 
+                $vorkenntnisse[$i] = $_POST['Vorkenntnisse_'.$i];
+                $count += 1; 
+            }
+
+            if($count>0){
+                $vmsg = 'true';
+            } else {
+                $vmsg ='false';
+            }
+
+            for($i=0; isset($_POST['Vorkenntnisse_'.$i.'']) == true;$i++)
             { 
                 $vorkenntnisse[$i] = $_POST['Vorkenntnisse_'.$i];
             }
+
             $modul = $this->modul_model->getModulById($id);
             $themen = $this->thema_model->getThemenVG($id,'');
+
             if (isset($_POST['bewerbung_ab_BW'])) {
                 // AB HIER ALLES CHECKEN LASSEN
                     if($check_modul == 'falseTime'){
@@ -102,12 +119,16 @@ class bewerbung_controller
                         if(($this->bewerbung_model->duplicateBewerbungCheck($matrikelnummer, $thema_id)) == "duplikat"){
                             $this->bewerbung_model->updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung, $fachsemester, $studiengang, $credits, $seminarteilnahme, $punkte);
                             $this->getModal("AB_BW_erfolgreich", $thema_id);
-                            include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
+                            $infos = $this->thema_model->getBetreuerByID($thema_id);
+                           $vorkenntnisse = $this->vorkenntnisse_model->vorkenntnisseByThemaID($thema_id);
+                            include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss_BW.php';
                             
                         } else {
                             $this->bewerbung_model->insertBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung, $fachsemester, $studiengang, $credits, $seminarteilnahme, $punkte);
                             $this->getModal("AB_BW_erfolgreich", $thema_id);
-                            include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
+                            $vorkenntnisse = $this->vorkenntnisse_model->vorkenntnisseByThemaID($thema_id);
+                            $infos = $this->thema_model->getBetreuerByID($thema_id);
+                            include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss_BW.php';
                         }
                     }
             }
@@ -161,7 +182,7 @@ class bewerbung_controller
             } 
        } 
         else{
-            echo "nicht gueltig";
+            include 'app/view/bewerbung/geschlossen.php';
         }
 }
 
@@ -176,6 +197,7 @@ class bewerbung_controller
         if(isset($_POST['Matrikelnummer'])) { $matrikelnummer  = $_POST['Matrikelnummer']; } else{ $matrikelnummer = '';}
         if(isset($_POST['Email'])) { $email  = $_POST['Email']."@stud.uni-goettingen.de"; } else{ $email = '';}
         if(isset($_POST['Zulassung'])) { $zulassung  = $_POST['Zulassung']; } else{ $zulassung = '';}
+        if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
         $check_modul = $this->modul_model->checkModul($id);
         $check_thema = $this->thema_model->checkThema($thema_id); 
 
@@ -196,9 +218,10 @@ class bewerbung_controller
                                     include 'app/view/bewerbung/Seminararbeit/windhund_view_seminar.php';
                                 } else {
                                     // HIER INSERT BEWERBUNG
-                                //    $this->windhund_model->insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $zulassung);
+                                    $this->windhund_model->insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $zulassung, $studiengang);
                                     $this->getModal("AB_WH_erfolgreich", $thema_id);
-                                    include 'app/view/bewerbung/Seminararbeit/fazit_abschluss.php';
+                                    $infos = $this->thema_model->getBetreuerByID($thema_id);
+                                    include 'app/view/bewerbung/Seminararbeit/fazit_seminar_WH.php';
                                 }      
                         }
                     else{
@@ -222,10 +245,16 @@ else if($this->modul_model->getModulVerfahrenByID($id) == 'Bewerbungsverfahren')
     if(isset($_POST['Credits'])) { $credits  = $_POST['Credits']; } else{ $credits = '';}
     if(isset($_POST['seminarteilnahme'])) { $seminarteilnahme  = $_POST['seminarteilnahme']; } else{ $seminarteilnahme = '';}
     $vorkenntnisse = array();
-            for($i=0; isset($_POST['Vorkenntnisse_'.$i]) == true;$i++)
+    $count=0;
+
+            for($i=0; isset($_POST['Vorkenntnisse_'.$i.'']) == true ;$i++)
             { 
                 $vorkenntnisse[$i] = $_POST['Vorkenntnisse_'.$i];
+                $count += 1; 
             }
+
+            if($count>0){ $vmsg = 'true';} else { $vmsg ='false';}
+
     $modul = $this->modul_model->getModulById($id);
     $themen = $this->thema_model->getThemenVG($id,'');
     if (isset($_POST['bewerbung_ab_BW'])) {
@@ -243,11 +272,15 @@ else if($this->modul_model->getModulVerfahrenByID($id) == 'Bewerbungsverfahren')
                 if(($this->bewerbung_model->duplicateBewerbungCheck($matrikelnummer, $thema_id)) == "duplikat"){
                     $this->bewerbung_model->updateBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung, $fachsemester, $studiengang, $credits, $seminarteilnahme, $punkte);
                     $this->getModal("AB_BW_erfolgreich", $thema_id);
-                    include 'app/view/bewerbung/Seminararbeit/fazit_seminar.php';
+                    $vorkenntnisse = $this->vorkenntnisse_model->vorkenntnisseByThemaID($thema_id);
+                    $infos = $this->thema_model->getBetreuerByID($thema_id);
+                    include 'app/view/bewerbung/Seminararbeit/fazit_seminar_BW.php';
                 } else {
                     $this->bewerbung_model->insertBewerbung($vorname, $nachname, $matrikelnummer, $email, $thema_id, $vorkenntnisse, $zulassung, $fachsemester, $studiengang, $credits, $seminarteilnahme, $punkte);
                     $this->getModal("AB_BW_erfolgreich", $thema_id);
-                    include 'app/view/bewerbung/Seminararbeit/fazit_seminar.php';
+                    $vorkenntnisse = $this->vorkenntnisse_model->vorkenntnisseByThemaID($thema_id);
+                    $infos = $this->thema_model->getBetreuerByID($thema_id);
+                    include 'app/view/bewerbung/Seminararbeit/fazit_seminar_BW.php';
                 }
             }
     }
@@ -297,7 +330,8 @@ else{
     } 
 } 
 else{
-    echo "nicht gueltig";
+
+    include 'app/view/bewerbung/geschlossen.php';
 }
     }
 
@@ -360,15 +394,28 @@ else{
                 include 'app/view/modul_verwaltung/modals/modal_modul.php';
                 break;
 
-                case 'anmeldung_senden':
-                $modal['case'] = 'anmeldung_senden';
-                $modal['title'] = 'Sicherheitsabfrage: Anmelden?';
-                $modal['body_class'] = 'well';
-                $modal['content'] = 'Möchtest du wirklich dich da wirklich anmelden?';
+                case 'anmeldung_senden_ab':
+                $modal['case'] = 'anmeldung_senden_ab';
+                $modal['title'] = 'Sicherheitsabfrage: Anmeldung verschicken?';
+                $modal['body_class'] = 'alert alert-secondary';
+                $modal['content'] = 'Bist du dir sicher, dass du die Anmeldung verschicken möchtest?';
                 $modal['btn'] = 'Anmeldung versenden';
                 $modal['btn_class'] = 'btn btn-primary';
                 $modal['type'] = 'submit';
                 $modal['name'] = 'bewerbung_ab_WH';
+                $modal['btn_url'] = '#';
+                include 'app/view/modals/bewerbung_modal.php';
+                break;
+
+                case 'anmeldung_senden_sem':
+                $modal['case'] = 'anmeldung_senden_sem';
+                $modal['title'] = 'Sicherheitsabfrage: Anmeldung verschicken?';
+                $modal['body_class'] = 'alert alert-secondary';
+                $modal['content'] = 'Bist du dir sicher, dass du die Anmeldung verschicken möchtest?';
+                $modal['btn'] = 'Anmeldung versenden';
+                $modal['btn_class'] = 'btn btn-primary';
+                $modal['type'] = 'submit';
+                $modal['name'] = 'bewerbung_SEM_WH';
                 $modal['btn_url'] = '#';
                 include 'app/view/modals/bewerbung_modal.php';
                 break;
@@ -413,13 +460,13 @@ else{
             {
                 $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
                 if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';}         
-                    include (__DIR__."/../../ajax/showVorkenntnisse_AB_WH.php");                     
+                    include (__DIR__."/../view/bewerbung/vorkenntnisse/showVorkenntnisse_WH.php");                     
             }
             else if($state=='false' && $kat =='BW')
             {
                 $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
                 if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';}          
-                    include (__DIR__."/../../ajax/showVorkenntnisse_AB_BW.php");                     
+                    include (__DIR__."/../view/bewerbung/vorkenntnisse/showVorkenntnisse_BW.php");                    
             }
             else if($state=='false' && $kat =='BEL1')
             {

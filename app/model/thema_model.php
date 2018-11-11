@@ -238,4 +238,44 @@ class thema_model
         return "true";
         }
     }
+
+        public function getBetreuerByID($thema_id)
+        {
+            $statement = $this->dbh->prepare(
+                "SELECT user.nachname, modul.kickoff, modul.kategorie, modul.modulbezeichnung, modul.professur
+                FROM modul, thema, user
+                WHERE thema.modul_id = modul.modul_id
+                AND user.benutzer_id = thema.benutzer_id
+                AND thema.thema_id = ?
+                LIMIT 1 ");
+            $statement->bind_param('i', $thema_id);
+            $statement->execute();
+            $statement->bind_result($nachname,$kickoff, $kategorie, $modulbezeichnung, $professur);
+            $statement->fetch();
+
+            $date = date("d.m.Y");
+            $time= date("H.i.s");
+
+            if($kategorie=='Seminararbeit'){
+                $bez = $modulbezeichnung;
+                $kat = 'Modulbezeichnung';
+            }
+            else if($kategorie=='Abschlussarbeit'){
+                $bez = $professur;
+                $kat = "Professur";
+            }
+         
+            $infos = array(
+                'betreuer' => $nachname,
+                'kickoff' => date("d.m.Y", strtotime($kickoff)),
+                'date' => $date,
+                'time' => $time,
+                'kategorie' => $kategorie,
+                'kat' => $kat,
+                'bez' => $bez
+            );
+
+            return $infos;
+     
+    }
 }

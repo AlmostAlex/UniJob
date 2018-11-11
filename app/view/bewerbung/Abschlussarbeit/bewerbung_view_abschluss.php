@@ -2,7 +2,7 @@
 <br>
 <div style='width: 100%; margin:0%; font-size: 1.0rem;' class='verwaltungsbox'>
     <h4 class='card-title'><i class='fa fa-info-circle' aria-hidden='true'></i> Informationen zur Bewerbung</h4>
-        Um eine Anmeldung durchzuführen, sind folgende Hinweise zu beachten:<br>
+        Um eine Bewerbung durchzuführen, sind folgende Hinweise zu beachten:<br>
     <ul>
    <li>Informieren Sie sich auf der <a href='index.php'>Informationsseite</a> über das Bewerbungsverfahren.</li>
    <li>Alle <b>Pflichtfelder ( <red style='color: red'>*</red> )</b> sind auszufüllen.</li>
@@ -19,12 +19,12 @@
         
         <table>
             <tr>
-                <td><label for='Vorname'><b>Vorname:</b><red style='color: red'>*</red></label></td>
-                <td><input style='width: 100%' type='text' class='form-control' name='Vorname' id='Vorname'  placeholder='Vorname' value='<?php echo $vorname?>' required> </td>
-            </tr> 
             <tr>
-                <td><label for='Nachname'><b>Nachname:</b><red style='color: red'>*</red></label></td>
-                <td><input style='width: 100%' type='text' class='form-control' name='Nachname' id='Nachname'  placeholder='Nachname' value='<?php echo $nachname?>' required> </td>
+                <td><label for='Vorname'><b>Name:</b><red style='color: red'>*</red></label></td>
+                <td>
+                    <input style='width: 48%; float:left; margin-right:5px;' type='text' class='form-control' id='Vorname'  name='Vorname' placeholder='Vorname' value='<?php echo $vorname?>' required> 
+                    <input style='width: 50%' type='text' class='form-control' id='Nachname' name='Nachname' placeholder='Nachname'  value='<?php echo $nachname?>'  required>
+                </td>
             </tr>
             <tr>
                 <td><label for='matrikelnummer'><b>Matrikelnummer:</b><red style='color: red'>*</red></label></td>
@@ -93,10 +93,8 @@
         </tr>
             <tr>
                 <td><br>
-
-            <a data-toggle='modal' data-target='#bewerbung_senden' href='#'>hi</a>
-            <?php $this->getModal('bewerbung_senden', $modul["modul_id"]);?>
-
+            <button style='float:right;' data-toggle='modal' data-target='#bewerbung_senden' href='#' type="button" class="btn btn-primary">Bewerbung verschicken</button>
+            <?php $this->getModal('bewerbung_senden', $modul["modul_id"]);?>  
                 </td>
             </tr>
         </table>

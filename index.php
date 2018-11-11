@@ -1,5 +1,6 @@
 <?php
-require('layout/header.php');
+ob_start();
+include_once('layout/header.php');
 require('vendor/autoload.php');
 include("PHPRouter/Router.php");
 include("PHPRouter/Response.php");
@@ -86,7 +87,9 @@ $router->map(["GET", "POST"],["/einsicht/{action}/{id}"], function ($action,$id)
     $modul->Einsicht('einsicht',$action,$id); 
 });
 
-
+$router->map(["GET", "GET"], ["/fazit_abschluss.php"], function (Response $response) {
+    $response->render("app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php");
+});
 /* Ajax */
 $router->map(["GET", "GET"], ["app/controller/ajax_controller.php"], function (Response $response) {
 });
