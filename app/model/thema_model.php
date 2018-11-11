@@ -124,6 +124,24 @@ class thema_model
         return $rows;
     }
 
+    public function getAllModulThema($modul_id) 
+    {
+        $statement = $this->dbh->prepare("SELECT thema_id FROM thema WHERE modul_id = ?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($thema_id);
+        $statement->store_result();
+        $rows = array();
+        while ($statement->fetch()) {
+            $row = array(
+                'thema_id' => $thema_id
+            );
+            $rows[] = $row;
+        }
+
+        return $rows;
+    }
+
     public function deleteAllThema($modul_id)
     {
        

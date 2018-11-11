@@ -1,4 +1,5 @@
 <?php
+ini_set('max_execution_time', 10);
 class belegwunsch_model
 {
     //Erstellen einer Variable $dbh und speichern des Datenabnkzugriffs auf dieser
@@ -28,11 +29,24 @@ class belegwunsch_model
         }
     }
 
+    public function deleteBewerbungModul($modul_id){
+        $statement = $this->dbh->prepare("UPDATE belegwunsch
+        SET erhaltenesthema = NULL 
+        WHERE belegwunsch_id = (SELECT belegwunsch_id
+                                            FROM thema
+                                            WHERE belegwunsch.wunschthema1 = thema.thema_id
+                                            AND thema.modul_id = ?) AND belegwunsch_id <> 0");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();   
+    }
+
     public function setThema($belegwunsch_id, $thema_id) 
     {
-        $statement = $this->dbh->prepare("UPDATE belegwunsch SET erhaltenesthema = ? WHERE belegwunsch_id = ?");
+        if ($statement = $this->dbh->prepare("UPDATE belegwunsch SET erhaltenesthema = ? WHERE belegwunsch_id = ?")){
         $statement->bind_param('ii', $thema_id, $belegwunsch_id);
         $statement->execute();
+        } else { //Keine Bewerbungen eingegangen.
+        }
     }
 
     public function beleg_count($modul_id)
