@@ -243,7 +243,7 @@ public function editAbschluss($modul_id)
 
 public function editThema($thema_id)
     {
-        $check['Abschlussarbeit'] = $check['verfahren_select'] = $check['verfahren_option'] = $check['Seminararbeit'] = $check['fristen'] = '';
+     /*   $check['Abschlussarbeit'] = $check['verfahren_select'] = $check['verfahren_option'] = $check['Seminararbeit'] = $check['fristen'] = '';
         $thema = $this->thema_model->getThema($thema_id);
         $start_dt = new DateTime($modul["frist_start"]);
 
@@ -282,10 +282,10 @@ public function editThema($thema_id)
             $modul['semester'] = $_POST['Semester'];
             $modul['studiengang'] = $_POST['Studiengang'];
             $modul['verfahren'] = $verfahren;
-            $this->getModal('edit_modul_success', $modul_id);
-        }
-        $themen = $this->thema_model->getThemen($modul_id, '');
-        include 'app/view/modul_verwaltung/edit_abschluss_view.php';
+            $this->getModal('edit_modul_success', $modul_id); 
+        
+        $themen = $this->thema_model->getThemen($modul_id, '');}
+        include 'app/view/modul_verwaltung/edit_abschluss_view.php';*/
 }
 // Archivierung
 

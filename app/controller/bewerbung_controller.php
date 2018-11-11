@@ -495,24 +495,24 @@ else{
         }
 
         public function Abschluss_AJ($id,$state,$kat)
-        {           
+        {         $vorkenntnisse_msg = "";  
             $modul = $this->modul_model->getModulById($id);
             if($state=='false' && $kat =='WH')
             {
                 $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
-                if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';}         
+                if(empty($vorkenntnisse)){$msg_vork =''; $btn ='display:none;'; } else{$btn =''; $msg_vork ='Empfohlene Vorkenntnisse: ';}         
                     include (__DIR__."/../view/bewerbung/vorkenntnisse/showVorkenntnisse_WH.php");                     
             }
             else if($state=='false' && $kat =='BW')
             {
                 $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
-                if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';}          
+                if(empty($vorkenntnisse)){$msg_vork =''; $btn ='display:none;'; } else{$btn =''; $msg_vork ='Empfohlene Vorkenntnisse: ';}          
                     include (__DIR__."/../view/bewerbung/vorkenntnisse/showVorkenntnisse_BW.php");                    
             }
             else if($state=='false' && $kat =='BEL1')
             {
                 $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
-                if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';} 
+                if(empty($vorkenntnisse)){$msg_vork =''; $btn ='display:none;'; } else{$btn =''; $msg_vork ='Empfohlene Vorkenntnisse: ';} 
                  for($j = 0; $j < count($vorkenntnisse); $j++){ 
                    $vorkenntnisse_msg =  $vorkenntnisse[$j]['bezeichnung'] .'; <br>' ;
               }          
@@ -520,20 +520,21 @@ else{
             }
             else if($state=='false' && $kat =='BEL2')
             {
-                $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
+                $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);  
+                if(empty($vorkenntnisse)){$msg_vork =''; $btn ='display:none;'; } else{$btn =''; $msg_vork ='Empfohlene Vorkenntnisse: ';} 
                 for($j = 0; $j < count($vorkenntnisse); $j++){ 
                     $vorkenntnisse_msg =  $vorkenntnisse[$j]['bezeichnung'] .'; <br>' ;
-               } 
-                if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';}          
+               }         
                     include (__DIR__."/../../ajax/vorkenntnisse_BEL/showVorkenntnisse_AB_BEL2.php");                     
             }
             else if($state=='false' && $kat =='BEL3')
             {
                 $vorkenntnisse = $this->vorkenntnisse_model->VorkenntnisseByThemaID($id);
+                if(empty($vorkenntnisse)){$msg_vork =''; $btn ='display:none;'; } else{$btn =''; $msg_vork ='Empfohlene Vorkenntnisse: ';}   
                 for($j = 0; $j < count($vorkenntnisse); $j++){ 
-                    $vorkenntnisse_msg =  $vorkenntnisse[$j]['bezeichnung'] .'; <br>' ;
+                $vorkenntnisse_msg =  $vorkenntnisse[$j]['bezeichnung'] .'; <br>' ;
                } 
-                if(empty($vorkenntnisse)){$msg_vork =''; } else{$msg_vork ='Empfohlene Vorkenntnisse: ';}           
+        
                     include (__DIR__."/../../ajax/vorkenntnisse_BEL/showVorkenntnisse_AB_BEL3.php");                     
             }
         }

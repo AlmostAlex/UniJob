@@ -1,6 +1,6 @@
 
-
-<tr>
+<div style="<?php echo $btn;?>">
+<tr style="<?php echo $btn;?>">
 <td><label for='Vorkenntnisse'><b>Vorkenntnisse:</b><red style='color: red'>*</red></label></td>
 <td>     
         <?php for($j = 0; $j < count($vorkenntnisse); $j++){  ?>    
@@ -24,3 +24,4 @@
 
 </td>
 </tr>
+        </div>

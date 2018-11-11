@@ -1,5 +1,5 @@
 <td>
-  <vorkenntnisseWH>
+  <vorkenntnisseWH style="<?php echo $btn;?>">
 <div class="alert alert-warning" role="alert">
      <small>   
        <?php echo $msg_vork; ?>

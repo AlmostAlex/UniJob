@@ -1,7 +1,7 @@
 <module> 
 <?php for($k = 0; $k < count($module); $k++){ ?> 
         <first>   
-            <table> 
+            <table style='margin-bottom: 5px;'> 
                     <tr id='tr_sem' data-status="<?php echo $module[$k]['semester']?>">
                         <td id='td_f'>
                             
@@ -60,5 +60,5 @@
         </content>
     </themen>
  </div> 
- <?php }?>  <?php } ?>
+ <?php }?> <?php } ?>
 </module>

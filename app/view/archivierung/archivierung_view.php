@@ -25,8 +25,8 @@ Archivierte Abschluss- und Seminararbeitsthemen
         </td>
         <td style='width:30%'>
             <ul>
-            <a class="btn btn-primary openall" href="#">open all</a> 
-            <a class="btn btn-danger closeall" href="#">close all</a>
+          <!--  <a class="btn btn-primary openall" href="#">open all</a> 
+            <a class="btn btn-danger closeall" href="#">close all</a> -->
             </ul>
         </td>
     </tr>
