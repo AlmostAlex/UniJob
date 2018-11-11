@@ -95,6 +95,6 @@ $router->map(["GET", "GET"], ["app/controller/ajax_controller.php"], function (R
 });
 
 $router->dispatch();
-include('layout/navi.php');
-include('layout/footer.php');
+include_once('layout/navi.php');
+include_once('layout/footer.php');
 ?>
