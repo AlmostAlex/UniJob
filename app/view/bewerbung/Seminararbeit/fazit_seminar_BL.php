@@ -40,28 +40,24 @@
             </td>
         </tr>
         <tr>
-            <td><label><b>Thema mit Priorität 1:</b></label></td>
-            <td><?php echo $themenbezeichnung1;?></td>      
-        </tr> 
+            <td><label><b>Art:</b></label></td>
+            <td><?php echo $infos1['kategorie'];?></td>      
+        </tr>   
         <tr>
-            <td><label><b>Betreuer:</b></label></td>
-            <td><?php echo $infos1['betreuer'];?></td>      
+            <td><label><b><?php echo $infos1['kat'];?></b></label></td>
+            <td><?php echo $infos1['bez'];?></td>      
+        </tr>
+        <tr>
+            <td><label><b>Thema mit Priorität 1:</b></label></td>
+            <td><?php echo $themenbezeichnung1." (".$infos1['betreuer'].")";?></td>      
         </tr>
         <tr>
             <td><label><b>Thema mit Priorität 2:</b></label></td>
-            <td><?php echo $themenbezeichnung2;?></td>      
-        </tr> 
-        <tr>
-            <td><label><b>Betreuer:</b></label></td>
-            <td><?php echo $infos2['betreuer'];?></td>      
+            <td><?php echo $themenbezeichnung2." (".$infos2['betreuer'].")";?></td>      
         </tr>
         <tr>
             <td><label><b>Thema mit Priorität 3:</b></label></td>
-            <td><?php echo $themenbezeichnung3;?></td>      
-        </tr> 
-        <tr>
-            <td><label><b>Betreuer:</b></label></td>
-            <td><?php echo $infos3['betreuer'];?></td>      
+            <td><?php echo $themenbezeichnung3." (".$infos3['betreuer'].")";?></td>      
         </tr>
         <tr>
             <td><label><b>Kick-Off:</b></label></td>
