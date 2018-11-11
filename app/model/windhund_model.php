@@ -12,11 +12,11 @@ class windhund_model
         $this->thema = new thema_model();
     }
 
-    public function insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetzungen, $studiengang)
+    public function insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetzungen, $seminarteilnahme, $studiengang)
     {
-        if ($statement = $this->dbh->prepare("INSERT INTO `windhund` (`vorname`, `nachname`, `matrikelnummer`, `email`, `thema_id`, `status`, `voraussetzungen`,`studiengang` )
-        VALUES (?,?,?,?,?,'angenommen',?,?)")) {
-            $statement->bind_param('ssisiss', $vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetzungen, $studiengang);
+        if ($statement = $this->dbh->prepare("INSERT INTO `windhund` (`vorname`, `nachname`, `matrikelnummer`, `email`, `thema_id`, `status`, `voraussetzungen`, `seminarteilnahme`, `studiengang` )
+        VALUES (?,?,?,?,?,'angenommen',?,?,?)")) {
+            $statement->bind_param('ssisisss', $vorname, $nachname, $matrikelnummer, $email, $thema_id, $voraussetzungen, $seminarteilnahme, $studiengang);
             $statement->execute();
             $this->thema->updateStatus($thema_id);
         } else {

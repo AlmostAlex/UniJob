@@ -41,7 +41,9 @@ class bewerbung_controller
     if(isset($_POST['Matrikelnummer'])) { $matrikelnummer  = $_POST['Matrikelnummer']; } else{ $matrikelnummer = '';}
     if(isset($_POST['Email'])) { $email  = $_POST['Email']."@stud.uni-goettingen.de"; } else{ $email = '';}
     if(isset($_POST['Zulassung'])) { $zulassung  = $_POST['Zulassung']; } else{ $zulassung = '';}
+    if(isset($_POST['seminarteilnahme'])) { $seminarteilnahme  = $_POST['seminarteilnahme']; } else{ $seminarteilnahme = '';}
     if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
+    
     $check_modul = $this->modul_model->checkModul($id);
     $check_thema = $this->thema_model->checkThema($thema_id); 
     $modul = $this->modul_model->getModulById($id);
@@ -60,7 +62,7 @@ class bewerbung_controller
                                     include 'app/view/bewerbung/Abschlussarbeit/windhund_view_abschluss.php';  
                                 } else {
                                     // HIER INSERT BEWERBUNG
-                                    $this->windhund_model->insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $zulassung, $studiengang);
+                                    $this->windhund_model->insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $zulassung, $seminarteilnahme, $studiengang);
                                     $this->getModal("AB_WH_erfolgreich", $thema_id);
                                     $infos = $this->thema_model->getBetreuerByID($thema_id);
                                     include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss_WH.php';
@@ -85,7 +87,7 @@ class bewerbung_controller
             $vorkenntnisse = array();
             $count = 0;
 
-            for($i=0; isset($_POST['Vorkenntnisse_'.$i.'']) == true ;$i++)
+            for($i=0; isset($_POST['Vorkenntnisse_'.$i.'']) == true; $i++)
             { 
                 $vorkenntnisse[$i] = $_POST['Vorkenntnisse_'.$i];
                 $count += 1; 
@@ -95,11 +97,6 @@ class bewerbung_controller
                 $vmsg = 'true';
             } else {
                 $vmsg ='false';
-            }
-
-            for($i=0; isset($_POST['Vorkenntnisse_'.$i.'']) == true;$i++)
-            { 
-                $vorkenntnisse[$i] = $_POST['Vorkenntnisse_'.$i];
             }
 
             $modul = $this->modul_model->getModulById($id);
@@ -152,6 +149,9 @@ class bewerbung_controller
                 if(isset($_POST['Nachname'])) { $nachname = $_POST['Nachname']; } else{ $nachname = '';}
                 if(isset($_POST['Matrikelnummer'])) { $matrikelnummer  = $_POST['Matrikelnummer']; } else{ $matrikelnummer = '';}
                 if(isset($_POST['Email'])) { $email  = $_POST['Email']."@stud.uni-goettingen.de"; } else{ $email = '';}
+                if(isset($_POST['Thema1'])) { $thema1  = $_POST['Thema1']; } else{ $thema1 = '';}
+                if(isset($_POST['Thema2'])) { $thema2  = $_POST['Thema2']; } else{ $thema2 = '';}
+                if(isset($_POST['Thema3'])) { $thema3  = $_POST['Thema3']; } else{ $thema3 = '';}
 
 
                 
@@ -169,6 +169,7 @@ class bewerbung_controller
                             include 'app/view/bewerbung/Abschlussarbeit/belegwunsch_view_abschluss.php';  
                         } else {
                             // HIER INSERT BEWERBUNG
+
                             $this->getModal("AB_BW_erfolgreich", $thema_id);
                             include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
                         }      
@@ -200,6 +201,7 @@ class bewerbung_controller
         if(isset($_POST['Matrikelnummer'])) { $matrikelnummer  = $_POST['Matrikelnummer']; } else{ $matrikelnummer = '';}
         if(isset($_POST['Email'])) { $email  = $_POST['Email']."@stud.uni-goettingen.de"; } else{ $email = '';}
         if(isset($_POST['Zulassung'])) { $zulassung  = $_POST['Zulassung']; } else{ $zulassung = '';}
+        if(isset($_POST['seminarteilnahme'])) { $seminarteilnahme  = $_POST['seminarteilnahme']; } else{ $seminarteilnahme = '';}
         if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
         $check_modul = $this->modul_model->checkModul($id);
         $check_thema = $this->thema_model->checkThema($thema_id); 
@@ -221,7 +223,7 @@ class bewerbung_controller
                                     include 'app/view/bewerbung/Seminararbeit/windhund_view_seminar.php';
                                 } else {
                                     // HIER INSERT BEWERBUNG
-                                    $this->windhund_model->insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $zulassung, $studiengang);
+                                    $this->windhund_model->insertWindhund($vorname, $nachname, $matrikelnummer, $email, $thema_id, $zulassung, $seminarteilnahme, $studiengang);
                                     $this->getModal("AB_WH_erfolgreich", $thema_id);
                                     $infos = $this->thema_model->getBetreuerByID($thema_id);
                                     include 'app/view/bewerbung/Seminararbeit/fazit_seminar_WH.php';
