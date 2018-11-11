@@ -270,8 +270,7 @@
         {
             if($bewerberinfos['belegwunsch_id']['Thema'] != "kein Thema")
             {
-                $this->belegwunsch->setThema($belegwunsch_id, $array[$belegwunsch_id]['Thema']);
-                $gesamtPunktzahl += $array[($array[$belegwunsch_id]['Thema'])]['Punkte'];
+                $this->belegwunsch_model->setThema($bewerberinfos['belegwunsch_id'], $bewerberinfos['belegwunsch_id']['Thema']);
             }
         }
 

@@ -28,6 +28,13 @@ class belegwunsch_model
         }
     }
 
+    public function setThema($belegwunsch_id, $thema_id) 
+    {
+        $statement = $this->dbh->prepare("UPDATE belegwunsch SET erhaltenesthema = ? WHERE belegwunsch_id = ?");
+        $statement->bind_param('ii', $thema_id, $belegwunsch_id);
+        $statement->execute();
+    }
+
     public function beleg_count($modul_id)
     {
          $statement = $this->dbh->prepare
