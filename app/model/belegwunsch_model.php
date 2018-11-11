@@ -49,28 +49,26 @@ class belegwunsch_model
          WHERE belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = modul.modul_id AND modul.modul_id = ?");
         $statement->bind_param('i', $modul_id);
         $statement->execute();
-        $statement->bind_result($modulbezeichnung, $professur, $professur);
+        $statement->bind_result($modulbezeichnung, $professur, $kategorie);        $statement->store_result();
         $statement->fetch();
-        $statement->store_result();
 
-        $statement1 = $this->dbh->prepare
-        ("SELECT count(thema.thema_id) as anzThema
-        FROM thema, modul 
-        WHERE thema.modul_id = modul.modul_id  
-        AND modul.modul_id = ?
-        "); 
-       $statement1->bind_param('i', $modul_id);
+       $statement1 = $this->dbh->prepare
+       ("SELECT count(thema_id) as anzThema,
+                (SELECT count(thema_id) FROM thema WHERE thema_verfuegbarkeit = 'Vergeben' AND modul_id =?)
+                as anzThemaVergeben
+        FROM thema WHERE modul_id = ? Limit 1"); 
+       $statement1->bind_param('ii', $modul_id,$modul_id);
        $statement1->execute();
-       $statement1->bind_result($anzThema);
+       $statement1->bind_result($anz, $anzThemaVergeben);
        $statement1->fetch();
        $statement1->store_result();
-
 
         $infos = array(
             'modulbezeichnung' => $modulbezeichnung,
             'professur' => $professur,
-            'kategorie' => $professur,
-            'anzThema' => $anzThema
+            'kategorie' => $kategorie,
+            'anzThema' => $anz,
+            'anzThemaVergeben' => $anzThemaVergeben
         );
 
     return $infos;

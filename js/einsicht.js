@@ -24,6 +24,33 @@ $(document).ready(function() {
     });
 });
 
+
+$(document).ready(function() {
+    $('#sort_einsicht_bel').DataTable({
+        "columnDefs": [{
+            "targets": 'no-sort',
+            "orderable": false,
+        }],
+        "order": [],
+        "paging": false,
+        "info": false,
+        "searching": false,
+
+    });
+
+    $('#vgTable').DataTable({
+        "columnDefs": [{
+            "targets": 'no-sort',
+            "orderable": false,
+        }],
+        "order": [],
+        "paging": false,
+        "info": false,
+        "searching": false,
+
+    });
+});
+
 $(function() {
     $('#verf').on('hide.bs.collapse', function() {
         $('#verfuegbar').html('Verfügbare Themen <span style="font-size: 0.7em;" class="glyphicon glyphicon-plus"></span>');

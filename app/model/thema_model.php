@@ -201,6 +201,39 @@ class thema_model
         return $row;
     }
 
+    public function einsichtThemaModulBeleg($modul_id)
+    {
+        $statement = $this->dbh->prepare(
+            "SELECT thema.themenbezeichnung, belegwunsch.matrikelnummer, belegwunsch.vorname, belegwunsch.nachname, 
+            belegwunsch.email, belegwunsch.status
+            FROM thema, belegwunsch, modul 
+            WHere thema.thema_id = belegwunsch.erhaltenesThema 
+            AND thema.modul_id = modul.modul_id
+            AND modul.modul_id = ?
+            ");     
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($themenbezeichnung, $matrikelnummer, $vorname, $nachname, $email, $status);
+        $statement->store_result();
+        
+        while ($statement->fetch()) {       
+            $row[] = array(
+                'themenbezeichnung' => $themenbezeichnung,
+                'matrikelnummer' => $matrikelnummer,
+                'vorname' => $vorname,
+                'nachname' => $nachname,
+                'email' => $email,
+                'status' =>$status
+            );
+        }
+        return $row;
+    }
+
+    public function keinThema($modul_id)
+    {
+
+    }
+
     public function einsichtThemaModulVerfuegbar($modul_id)
     {
         $statement = $this->dbh->prepare(
