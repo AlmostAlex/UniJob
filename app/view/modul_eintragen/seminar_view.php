@@ -37,49 +37,40 @@
                 </tr>
                 <tr>
                     <td><label for="Termine"><b>Bewerbungsfristen:</b><red>*</red></label></td>
-                    <td>
+                    <td style='padding-bottom: 30px;'>
                         <div class='input-group date' id='datetimepicker1'>
                             <input type="text" class="form-control" name="Start" autocomplete="off" placeholder="TT-MM-JJJJ" id="datepicker_Start" required>
                             <span id='datebox' class="input-group-addon">
                                 <i class="far fa-calendar-alt"></i>
                             </span>
                         </div>
+                        <dates>
+                            <text style='padding-right: 15px;padding-left: 20px;margin-top: 10px;height: 30px;'  for="starttermin">Bewerbungsstart</text>
+                        </dates>
                     </td>
-                    <td>
+                    <td style='padding-bottom: 30px;'>
                         <div class='input-group date' id='datetimepicker1'>
                             <input type="text" class="form-control" name="Ende" autocomplete="off" placeholder="TT-MM-JJJJ" id="datepicker_Ende" required>
                             <span id='datebox' class="input-group-addon">
                                 <i class="far fa-calendar-alt"></i>
                             </span>
                         </div>
+                        <dates>
+                        <text style='padding-right: 20px;padding-left: 20px;margin-top: 10px;height: 30px;'  for="endtermin">Bewerbungsende</text>
+                        </dates>
                     </td>
-                    <td>
+                    <td style='padding-bottom: 30px;'>
                         <div class='input-group date' id='datetimepicker1'>
                             <input type="text" class="form-control" name="Kickoff" autocomplete="off" placeholder="TT-MM-JJJJ" id="datepicker_kickoff" required>
                             <span id='datebox' class="input-group-addon">
                                 <i class="far fa-calendar-alt"></i>
                             </span>
-                        </div>
+                        </div>    
+                        <dates>                       
+                        <text style='padding-right: 27px;padding-left: 30px;margin-top: 10px;height: 30px;'  for="kickofftermin">Kickofftermin</text>
+                    </dates>                   
                     </td>
                 </tr>                
-                <tr>
-                    <td></td>
-                    <td>
-                        <dates>
-                            <label style="margin-left:10px;" for="starttermin">Bewerbungsstart</label>
-                        </dates>
-                    </td>
-                    <td>
-                        <dates>
-                            <label style="margin-left:20px;" for="endtermin">Bewerbungsende</label>
-                        </dates>
-                    </td>
-                    <td>
-                    <dates>                       
-                        <label style="margin-left:30px;" for="kickofftermin">Kickofftermin</label>
-                    </dates>                       
-                    </td>
-                </tr>
                 <!-- Auswahl Semester-->
                 <tr>
                     <td><label for="Semester"><b>Semester:</b><red>*</red></label></td>
@@ -153,7 +144,7 @@
 <div class="form-group fieldGroupCopy" style="display: none;">     
     <table>
         <tr>
-            <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
+            <td class='first_td'><label style='width: 150px;' for="Betreuer"><b>Betreuer:</b></label></td>
             <td><space><input style='margin-left: 90px;' type="text" class="form-control" name='betreuerwindhund[]' placeholder="Betreuer des Themas"></space> </td>
             <td><a href="javascript:void(0)" class="btn btn-danger remove">-</a></td>
         </tr>
@@ -164,9 +155,7 @@
        <tr>
             <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
             <td><textarea style='margin-left: 90px;' type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
-        </tr> 
-
-        
+        </tr>     
         <tr>
      <td></td>
       <td>
@@ -202,7 +191,7 @@
 <div class="form-group fieldGroupCopy2" style="display: none;">
     <table>
         <tr>
-            <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
+            <td class='first_td'><label style='width: 150px;' for="Betreuer"><b>Betreuer:</b></label></td>
             <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas"></space> </td>
             <td><a href="javascript:void(0)" class="btn btn-danger remove">-</a></td>
         </tr>
@@ -252,7 +241,7 @@
         <table>
             <div class="form-group fieldGroup"> 
                 <tr>
-                    <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
+                    <td class='first_td'><label style='width: 150px;' for="Betreuer"><b>Betreuer:</b></label></td>
                     <td><space><input type="text" class="form-control" name='betreuerwindhund[]' placeholder="Betreuer des Themas"></space> </td>
                     <td><a href="javascript:void(0)" class="btn btn-success addMore2">+</a></td>
                 </tr>
@@ -262,14 +251,14 @@
                 </tr>
                 <tr>
                     <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
-                    <td><textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
+                    <td colspan='2'><textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
                 </tr>
  <tr>
      <td></td>
       <td>
 <div class="input-group">
   <div class="input-group-prepend">
-    <span style='margin-left:88px' class="input-group-text">Vorkenntnisse</span>
+    <span style='margin-left:87px' class="input-group-text">Vorkenntnisse</span>
   </div>
   <vork><input style='width:80%;margin-left:0px;' type="text" name='vorkenntnisse_WiBe[]' placeholder='Eingabe' class="tagsinput-typeahead2" />                            
 </vork></div>
@@ -279,10 +268,10 @@
 
  <tr>
      <td></td>
-      <td>
+     <td colspan='2'>
 <div class="input-group">
   <div class="input-group-prepend">
-    <span style='margin-left:88px' class="input-group-text">Tags</span>
+    <span style='margin-left:87px' class="input-group-text">Tags</span>
   </div>
   <tags><input style='width:80%;margin-left:0px;' type="text" name='tags_WiBe[]' placeholder='Add Tags' class="tagsinput-typeahead" />                              
 </tags></div>
@@ -305,7 +294,7 @@
         <div class="form-group fieldGroup">
         <!-- 1 -->
             <tr>
-                <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
+                <td class='first_td'><label style='width: 150px;' for="Betreuer"><b>Betreuer:</b></label></td>
                 <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas"></space> </td>
                 <td><a href="javascript:void(0)" class="btn btn-success addMore3">+</a></td>
             </tr>

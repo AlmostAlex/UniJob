@@ -1,349 +1,338 @@
-/* ÜEBERSICHT ADMIN */
-
-uebersicht table th {
-    font-weight: bold;
-}
-
-.top {
-    color: #333;
-    background-color: #f5f5f5;
-    border-bottom: 1px solid transparent;
-    border-color: #ddd;
-    border-top: 4px solid #3979b5;
-    padding: 10px;
-    width: 100%;
-}
-
-panel panel-default panel-table {
-    width: 100%;
-    font-size: 12.5px;
-}
-
-.panel-title-dozent {
-    font-size: 1.25rem;
-    border-bottom: 1px solid #efefef;
-    margin-right: 50px;
-}
-
-.panel_table th {
-    margin: 0px;
-    border: 1px solid #ddd;
-    padding: 5px;
-    display: table-cell;
-    vertical-align: inherit;
-    font-weight: bold;
-    text-align: center;
-}
-
-uebersicht .btn-group_dozent {
-    float: left;
-    border-radius: 10px;
-    padding: 0px;
-}
-
-uebersicht list .btn {
-    color: #444444;
-    background-color: #f2f2f2;
-    transition: all 0.8s ease 0s;
-    border: 1px solid rgba(0, 0, 0, 0.2959795);
-    text-shadow: 0px 0px 9px #ffffff;
-    box-shadow: 0px 0px 1px #aaa, inset 0px 2px 3px #fff;
-}
-
-uebersicht list .btn:hover {
-    color: #444444;
-    background-color: #e8e8e8;
-}
-
-uebersicht list .btn:active {
-    color: #ffffff;
-}
-
-uebersicht label {
-    margin-right: 5px;
-}
-
-.border-round-Geschlossen {
-    font-size: 12.5px;
-    margin: 1px;
-    background-color: white;
-    border: 1px solid #ced4da;
-    padding: 5px;
-    border-radius: .95rem;
-}
-
-.border-round-Offen {
-    font-size: 12.5px;
-    margin: 1px;
-    background-color: white;
-    border: 1px solid #ced4da;
-    padding: 5px;
-    border-radius: .95rem;
-}
-
-.panel {
-    background-color: #fff;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-}
-
-.panel-body {
-    padding: 15px;
-}
-
-.panel-default {
-    border-color: #ddd;
-    -webkit-box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
-}
-
-uebersicht module tr {
-    border: 1px solid #ddd;
-}
-
-uebersicht a {
-    color: #ffffff;
-}
-
-uebersicht .border_round {
-    display: inline-block;
-    padding: .55em .6em;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    border-radius: .25rem;
-    background-color: white;
-    border: 1px solid #ced4da;
-}
-
-uebersicht .table {
-    margin-bottom: 0px;
-    border-collapse: collapse;
-    font-size: 14px;
-}
-
-.badge {
-    padding: 10px;
-}
-
-uebersicht span {
-    transition: all 0.5s ease 0s;
-}
-
-uebersicht span:hover {
-    background: orange;
-}
-
-uebersicht span a:hover {
-    color: #ffffff;
-}
-
-uebersicht module table tr {
-    background-color: #F1F0F0;
-}
-
-uebersicht module table td {
-    background-color: #fcfcfc;
-}
-
-uebersicht .btn-group_dozent input {
-    position: absolute;
-    clip: rect(0, 0, 0, 0);
-    pointer-events: none
-}
-
-inside table,
-inside th,
-inside td {
-    font-size: 14.2px;
-    vertical-align: top;
-}
-
-.panel-footer {
-    padding: 10px 15px;
-    background-color: #f5f5f5;
-    border-top: 1px solid #ddd;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-}
-
-inside .badge {
-    padding: 8px;
-}
-
-
-/* Tabellen */
-
-uebersicht {
-    margin-bottom: 100px;
-}
-
-
-/* actions  */
-
-.btn_false {
-    display: none;
-}
-
-
-/* MODAL MODIFIKATIONEN */
-
-.modal.fade {
-    top: 30%;
-}
-
-.well {
-    min-height: 20px;
-    padding: 19px;
-    margin-bottom: 20px;
-    background-color: #f5f5f5;
-    border: 1px solid #e3e3e3;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-}
-
-.alert-danger {
-    font-size: 15px;
-}
-
-
-/* Edit */
-
-
-/*-- Edits Divs und Tables -*/
-
-.edit_div {
-    margin-top: 5%;
-    margin-bottom: 10%;
-    margin-left: 5%;
-    font-size: 12.5px;
-    border: 1px solid #d9d9d9;
-    border-top: 4px solid #3979b5;
-    width: 80%;
-    background: #FFF;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
-    -moz-box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
-    -webkit-box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
-}
-
-.edit_div h5 {
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #d9d9d9;
-}
-
-.edit_div h5 span {
-    font-size: 15px;
-}
-
-.edit_div_table {
-    width: 90%;
-    margin: 5%;
-}
-
-
-/*-- Edits Divs und Tables für Module-*/
-
-.edit_div_modul {
-    margin-top: 5%;
-    margin-bottom: 10%;
-    margin-left: 1%;
-    font-size: 12.5px;
-    border: 1px solid #d9d9d9;
-    border-top: 4px solid #3979b5;
-    width: 95%;
-    background: #FFF;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
-    -moz-box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
-    -webkit-box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
-}
-
-.edit_div_modul table td label {
-    width: 200px;
-    padding-right: 0%;
-    margin-right: 0px;
-    font-size: 15px;
-    text-align: left;
-    float: left;
-    padding-bottom: 4%;
-}
-
-.edit_div_modul h5 {
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #d9d9d9;
-}
-
-.edit_div_modul h5 span {
-    font-size: 15px;
-}
-
-.edit_div_modul li {
-    margin-left: 4%;
-}
-
-#waehle_modul {
-    display: none;
-}
-
-report label {
-    padding: 0%;
-}
-
-
-/*add thema */
-
-.bootstrap-tagsinput input {
-    font-size: 14px;
-}
-
-.bootstrap-tagsinput .tag {
-    color: black;
-}
-
-#js-edit-input {
-    background-color: transparent;
-    font-size: 12px;
-    line-height: 23px;
-    text-shadow: 0 1px white;
-    margin: 0px;
-    padding: 0px;
-    display: inline;
-    width: 60%;
-}
-
-.add_thema .bootstrap-tagsinput {
-    width: 90%;
-}
-
-#add_btn {
-    float: right;
-    background-color: #3979b5;
-}
-
-.list-group-item.active {
-    background-color: #3979b5;
-}
-
-dates {
-    margin-left: 10px;
-    font-size: 10pt;
-    font-size: 10.5px;
-    background-color: #dededea8;
-    padding: 6px;
-    margin: 0px;
-    border: 1px solid #a2a2a29c;
-    width: 100%;
-    text-align: center;
-    margin-top: -21px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
+    /* ÜEBERSICHT ADMIN */
+    
+    uebersicht table th {
+        font-weight: bold;
+    }
+    
+    .top {
+        color: #333;
+        background-color: #f5f5f5;
+        border-bottom: 1px solid transparent;
+        border-color: #ddd;
+        border-top: 4px solid #3979b5;
+        padding: 10px;
+        width: 100%;
+    }
+    
+    panel panel-default panel-table {
+        width: 100%;
+        font-size: 12.5px;
+    }
+    
+    .panel-title-dozent {
+        font-size: 1.25rem;
+        border-bottom: 1px solid #efefef;
+        margin-right: 50px;
+    }
+    
+    .panel_table th {
+        margin: 0px;
+        border: 1px solid #ddd;
+        padding: 5px;
+        display: table-cell;
+        vertical-align: inherit;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    uebersicht .btn-group_dozent {
+        float: left;
+        border-radius: 10px;
+        padding: 0px;
+    }
+    
+    uebersicht list .btn {
+        color: #444444;
+        background-color: #f2f2f2;
+        transition: all 0.8s ease 0s;
+        border: 1px solid rgba(0, 0, 0, 0.2959795);
+        text-shadow: 0px 0px 9px #ffffff;
+        box-shadow: 0px 0px 1px #aaa, inset 0px 2px 3px #fff;
+    }
+    
+    uebersicht list .btn:hover {
+        color: #444444;
+        background-color: #e8e8e8;
+    }
+    
+    uebersicht list .btn:active {
+        color: #ffffff;
+    }
+    
+    uebersicht label {
+        margin-right: 5px;
+    }
+    
+    .border-round-Geschlossen {
+        font-size: 12.5px;
+        margin: 1px;
+        background-color: white;
+        border: 1px solid #ced4da;
+        padding: 5px;
+        border-radius: .95rem;
+    }
+    
+    .border-round-Offen {
+        font-size: 12.5px;
+        margin: 1px;
+        background-color: white;
+        border: 1px solid #ced4da;
+        padding: 5px;
+        border-radius: .95rem;
+    }
+    
+    .panel {
+        background-color: #fff;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    }
+    
+    .panel-body {
+        padding: 15px;
+    }
+    
+    .panel-default {
+        border-color: #ddd;
+        -webkit-box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
+    }
+    
+    uebersicht module tr {
+        border: 1px solid #ddd;
+    }
+    
+    uebersicht a {
+        color: #ffffff;
+    }
+    
+    uebersicht .border_round {
+        display: inline-block;
+        padding: .55em .6em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        border-radius: .25rem;
+        background-color: white;
+        border: 1px solid #ced4da;
+    }
+    
+    uebersicht .table {
+        margin-bottom: 0px;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+    
+    .badge {
+        padding: 10px;
+    }
+    
+    uebersicht span {
+        transition: all 0.5s ease 0s;
+    }
+    
+    uebersicht span:hover {
+        background: orange;
+    }
+    
+    uebersicht span a:hover {
+        color: #ffffff;
+    }
+    
+    uebersicht module table tr {
+        background-color: #F1F0F0;
+    }
+    
+    uebersicht module table td {
+        background-color: #fcfcfc;
+    }
+    
+    uebersicht .btn-group_dozent input {
+        position: absolute;
+        clip: rect(0, 0, 0, 0);
+        pointer-events: none
+    }
+    
+    inside table,
+    inside th,
+    inside td {
+        font-size: 14.2px;
+        vertical-align: top;
+    }
+    
+    .panel-footer {
+        padding: 10px 15px;
+        background-color: #f5f5f5;
+        border-top: 1px solid #ddd;
+        border-bottom-right-radius: 3px;
+        border-bottom-left-radius: 3px;
+    }
+    
+    inside .badge {
+        padding: 8px;
+    }
+    /* Tabellen */
+    
+    uebersicht {
+        margin-bottom: 100px;
+    }
+    /* actions  */
+    
+    .btn_false {
+        display: none;
+    }
+    /* MODAL MODIFIKATIONEN */
+    
+    .modal.fade {
+        top: 30%;
+    }
+    
+    .well {
+        min-height: 20px;
+        padding: 19px;
+        margin-bottom: 20px;
+        background-color: #f5f5f5;
+        border: 1px solid #e3e3e3;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    }
+    
+    .alert-danger {
+        font-size: 15px;
+    }
+    /* Edit */
+    /*-- Edits Divs und Tables -*/
+    
+    .edit_div {
+        margin-top: 5%;
+        margin-bottom: 10%;
+        margin-left: 5%;
+        font-size: 12.5px;
+        border: 1px solid #d9d9d9;
+        border-top: 4px solid #3979b5;
+        width: 80%;
+        background: #FFF;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
+        -moz-box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
+        -webkit-box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
+    }
+    
+    .edit_div h5 {
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #d9d9d9;
+    }
+    
+    .edit_div h5 span {
+        font-size: 15px;
+    }
+    
+    .edit_div_table {
+        width: 90%;
+        margin: 5%;
+    }
+    /*-- Edits Divs und Tables für Module-*/
+    
+    .edit_div_modul {
+        margin-top: 5%;
+        margin-bottom: 10%;
+        margin-left: 1%;
+        font-size: 12.5px;
+        border: 1px solid #d9d9d9;
+        border-top: 4px solid #3979b5;
+        width: 95%;
+        background: #FFF;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
+        -moz-box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
+        -webkit-box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.10);
+    }
+    
+    .edit_div_modul table td label {
+        width: 200px;
+        padding-right: 0%;
+        margin-right: 0px;
+        font-size: 15px;
+        text-align: left;
+        float: left;
+        padding-bottom: 4%;
+    }
+    
+    .edit_div_modul h5 {
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #d9d9d9;
+    }
+    
+    .edit_div_modul h5 span {
+        font-size: 15px;
+    }
+    
+    .edit_div_modul li {
+        margin-left: 4%;
+    }
+    
+    #waehle_modul {
+        display: none;
+    }
+    
+    report label {
+        padding: 0%;
+    }
+    /*add thema */
+    
+    .bootstrap-tagsinput input {
+        font-size: 14px;
+    }
+    
+    .bootstrap-tagsinput .tag {
+        color: black;
+    }
+    
+    #js-edit-input {
+        background-color: transparent;
+        font-size: 12px;
+        line-height: 23px;
+        text-shadow: 0 1px white;
+        margin: 0px;
+        padding: 0px;
+        display: inline;
+        width: 60%;
+    }
+    
+    .add_thema .bootstrap-tagsinput {
+        width: 90%;
+    }
+    
+    #add_btn {
+        float: right;
+        background-color: #3979b5;
+    }
+    
+    .list-group-item.active {
+        background-color: #3979b5;
+    }
+    
+    dates {
+        font-size: 7pt;
+        background-color: #dedede73;
+        padding: 6px;
+        margin: 0px;
+        border: 1px solid #a2a2a247;
+        /* width: 200px; */
+        /* text-align: center; */
+        margin-top: -21px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        /* padding: 20; */
+        padding-top: 5;
+        position: absolute;
+        margin-top: 0px;
+        text-transform: uppercase;
+    }
