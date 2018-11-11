@@ -14,7 +14,7 @@
 
 <div style='margin-bottom: 100px; border-top: 4px solid #3979b5;' class='form_thema'>
     <form method='post'>
-        <h5>Bewerbungsmodul: '<?php echo $modul['professur']; ?>' </h5>
+        <h5>Bewerbungsmodul: '<?php echo $modul['modulbezeichnung']; ?>' </h5>
         <h6>Belegwunschverfahren</h6><br>
         
         <table>
@@ -26,10 +26,6 @@
                     <input style='width: 48%; float:left; margin-right:5px;' type='text' class='form-control' id='Vorname'  name='Vorname' placeholder='Vorname' value='<?php echo $vorname?>' required> 
                     <input style='width: 50%' type='text' class='form-control' id='Nachname' name='Nachname' placeholder='Nachname'  value='<?php echo $nachname?>'  required>
                 </td>
-            </tr>
-            <tr>
-                <td><label for='Nachname'><b>Nachname:</b><red style='color: red'>*</red></label></td>
-                <td colspan='2'><input style='width: 100%' type='text' class='form-control' name='Nachname' id='Nachname'  placeholder='Nachname' value='<?php echo $nachname?>' required> </td>
             </tr>
             <tr>
                 <td><label for='matrikelnummer'><b>Matrikelnummer:</b><red style='color: red'>*</red></label></td>
@@ -102,10 +98,10 @@
          <td colspan=3><br>
          <div class="abfrageZulassung" role="alert">
                 <center><label for='Vorkenntnisse'>
-                <b>Erfüllst du alle Vorraussetzungen zur Zulassung deiner Abschlussarbeit?</b> <br><br>
-                            <input type="radio" id="Zulassung" name="Zulassung" value="Ja" <?php if($zulassung == "Ja"){echo "checked";} ?>>
+                <b>Hast du bereits erfolgreich an einem Seminar teilgenommen?</b> <br><br>
+                            <input type="radio" id="seminarteilnahme" name="seminarteilnahme" value="Ja" <?php if($seminarteilnahme == "Ja"){echo "checked";} ?>>
                             <label for="Ja">Ja</label> 
-                            <input type="radio" id="Zulassung" name="Zulassung" value="Nein" <?php if($zulassung == "Nein"){echo "checked";} ?> >
+                            <input type="radio" id="seminarteilnahme" name="seminarteilnahme" value="Nein" <?php if($seminarteilnahme == "Nein"){echo "checked";} ?> >
                             <label for="Nein">Nein</label> 
                 </label></center>
             </div>
@@ -117,15 +113,6 @@
                  <input type='submit' name='bewerbung_ab_BEL' class='btn btn-primary' value='Formular abschicken'>
                 </td> 
             </tr>
-
-            <tr>
-                <td><br>
-            <button style='float:right;' data-toggle='modal' data-target='#bewerbung_senden_BEL' href='#' type="button" class="btn btn-primary">Bewerbung verschicken</button>
-            <?php $this->getModal('bewerbung_senden_BEL', $modul["modul_id"]);?>  
-                </td>
-            </tr>
-
-
         </table>
     </form>
 </div>

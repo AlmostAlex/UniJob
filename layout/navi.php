@@ -19,9 +19,9 @@
             <h5 class="mt-0">Admin Navigation</h5>
             <p>
                 <div style='border-top: 1px solid #e7e7e7;' class='navhd'><i class="fas fa-angle-right"></i> <a href="/verwaltung">Verwaltung</a></div>
-                <div class='navhd'><i class="fas fa-list-ul"></i> <a href="/seminar_eintragen">Seminarthemen eintragen</a></div>
+                <div class='navhd'><i class="fas fa-list-ul"></i> <a href="/mt_verwaltung">Modul- und Themenverwaltung</a></div>
                 <div class='navhd'><i class="far fa-plus-square"></i> <a href="/abschlussarbeit_eintragen">Abschlussthemen eintragen</a></div>
-                <div class='navhd'><i class="far fa-plus-square"></i> <a href="/mt_verwaltung">Modul- und Themenverwaltung</a></div>
+                <div class='navhd'><i class="fas fa-plus-square"></i> <a href="/seminar_eintragen">Seminarthemen eintragen</a></div>
                 <div class='navhd'><i class="fas fa-archive"></i> <a href="/archivierung">Archvierungen einsehen</a></div>
                 <div class='navhd'><i class="far fa-chart-bar"></i> <a href="/report_wahl">Report erstellen</a></div>
             </p>
