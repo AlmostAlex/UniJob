@@ -486,7 +486,7 @@ feld2 textarea {
 }
 
 feld2 .form-control {
-    width: 500px;
+    width: 460px;
 }
 
 feld2 .form-group {
@@ -494,11 +494,11 @@ feld2 .form-group {
 }
 
 feld2 vork .bootstrap-tagsinput {
-    width: 389px;
+    width: 350px;
 }
 
 feld2 tags .bootstrap-tagsinput {
-    width: 446px;
+    width: 408px;
 }
 
 feld3 space input {
@@ -510,7 +510,7 @@ feld3 textarea {
 }
 
 feld3 .form-control {
-    width: 500px;
+    width: 460px;
 }
 
 feld3 .form-group {
@@ -519,11 +519,11 @@ feld3 .form-group {
 
 feld3 .bootstrap-tagsinput {
     /* margin-left: 88px; */
-    width: 389px;
+    width: 349px;
 }
 
 feld3 tags .bootstrap-tagsinput {
-    width: 446px;
+    width: 407px;
 }
 
 
