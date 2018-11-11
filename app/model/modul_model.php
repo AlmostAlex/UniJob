@@ -278,12 +278,27 @@ class modul_model
 
     public function getModulbezeichnung($modul_id)
     {
-        $statement = $this->dbh->prepare("SELECT modulbezeichnung From modul Where modul_id =?");
+        $statement = $this->dbh->prepare("SELECT modulbezeichnung,professur,kategorie From modul Where modul_id =?");
         $statement->bind_param('i', $modul_id);
         $statement->execute();
-        $statement->bind_result($modulbezeichnung);
+        $statement->bind_result($modulbezeichnung,$professur, $kategorie);
         $statement->fetch();
-        return $modulbezeichnung;
+        if($kategorie == 'Seminararbeit'){
+            return $modulbezeichnung;
+        } else{
+           return $professur;
+        }
+    }
+
+    public function getModulKategorie($modul_id)
+    {
+        $statement = $this->dbh->prepare("SELECT kategorie From modul Where modul_id =?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($kategorie);
+        $statement->fetch();
+         return $kategorie;
+        
     }
 
     public function getModulVerfahrenByID($modul_id)

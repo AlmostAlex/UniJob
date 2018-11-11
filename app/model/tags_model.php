@@ -51,6 +51,22 @@ class tags_model
         }
         return $tags;
     }
+    public function getTagString()
+    {
+        $statement = $this->dbh->prepare("SELECT tags.tag_bezeichnung FROM `tags`,`thema`,`modul`  WHERE tags.thema_id = thema.thema_id AND thema.modul_id = modul.modul_id AND modul.archivierung = 'false' GROUP BY tags.tag_bezeichnung");
+        $statement->bind_result($tag_bezeichnung);
+        $statement->execute();
+
+        $tagsBezFilter = array();
+        while ($statement->fetch()) {
+            $rows[] = array(
+                'tag_bezeichnung' => $tag_bezeichnung
+            );  
+        }
+        $rows = array_unique($rows,SORT_REGULAR);
+
+        return $rows;
+    }
 
     public function getTagsBezeichnung()
     {

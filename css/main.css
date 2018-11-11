@@ -5,6 +5,33 @@ red {
 }
 
 
+/* Modal Fenster Schliessen Button */
+
+close .btn-danger {
+    background-color: #777777d4;
+    border: 1px solid #616161d4;
+}
+
+close .btn-danger:hover {
+    background-color: #868686b9;
+    border: 1px solid #616161d4;
+}
+
+.panel-footer a {
+    color: #000;
+    -o-transition: color .2s ease-out, background 2s ease-in;
+    -ms-transition: color .2s ease-out, background 2s ease-in;
+    -moz-transition: color .2s ease-out, background 2s ease-in;
+    -webkit-transition: color .2s ease-out, background 2s ease-in;
+    /* ...and now for the proper property */
+    transition: color .2s ease-out, background 2s ease-in;
+}
+
+.panel-footer a:hover {
+    color: #337ab7;
+}
+
+
 /* INFORMATIONSSEITE*/
 
 info h2 {
@@ -202,17 +229,17 @@ info h4 {
     height: auto;
 }
 
-.fa,
-.fas {
-    margin-top: 5px;
-}
-
 .fa-key:hover {
     color: #3979b5;
 }
 
 .fa-user:hover {
     color: #3979b5;
+}
+
+navihd .fa,
+navihd .fas {
+    margin-top: 5px;
 }
 
 .alertlogin {

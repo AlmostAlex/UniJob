@@ -142,6 +142,7 @@ class modul_controller
             }
         }
         $modulbezeichnung = $this->modul_model->getModulbezeichnung($id);
+        $kategorie = $this->modul_model->getModulKategorie($id);
         include 'app/view/modul_verwaltung/add_thema.php';
     }
 

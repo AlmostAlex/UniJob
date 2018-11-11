@@ -149,22 +149,16 @@
         </module>
         <list>
             <div class='panel-footer'>
-                <button type='button' class='btn'>
+                <div class=''>
                     Modul für
-                    <a style='color:#444444' href='/seminar_eintragen'>
-                        <u>
-                            Seminarthemen
-                        </u>
-                    </a> 
-                    / 
-                    <a style='color:#444444' href='/abschlussarbeit_eintragen'>
-                        <u>
-                            Abschlussarbeiten
-                        </u>
-                    </a>
+                    <a href='/seminar_eintragen'><u>Seminarthemen</u></a> 
+
+                     / 
+
+                    <a href='/abschlussarbeit_eintragen'><u> Abschlussarbeiten</u></a>
 
                     hinzufügen             
-                </button>
+                </div>
             </div>
         </list>
     </div>

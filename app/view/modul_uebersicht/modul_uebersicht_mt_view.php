@@ -21,7 +21,12 @@
 <br>
 <div id="semester_f" class='modul_anzeige'>
 
-<?php if(empty($module)){echo "Es wurden keine Module/Themen der Filterung entsprechend gefunden!";} ?>
+<?php if(empty($module)){echo 
+
+"<br><br><center><div class='alert alert-info' role='alert'>
+
+<i class='fas fa-exclamation-circle'></i> Es wurden keine <b>Module</b> oder <b>Themen</b> der Filterung entsprechend gefunden!</div>
+</center>";} ?>
 
 <?php for($k = 0; $k < count($module); $k++){ ?>
     <div class='modul_text_<?php echo $module[$k]['kategorie']; ?>'>
