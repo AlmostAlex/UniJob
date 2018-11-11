@@ -8,17 +8,10 @@
         </td>
       </tr>
       <tr>
-        <td><label for='Bezeichnung'><b>Professurbezeichnung:</b>
+        <td><label for='Bezeichnung'><b>Professur:</b>
             <red style='color: red'>*</red>
           </label></td>
         <td colspan='2'><input type='text' id='bezeichnung' name='Bezeichnung' class='form-control' value='<?php echo $modul["professur"] ?>'
-            required></td>
-      </tr>
-      <tr>
-        <td><label for='Fakultät'><b>Fakultät:</b>
-            <red style='color: red'>*</red>
-          </label></td>
-        <td colspan='2'><input type='text' id='fakultät' name='fakultät' class='form-control' value='<?php echo $modul["fakultaet"] ?>'
             required></td>
       </tr>
       <tr>
