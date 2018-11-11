@@ -108,13 +108,6 @@
          </td>
         </tr>
     <tr>
-                <td>
-                <br>
-                 <input type='submit' name='bewerbung_ab_BEL' class='btn btn-primary' value='Formular abschicken'>
-                </td> 
-            </tr>
-
-            <tr>
                 <td><br>
             <button style='float:right;' data-toggle='modal' data-target='#bewerbung_senden_BEL' href='#' type="button" class="btn btn-primary">Bewerbung verschicken</button>
             <?php $this->getModal('bewerbung_senden_BEL', $modul["modul_id"]);?>  

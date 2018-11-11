@@ -151,12 +151,10 @@ class bewerbung_controller
                 if(isset($_POST['Nachname'])) { $nachname = $_POST['Nachname']; } else{ $nachname = '';}
                 if(isset($_POST['Matrikelnummer'])) { $matrikelnummer  = $_POST['Matrikelnummer']; } else{ $matrikelnummer = '';}
                 if(isset($_POST['Email'])) { $email  = $_POST['Email']."@stud.uni-goettingen.de"; } else{ $email = '';}
-                if(isset($_POST['Thema1'])) { $thema1  = $_POST['Thema1']; } else{ $thema1 = '';}
-                if(isset($_POST['Thema2'])) { $thema2  = $_POST['Thema2']; } else{ $thema2 = '';}
-                if(isset($_POST['Thema3'])) { $thema3  = $_POST['Thema3']; } else{ $thema3 = '';}
+                if(isset($_POST['Thema1'])) { $thema1  = $_POST['Thema1']; $themenbezeichnung1 = $this->thema_model->getThemenbezeichnung($thema1);} else{ $thema1 = ''; $themenbezeichnung1 = "";}
+                if(isset($_POST['Thema2'])) { $thema2  = $_POST['Thema2']; $themenbezeichnung2 = $this->thema_model->getThemenbezeichnung($thema2);} else{ $thema2 = ''; $themenbezeichnung2 = "";}
+                if(isset($_POST['Thema3'])) { $thema3  = $_POST['Thema3']; $themenbezeichnung3 = $this->thema_model->getThemenbezeichnung($thema3);} else{ $thema3 = ''; $themenbezeichnung3 = "";}
 
-
-                
                 $modul = $this->modul_model->getModulById($id);
                 $themen = $this->thema_model->getThemenVG($id,'');
 
@@ -173,6 +171,9 @@ class bewerbung_controller
                             // HIER INSERT BEWERBUNG
                             $this->belegwunsch_model->insertBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $zulassung, $seminarteilnahme, $thema1, $thema2, $thema3);
                             $this->getModal("AB_BW_erfolgreich", $thema_id);
+                            $infos1 = $this->thema_model->getBetreuerByID($thema1);
+                            $infos2 = $this->thema_model->getBetreuerByID($thema2);
+                            $infos3 = $this->thema_model->getBetreuerByID($thema3);
                             include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss_BL.php';
                         }      
                 }
@@ -246,7 +247,7 @@ else if($this->modul_model->getModulVerfahrenByID($id) == 'Bewerbungsverfahren')
     if(isset($_POST['Vorname'])) { $vorname = $_POST['Vorname']; } else{ $vorname = '';}
     if(isset($_POST['Nachname'])) { $nachname = $_POST['Nachname']; } else{ $nachname = '';}
     if(isset($_POST['Matrikelnummer'])) { $matrikelnummer  = $_POST['Matrikelnummer']; } else{ $matrikelnummer = '';}
-    if(isset($_POST['Email'])) { $email  = $_POST['Email']; } else{ $email = '';}
+    if(isset($_POST['Email'])) { $email  = $_POST['Email']."@stud.uni-goettingen.de"; } else{ $email = '';}
     if(isset($_POST['Fachsemester'])) { $fachsemester  = $_POST['Fachsemester']; } else{ $fachsemester = '';}
     if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
     if(isset($_POST['Credits'])) { $credits  = $_POST['Credits']; } else{ $credits = '';}
@@ -309,7 +310,7 @@ else{
         if(isset($_POST['Vorname'])) { $vorname = $_POST['Vorname']; } else{ $vorname = '';}
         if(isset($_POST['Nachname'])) { $nachname = $_POST['Nachname']; } else{ $nachname = '';}
         if(isset($_POST['Matrikelnummer'])) { $matrikelnummer  = $_POST['Matrikelnummer']; } else{ $matrikelnummer = '';}
-        if(isset($_POST['Email'])) { $email  = $_POST['Email']; } else{ $email = '';}
+        if(isset($_POST['Email'])) { $email  = $_POST['Email']."@stud.uni-goettingen.de"; } else{ $email = '';}
         if(isset($_POST['Fachsemester'])) { $fachsemester  = $_POST['Fachsemester']; } else{ $fachsemester = '';}
         if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
         if(isset($_POST['Credits'])) { $credits  = $_POST['Credits']; } else{ $credits = '';}
@@ -448,6 +449,19 @@ else{
                 include 'app/view/modals/bewerbung_modal.php';
                 break;
 
+                case 'bewerbung_senden_BEL':
+                $modal['case'] = 'bewerbung_senden_BEL';
+                $modal['title'] = 'Sicherheitsabfrage: Bewerbung?';
+                $modal['body_class'] = 'well';
+                $modal['content'] = 'Möchtest du wirklich dich da wirklich bewerben??';
+                $modal['btn'] = 'Bewerbung versenden';
+                $modal['btn_class'] = 'btn btn-primary';
+                $modal['type'] = 'submit';
+                $modal['name'] = 'bewerbung_ab_BEL';
+                $modal['btn_url'] = '#';
+                include 'app/view/modals/bewerbung_modal.php';
+                break;
+
                 case 'AB_WH_erfolgreich':
                 $modal['case'] = 'automatic';
                 $modal['title'] = 'Erfolgreich angemeldet!';
@@ -458,6 +472,15 @@ else{
                 break;
 
                 case 'AB_BW_erfolgreich':
+                $modal['case'] = 'automatic';
+                $modal['title'] = 'Erfolgreich angemeldet!';
+                $modal['body_class'] = 'alert alert-success';
+                $modal['content'] = 'Du hast dich erfolgreich für das Modul mit dem dazugehörigen Thema angemeldet.<br><br>';
+                $modal['img'] = '/img/checked.png';
+                include 'app/view/modul_verwaltung/modals/modal_modul.php';                
+                break;
+
+                case 'AB_BL_erfolgreich':
                 $modal['case'] = 'automatic';
                 $modal['title'] = 'Erfolgreich angemeldet!';
                 $modal['body_class'] = 'alert alert-success';
