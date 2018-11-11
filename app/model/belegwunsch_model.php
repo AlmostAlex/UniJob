@@ -28,6 +28,55 @@ class belegwunsch_model
         }
     }
 
+    public function beleg_count($modul_id)
+    {
+         $statement = $this->dbh->prepare
+         ("SELECT COUNT(belegwunsch_id)
+         FROM belegwunsch, thema, modul
+         WHERE belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = modul.modul_id AND modul.modul_id = ?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($anzahl_bewerber_check);
+        $statement->fetch();
+        return $anzahl_bewerber_check;        
+    }
+
+    public function info_belegwunsch($modul_id)
+    {
+         $statement = $this->dbh->prepare
+         ("SELECT modul.modulbezeichnung, modul.professur, modul.kategorie
+         FROM belegwunsch, thema, modul
+         WHERE belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = modul.modul_id AND modul.modul_id = ?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($modulbezeichnung, $professur, $professur);
+        $statement->fetch();
+        $statement->store_result();
+
+        $statement1 = $this->dbh->prepare
+        ("SELECT count(thema.thema_id) as anzThema
+        FROM thema, modul 
+        WHERE thema.modul_id = modul.modul_id  
+        AND modul.modul_id = ?
+        "); 
+       $statement1->bind_param('i', $modul_id);
+       $statement1->execute();
+       $statement1->bind_result($anzThema);
+       $statement1->fetch();
+       $statement1->store_result();
+
+
+        $infos = array(
+            'modulbezeichnung' => $modulbezeichnung,
+            'professur' => $professur,
+            'kategorie' => $professur,
+            'anzThema' => $anzThema
+        );
+
+    return $infos;
+    } 
+
+
 /*  WEIL ES HIER MEHR ALS NUR EIN THEMA GIBT, AUF DASS MAN SICH BEWIRBT FRAG ICH MICH,
     WIE SINNVOLL ES IST DAS ZU MACHEN?!
 

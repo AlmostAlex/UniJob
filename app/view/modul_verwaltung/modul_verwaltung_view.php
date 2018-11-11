@@ -105,8 +105,13 @@
                                 <a data-toggle='modal' data-target='#nachrueckverfahren_<?php echo $module[$i]["modul_id"]; ?>' href='#'><i class='far fa-clock'></i></a>
                             </span>
                             <span data-toggle='tooltip' data-placement='top' title='Anmeldungen einsehen' class='<?php echo $module[$i]["einsicht_wh_btn"] ?>'>
-                                <a href='/einsicht/<?php echo $module[$i]["verfahren"];?>/<?php echo $module[$i]["modul_id"]; ?>'><i style='color:white;' class="far fa-user"></i> 
+                                <a href='/einsicht/<?php echo $module[$i]["verfahren"];?>/<?php echo $module[$i]["modul_id"]; ?>'><i style='color:white;' class="far fa-user"></i></a>
                             </span>
+
+                            <span data-toggle='tooltip' data-placement='top' title='Anmeldungen einsehen' class='<?php echo $module[$i]["einsicht_bel_btn"] ?>'>
+                                <a href='/einsicht/<?php echo $module[$i]["verfahren"];?>/<?php echo $module[$i]["modul_id"]; ?>'><i style='color:white;' class="far fa-user"></i> </a>
+                            </span>
+                            
                             <?php $this->getModal('delete_modul', $module[$i]["modul_id"]); $this->getModal('archivierung', $module[$i]["modul_id"]); $this->getModal('nachrueckverfahren', $module[$i]["modul_id"]);?>
                         </td>
                     </tr>

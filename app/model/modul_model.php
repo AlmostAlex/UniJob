@@ -205,6 +205,9 @@ class modul_model
             if($verfahren=='Bewerbungsverfahren'){ $einsicht_bw_btn ='badge badge-info';} 
             else{ $einsicht_bw_btn ='btn_false';}
 
+            if($verfahren=='Belegwunschverfahren'){ $einsicht_bel_btn ='badge badge-info';} 
+            else{ $einsicht_bel_btn ='btn_false';}
+
             $start_dt = new DateTime($frist_start);
             $row = array(
                 'modul_id' => $modul_id,
@@ -233,7 +236,8 @@ class modul_model
                 'btn_msg'=> $btn_msg,
                 'state'=> $state,
                 'einsicht_wh_btn'=> $einsicht_wh_btn,
-                'einsicht_bw_btn'=> $einsicht_bw_btn
+                'einsicht_bw_btn'=> $einsicht_bw_btn,
+                'einsicht_bel_btn'=> $einsicht_bel_btn                
             );
             $rows[] = $row;
             }

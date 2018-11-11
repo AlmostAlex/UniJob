@@ -6,6 +6,7 @@ include_once(__DIR__."/../model/user_model.php");
 include_once(__DIR__."/../model/vorkenntnisse_model.php");
 include_once(__DIR__."/../model/windhund_model.php");
 include_once(__DIR__."/../model/bewerbung_model.php");
+include_once(__DIR__."/../model/belegwunsch_model.php");
 include_once(__DIR__."/../../db.php"); 
 
 class einsicht_controller
@@ -19,6 +20,7 @@ class einsicht_controller
         $this->tags_model = new tags_model();
         $this->windhund_model = new windhund_model();
         $this->bewerbung_model = new bewerbung_model();
+        $this->belegwunsch_model = new belegwunsch_model();
     }
 
     public function Einsicht($action, $action1, $id)
@@ -50,7 +52,17 @@ class einsicht_controller
                 }
         } 
         else if($action1=='Belegwunschverfahren'){
-            echo"!!";
+            $modul_id = $id;
+            $bel_count = $this->belegwunsch_model->beleg_count($modul_id);
+            $infos = $this->belegwunsch_model->info_belegwunsch($modul_id);
+
+            if($bel_count > 0){
+                include 'app/view/einsicht/belegwunsch_einsicht_view.php';  
+            }
+            else{
+                $kat = "Bewerbungen"; // Wenn keine Bewerbungen vorhanden sind, dann wird die none Unterseite aufgerufen
+                include 'app/view/einsicht/none_view.php';  
+            }
         }
         else{ // das verfahren existiert nicht
             echo "Das Verfahren existiert nicht";
