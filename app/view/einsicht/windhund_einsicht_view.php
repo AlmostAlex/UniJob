@@ -34,6 +34,7 @@
                 </table>
 
                 <hr class="my-4"> 
+<?php if($infos['anzThemaVerfuegbar'] == 0){} else{  ?>   
 
                 <table style='border:0px solid transparent'>
                     <tr>
@@ -52,6 +53,7 @@
                         </td>
                     </tr>  
                 </table>
+<?php } ?>
 
              </div>
           </div>

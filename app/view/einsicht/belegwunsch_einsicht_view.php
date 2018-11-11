@@ -9,7 +9,7 @@
     </div>
          
 <!-- ZUGETEILTE THEMEN -->
-<form style='margin-bottom:100px;' method="post"> 
+<form style='margin-bottom:30px;' method="post"> 
      <div class="table-responsive" id="module">  
      <div class='bewerbung_verwaltung'>
          Zugeteilte Themen
@@ -39,30 +39,45 @@
         </div>
     </div>
 </form>
+<!-- KEIN THEM AERHALTEN -->
+<?php if($keinThemaCount == 0){} else{  ?>   
 
-
-<form style='margin-bottom:100px;' method="post"> 
+<table style='border:0px solid transparent'>
+    <tr>
+        <td colspan='5'>
+           <b>
+            <h6><span style='float: left;' class="badge badge-info"> <?php echo $keinThemaCount; ?></span> 
+                <div class='verf_border'>
+                <a data-toggle="collapse" id='verg' data-target="#vergeben" href="#vergeben" role="button" aria-expanded="false" aria-controls="vergeben">
+                Kein Thema erhalten <span style='font-size: 0.7em;' class="glyphicon glyphicon-plus"></span>
+                </a>
+                                    </div> 
+                                </h6>
+                            </b>
+                        </td>
+                    </tr>  
+                </table>
+                <?php } ?>  
+        <div class="collapse" id="vergeben">   
+<form style='margin-bottom:0px;' method="post"> 
      <div class="table-responsive" id="module">  
      <div class='bewerbung_verwaltung'>
-         Kein Thema erhalten
-            <table id="sort_einsicht_bel">
+            <table id="sort_einsicht_bel_keinTh">
                 <thead>
                     <tr>
                         <th class="no-sort" name='anmerkung'></th>
-                        <th>Thema</th>
                         <th>Matrikelnr.</th>
                         <th>Email</th>
                         <th>Status</th>                       
                         <th class="no-sort" name='funktionen'>Funktionen</th>
                     </tr>
                 </thead>
-                <?php for($k = 0; $k < count($bewerber); $k++){ ?>
+                <?php for($i = 0; $i < count($keinThema); $i++){ ?>
                     <tr> 
                         <td></td>
-                        <td><?php echo $bewerber[$k]['themenbezeichnung']?></td>
-                        <td><?php echo $bewerber[$k]['matrikelnummer']?></td>
-                        <td><?php echo $bewerber[$k]['email']?></td>
-                        <td><?php echo $bewerber[$k]['status']?></td>
+                        <td><?php echo $keinThema[$i]['matrikelnummer']?></td>
+                        <td><?php echo $keinThema[$i]['email']?></td>
+                        <td><?php echo $keinThema[$i]['status']?></td>
                         <td></td>
                     </tr>
                 <?php } ?>   
@@ -71,6 +86,6 @@
         </div>
     </div>
 </form>
-
-
+                </div>
+<br><br><br>
 </open>

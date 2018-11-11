@@ -24,12 +24,13 @@
 <?php if(empty($module)){echo "Es wurden keine Module/Themen der Filterung entsprechend gefunden!";} ?>
 
 <?php for($k = 0; $k < count($module); $k++){ ?>
-        <div class='modul_text_<?php echo $module[$k]['kategorie']; ?>'>
+    <div class='modul_text_<?php echo $module[$k]['kategorie']; ?>'>
             <?php echo $module[$k]['kategorie']; ?></div>
             <div class='modul_shadow_<?php echo $module[$k]['kategorie']; ?>'></div>
             <div class='modul_shadow_white'></div>
     <table class='modul_table_uebersicht_<?php echo $module[$k]['kategorie'];?>'>
-    <tr>
+
+            <tr>
                 <th><a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#modul_<?php echo $module[$k]['modul_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></th>
                 <th><b><titel style="line-height:15px;"><?php echo $module[$k]['nachrueckv_status']; ?> 
                 <?php if($module[$k]["kategorie"] == "Seminararbeit"){

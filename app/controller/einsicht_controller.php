@@ -52,14 +52,14 @@ class einsicht_controller
                 }
         } 
         else if($action1=='Belegwunschverfahren'){
-            $modul_id = $id;
+            $modul_id = $id;                  
             $bel_count = $this->belegwunsch_model->beleg_count($modul_id);
             $infos = $this->belegwunsch_model->info_belegwunsch($modul_id);
             $bewerber = $this->thema_model->einsichtThemaModulBeleg($modul_id);
-
-            $bewerberKeinTh = $this->thema_model->keinThema($modul_id);
-
-            if($bel_count > 0){
+            $keinThemaCount = $this->thema_model->keinThemaCount($modul_id);
+            $keinThema = $this->thema_model->keinThema($modul_id);
+          
+            if($bel_count > 0){           
                 include 'app/view/einsicht/belegwunsch_einsicht_view.php';  
             }
             else{
