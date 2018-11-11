@@ -90,4 +90,69 @@ class bewerbung_model
         $statement->fetch();
         return $bewerbung_id;
     }
+
+    public function bewerbung_count($thema_id)
+    {
+         $statement = $this->dbh->prepare
+         ("SELECT count(bewerbung_id) as anzahl_bewerber_check
+         FROM bewerbung, thema, modul 
+         WHERE thema.thema_id = bewerbung.thema_id 
+         AND thema.thema_id= ?");
+        $statement->bind_param('i', $thema_id);
+        $statement->execute();
+        $statement->bind_result($anzahl_bewerber_check);
+        $statement->fetch();
+        return $anzahl_bewerber_check;        
+    }
+
+
+    public function info_bewerbung($thema_id)
+    {   
+             $statement = $this->dbh->prepare
+             ("SELECT thema.themenbezeichnung,
+                        (SELECT count(bewerbung.bewerbung_id) 
+                        FROM thema, bewerbung 
+                        WHERE thema.thema_id = bewerbung.thema_id 
+                        AND thema.thema_id = $thema_id)
+                    as anzBew
+                FROM thema,bewerbung
+                WHERE thema.thema_id = bewerbung.thema_id
+                AND thema.thema_id =?");
+            $statement->bind_param('i', $thema_id);
+            $statement->execute();
+            $statement->bind_result($themenbezeichnung,$anzBew);
+            $statement->fetch();
+    
+            $infos = array(
+                'themenbezeichnung' => $themenbezeichnung,
+                'anzBew' => $anzBew
+            );
+    
+        return $infos;
+        } 
+
+        public function bewerber($thema_id){
+            $statement = $this->dbh->prepare
+            ("SELECT bewerbung.vorname, bewerbung.nachname, bewerbung.matrikelnummer, bewerbung.email,
+            bewerbung.fachsemester, bewerbung.credits, bewerbung.studiengang, bewerbung.gesamt_punkte
+            FROM bewerbung
+            WHERE bewerbung.thema_id = ?");
+           $statement->bind_param('i', $thema_id);
+           $statement->execute();
+           $statement->bind_result($vorname, $nachname, $matrikelnummer, $email, $fachsemester, $credits, $studiengang, $gesamt_punkte);
+        
+        while ($statement->fetch()) {
+            $bewerbung[] = array(
+                'vorname' => $vorname,
+                'nachname' => $nachname,
+                'matrikelnummer' => $matrikelnummer,
+                'email' => $email,
+                'fachsemester' => $fachsemester,
+                'credits' => $credits, 
+                'studiengang' => $studiengang,
+                'gesamt_punkte' => $gesamt_punkte
+            );
+        }
+        return $bewerbung;
+    }
 }
