@@ -482,7 +482,7 @@ class modul_model
         return $count_all;
     }
 
-public function getArchivierteModule($semester, $status){
+    public function getArchivierteModule($semester, $status){
        $rows = array();  
 
        if($semester=='all'){
@@ -510,4 +510,17 @@ public function getArchivierteModule($semester, $status){
     
     return $rows;
     }
+
+    public function getThemenAnzahl($modul_id){
+        $statement = $this->dbh->prepare
+         ("SELECT COUNT(thema_id)
+         FROM thema, modul
+         WHERE thema.modul_id = modul.modul_id AND modul.modul_id = ?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($anzahl_themen_check);
+        $statement->fetch();
+        return $anzahl_themen_check;  
+    }
+
 }
