@@ -22,7 +22,6 @@ class modul_controller
 
     public function Route($action, $action2, $action3, $action4, $id)
     {
-
         if ($action == 'mt_verwaltung' && $action2 == '' && $action3 =='') {
             $this->Modul_Verwaltung('false', 0, 'none');
 
@@ -63,7 +62,10 @@ class modul_controller
             $this->editThema($id);
         }
     }
-
+    public function info()
+    {
+        include_once("app/view/info/info_view.php");
+    }
     public function modul_verwaltung($state, $modul_id)
     {
         switch ($state) {

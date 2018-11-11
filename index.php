@@ -15,8 +15,11 @@ include("app/controller/einsicht_controller.php");
 $router = new Router();
 
 /* PUBLIC */  
-$router->map(["GET", "GET"], ["/", "/index"], function (Response $response) {
-    $response->render("app/view/info/info_view.php");
+
+
+$router->map(["GET", "POST"], ["/", "/index"], function () {  
+    $modul = new modul_controller();
+    $modul->info(); 
 });
 
 $router->map(["GET", "POST"], ["/login"], function () {  
