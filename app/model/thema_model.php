@@ -276,6 +276,29 @@ class thema_model
             );
 
             return $infos;
-     
+    }
+
+    public function getThemaAnzahl($thema_id) 
+    {
+        $statement = $this->dbh->prepare("SELECT count(thema_id) as anzahl from thema WHERE thema_id = ?");
+        $statement->bind_param('i', $thema_id);
+        $statement->execute();
+        return $statement;
+    }
+
+
+    public function getThemabyModul($modul_id){
+        $statement = $this->dbh->prepare("SELECT thema_id FROM thema WHERE modul_id = ?");
+        $statement->bind_param('i', $thema_id);
+        $statement->bind_result($thema_id);
+        $statement->execute();
+        $row = array();
+        while ($statement->fetch()) {
+            $rows = array(
+                'thema_id' => $thema_id
+            );
+            $row[] = $rows;
+        }
+        return $row;
     }
 }

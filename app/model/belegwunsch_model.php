@@ -76,6 +76,26 @@ class belegwunsch_model
     return $infos;
     } 
 
+    public function getBewerberInfos($modul_id){
+        
+        $statement = $this->dbh->prepare("SELECT belegwunsch_id, wunschthema1, wunschthema2, wunschthema3
+                                        FROM belegwunsch, thema 
+                                        WHERE belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = ?");
+        $statement->bind_param('i', $modul_id);
+        $statement->bind_result($belegwunsch_id, $wunschthema1, $wunschthema2, $wunschthema3);
+        $statement->execute();
+        $row = array();
+        while ($statement->fetch()) {
+            $rows = array(
+                'belegwunsch_id' => $belegwunsch_id,
+                'wunschthema1' => $wunschthema1,
+                'wunschthema2' => $wunschthema2,
+                'wunschthema3' => $wunschthema3,
+            );
+            $row[] = $rows;
+        }
+        return $row;
+    }
 
 /*  WEIL ES HIER MEHR ALS NUR EIN THEMA GIBT, AUF DASS MAN SICH BEWIRBT FRAG ICH MICH,
     WIE SINNVOLL ES IST DAS ZU MACHEN?!

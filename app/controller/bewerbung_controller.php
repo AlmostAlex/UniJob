@@ -335,6 +335,9 @@ else{
                     // HIER INSERT BEWERBUNG
                     $this->belegwunsch_model->insertBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $zulassung, $seminarteilnahme, $thema1, $thema2, $thema3);
                     $this->getModal("AB_BW_erfolgreich", $thema_id);
+                    $infos1 = $this->thema_model->getBetreuerByID($thema1);
+                    $infos2 = $this->thema_model->getBetreuerByID($thema2);
+                    $infos3 = $this->thema_model->getBetreuerByID($thema3);
                     include 'app/view/bewerbung/Seminararbeit/fazit_seminar_BL.php';
                 }      
         }
