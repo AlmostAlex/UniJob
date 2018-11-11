@@ -315,9 +315,9 @@ else{
         if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
         if(isset($_POST['Credits'])) { $credits  = $_POST['Credits']; } else{ $credits = '';}
         if(isset($_POST['seminarteilnahme'])) { $seminarteilnahme  = $_POST['seminarteilnahme']; } else{ $seminarteilnahme = '';}
-        if(isset($_POST['Thema1'])) { $thema1  = $_POST['Thema1']; } else{ $thema1 = '';}
-        if(isset($_POST['Thema2'])) { $thema2  = $_POST['Thema2']; } else{ $thema2 = '';}
-        if(isset($_POST['Thema3'])) { $thema3  = $_POST['Thema3']; } else{ $thema3 = '';}
+        if(isset($_POST['Thema1'])) { $thema1  = $_POST['Thema1']; $themenbezeichnung1 = $this->thema_model->getThemenbezeichnung($thema1);} else{ $thema1 = ''; $themenbezeichnung1 = "";}
+        if(isset($_POST['Thema2'])) { $thema2  = $_POST['Thema2']; $themenbezeichnung2 = $this->thema_model->getThemenbezeichnung($thema2);} else{ $thema2 = ''; $themenbezeichnung2 = "";}
+        if(isset($_POST['Thema3'])) { $thema3  = $_POST['Thema3']; $themenbezeichnung3 = $this->thema_model->getThemenbezeichnung($thema3);} else{ $thema3 = ''; $themenbezeichnung3 = "";}
 
         $modul = $this->modul_model->getModulById($id);
         $themen = $this->thema_model->getThemenVG($id,'');
