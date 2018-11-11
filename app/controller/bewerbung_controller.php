@@ -4,6 +4,7 @@ include_once(__DIR__."/../model/thema_model.php");
 include_once(__DIR__."/../model/vorkenntnisse_model.php");
 include_once(__DIR__."/../model/windhund_model.php");
 include_once(__DIR__."/../model/bewerbung_model.php");
+include_once(__DIR__."/../model/belegwunsch_model.php");
 include_once(__DIR__."/../model/bewerb_vorkennt_model.php");
 include_once(__DIR__."/../../db.php"); 
 
@@ -18,6 +19,7 @@ class bewerbung_controller
         $this->vorkenntnisse_model = new vorkenntnisse_model();
         $this->windhund_model = new windhund_model();
         $this->bewerbung_model = new bewerbung_model();
+        $this->belegwunsch_model = new belegwunsch_model();
         date_default_timezone_set("Europe/Berlin");
         $this->heute_dt = new DateTime(date("Y-m-d"));
 
@@ -129,7 +131,7 @@ class bewerbung_controller
                         }
                     }
             }
-        else{     
+        else{
             include 'app/view/bewerbung/Abschlussarbeit/bewerbung_view_abschluss.php';
         }
     }
@@ -169,9 +171,9 @@ class bewerbung_controller
                             include 'app/view/bewerbung/Abschlussarbeit/belegwunsch_view_abschluss.php';  
                         } else {
                             // HIER INSERT BEWERBUNG
-
+                            $this->belegwunsch_model->insertBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $zulassung, $seminarteilnahme, $thema1, $thema2, $thema3);
                             $this->getModal("AB_BW_erfolgreich", $thema_id);
-                            include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php';
+                            include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss_BL.php';
                         }      
                 }
             else{     
@@ -312,7 +314,10 @@ else{
         if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
         if(isset($_POST['Credits'])) { $credits  = $_POST['Credits']; } else{ $credits = '';}
         if(isset($_POST['seminarteilnahme'])) { $seminarteilnahme  = $_POST['seminarteilnahme']; } else{ $seminarteilnahme = '';}
- 
+        if(isset($_POST['Thema1'])) { $thema1  = $_POST['Thema1']; } else{ $thema1 = '';}
+        if(isset($_POST['Thema2'])) { $thema2  = $_POST['Thema2']; } else{ $thema2 = '';}
+        if(isset($_POST['Thema3'])) { $thema3  = $_POST['Thema3']; } else{ $thema3 = '';}
+
         $modul = $this->modul_model->getModulById($id);
         $themen = $this->thema_model->getThemenVG($id,'');
 
@@ -327,8 +332,9 @@ else{
                     include 'app/view/bewerbung/Seminararbeit/belegwunsch_view_seminar.php';  
                 } else {
                     // HIER INSERT BEWERBUNG
+                    $this->belegwunsch_model->insertBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $zulassung, $seminarteilnahme, $thema1, $thema2, $thema3);
                     $this->getModal("AB_BW_erfolgreich", $thema_id);
-                    include 'app/view/bewerbung/Seminararbeit/fazit_seminar.php';
+                    include 'app/view/bewerbung/Seminararbeit/fazit_seminar_BL.php';
                 }      
         }
     else{  include 'app/view/bewerbung/Seminararbeit/belegwunsch_view_seminar.php'; }

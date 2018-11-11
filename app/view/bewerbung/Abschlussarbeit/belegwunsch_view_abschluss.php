@@ -28,10 +28,6 @@
                 </td>
             </tr>
             <tr>
-                <td><label for='Nachname'><b>Nachname:</b><red style='color: red'>*</red></label></td>
-                <td colspan='2'><input style='width: 100%' type='text' class='form-control' name='Nachname' id='Nachname'  placeholder='Nachname' value='<?php echo $nachname?>' required> </td>
-            </tr>
-            <tr>
                 <td><label for='matrikelnummer'><b>Matrikelnummer:</b><red style='color: red'>*</red></label></td>
                 <td colspan='2'><input style='width: 100%' type='text' class='form-control' name='Matrikelnummer' id='Matrikelnummer' value='<?php echo $matrikelnummer?>' required></td>
             </tr>

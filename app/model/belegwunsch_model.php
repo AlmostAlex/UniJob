@@ -16,11 +16,11 @@ class belegwunsch_model
         $this->heute_dt = new DateTime(date("Y-m-d"));
     }
 
-    public function insertBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $voraussetzungen, $wunschthema1, $wunschthema2, $wunschthema3)
+    public function insertBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3)
     {
-        if ($statement = $this->dbh->prepare("INSERT INTO `bewerbung` (`vorname`, `nachname`, `matrikelnummer`, `email`, `status`, `voraussetzung`, `wunschthema1`, `wunschthema2`, `wunschthema3`)
-        VALUES (?,?,?,?,'offen',?,?,?,?)")) {
-            $statement->bind_param('ssissiii', $vorname, $nachname, $matrikelnummer, $email, $voraussetzungen,  $wunschthema1, $wunschthema2, $wunschthema3);
+        if ($statement = $this->dbh->prepare("INSERT INTO `belegwunsch` (`vorname`, `nachname`, `matrikelnummer`, `email`, `status`, `voraussetzung`, `seminarteilnahme`, `wunschthema1`, `wunschthema2`, `wunschthema3`)
+        VALUES (?,?,?,?,'offen',?,?,?,?,?)")) {
+            $statement->bind_param('ssisssiii', $vorname, $nachname, $matrikelnummer, $email, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3);
             $statement->execute();
         } else {
             $error = $this->dbh->errno . ' ' . $this->dbh->error;
