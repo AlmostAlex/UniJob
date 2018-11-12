@@ -33,6 +33,7 @@ Archivierte Abschluss- und Seminararbeitsthemen
 </table>
 <hr class="my-4">
 </div>
+<br><br>
 
 <div class="alert alert-info" id='meldung' role="alert">
     <i id='bars' class="fas fa-bars"></i>

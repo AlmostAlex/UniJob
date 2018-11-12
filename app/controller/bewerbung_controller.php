@@ -209,7 +209,7 @@ class bewerbung_controller
         $check_modul = $this->modul_model->checkModul($id);
         $check_thema = $this->thema_model->checkThema($thema_id); 
 
-
+       
         if($this->modul_model->getVerfuegbarkeitID($id) == 'Offen'){
             if($this->modul_model->getModulNachrueckvByID($id) == 'false'){
  // WINDHNDVERFAHREN SEMINAR

@@ -19,7 +19,7 @@ none a {
 }
 
 open .alert-secondary {
-    background-color: rgba(34, 36, 38, 0.09);
+    background-color: rgba(126, 126, 126, 0.1);
 }
 
 open a:link {
@@ -58,6 +58,7 @@ open a:link {
 .bewerbung_verwaltung table tr th {
     font-size: 12.5px;
     cursor: auto;
+    padding-right:3px;
     background: #F9FAFB;
     text-align: inherit;
     color: rgba(0, 0, 0, .87);
@@ -76,6 +77,7 @@ open a:link {
     padding: .58571429em;
     text-align: inherit;
     padding: 10px;
+
 }
 
 open .badge {

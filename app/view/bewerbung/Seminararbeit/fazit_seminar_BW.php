@@ -64,7 +64,7 @@
 
         <tr>
             <td><label><b>Zulassung:</b></label></td>
-            <td><?php echo $zulassung; ?></td>
+            <td><?php echo $zulassung .''. $seminarteilnahme ?></td>
         </tr>          
         <tr>
             <td colspan='2' class='daten'>
