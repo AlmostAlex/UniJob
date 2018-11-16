@@ -50,4 +50,22 @@ class vorkenntnisse_model
         return $vorkenntnisse;
     
     }
+
+    
+    public function getVorkenntnisseString()
+    {
+        $statement = $this->dbh->prepare("SELECT vorkenntnisse.bezeichnung FROM `vorkenntnisse`,`thema`,`modul`  WHERE vorkenntnisse.thema_id = thema.thema_id AND thema.modul_id = modul.modul_id AND modul.archivierung = 'false' GROUP BY vorkenntnisse.bezeichnung");
+        $statement->bind_result($bezeichnung);
+        $statement->execute();
+
+        $tagsBezFilter = array();
+        while ($statement->fetch()) {
+            $rows[] = array(
+                'vorkenntnisse_bezeichnung' => $bezeichnung
+            );  
+        }
+        $rows = array_unique($rows,SORT_REGULAR);
+
+        return $rows;
+    }
 }

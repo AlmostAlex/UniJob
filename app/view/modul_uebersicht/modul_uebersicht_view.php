@@ -120,8 +120,13 @@
                                             <?php $vorkenntnisse = $this->modulUebersichtVorkenntisse($themen[$p]['thema_id']); for ($l = 0; $l < count($vorkenntnisse); $l++) {?> 
                                             <?php  echo $vorkenntnisse[$l]['bezeichnung']; }?> <br>
                                             <b>Hinweise:</b> <?php echo $module[$k]["hinweise"];?> <br>
-                                            <b>Beschreibung:</b> <?php echo $themen[$p]["themenbeschreibung"];?> <br>
-                                             <br>             
+                                            <b>Beschreibung:</b> <?php echo $themen[$p]["themenbeschreibung"];?> 
+                                            <?php if($themen[$p]["bewerber_anz"] == '') {echo '';} else{ ?> 
+                                            <br><b>Anzahl Bewerber:</b> <?php echo $themen[$p]["bewerber_anz"];?>
+                                            <?php } ?>
+                                            <br>
+                                            <br>    
+
                                           <tags>
                                             <?php $tags = $this->modulUebersichtTags($themen[$p]['thema_id']); for ($y = 0; $y < count($tags); $y++) {?>                                                 
                                                 <div class="badge badge-primary" id='add_tf' value='<?php echo $tags[$y]['tag_bezeichnung'];?>'><?php echo $tags[$y]['tag_bezeichnung'];?></div>                                                           

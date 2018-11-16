@@ -63,5 +63,17 @@ if(isset($_GET["action"]) && $_GET["action"] =='showArchiv'){
     $controller->archivierung($_GET["semester"],"filter"); 
 }
 
+// Swap
+if(isset($_GET["action"]) && $_GET["action"] =='swap'){
+    $controller = new einsicht_controller();
+    $controller->swap($_GET["thID"],$_GET["bewID"], $_GET["matr"]);
+
+}
+
+if(isset($_GET["action"]) && $_GET["action"] =='swapAgain'){
+    $controller = new einsicht_controller();
+    $controller->swapAgain($_GET["id"]);
+
+}
 
 ?>

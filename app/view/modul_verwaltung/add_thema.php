@@ -35,12 +35,12 @@
                         </tr>
                         <tr>
                         <td><label for="titel"><b>Vorkenntnisse:</b></label></td>
-                            <td  colspan='2'>
+                            <td colspan='2'>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span style='margin-left:88px' class="input-group-text">Vorkenntnisse</span>
                                     </div>
-                                    <vork><input style='width:80%;margin-left:0px;' type="text" name='vorkenntnisse_WiBe[]' placeholder='Eingabe' class="tagsinput-typeahead2" /></vork>
+                                    <vork><input style='width:80%;margin-left:0px;' type="text" name='vorkenntnisse[]' placeholder='Eingabe' class="tagsinput-typeahead2" /></vork>
                                 </div>
                             </td>
                         </tr>
@@ -78,10 +78,23 @@
                         <textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas" /></textarea>
                     </td>
                 </tr>
+    
+
+        <tr>
+        <td><label for="titel"><b>Vorkenntnisse:</b></label></td>
+            <td>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span style='margin-left:88px' class="input-group-text">Vorkenntnisse</span>
+                    </div>
+                    <vork><input style='width:80%;margin-left:0px;'  type="text" id='vork' name='vorkenntnisse[]' placeholder='erforderlichen Vorkenntnisse' class="form-control" /></vork>
+                </div>
+            </td>
+        </tr>
                 <tr>
                     <td><label for="titel"><b>Tags:</b></label></td>
                     <td>
-                        <taggin>
+                        <tagginCopy>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Tags</span>
@@ -92,7 +105,7 @@
                             </div>
                             </tags>
                         </div>
-                        </taggin>
+                        </tagginCopy>
                     </td>
                 </tr>
             </table>

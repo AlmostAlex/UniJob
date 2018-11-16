@@ -11,13 +11,26 @@
     <form style='margin-bottom:100px;' method="post"> 
         <div class="table-responsive" id="module">  
             <div class='bewerbung_verwaltung'>
+
+                <div class='belegSort'>
+                <b>Informationen aus-/einblenden: </b>
+                    
+                <div class="form-check form-check-inline"><p><input type="checkbox" name="name" checked="checked" id="name" /><label for="name">Name</label></p></div>
+                <div class="form-check form-check-inline"><p><input type="checkbox" name="matrikelnummer" checked="checked" id="matr" /><label for="matr">Matr.</label></p></div>
+                <div class="form-check form-check-inline"><p><input type="checkbox" name="email" id="email" /><label for="email">E-mail</label></p></div>
+                <div class="form-check form-check-inline"><p><input type="checkbox" name="status"  id="status" checked="checked" /><label for="status">Status</label></p></div>           
+                </div>
+
+
                 <table id="sort_einsicht_wh">
                     <thead>
                         <tr>
-                            <th class="no-sort" name='anmerkung'></th>
-                            <th >Thema</th>
-                            <th>Matrikelnummer</th>
-                            <th>Email</th>
+                            <th class="no-sort" name='anmerkung'>Info</th>
+                            <th>Thema</th>
+                            <th class='name'>Name</th>
+                            <th class='matrikelnummer'>Matrikelnummer</th>
+                            <th class='email'>Email</th>
+                            <th class='status'>Status</th>
                             <th class="no-sort" name='funktionen'>Funktionen</th>
                         </tr>
                     </thead>
@@ -25,8 +38,10 @@
                         <tr>
                             <td></td>
                             <td><?php echo $themen[$k]['themenbezeichnung'] ?> </td>
-                            <td><?php echo $themen[$k]['matrikelnummer'] ?></td>
-                            <td><?php echo $themen[$k]['email'] ?></td>
+                            <td class='name'><?php echo $themen[$k]['vorname'] ?> <?php echo $themen[$k]['nachname'] ?> </td>
+                            <td class='matrikelnummer'><?php echo $themen[$k]['matrikelnummer'] ?></td>
+                            <td class='email'><?php echo $themen[$k]['email'] ?></td>
+                            <td class='status'>Status</td>
                             <td></td>
                             
                         </tr>

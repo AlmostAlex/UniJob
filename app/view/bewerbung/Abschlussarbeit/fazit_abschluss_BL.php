@@ -62,7 +62,7 @@
         <tr>
             <td><label><b>Kick-Off:</b></label></td>
             <td><i style='color:red;' class="fas fa-exclamation"></i> <?php echo $infos1['kickoff'];;?></td>      
-        </tr>   
+        </tr> 
     </table>
 
     <button type="button" class="btn btn-primary" href="/modul_uebersicht">Zurück zur Übersicht</button>

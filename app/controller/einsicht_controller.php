@@ -75,6 +75,25 @@ class einsicht_controller
         
     }
 
+    public function swap($thID, $bewID, $matr){
+        $themenbezeichnung = $this->thema_model->SwapBewThema($thID);
+        $swapThemen = $this->thema_model->swapThemen($thID);
+        include_once(__DIR__."/../view/einsicht/swap.php");
+    }
+
+    public function swapAgain($id){
+        $themenbezeichnung = $this->thema_model->SwapBewThema($id);
+        $swapThemen = $this->thema_model->swapThemen($id);
+        $isNull = $this->thema_model->isNull($id);
+
+        if($isNull == "True"){ // is null
+        }
+        else if($isNull=="False"){ // count > 0
+            include_once(__DIR__."/../view/einsicht/swapAgain.php");
+        }
+
+    }
+
     public function Belegwunschverteilung($modul_id){
             //Festlegen der Bewerberanzahl und der ThemaAnzahl
             //Festlegen der Bewerberanzahl und der ThemaAnzahl

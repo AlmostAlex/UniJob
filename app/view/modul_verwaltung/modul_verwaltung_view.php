@@ -136,8 +136,10 @@
                                         <a href='/mt_verwaltung/thema/edit/<?php echo $themen[$j]["thema_id"]; ?>'><i class='far fa-edit'></i></a>
                                     </span>
                                     <span data-toggle='tooltip' data-placement='top' title='Anmeldungen einsehen' class='<?php echo $module[$i]["einsicht_bw_btn"] ?>'>
-                                    <a href='/einsicht/<?php echo $module[$i]["verfahren"];?>/<?php echo $themen[$j]["thema_id"]; ?>'><i style='color:white;' class="far fa-user"></i> 
+                                    <a href='/einsicht/<?php echo $module[$i]["verfahren"];?>/<?php echo $themen[$j]["thema_id"]; ?>'><i style='color:white;' class="far fa-user"></i></a> 
                                     </span>
+
+                                    <!-- Lösch funktion fehlt-->
                                 </td>
                             </tr>
                         </table>

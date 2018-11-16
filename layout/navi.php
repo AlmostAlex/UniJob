@@ -15,7 +15,8 @@
     <navihd>
    <?php 
     if(isset($_SESSION['login'])){ ?>
-        <div class="nav_box">
+  
+          <div class="nav_box">
             <h5 class="mt-0">Admin Navigation</h5>
             <p>
                 <div style='border-top: 1px solid #e7e7e7;' class='navhd'><i class="fas fa-angle-right"></i> <a href="/verwaltung">Verwaltung</a></div>

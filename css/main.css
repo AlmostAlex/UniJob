@@ -487,6 +487,7 @@ navihd .fas {
 .form_thema label {
     font-size: 14px;
     font-weight: 0;
+    margin-top: 4px;
 }
 
 .form_thema space {

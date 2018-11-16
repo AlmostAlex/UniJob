@@ -104,7 +104,6 @@ class modul_model
             if (!empty($thema[$j])) {
                 if (!empty($beschreibung[$j])) {
                     $beschreibung_array = $beschreibung[$j];
-                    echo $beschreibung_array;
                 } else{
                     $beschreibung_array = '';
                 }
@@ -112,8 +111,6 @@ class modul_model
                     $tag_string = $tags[$j];
                     print_r($vorkenntnisse);
                     $vorkenntnisse_string = $vorkenntnisse[$j];
-                    echo $vorkenntnisse_string;
-
                     $betreuer_string = $betreuer[$j];
 
                     //davon ausgehend, dass der Benutzername eingegeben wird !!!!! BEI UNIDB ZUGRIFF NEU SCHREIBEN!!!!!
@@ -248,13 +245,48 @@ class modul_model
 
     public function getModulById($modul_id)
     {
-        $statement = $this->dbh->prepare("SELECT modulbezeichnung,professur,kategorie,abschlusstyp,hinweise,verfahren,semester,frist_start,frist_ende,kickoff,studiengang,modul_verfuegbarkeit,nachrueckverfahren From modul Where modul_id =?");
+        $statement = $this->dbh->prepare("SELECT modulbezeichnung,professur,kategorie,abschlusstyp,hinweise,verfahren,semester,frist_start,frist_ende,kickoff,studiengang,modul_verfuegbarkeit,nachrueckverfahren, archivierung From modul Where modul_id =?");
         $statement->bind_param('i', $modul_id);
         $statement->execute();
-        $statement->bind_result($modulbezeichnung, $professur, $kategorie,$abschlusstyp,$hinweise, $verfahren, $semester, $frist_start, $frist_ende,$kickoff, $studiengang, $modul_verfuegbarkeit, $nachrueckverfahren);
-
+        $statement->bind_result($modulbezeichnung, $professur, $kategorie,$abschlusstyp,$hinweise, $verfahren, $semester, $frist_start, $frist_ende,$kickoff, $studiengang, $modul_verfuegbarkeit, $nachrueckverfahren, $archivierung);
+        $statement->store_result();
         $modul = array();
         while ($statement->fetch()) {
+
+
+            $anzahl_thema_verfuegbar = $this->getModulThemaAnzahlVerfuegbar($modul_id, "Verfügbar");
+            if ((new DateTime(date("Y-m-d")) > new DateTime($frist_ende) || ($anzahl_thema_verfuegbar == "0"))) {
+                $archivBtn = 'badge badge-warning';
+                $btn_form  = 'btn btn-secondary disabled btn';
+                $btn_msg ='Geschlossen'; 
+                $state ='none';
+                $this->updateVerfuegbarkeit($modul_id,"Geschlossen");
+                
+            } else { $archivBtn = 'btn_false';
+                  $btn_form  = 'button-two'; 
+                  $btn_msg ='Anmeldung'; 
+                  $state ='href="bewerbung/'.$kategorie.'/'.$modul_id.' "';
+            }
+
+            if ((new DateTime(date("Y-m-d")) > new DateTime($frist_ende) && ($anzahl_thema_verfuegbar > "0"))) {
+                $nachrueckBtn = 'badge badge-primary';}else{ $nachrueckBtn = 'btn_false'; }
+
+            if ($nachrueckverfahren=='true') {  $nachrueckv_status = '[Nachrückverfahren]'; $verfahren_anzeige = 'Windhundverfahren';
+            } else {  $nachrueckv_status  = ''; $verfahren_anzeige = $verfahren; }
+
+            if (new DateTime($frist_start) > new DateTime(date("Y-m-d"))) {
+                $deleteBtn = 'badge badge-danger';
+            } else {  $deleteBtn = 'btn_false';}
+            
+            if($verfahren=='Windhundverfahren'){$einsicht_wh_btn ='badge badge-info'; }
+            else{ $einsicht_wh_btn ='btn_false'; }
+            
+            if($verfahren=='Bewerbungsverfahren'){ $einsicht_bw_btn ='badge badge-info';} 
+            else{ $einsicht_bw_btn ='btn_false';}
+
+            if($verfahren=='Belegwunschverfahren'){ $einsicht_bel_btn ='badge badge-info';} 
+            else{ $einsicht_bel_btn ='btn_false';}
+
             $row = array(
                 'modul_id' => $modul_id,
                 'modulbezeichnung' => $modulbezeichnung,
@@ -269,7 +301,15 @@ class modul_model
                 'kickoff' => $kickoff,
                 'studiengang' => $studiengang,
                 'modul_verfuegbarkeit' => $modul_verfuegbarkeit,
-                'nachrueckv_status' => $nachrueckverfahren
+                'nachrueckv_status' => $nachrueckverfahren,
+                'einsicht_wh_btn'=> $einsicht_wh_btn,
+                'einsicht_bw_btn'=> $einsicht_bw_btn,
+                'einsicht_bel_btn'=> $einsicht_bel_btn,
+                'checkDeleteBtn' => $deleteBtn,
+                'checkNachrueckBtn' => $nachrueckBtn,
+                'nachrueckv_status'=> $nachrueckv_status,
+                'archivierung' => $archivierung,
+                'checkArchivBtn'=> $archivBtn
             );
             $modul = $row;
         }
@@ -369,10 +409,10 @@ class modul_model
         return $anzahl_modul;
     }
 
-    public function updateModul($kategorie, $modulbezeichnung, $start, $ende, $semester, $studiengang, $verfahren, $modul_id)
+    public function updateModul($professur, $modulbezeichnung, $start, $ende, $kickoff, $semester, $hinweise, $studiengang, $verfahren, $modul_id)
     {
-        $statement = $this->dbh->prepare("UPDATE modul SET kategorie = ?, modulbezeichnung = ?, frist_start = ?, frist_ende =?, semester =?, studiengang =?, verfahren=? WHERE modul_id = ?");
-        $statement->bind_param('sssssssi', $kategorie, $modulbezeichnung, $start, $ende, $semester, $studiengang, $verfahren, $modul_id);
+        $statement = $this->dbh->prepare("UPDATE modul SET professur=?,modulbezeichnung = ?, frist_start = ?, frist_ende =?, kickoff = ?, semester =?, hinweise =?, studiengang =?, verfahren=? WHERE modul_id = ?");
+        $statement->bind_param('sssssssssi', $professur, $modulbezeichnung, $start, $ende, $kickoff, $semester,$hinweise,$studiengang, $verfahren, $modul_id);
         $statement->execute();
     }
 

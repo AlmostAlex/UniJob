@@ -1,5 +1,13 @@
 <?php
+//ob_start();
+
 ob_start();
+//header('Cache-Control: no cache'); //no cache
+//session_cache_limiter('private_no_expire'); // works
+//session_cache_limiter('public'); // works too
+session_start();
+ob_get_clean();
+
 include_once('layout/header.php');
 require('vendor/autoload.php');
 include("PHPRouter/Router.php");

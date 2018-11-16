@@ -27,10 +27,25 @@
                 </tr>
                 
                 <tr>
-                    <td><label for="Abschlusstyp"><b>Kategorie:</b><red style="color: red" >*</red></label></td>
-                    <td><center><input style='margin-right:10px;' type="radio" name="Abschlusstyp" value="Bachelor" class="Kategorie" />Bachelor</input></center> </td>
-                    <td><center><input style='margin-right:10px;' type="radio" name="Abschlusstyp" value="Master" class="Kategorie" />Master</input></center></td>
-                    <td></td>
+
+<!-- Group of default radios - option 1 -->
+
+<td><label for="Abschlusstyp"><b>Kategorie:</b><red style="color: red" >*</red></label></td>
+    <td>
+    <div class="custom-control custom-radio">
+    <input type="radio" class="custom-control-input" id="defaultGroupExample1" value='Bachelor' name="Abschlusstyp">
+    <label class="custom-control-label" for="defaultGroupExample1">Master</label>
+    </div>
+    </td>
+<td>
+    <!-- Group of default radios - option 2 -->
+    <div class="custom-control custom-radio">
+    <input type="radio" class="custom-control-input" id="defaultGroupExample2" value='Master' name="Abschlusstyp">
+    <label class="custom-control-label" for="defaultGroupExample2">Bachelor</label>
+    </div>
+</td>
+                                                               
+           <td></td>
                 </tr>
                 <tr>
                     <td><label for="Modul"><b>Professur:</b><red>*</red></label></td>
@@ -47,7 +62,7 @@
                             </span>
                         </div>
                         <dates>
-                            <text style='padding-right: 15px;padding-left: 20px;margin-top: 10px;height: 30px;'  for="starttermin">Bewerbungsstart</text>
+                            <text style='padding-right: 15px;' class='dateText' for="starttermin">Bewerbungsstart</text>
                         </dates>
                     </td>
                     <td style='padding-bottom: 30px;'>
@@ -69,7 +84,7 @@
                             </span>
                         </div>    
                         <dates>                       
-                        <text style='padding-right: 27px;padding-left: 30px;margin-top: 10px;height: 30px;'  for="kickofftermin">Kickofftermin</text>
+                        <text style='padding-right: 27px;padding-left: 30px;' class='dateText'  for="kickofftermin">Kickofftermin</text>
                     </dates>                   
                     </td>
                 </tr>                             

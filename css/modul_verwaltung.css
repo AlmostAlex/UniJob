@@ -217,7 +217,6 @@
     
     .edit_div {
         margin-top: 5%;
-        margin-bottom: 10%;
         margin-left: 5%;
         font-size: 12.5px;
         border: 1px solid #d9d9d9;
@@ -339,6 +338,33 @@
         top: 0px;
         margin-bottom: 2px;
         margin-top: 2px;
+    }
+    
+    .dateText {
+        padding-left: 20px;
+        margin-top: 10px;
+        height: 30px;
+    }
+    
+    edit {
+        font-size: 15px;
+    }
+    
+    edit .badge-secondary a {
+        color: white;
+    }
+    
+    edit a {
+        color: white;
+    }
+    
+    edit .badge {
+        padding: 5px;
+    }
+    
+    .add_thema tagginCopy .input-group-prepend {
+        margin-left: 88px;
+        padding-bottom: 14px;
     }
     
     .add_thema .input-group span {

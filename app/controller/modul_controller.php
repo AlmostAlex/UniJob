@@ -5,6 +5,7 @@ include_once(__DIR__."/../model/modul_model.php");
 include_once(__DIR__."/../model/thema_model.php");
 include_once(__DIR__."/../model/tags_model.php");
 include_once(__DIR__."/../model/user_model.php");
+include_once(__DIR__."/../model/vorkenntnisse_model.php");
 include_once(__DIR__."/../../db.php"); 
 
 class modul_controller
@@ -16,6 +17,7 @@ class modul_controller
         $this->modul_model = new modul_model();
         $this->thema_model = new thema_model();
         $this->tags_model = new tags_model();
+        $this->vorkenntnisse_model = new vorkenntnisse_model();
         date_default_timezone_set("Europe/Berlin");
         $this->heute_dt = new DateTime(date("Y-m-d"));
     }
@@ -54,17 +56,15 @@ class modul_controller
 
         } else if ($action == 'mt_verwaltung' && $action2 == 'modul' && $action3 == 'add_thema') { 
             $this->addThema($id);  
-        }else if ($action == 'mt_verwaltung' && $action2 == 'modul' && $action3 == 'edit' && $action4 == 'Seminararbeit') { 
-            $this->editSeminar($id);
-        }else if ($action == 'mt_verwaltung' && $action2 == 'modul' && $action3 == 'edit' && $action4 == 'Abschlussarbeit') { 
-            $this->editAbschluss($id);
+        }else if ($action == 'mt_verwaltung' && $action2 == 'modul' && $action3 == 'edit' && ($action4 == 'Seminararbeit' || $action4 == 'Abschlussarbeit')) { 
+            $this->editMod($id);
         }else if ($action == 'mt_verwaltung' && $action2 == 'thema' && $action3 == 'edit' && $action4 == '') { 
             $this->editThema($id);
         }
     }
     public function info()
     {
-        include_once("app/view/info/info_view.php");
+        include("app/view/info/info_view.php");
     }
     public function modul_verwaltung($state, $modul_id)
     {
@@ -82,13 +82,18 @@ class modul_controller
         }
     }
     public function addThema($id){
+
         if(isset($_POST['add_thema'])){
             $thema = $_POST['themenbezeichnung'];
             $beschreibung = $_POST['themenbeschreibung'];
             $tags = $_POST["tags"];
-            
+            //$vorkenntnisse = $_POST["vorkenntnisse"];
+             $vorkenntnisse = $_POST["vorkenntnisse"]; 
+
+
                 if (!empty(array_filter($_POST['themenbezeichnung']))) {
                     $j = 0;
+                    $i =0;
                     
                     if( (count($thema)-1) > 1){
                         $action ='add_thema_success_true';
@@ -100,35 +105,75 @@ class modul_controller
                     while ($j < count($thema)) {
                             
                         $tag_string = $tags[$j];
+                        $vorkenntnisse_string = $vorkenntnisse[$j];
+
                         if (!empty($thema[$j])) {
                             if (!empty($beschreibung[$j])) {
                                 $beschreibung_array = $beschreibung[$j];
                                 $thema_array = $thema[$j];                                
 
                                 if ($tag_string == '') {
+                                    if($vorkenntnisse_string ==''){
                                     $this->thema_model->insertThema($id, $thema_array, $beschreibung_array, $_SESSION['login']);
                                     $this->getModal($action, $id);
-                                } else {
-                                    $eintrag = $this->tags_model->getTagString($tag_string);
-                                    $this->thema_model->insertThema($id, $thema_array, $beschreibung_array, $_SESSION['login']);
-                                    $thema_id = $this->thema_model->lastThemaID();
-                                    $this->tags_model->insertTags($tag_string, $thema_id);
-                                    $this->getModal($action, $id);
+                                    } else{
+                                        //$eintrag = $this->vorkenntnisse_model->getVorkenntnisseString($vorkenntnisse_string);
+                                        $this->thema_model->insertThema($id, $thema_array, $beschreibung_array, $_SESSION['login']);
+                                        $thema_id = $this->thema_model->lastThemaID();
+                                        $this->vorkenntnisse_model->insertVorkenntnisse($vorkenntnisse_string, $thema_id);
+                                        $this->getModal($action, $id);
+                                        // INSERT THEMA AND INSERT VORKENNTNISSE
+                                    }
+                                } else { // wenn tag != '', vork =''
+                                    if($vorkenntnisse_string ==''){
+                                        $eintrag = $this->tags_model->getTagString($tag_string);
+                                        $this->thema_model->insertThema($id, $thema_array, $beschreibung_array, $_SESSION['login']);
+                                        $thema_id = $this->thema_model->lastThemaID();
+                                        $this->tags_model->insertTags($tag_string, $thema_id);
+                                        $this->getModal($action, $id);
+                                    } else{                                        
+                                        $eintrag = $this->tags_model->getTagString($tag_string);
+                                        $this->thema_model->insertThema($id, $thema_array, $beschreibung_array, $_SESSION['login']);
+                                        $thema_id = $this->thema_model->lastThemaID();
+                                        $this->tags_model->insertTags($tag_string, $thema_id);
+                                        $this->vorkenntnisse_model->insertVorkenntnisse($vorkenntnisse_string, $thema_id);
+                                        $this->getModal($action, $id);   
+                                    }
                                 }
                             }
+                            
                             else{ // beschreibung ist leer
-                                if ($tag_string == '') {
-                                    $thema_array = $thema[$j];
-                                    $beschreibung_array = '';
-                                    $this->thema_model->insertThema($id, $thema_array, $beschreibung_array,$_SESSION['login']);
-                                    $this->getModal($action, $id);
-                                } else {
-                                    $thema_array = $thema[$j];
-                                    $beschreibung_array = '';
-                                    $this->thema_model->insertThema($id, $thema_array, $beschreibung_array, $_SESSION['login']);
-                                    $thema_id = $this->thema_model->lastThemaID();
-                                    $this->tags_model->insertTags($tag_string, $thema_id);
-                                    $this->getModal($action, $id);
+                                if ($tag_string == '') { //wenn besch = '', vork ='', tags =''
+                                    if($vorkenntnisse_string ==''){
+                                        $thema_array = $thema[$j];
+                                        $beschreibung_array = '';
+                                        $this->thema_model->insertThema($id, $thema_array, $beschreibung_array,$_SESSION['login']);
+                                        $this->getModal($action, $id);
+                                    } else { //wenn besch = '', tags =''
+                                        $thema_array = $thema[$j];
+                                        $beschreibung_array = '';
+                                        $this->thema_model->insertThema($id, $thema_array, $beschreibung_array, $_SESSION['login']);
+                                        $thema_id = $this->thema_model->lastThemaID();
+                                        $this->vorkenntnisse_model->insertVorkenntnisse($vorkenntnisse_string, $thema_id);
+                                    }
+                                } else { // wenn besch = '', vork =''
+                                    if($vorkenntnisse_string ==''){
+                                        $thema_array = $thema[$j];
+                                        $beschreibung_array = '';
+                                        $this->thema_model->insertThema($id, $thema_array, $beschreibung_array, $_SESSION['login']);
+                                        $thema_id = $this->thema_model->lastThemaID();
+                                        $this->tags_model->insertTags($tag_string, $thema_id);
+                                        $this->getModal($action, $id);
+                                    } else{ // wenn besch ='', 
+                                        $thema_array = $thema[$j];
+                                        $beschreibung_array = '';
+                                        $this->thema_model->insertThema($id, $thema_array, $beschreibung_array, $_SESSION['login']);
+                                        $thema_id = $this->thema_model->lastThemaID();
+                                        $this->vorkenntnisse_model->insertVorkenntnisse($vorkenntnisse_string, $thema_id);
+                                        $this->tags_model->insertTags($tag_string, $thema_id);
+                                        $this->getModal($action, $id);
+                                    }
+
                                 }
                             }
                        }
@@ -147,22 +192,37 @@ class modul_controller
     }
 
 
-    public function editSeminar($modul_id)
+    public function editMod($modul_id)
     {
         $check['Abschlussarbeit'] = $check['verfahren_select'] = $check['verfahren_option'] = $check['Seminararbeit'] = $check['fristen'] = '';
         $modul = $this->modul_model->getModulById($modul_id);
         $start_dt = new DateTime($modul["frist_start"]);
-
         $start_anzeige = date("d-m-Y", strtotime($modul['frist_start']));
         $ende_anzeige = date("d-m-Y", strtotime($modul['frist_ende']));
+        $kickoff_anzeige = date("d-m-Y", strtotime($modul['kickoff']));
 
-        $semester = explode(" ", $modul["semester"]);
-        if($semester[0] == "WiSe")
+        if($modul['kategorie'] == "Abschlussarbeit"){ 
+            $displayBez = 'display:none'; $reqBez = "";
+            $bezeichnung = $modul['professur'];
+        } else {$displayBez = ''; $reqBez = "required";
+            $bezeichnung = $modul['modulbezeichnung'];
+        } 
+
+        $semesterString = explode(" ", $modul["semester"]);
+        $semester = $semesterString[0];
+
+        if($semester == "WiSe")
         {
-            $semesterjahr = explode("/", $semester[1]);
+            $semesterjahr = explode("/", $semesterString[1]);
+           // $semesterjahr[0] .'--'. $semesterjahr[1];
+
+        } else {
+            $semester_s = $semesterString[1];
+            $semesterString = $semester[0];
         }
+
         if ($start_dt <= $this->heute_dt) {
-            $check['fristen'] = 'readonly';
+            $check['fristen'] = 'disabled';
             $check['verfahren_select'] = 'readonly';
             $check['verfahren_select'] = 'disabled';
         } else {
@@ -172,77 +232,52 @@ class modul_controller
         if (isset($_POST['modul_edit'])) {
             $start_anzeige = date("d-m-Y", strtotime($_POST['Start']));
             $ende_anzeige = date("d-m-Y", strtotime($_POST['Ende']));
+            $kickoff_anzeige = date("d-m-Y", strtotime($_POST['Kickoff']));
+            if(isset($_POST['modulbezeichnung'])) {$modulbezeichnung = $_POST['modulbezeichnung'];} else{ $modulbezeichnung ='';}
+
             $start = date("Y-m-d", strtotime($_POST['Start']));
             $ende = date("Y-m-d", strtotime($_POST['Ende']));
-        
+            $kickoff = date("Y-m-d", strtotime($_POST['Kickoff']));
+
+            $semester = $_POST['SemesterEdit'];
+            
+            if($semester =='SoSe') {
+                $semester_post = $semester .' '. $_POST['Semester_input1'];  
+                $semester_s = $_POST['Semester_input1'];    
+            } else if($semester == 'WiSe' ){
+                $semester_post = $semester .' '. $_POST['Semester_input2'] .'/'. $_POST['Semester_input3'];  
+                $semesterjahr[0] = $_POST['Semester_input2'];
+                $semesterjahr[1]= $_POST['Semester_input3'];
+            }
+
             if ($check['verfahren_select'] == 'disabled') {
                 $verfahren = $modul['verfahren'];
             } else {
                 $verfahren = $_POST['Verfahren'];
             }
-            $this->modul_model->updateModul($_POST['Bezeichnung'], $_POST['fakultaet'], $start, $ende, $_POST['Semester'], $_POST['Studiengang'], $verfahren, $modul_id);
-            $modul['modulbezeichnung'] = $_POST['Bezeichnung'];
-            $modul['fakultaet'] = $_POST['fakultaet'];
+            
+            $this->modul_model->updateModul( $_POST['professur'], $modulbezeichnung, $start, $ende, $kickoff, $semester_post, $_POST['hinweise'], $_POST['Studiengang'], $verfahren, $modul_id);
+            $modul['modulbezeichnung'] = $_POST['modulbezeichnung'];
+            $modul['professur'] = $_POST['professur'];
             $modul['frist_start'] = $start;
             $modul['frist_ende'] = $ende;
-            $modul['semester'] = $_POST['Semester'];
+            $modul['kickoff'] = $kickoff;
+            //$modul['semester'] = $_POST['Semester'];
             $modul['studiengang'] = $_POST['Studiengang'];
+            $modul['hinweise'] =  $_POST['hinweise'];
             $modul['verfahren'] = $verfahren;
             $this->getModal('edit_modul_success', $modul_id);
         }
+
         $themen = $this->thema_model->getThemen($modul_id, '');
-        include 'app/view/modul_verwaltung/edit_seminar_view.php';
-}
-
-public function editAbschluss($modul_id)
-    {
-        $check['Abschlussarbeit'] = $check['verfahren_select'] = $check['verfahren_option'] = $check['Seminararbeit'] = $check['fristen'] = '';
-        $modul = $this->modul_model->getModulById($modul_id);
-        $start_dt = new DateTime($modul["frist_start"]);
-
-        $start_anzeige = date("d-m-Y", strtotime($modul['frist_start']));
-        $ende_anzeige = date("d-m-Y", strtotime($modul['frist_ende']));
-
-        $semester = explode(" ", $modul["semester"]);
-        if($semester[0] == "WiSe")
-        {
-            $semesterjahr = explode("/", $semester[1]);
-        }
-        if ($start_dt <= $this->heute_dt) {
-            $check['fristen'] = 'readonly';
-            $check['verfahren_select'] = 'readonly';
-            $check['verfahren_select'] = 'disabled';
-        } else {
-            $check['fristen'] = $check['verfahren_select'] = $check['verfahren_select'] = '';
-        }
-
-        if (isset($_POST['modul_edit'])) {
-            $start_anzeige = date("d-m-Y", strtotime($_POST['Start']));
-            $ende_anzeige = date("d-m-Y", strtotime($_POST['Ende']));
-            $start = date("Y-m-d", strtotime($_POST['Start']));
-            $ende = date("Y-m-d", strtotime($_POST['Ende']));
-        
-            if ($check['verfahren_select'] == 'disabled') {
-                $verfahren = $modul['verfahren'];
-            } else {
-                $verfahren = $_POST['Verfahren'];
-            }
-            $this->modul_model->updateModul($_POST['Bezeichnung'], $_POST['fakultaet'], $start, $ende, $_POST['Semester'], $_POST['Studiengang'], $verfahren, $modul_id);
-            $modul['professur'] = $_POST['Bezeichnung'];
-            $modul['fakultaet'] = $_POST['fakultaet'];
-            $modul['frist_start'] = $start;
-            $modul['frist_ende'] = $ende;
-            $modul['semester'] = $_POST['Semester'];
-            $modul['studiengang'] = $_POST['Studiengang'];
-            $modul['verfahren'] = $verfahren;
-            $this->getModal('edit_modul_success', $modul_id);
-        }
-        $themen = $this->thema_model->getThemen($modul_id, '');
-        include 'app/view/modul_verwaltung/edit_abschluss_view.php';
+        include 'app/view/modul_verwaltung/edit_modul_view.php';
 }
 
 public function editThema($thema_id)
     {
+
+
+
      /*   $check['Abschlussarbeit'] = $check['verfahren_select'] = $check['verfahren_option'] = $check['Seminararbeit'] = $check['fristen'] = '';
         $thema = $this->thema_model->getThema($thema_id);
         $start_dt = new DateTime($modul["frist_start"]);

@@ -58,7 +58,7 @@ open a:link {
 .bewerbung_verwaltung table tr th {
     font-size: 12.5px;
     cursor: auto;
-    padding-right:3px;
+    padding-right: 3px;
     background: #F9FAFB;
     text-align: inherit;
     color: rgba(0, 0, 0, .87);
@@ -77,7 +77,6 @@ open a:link {
     padding: .58571429em;
     text-align: inherit;
     padding: 10px;
-
 }
 
 open .badge {
@@ -122,4 +121,130 @@ open .badge {
 
 table.dataTable.no-footer {
     border-bottom: 1px solid transparent;
+}
+
+.belegSort {
+    background-color: white;
+    border: 1px solid #6f798236;
+    padding: 10 10 0 10;
+    margin-bottom: -14;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+
+/* */
+
+
+/* Base for label styling */
+
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+    position: absolute;
+    left: -9999px;
+}
+
+[type="checkbox"]:not(:checked)+label,
+[type="checkbox"]:checked+label {
+    position: relative;
+    padding-left: 1.95em;
+    cursor: pointer;
+}
+
+
+/* checkbox aspect */
+
+[type="checkbox"]:not(:checked)+label:before,
+[type="checkbox"]:checked+label:before {
+    content: '';
+    position: absolute;
+    left: 6;
+    top: 2;
+    width: 1.15em;
+    height: 1.15em;
+    border: 2px solid #ccc;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
+}
+
+
+/* checked mark aspect */
+
+[type="checkbox"]:not(:checked)+label:after,
+[type="checkbox"]:checked+label:after {
+    content: '\2713\0020';
+    position: absolute;
+    top: .35em;
+    left: .50em;
+    font-size: 1.1em;
+    line-height: 0.8;
+    color: #09ad7e;
+    transition: all .2s;
+    font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', Arial;
+}
+
+
+/* checked mark aspect changes */
+
+[type="checkbox"]:not(:checked)+label:after {
+    opacity: 0;
+    transform: scale(0);
+}
+
+[type="checkbox"]:checked+label:after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* disabled checkbox */
+
+[type="checkbox"]:disabled:not(:checked)+label:before,
+[type="checkbox"]:disabled:checked+label:before {
+    box-shadow: none;
+    border-color: #bbb;
+    background-color: #ddd;
+}
+
+[type="checkbox"]:disabled:checked+label:after {
+    color: #999;
+}
+
+[type="checkbox"]:disabled+label {
+    color: #aaa;
+}
+
+
+/* accessibility */
+
+[type="checkbox"]:checked:focus+label:before,
+[type="checkbox"]:not(:checked):focus+label:before {
+    border: 2px solid blue;
+}
+
+
+/* hover style just for information */
+
+label:hover:before {
+    border: 2px solid #4778d9!important;
+}
+
+
+/* Useless styles, just for demo design */
+
+.txtcenter {
+    margin-top: 4em;
+    font-size: .9em;
+    text-align: center;
+    color: #aaa;
+}
+
+.copy {
+    margin-top: 2em;
+}
+
+.copy a {
+    text-decoration: none;
+    color: #4778d9;
 }

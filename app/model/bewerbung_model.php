@@ -134,12 +134,13 @@ class bewerbung_model
         public function bewerber($thema_id){
             $statement = $this->dbh->prepare
             ("SELECT bewerbung.vorname, bewerbung.nachname, bewerbung.matrikelnummer, bewerbung.email,
-            bewerbung.fachsemester, bewerbung.credits, bewerbung.studiengang, bewerbung.gesamt_punkte
+            bewerbung.fachsemester, bewerbung.credits, bewerbung.studiengang, bewerbung.gesamt_punkte,
+            bewerbung.status
             FROM bewerbung
             WHERE bewerbung.thema_id = ?");
            $statement->bind_param('i', $thema_id);
            $statement->execute();
-           $statement->bind_result($vorname, $nachname, $matrikelnummer, $email, $fachsemester, $credits, $studiengang, $gesamt_punkte);
+           $statement->bind_result($vorname, $nachname, $matrikelnummer, $email, $fachsemester, $credits, $studiengang, $gesamt_punkte, $status);
         
         while ($statement->fetch()) {
             $bewerbung[] = array(
@@ -150,7 +151,8 @@ class bewerbung_model
                 'fachsemester' => $fachsemester,
                 'credits' => $credits, 
                 'studiengang' => $studiengang,
-                'gesamt_punkte' => $gesamt_punkte
+                'gesamt_punkte' => $gesamt_punkte,
+                'status' => $status
             );
         }
         return $bewerbung;

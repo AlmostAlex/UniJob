@@ -7,32 +7,94 @@
             </b> <?php if($infos['anzThemaVergeben'] > 1){ echo "sind ".$infos['anzThemaVergeben'].""; } else if($infos['anzThemaVergeben'] == 0){ echo "kein";} else { echo "ist ein ".$infos['anzThemaVergeben'].""; } ?>
              <?php if($infos['anzThemaVergeben'] > 1){ echo "Themen"; } else { echo "Thema"; } ?> vergeben.
     </div>
-         
+
+<script>
+$("input:checkbox:not(:checked)").each(function() {
+    var column = "table ." + $(this).attr("name");
+    $(column).hide();
+});
+
+$("input:checkbox").click(function(){
+    var column = "table ." + $(this).attr("name");
+    $(column).toggle();
+});
+</script>
+
+<div class='swapContent' id='swapContent'></div>
+
 <!-- ZUGETEILTE THEMEN -->
 <form style='margin-bottom:30px;' method="post"> 
-     <div class="table-responsive" id="module">  
+     <div class="table-responsive" id="module">
+     
      <div class='bewerbung_verwaltung'>
-         Zugeteilte Themen
-            <table id="sort_einsicht_bel">
+
+<div class='belegSort'>
+<b>Informationen aus-/einblenden: </b>
+
+    <div class="form-check form-check-inline"> <p><input type="checkbox" name="pri1" id="pri1" checked="checked"/><label for="pri1">Priorität 1</label></p></div>
+
+    <div class="form-check form-check-inline"><p><input type="checkbox" name="pri2" id="pri2" checked="checked" /><label for="pri3">Priorität 2</label></p></div>
+
+    <div class="form-check form-check-inline"><p><input type="checkbox" name="pri3"  id="pri3" checked="checked" /><label for="pri3">Priorität 3</label></p> </div>
+
+    <div class="form-check form-check-inline"><p><input type="checkbox" name="matrikelnummer" id="matr" /><label for="matr">Matr.</label></p></div>
+    
+    <div class="form-check form-check-inline"><p><input type="checkbox"  name="email"  id="email" /><label for="email">E-mail</label></p></div>
+    
+    <div class="form-check form-check-inline"><p><input type="checkbox" name="status"  id="status" checked="checked" /><label for="status">Status</label></p></div>
+
+</div>
+
+            <table id="sort_einsicht_bel"> 
                 <thead>
                     <tr>
-                        <th class="no-sort" name='anmerkung'></th>
-                        <th>Thema</th>
-                        <th>Matrikelnr.</th>
-                        <th>Email</th>
-                        <th>Status</th>                       
+                        <th class="no-sort" name='anmerkung'>Info</th>
+                        <th><u>Erhaltenes Thema</u></th>
+                        <th class='pri1'>Pr1</th>  
+                        <th class='pri2'>Pr2</th>
+                        <th class='pri3'>Pr3</th>
+                        <th class='matrikelnummer'>Matrikelnr.</th>
+                        <th class='email'>Email</th>
+                        <th class='status'>Status</th>  
+
+
                         <th class="no-sort" name='funktionen'>Funktionen</th>
                     </tr>
                 </thead>
                 <?php for($k = 0; $k < count($bewerber); $k++){ ?>
                     <tr> 
-                        <td></td>
-                        <td><?php echo $bewerber[$k]['themenbezeichnung']?></td>
-                        <td><?php echo $bewerber[$k]['matrikelnummer']?></td>
-                        <td><?php echo $bewerber[$k]['email']?></td>
-                        <td><?php echo $bewerber[$k]['status']?></td>
-                        <td></td>
-                    </tr>
+                        <td style='width:3%;'> </td>
+
+                        <td style='width:20%; vertical-align: top;'><b><?php echo $bewerber[$k]['themenbezeichnung'] ?></b></td>
+                        <td style='width:20%; vertical-align: top;' class='pri1'><?php echo $bewerber[$k]['pri1']?></td>
+                        <td style='width:20%; vertical-align: top;' class='pri2'><?php echo $bewerber[$k]['pri2']?></td>
+                        <td style='width:20%; vertical-align: top;' class='pri3'><?php echo $bewerber[$k]['pri3']?></td>
+
+                        <td class='matrikelnummer'><?php echo $bewerber[$k]['matrikelnummer']?></td>
+                        <td class='email'><?php echo $bewerber[$k]['email']?></td>
+                        <td class='status'><?php echo $bewerber[$k]['status']?></td>
+                        <td>
+                            <a 
+                            id='swap'
+                            class='swap'
+                            data-bew-id='<?php echo $bewerber[$k]['belegwunsch_id']?>' 
+                            data-matr='<?php echo $bewerber[$k]['matrikelnummer']?>' 
+                            data-thema='<?php echo $bewerber[$k]['erhaltenesthema']?>'
+                            onclick="swap(this)"
+                            > 
+                                <span class="badge badge-primary">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </span>
+                            </a>
+
+
+                            <a>
+                            <span class="badge badge-info">
+                                <i class="far fa-envelope"></i>
+                                </span>  
+                            </a>
+                        </td>
+            
                 <?php } ?>   
                 </table>
             <hr class="my-4"> 
@@ -40,6 +102,8 @@
     </div>
 </form>
 <!-- KEIN THEM AERHALTEN -->
+
+
 <?php if($keinThemaCount == 0){} else{  ?>   
 
 <table style='border:0px solid transparent'>
@@ -51,6 +115,7 @@
                 <a data-toggle="collapse" id='verg' data-target="#vergeben" href="#vergeben" role="button" aria-expanded="false" aria-controls="vergeben">
                 Kein Thema erhalten <span style='font-size: 0.7em;' class="glyphicon glyphicon-plus"></span>
                 </a>
+                
                                     </div> 
                                 </h6>
                             </b>
@@ -86,6 +151,8 @@
         </div>
     </div>
 </form>
-                </div>
+ </div>
 <br><br><br>
 </open>
+
+

@@ -7,6 +7,7 @@
     else{ echo 'an der Professur <b>' . $infos['bez'] .'</b> angemeldet.'; } ?> 
  </div>
 
+
  <div class='fazit'>
     <table>  
         <tr>
