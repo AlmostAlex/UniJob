@@ -27,32 +27,38 @@
         1.Bewerber's Thema:
         </td>
         <td>
-        <select class="form-control">
-            <option value='<?php echo $themenbezeichnung;?>' ><?php echo $themenbezeichnung;?> </option>
+        <select class='form-control positionTypes'>
+            <option value='<?php echo $thema_id;?>'> <?php echo $thema_id;?>  <?php echo $themenbezeichnung;?> </option>
         </select>
         </td>
     <td>
     <i class="fas fa-arrow-right"></i>
     </td>
     <td style='width:300px'>
-    <select class="form-control" onchange="swap2(this)">  
+    <select class='form-control positionTypes' onchange="swap2(this)">  
     <option></option>    
     <option 
         data-bew-id-von='<?php echo $bewID ?>'
         data-bew-thema-vorher='<?php echo $thID?>'
 
-        data-bew-id='' 
+        data-bew-id='NULL' 
         data-thema='NULL'  
-    >Kein Thema erhalten
+    >
+    
+    bewid: NULL  THID: NULL- Kein Thema erhalten
     </option>    
     <?php for($k = 0; $k < count($swapThemen); $k++){ ?>
         <option 
+        
+        value='<?php echo $swapThemen[$k]['thema_id'];?>'
+
         data-bew-id-von='<?php echo $bewID ?>'
         data-bew-thema-vorher='<?php echo $thID?>'
-        data-bew-id='16' 
-        data-thema='<?php echo $swapThemen[$k]['thema_id'];?>'   
-        '>
-        [ <red style='color:red'> <?php echo $swapThemen[$k]['status'];?></red> ]  <?php echo $swapThemen[$k]['themenbezeichnung'];?> <?php echo $swapThemen[$k]['thema_id'];?>
+  
+        data-bew-id='<?php echo $swapThemen[$k]['bewID'];?>' 
+        data-thema='<?php echo $swapThemen[$k]['thema_id'];?>'>
+
+        [ <red style='color:red'> bewid: <?php echo $swapThemen[$k]['bewID'];?>  thID: <?php echo $swapThemen[$k]['thema_id'];?> <?php echo $swapThemen[$k]['status'];?></red> ]  <?php echo $swapThemen[$k]['themenbezeichnung'];?> <?php echo $swapThemen[$k]['thema_id'];?>
         </option>
     <?php } ?>
         </select>

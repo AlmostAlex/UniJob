@@ -53,10 +53,7 @@
                     </select>
                 </td>
               <td style='width: 200px;'>
-                 <!-- <div id='pr1' class="alert alert-danger"  style='width: 175px; padding: 8px; padding-left: 10px; margin-bottom: 0px; font-size: 14px;' role="alert">
-                Wähle deine 1. Priorität.
-                </div>
-        -->
+
                 <div id="v1"></div>
                 </td>
             </tr>

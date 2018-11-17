@@ -71,7 +71,7 @@ if(isset($_GET["action"]) && $_GET["action"] =='swap'){
 
 if(isset($_GET["action"]) && $_GET["action"] =='swapAgain'){
     $controller = new einsicht_controller();
-   $controller->swapAgainst($_GET["bewID_von"], $_GET["bewThID_von"], $_GET["bewID_zu"], $_GET["thID_zu"]);
+    $controller->swapAgainst($_GET["bewID_von"], $_GET["bewThID_von"], $_GET["bewID_zu"], $_GET["thID_zu"]);
 
 
 } 
