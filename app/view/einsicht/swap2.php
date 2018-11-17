@@ -22,7 +22,13 @@
         data-thema='NULL'  
     > bewid: NULL  THID: NULL- Kein Thema erhalten</option>    
     <?php for($k = 0; $k < count($swapThemen); $k++){ ?>
-        <option>
+        <option    
+        data-bew-id-von='<?php echo $bewID_zu?>'
+        data-bew-thema-vorher='<?php echo $bewThID_zu?>'
+        
+        data-bew-id='<?php echo $swapThemen[$k]['bewID'];?>' 
+        data-thema='<?php echo $swapThemen[$k]['thema_id'];?>'>
+        
             [ <?php echo $swapThemen[$k]['status'];?> ]<?php echo $swapThemen[$k]['themenbezeichnung'];?> <?php echo $swapThemen[$k]['thema_id'];?>
         </option>
     <?php } ?>

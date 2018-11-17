@@ -17,8 +17,8 @@
         <div class='belegSort'>
         <b>Informationen aus-/einblenden: </b>
             <div class="form-check form-check-inline"> <p><input type="checkbox" name="pri1" id="pri1" checked="checked"/><label for="pri1">Priorität 1</label></p></div>
-            <div class="form-check form-check-inline"><p><input type="checkbox" name="pri2" id="pri2" checked="checked" /><label for="pri3">Priorität 2</label></p></div>
-            <div class="form-check form-check-inline"><p><input type="checkbox" name="pri3"  id="pri3" checked="checked" /><label for="pri3">Priorität 3</label></p> </div>
+            <div class="form-check form-check-inline"><p><input type="checkbox" name="pri2" id="pri2" checked="checked" /><label for="pri2">Priorität 2</label></p></div>
+            <div class="form-check form-check-inline"><p><input type="checkbox" name="pri3" id="pri3" checked="checked" /><label for="pri3">Priorität 3</label></p></div>
             <div class="form-check form-check-inline"><p><input type="checkbox" name="matrikelnummer" id="matr" /><label for="matr">Matr.</label></p></div>
             <div class="form-check form-check-inline"><p><input type="checkbox"  name="email"  id="email" /><label for="email">E-mail</label></p></div>
             <div class="form-check form-check-inline"><p><input type="checkbox" name="status"  id="status" checked="checked" /><label for="status">Status</label></p></div>
@@ -29,9 +29,11 @@
                     <tr>
                         <th class="no-sort" name='anmerkung'>Info</th>
                         <th><u>Erhaltenes Thema</u></th>
+
                         <th class='pri1'>Pr1</th>  
-                        <th class='pri2'>Pr2</th>
+                        <th class='pri2'>Pr2</th>  
                         <th class='pri3'>Pr3</th>
+
                         <th class='matrikelnummer'>Matrikelnr.</th>
                         <th class='email'>Email</th>
                         <th class='status'>Status</th>  
@@ -42,8 +44,8 @@
                 <?php for($k = 0; $k < count($bewerber); $k++){ ?>
                     <tr> 
                         <td style='width:3%;'> </td>
-
                         <td style='width:20%; vertical-align: top;'><b><?php echo $bewerber[$k]['themenbezeichnung'] ?></b></td>
+
                         <td style='width:20%; vertical-align: top;' class='pri1'><?php echo $bewerber[$k]['pri1']?></td>
                         <td style='width:20%; vertical-align: top;' class='pri2'><?php echo $bewerber[$k]['pri2']?></td>
                         <td style='width:20%; vertical-align: top;' class='pri3'><?php echo $bewerber[$k]['pri3']?></td>
@@ -52,7 +54,7 @@
                         <td class='email'><?php echo $bewerber[$k]['email']?></td>
                         <td class='status'><?php echo $bewerber[$k]['status']?></td>
                         <td>
-                            <a data-toggle="modal" data-target="#exampleModal"
+                            <a data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#exampleModal"
                             id='swap'
                             class='swap'
                             data-bew-id='<?php echo $bewerber[$k]['belegwunsch_id']?>' 
@@ -64,7 +66,6 @@
                                     <i class="fas fa-exchange-alt"></i>
                                 </span>
                             </a>
-
 
                             <a>
                             <span class="badge badge-info">
@@ -92,8 +93,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" id='closeBeleg' onClick="window.location.href=window.location.href" class="btn btn-secondary" data-dismiss="modal">Fenster schließen</button>
       </div>
     </div>
   </div>
@@ -139,7 +139,11 @@
                         <td><?php echo $keinThema[$i]['matrikelnummer']?></td>
                         <td><?php echo $keinThema[$i]['email']?></td>
                         <td><?php echo $keinThema[$i]['status']?></td>
-                        <td></td>
+                        <td>
+
+                        
+                        
+                        </td>
                     </tr>
                 <?php } ?>   
                 </table>
