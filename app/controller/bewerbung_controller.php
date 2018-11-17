@@ -163,18 +163,25 @@ class bewerbung_controller
                     // AB HIER ALLES CHECKEN LASSEN
                         if($check_modul == 'falseTime'){
                             $this->getModal("modulFalseTime", $id);
-                            include 'app/view/bewerbung/Abschlussarbeit/belegwunsch_view_abschluss.php';     
-                        } else if($check_thema == 'false_TH_Verfuegbarkeit'){
-                            $this->getModal("themaFalseVG", $thema_id);
-                            include 'app/view/bewerbung/Abschlussarbeit/belegwunsch_view_abschluss.php';  
+                            include 'app/view/bewerbung/Abschlussarbeit/belegwunsch_view_abschluss.php'; 
                         } else {
                             // HIER INSERT BEWERBUNG
+                            if(($this->belegwunsch_model->duplicateBelegwunschCheck($matrikelnummer, $thema1)) == "duplikat"){
+                                $this->belegwunsch_model->updateBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $zulassung, $seminarteilnahme, $thema1, $thema2, $thema3);
+                                $this->getModal("AB_BL_erfolgreich", $id);
+                                $infos1 = $this->thema_model->getBetreuerByID($thema1);
+                                $infos2 = $this->thema_model->getBetreuerByID($thema2);
+                                $infos3 = $this->thema_model->getBetreuerByID($thema3);
+                                include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss_BL.php';
+                                
+                            } else {
                             $this->belegwunsch_model->insertBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $zulassung, $seminarteilnahme, $thema1, $thema2, $thema3);
-                            $this->getModal("AB_BW_erfolgreich", $thema_id);
+                            $this->getModal("AB_BL_erfolgreich", $thema_id);
                             $infos1 = $this->thema_model->getBetreuerByID($thema1);
                             $infos2 = $this->thema_model->getBetreuerByID($thema2);
                             $infos3 = $this->thema_model->getBetreuerByID($thema3);
                             include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss_BL.php';
+                            }
                         }      
                 }
             else{     

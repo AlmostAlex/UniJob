@@ -29,6 +29,19 @@ class belegwunsch_model
         }
     }
 
+    public function updateBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3)
+    {
+        $status = "offen";
+        if ($statement = $this->dbh->prepare("UPDATE belegwunsch, thema SET belegwunsch.vorname = ?, belegwunsch.nachname = ?, belegwunsch.email = ?, belegwunsch.status = ?, belegwunsch.voraussetzung = ?, belegwunsch.seminarteilnahme = ?, belegwunsch.wunschthema1 = ?, belegwunsch.wunschtehema2 = ?, belegwunsch.wunschthema3 = ? WHERE belegwunsch.matrikelnummer = ? AND belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = (SELECT modul_id FROM thema WHERE thema_id = ?)"))
+        {
+            $statement->bind_param('ssssssiiiii', $vorname, $nachname, $email, $status, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3, $matrikelnummer, $wunschthema1);
+            $statement->execute();
+        } else {
+            $error = $this->dbh->errno . ' ' . $this->dbh->error;
+            echo "Fehlercode: " . $error . "<br/> Update der Bewerbung ist fehlgeschlagen.";
+        }
+    }
+
     public function deleteBewerbungModul($modul_id){
         $statement = $this->dbh->prepare("UPDATE belegwunsch
         SET erhaltenesthema = NULL 
@@ -38,6 +51,30 @@ class belegwunsch_model
                                             AND thema.modul_id = ?) AND belegwunsch_id <> 0");
         $statement->bind_param('i', $modul_id);
         $statement->execute();   
+    }
+
+    public function duplicateBelegwunschCheck($matrikelnummer, $thema_id)
+    {
+        echo $matrikelnummer."   ".$thema_id;
+        $statement = $this->dbh->prepare("SELECT belegwunsch.matrikelnummer, belegwunsch.thema_id FROM test.modul, test.thema, test.belegwunsch
+                                            WHERE belegwunsch.matrikelnummer = ?
+                                            AND belegwunsch.wunschthema1 = thema.thema_id
+                                            AND thema.modul_id = modul.modul_id
+                                            AND modul.semester = (SELECT modul.semester
+                                                                FROM modul, thema
+                                                                WHERE thema.modul_id = modul.modul_id
+                                                                AND thema.thema_id = ?)
+                                            AND modul.modul_id = (SELECT modul_id
+                                                                FROM thema
+                                                                WHERE thema_id = ?)");
+        $statement->bind_param('iii', $matrikelnummer, $thema_id, $thema_id);
+        $statement->execute();
+        $statement->store_result();
+        if($statement->num_rows > 0) {
+            $duplicate = "duplikat";
+            echo "HAAAAAAAAAAAAALLOOOOOOOO";
+        } else { $duplicate = "neu"; echo "NOOOOOOOOOOOPE"; }
+        return $duplicate;
     }
 
     public function setThema($belegwunsch_id, $thema_id) 
