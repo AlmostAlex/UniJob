@@ -40,7 +40,7 @@
     <option 
         data-bew-id-von='<?php echo $bewID ?>'
         data-bew-thema-vorher='<?php echo $thID?>'
-        
+
         data-bew-id='' 
         data-thema='NULL'  
     >Kein Thema erhalten
@@ -49,7 +49,6 @@
         <option 
         data-bew-id-von='<?php echo $bewID ?>'
         data-bew-thema-vorher='<?php echo $thID?>'
-
         data-bew-id='16' 
         data-thema='<?php echo $swapThemen[$k]['thema_id'];?>'   
         '>
