@@ -134,3 +134,17 @@ $(document).ready(function() {
         $(column).toggle();
     });
 });
+
+$(document).ready(function(e) {
+    $("select.positionTypes").change(function() {
+        $("select.positionTypes option[value='" + $(this).data('index') + "']").prop('disabled', false);
+        $(this).data('index', this.value);
+        $("select.positionTypes option[value='" + this.value + "']:not([value=''])").prop('disabled', true);
+    });
+
+    $('form').submit(function(e) {
+        $(':disabled').each(function(e) {
+            $(this).removeAttr('disabled');
+        })
+    });
+});

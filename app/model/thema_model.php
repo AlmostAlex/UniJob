@@ -39,26 +39,64 @@ class thema_model
         return $themenbezeichnung;
     }
 
+
+    public function getTHID($thID){
+        $statement = $this->dbh->prepare(
+        "SELECT thema.thema_id
+        FROM thema, belegwunsch
+        WHERE belegwunsch.erhaltenesthema = thema.thema_id
+        AND belegwunsch.erhaltenesthema =?
+        ");
+        $statement->bind_param('i', $thID);
+        $statement->execute();
+        $statement->bind_result($thema_id);
+        $statement->fetch();
+        return $thema_id;
+    }
+
+    public function  getBewID($thID){
+        $statement = $this->dbh->prepare(
+            "SELECT belegwunsch_id 
+            FROM belegwunsch
+            WHERE erhaltenesthema =?
+            ");
+        $statement->bind_param('i', $thID);
+        $statement->execute();
+        $statement->bind_result($belegwunsch_id);
+        $statement->store_result(); 
+        $statement->fetch();
+        return $belegwunsch_id;
+    }
+    
     public function swapThemen($thID){
         $statement = $this->dbh->prepare(
         "SELECT themenbezeichnung, thema_id
         FROM thema 
         WHERE thema.modul_id = (SELECT modul_id FROM thema WHERE thema_id = ?)
+        AND NOT thema_id =?
         ");
-        $statement->bind_param('i', $thID);
+        $statement->bind_param('ii', $thID,$thID);
         $statement->execute();
         $statement->bind_result($themenbezeichnung, $thema_id);
         $statement->store_result(); 
+
         $status ='';
         $rows = array();
         while ($statement->fetch()) {
 
-            if($this->isNull($thema_id) == "True") { $status = "Vorhanden"; } else {$status = "Vergeben";} 
+            if($this->isNull($thema_id) == "True") 
+            { $status = "Vorhanden"; 
+               $bewID='NULL';
+            } else {
+                $status = "Vergeben";
+                $bewID = $this->getBewID($thema_id);    
+            } 
 
             $row = array(
                 'thema_id' => $thema_id,
                 'themenbezeichnung' => $themenbezeichnung,
-                'status' => $status               
+                'status' => $status,
+                'bewID' => $bewID       
 
             );
             $rows[] = $row;
@@ -295,7 +333,7 @@ class thema_model
 
     public function einsichtThemaModulBeleg($modul_id)
     {
-        $statement = $this->dbh->prepare(
+        if($statement = $this->dbh->prepare(
             "SELECT thema.themenbezeichnung, belegwunsch.wunschthema1, belegwunsch.wunschthema2, belegwunsch.wunschthema3, belegwunsch.belegwunsch_id, 
             belegwunsch.matrikelnummer, belegwunsch.vorname, belegwunsch.nachname,
             belegwunsch.email, belegwunsch.status, belegwunsch.erhaltenesthema
@@ -303,7 +341,7 @@ class thema_model
             WHere thema.thema_id = belegwunsch.erhaltenesThema
             AND thema.modul_id = modul.modul_id
             AND modul.modul_id = ?
-            ");
+            ")) {
         $statement->bind_param('i', $modul_id);
         $statement->execute();
         $statement->bind_result($themenbezeichnung, $wunschthema1, $wunschthema2, $wunschthema3, $belegwunsch_id, $matrikelnummer, $vorname, $nachname, $email, $status, $erhaltenesthema);
@@ -327,10 +365,13 @@ class thema_model
                 'erhaltenesthema' => $erhaltenesthema
             );
             
-        }   
+        }
+         return $row;
+    }
+   
 
-        return $row;
  
+
     }
 
     public function keinThema($modul_id)

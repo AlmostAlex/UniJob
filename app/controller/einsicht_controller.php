@@ -84,43 +84,45 @@ class einsicht_controller
 
     public function swap($thID, $bewID){
         $themenbezeichnung = $this->thema_model->SwapBewThema($thID);
+        $thema_id = $this->thema_model->getTHID($thID);
         $swapThemen = $this->thema_model->swapThemen($thID);
 
         if($thID == NULL){
-            echo "null";
-            } else {
-            echo "numeric";
+        } else {
         include_once(__DIR__."/../view/einsicht/swap.php");
-            }
+        }
     }
 
     public function swapAgainst($bewID_von,$bewThID_von, $bewID_zu, $bewThID_zu){
 
         $themenbezeichnung = $this->thema_model->SwapBewThema($bewID_zu);
+        $thema_id = $this->thema_model->getTHID($bewID_zu);
+        
         $swapThemen = $this->thema_model->swapThemen($bewID_zu);
-       
+        $isNull = $this->thema_model->isNull($bewID_zu);
+
         $this->belegwunsch_model->setModulSW($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu);
         
-        if($bewThID_zu == 'NULL'){
-            // der Bewerber soll KEIN Thema zugewiesen bekommen 
-            $this->belegwunsch_model->tauschzuKeinTH($bewID_von);
-        } else {
-         $this->belegwunsch_model->tauschzuVergTH($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu);
-            //$this->belegwunsch_model->tauschThema($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu);
-         }
-
         echo 'von'. $bewID_von .' '. $bewThID_von .' zu '.  $bewID_zu .' '. $bewThID_zu ;
 
-         
-        $isNull = $this->thema_model->isNull($bewID_zu);
-        echo 'CHECK : '. $bewID_zu;
-        if($isNull == "True"){ 
-            include_once(__DIR__."/../view/einsicht/swap2.php");
-        }
-        else if($isNull=="False"){ // count > 0
-            include_once(__DIR__."/../view/einsicht/swap2.php");
-        }
+        // WENN THEMA NULL ODER DAS THEMA VORHANDEN IST
+        if($bewThID_zu == 'NULL'){
+        $this->belegwunsch_model->tauschzuKeinTH($bewID_von);
+        } else if($this->thema_model->isNull($bewThID_zu) == 'True'){
+        $this->belegwunsch_model->tauschzuVTH($bewID_von,$bewThID_zu);
+        } else { // WENN GEGEN EIN VERGEBENES THEMA 
 
+        // ----------------------------------------------
+
+        $this->belegwunsch_model->tauschzuVergTH($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu);
+        $themenbezeichnung = "Kein Thema erhalten";
+        $swapThemen = $this->thema_model->swapThemen($bewThID_zu);
+        $bewID_von  = $bewID_zu; 
+        $bewThID_von = $bewThID_zu; 
+            echo  " ---->>>>>>>> ". $bewThID_zu;
+    
+        include_once(__DIR__."/../view/einsicht/swap2.php");
+        }
 
     }
 

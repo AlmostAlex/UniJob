@@ -99,10 +99,19 @@ class belegwunsch_model
     public function tauschzuKeinTH($bewID_von)
     {  // BEWERBER 
         if ($statement = $this->dbh->prepare("UPDATE belegwunsch SET erhaltenesthema =  NULL
-        WHERE $bewID_von =?")){
+        WHERE belegwunsch_id =?")){
         $statement->bind_param('i', $bewID_von);
         $statement->execute();
-        } else { }
+        } else { } 
+    }
+
+    public function tauschzuVTH($bewID_von,$bewThID_zu){
+        if ($statement = $this->dbh->prepare("UPDATE belegwunsch SET erhaltenesthema = ?
+        WHERE belegwunsch_id =?")){
+        $statement->bind_param('ii', $bewThID_zu, $bewID_von);
+        $statement->execute();
+        } else { } 
+
     }
 
     public function tauschzuVergTH($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu)
