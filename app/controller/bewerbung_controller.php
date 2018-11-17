@@ -340,12 +340,22 @@ else{
                     include 'app/view/bewerbung/Seminararbeit/belegwunsch_view_seminar.php';  
                 } else {
                     // HIER INSERT BEWERBUNG
+                    if(($this->belegwunsch_model->duplicateBelegwunschCheck($matrikelnummer, $thema1)) == "duplikat"){
+                        $this->belegwunsch_model->updateBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $zulassung, $seminarteilnahme, $thema1, $thema2, $thema3);
+                        $this->getModal("AB_BL_erfolgreich", $id);
+                        $infos1 = $this->thema_model->getBetreuerByID($thema1);
+                        $infos2 = $this->thema_model->getBetreuerByID($thema2);
+                        $infos3 = $this->thema_model->getBetreuerByID($thema3);
+                        include 'app/view/bewerbung/Seminararbeit/fazit_seminar_BL.php';
+                        
+                    } else {
                     $this->belegwunsch_model->insertBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $zulassung, $seminarteilnahme, $thema1, $thema2, $thema3);
                     $this->getModal("AB_BW_erfolgreich", $thema_id);
                     $infos1 = $this->thema_model->getBetreuerByID($thema1);
                     $infos2 = $this->thema_model->getBetreuerByID($thema2);
                     $infos3 = $this->thema_model->getBetreuerByID($thema3);
                     include 'app/view/bewerbung/Seminararbeit/fazit_seminar_BL.php';
+                    }
                 }      
         }
     else{  include 'app/view/bewerbung/Seminararbeit/belegwunsch_view_seminar.php'; }

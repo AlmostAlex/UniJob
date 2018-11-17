@@ -32,7 +32,7 @@ class belegwunsch_model
     public function updateBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3)
     {
         $status = "offen";
-        if ($statement = $this->dbh->prepare("UPDATE belegwunsch, thema SET belegwunsch.vorname = ?, belegwunsch.nachname = ?, belegwunsch.email = ?, belegwunsch.status = ?, belegwunsch.voraussetzung = ?, belegwunsch.seminarteilnahme = ?, belegwunsch.wunschthema1 = ?, belegwunsch.wunschtehema2 = ?, belegwunsch.wunschthema3 = ? WHERE belegwunsch.matrikelnummer = ? AND belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = (SELECT modul_id FROM thema WHERE thema_id = ?)"))
+        if ($statement = $this->dbh->prepare("UPDATE belegwunsch, thema SET belegwunsch.vorname = ?, belegwunsch.nachname = ?, belegwunsch.email = ?, belegwunsch.status = ?, belegwunsch.voraussetzung = ?, belegwunsch.seminarteilnahme = ?, belegwunsch.wunschthema1 = ?, belegwunsch.wunschthema2 = ?, belegwunsch.wunschthema3 = ? WHERE belegwunsch.matrikelnummer = ? AND belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = (SELECT modul_id FROM thema WHERE thema_id = ?)"))
         {
             $statement->bind_param('ssssssiiiii', $vorname, $nachname, $email, $status, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3, $matrikelnummer, $wunschthema1);
             $statement->execute();
@@ -56,7 +56,7 @@ class belegwunsch_model
     public function duplicateBelegwunschCheck($matrikelnummer, $thema_id)
     {
         echo $matrikelnummer."   ".$thema_id;
-        $statement = $this->dbh->prepare("SELECT belegwunsch.matrikelnummer, belegwunsch.thema_id FROM test.modul, test.thema, test.belegwunsch
+        $statement = $this->dbh->prepare("SELECT belegwunsch.matrikelnummer FROM test.modul, test.thema, test.belegwunsch
                                             WHERE belegwunsch.matrikelnummer = ?
                                             AND belegwunsch.wunschthema1 = thema.thema_id
                                             AND thema.modul_id = modul.modul_id
