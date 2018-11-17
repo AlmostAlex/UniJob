@@ -132,7 +132,8 @@ class einsicht_controller
             $themaAnzahl = $this->modul_model->getThemenAnzahl($modul_id);
             
             //Status der Themen auf "Frei" setzen und Status der Bewerber auf "Hat nichts!" setzen.
-            $bewerberinfos = $this->belegwunsch_model->getBewerberInfos($modul_id);
+            $bewerberinfos = $this->belegwunsch_model->getBewerberInfos($modul_id);            
+            shuffle($bewerberinfos);
             $k=0;
             while($k < $bewerberAnzahl)
             {
