@@ -326,8 +326,11 @@ class thema_model
                 'status' => $status,
                 'erhaltenesthema' => $erhaltenesthema
             );
-        }
+            
+        }   
+
         return $row;
+ 
     }
 
     public function keinThema($modul_id)

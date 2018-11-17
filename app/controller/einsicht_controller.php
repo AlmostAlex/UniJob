@@ -55,10 +55,13 @@ class einsicht_controller
             $modul_id = $id; 
             $sw = $this->modul_model->getSw($modul_id); 
             
+            if($this->modul_model->getSw($modul_id) == "True"){ }           
+            else{
                 $this->belegwunsch_model->deleteBewerbungModul($modul_id);
-                $this->Belegwunschverteilung($modul_id); 
-            
-               
+               $this->Belegwunschverteilung($modul_id);       
+            }
+
+                          
             $bel_count = $this->belegwunsch_model->beleg_count($modul_id);
             $infos = $this->belegwunsch_model->info_belegwunsch($modul_id);
             $bewerber = $this->thema_model->einsichtThemaModulBeleg($modul_id);
@@ -95,17 +98,29 @@ class einsicht_controller
 
         $themenbezeichnung = $this->thema_model->SwapBewThema($bewID_zu);
         $swapThemen = $this->thema_model->swapThemen($bewID_zu);
-        $isNull = $this->thema_model->isNull($bewID_zu);
-
-        $this->belegwunsch_model->belegwunschTausch($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu);
+       
+        $this->belegwunsch_model->setModulSW($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu);
+        
+        if($bewThID_zu == 'NULL'){
+            // der Bewerber soll KEIN Thema zugewiesen bekommen 
+            $this->belegwunsch_model->tauschzuKeinTH($bewID_von);
+        } else {
+         $this->belegwunsch_model->tauschzuVergTH($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu);
+            //$this->belegwunsch_model->tauschThema($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu);
+         }
 
         echo 'von'. $bewID_von .' '. $bewThID_von .' zu '.  $bewID_zu .' '. $bewThID_zu ;
 
-        if($isNull == "True"){ // is null
+         
+        $isNull = $this->thema_model->isNull($bewID_zu);
+        echo 'CHECK : '. $bewID_zu;
+        if($isNull == "True"){ 
+            include_once(__DIR__."/../view/einsicht/swap2.php");
         }
         else if($isNull=="False"){ // count > 0
             include_once(__DIR__."/../view/einsicht/swap2.php");
         }
+
 
     }
 
