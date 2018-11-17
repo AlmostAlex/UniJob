@@ -68,6 +68,19 @@ class belegwunsch_model
         } else { }
     }
 
+    public function tauschzuVergTH($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu)
+    {  // BEWERBER 
+        if ($statement = $this->dbh->prepare("UPDATE belegwunsch SET erhaltenesthema = ?
+        WHERE belegwunsch_id =?")){
+        $statement->bind_param('ii', $bewThID_zu, $bewID_von);
+        $statement->execute();
+        } else { }
+        if ($statement = $this->dbh->prepare("UPDATE belegwunsch SET erhaltenesthema = NULL
+        WHERE belegwunsch_id =?")){
+        $statement->bind_param('i', $bewID_zu);
+        $statement->execute();
+        } else { }
+    }
 
     public function beleg_count($modul_id)
     {

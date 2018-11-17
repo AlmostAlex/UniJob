@@ -98,30 +98,29 @@ class einsicht_controller
 
         $themenbezeichnung = $this->thema_model->SwapBewThema($bewID_zu);
         $swapThemen = $this->thema_model->swapThemen($bewID_zu);
-        $isNull = $this->thema_model->isNull($bewID_zu);
-
+       
         $this->belegwunsch_model->setModulSW($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu);
         
         if($bewThID_zu == 'NULL'){
             // der Bewerber soll KEIN Thema zugewiesen bekommen 
             $this->belegwunsch_model->tauschzuKeinTH($bewID_von);
-        echo "ist null";
-
         } else {
-         //   $this->belegwunsch_model->tauschzuVergTH();
-
-            echo "muss swappen";
+         $this->belegwunsch_model->tauschzuVergTH($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu);
             //$this->belegwunsch_model->tauschThema($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu);
          }
 
-
         echo 'von'. $bewID_von .' '. $bewThID_von .' zu '.  $bewID_zu .' '. $bewThID_zu ;
 
-        if($isNull == "True"){ // is null
+         
+        $isNull = $this->thema_model->isNull($bewID_zu);
+        echo 'CHECK : '. $bewID_zu;
+        if($isNull == "True"){ 
+            include_once(__DIR__."/../view/einsicht/swap2.php");
         }
         else if($isNull=="False"){ // count > 0
             include_once(__DIR__."/../view/einsicht/swap2.php");
         }
+
 
     }
 
