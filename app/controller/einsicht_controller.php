@@ -254,7 +254,7 @@ class einsicht_controller
                                     if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
                                         $Punktzahl1 = $themen[$themen[$k]['thema_id']]['Punkte'];
                                         $k = $themaAnzahl;
-                                    }else{$k=+1;}
+                                    }else{$k=$k+1;}
                                 }
                                 $Punktzahl2 = 115;
                                 $TauschThema = $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'];
@@ -268,7 +268,7 @@ class einsicht_controller
                                     if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
                                         $Punktzahl1 = $themen[$themen[$k]['thema_id']]['Punkte'];
                                         $k = $themaAnzahl;
-                                    }else{$k=+1;}
+                                    }else{$k=$k+1;}
                                 }
                                 $Punktzahl2 = 110;
                                 $TauschThema = $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'];
@@ -282,7 +282,7 @@ class einsicht_controller
                                     if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
                                         $Punktzahl1 = $themen[$themen[$k]['thema_id']]['Punkte'];
                                         $k = $themaAnzahl;
-                                    }else{$k=+1;}
+                                    }else{$k=$k+1;}
                                 }
                                 $Punktzahl2 = 105;
                                 $TauschThema = $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'];
@@ -378,8 +378,8 @@ class einsicht_controller
                                             $t = 0;
                                             while($t < $themaAnzahl){
                                                 if($themen[$t]['thema_id'] == $TauschThema){
-                                                    $themen[$t]['thema_id']['Punkte'] = 105;
-                                                    $themen[$t]['thema_id']['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
+                                                    $themen[$themen[$t]['thema_id']]['Punkte'] = 105;
+                                                    $themen[$themen[$t]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
                                                     $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
                                                     $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$t]['thema_id'];
                                                     $t = $themaAnzahl;
