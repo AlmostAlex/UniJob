@@ -66,14 +66,14 @@ if(isset($_GET["action"]) && $_GET["action"] =='showArchiv'){
 // Swap
 if(isset($_GET["action"]) && $_GET["action"] =='swap'){
     $controller = new einsicht_controller();
-    $controller->swap($_GET["thID"],$_GET["bewID"], $_GET["matr"]);
-
+    $controller->swap($_GET["thID"],$_GET["bewID"]);
 }
 
 if(isset($_GET["action"]) && $_GET["action"] =='swapAgain'){
     $controller = new einsicht_controller();
-    $controller->swapAgain($_GET["id"]);
+   $controller->swapAgainst($_GET["bewID_von"], $_GET["bewThID_von"], $_GET["bewID_zu"], $_GET["thID_zu"]);
 
-}
+
+} 
 
 ?>

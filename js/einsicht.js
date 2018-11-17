@@ -72,11 +72,12 @@ function swap(e) {
     var thID = $(e).data("thema");
     var bewID = $(e).data("bew-id");
     var matr = $(e).data("matr");
-    var count = 0;
+
     $.ajax({
         url: '/ajax/ajax_controller.php?action=swap',
         dataType: 'text',
         type: 'get',
+        cache: false,
         contentType: 'application/x-www-form-urlencoded',
         data: { thID: thID, bewID: bewID, matr: matr },
         success: function(data, textStatus, jQxhr) {
@@ -86,30 +87,31 @@ function swap(e) {
             console.log(errorThrown);
         }
     });
-    e.preventDefault();
+
 }
 
-function swapAgain(e) {
-    //  alert("ee");
+function swap2(e) {
 
-    var name = "hi";
-    var id = $(e).val();
-    var fieldHTML = $('<div id="test">' + +'</div>').fadeIn(1000);
+
+    var bewID_von = $(e).find(':selected').data('bew-id-von');
+    var bewThID_von = $(e).find(':selected').data('bew-thema-vorher');
+
+    var thID_zu = $(e).find(':selected').data('thema');
+    var bewID_zu = $(e).find(':selected').data('bew-id');
+
+    $(e).prop('disabled', 'disabled');
+
 
     $.ajax({
             url: '/ajax/ajax_controller.php?action=swapAgain',
             dataType: 'text',
             type: 'get',
+            cache: false,
             contentType: 'application/x-www-form-urlencoded',
-            data: { id: id },
+            data: { bewID_von: bewID_von, bewThID_von: bewThID_von, thID_zu: thID_zu, bewID_zu: bewID_zu },
             success: function(data, textStatus, jQxhr) {
-                //$("#test").html(data);
-                // $("#test").append('<div class="inner' + count + '">' + data + '</div>');
-                $("#test").append('<div class="inner' + ($('#test div').length + 1) + '">' + data + '</div>').html();
-                ///$('#inner' + count).html(data);
-
-                // console.log($('<div class="inner' + ($('#test div').length + 1) + '">' + data + '</div>'));
-                //console.log(data);
+                $("#sw1").append('<div style="position: absolute;margin-top: -35px;margin-left: 780px;" >Updated</div> <br> <div class="inner' + ($('#test div').length + 1) + '">' + data + '</div>');
+                console.log(data);
             },
             error: function(jqXhr, textStatus, errorThrown) {
                 console.log(errorThrown);
@@ -117,8 +119,10 @@ function swapAgain(e) {
 
         }
 
-    );
+    )
 }
+
+
 $(document).ready(function() {
     $("input:checkbox:not(:checked)").each(function() {
         var column = "table ." + $(this).attr("name");
@@ -130,21 +134,3 @@ $(document).ready(function() {
         $(column).toggle();
     });
 });
-
-/*
-
-   if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-       xmlhttp = new XMLHttpRequest();
-   } else { // code for IE6, IE5
-       xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-   }
-
-   xmlhttp.onreadystatechange = function() {
-       if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-           document.getElementById("swapContent").innerHTML = xmlhttp.responseText;
-           $('[data-toggle="tooltip"]').tooltip();
-       }
-   }
-   xmlhttp.open("GET", "/ajax/ajax_controller.php?action=swap&thID=" + thID + "&bewID=" + bewID + "&matr=" + matr, true);
-   xmlhttp.send(); 
-}*/

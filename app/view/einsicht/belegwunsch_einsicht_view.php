@@ -8,42 +8,21 @@
              <?php if($infos['anzThemaVergeben'] > 1){ echo "Themen"; } else { echo "Thema"; } ?> vergeben.
     </div>
 
-<script>
-$("input:checkbox:not(:checked)").each(function() {
-    var column = "table ." + $(this).attr("name");
-    $(column).hide();
-});
-
-$("input:checkbox").click(function(){
-    var column = "table ." + $(this).attr("name");
-    $(column).toggle();
-});
-</script>
-
-<div class='swapContent' id='swapContent'></div>
-
 <!-- ZUGETEILTE THEMEN -->
 <form style='margin-bottom:30px;' method="post"> 
      <div class="table-responsive" id="module">
      
      <div class='bewerbung_verwaltung'>
 
-<div class='belegSort'>
-<b>Informationen aus-/einblenden: </b>
-
-    <div class="form-check form-check-inline"> <p><input type="checkbox" name="pri1" id="pri1" checked="checked"/><label for="pri1">Priorität 1</label></p></div>
-
-    <div class="form-check form-check-inline"><p><input type="checkbox" name="pri2" id="pri2" checked="checked" /><label for="pri3">Priorität 2</label></p></div>
-
-    <div class="form-check form-check-inline"><p><input type="checkbox" name="pri3"  id="pri3" checked="checked" /><label for="pri3">Priorität 3</label></p> </div>
-
-    <div class="form-check form-check-inline"><p><input type="checkbox" name="matrikelnummer" id="matr" /><label for="matr">Matr.</label></p></div>
-    
-    <div class="form-check form-check-inline"><p><input type="checkbox"  name="email"  id="email" /><label for="email">E-mail</label></p></div>
-    
-    <div class="form-check form-check-inline"><p><input type="checkbox" name="status"  id="status" checked="checked" /><label for="status">Status</label></p></div>
-
-</div>
+        <div class='belegSort'>
+        <b>Informationen aus-/einblenden: </b>
+            <div class="form-check form-check-inline"> <p><input type="checkbox" name="pri1" id="pri1" checked="checked"/><label for="pri1">Priorität 1</label></p></div>
+            <div class="form-check form-check-inline"><p><input type="checkbox" name="pri2" id="pri2" checked="checked" /><label for="pri3">Priorität 2</label></p></div>
+            <div class="form-check form-check-inline"><p><input type="checkbox" name="pri3"  id="pri3" checked="checked" /><label for="pri3">Priorität 3</label></p> </div>
+            <div class="form-check form-check-inline"><p><input type="checkbox" name="matrikelnummer" id="matr" /><label for="matr">Matr.</label></p></div>
+            <div class="form-check form-check-inline"><p><input type="checkbox"  name="email"  id="email" /><label for="email">E-mail</label></p></div>
+            <div class="form-check form-check-inline"><p><input type="checkbox" name="status"  id="status" checked="checked" /><label for="status">Status</label></p></div>
+        </div>
 
             <table id="sort_einsicht_bel"> 
                 <thead>
@@ -57,8 +36,7 @@ $("input:checkbox").click(function(){
                         <th class='email'>Email</th>
                         <th class='status'>Status</th>  
 
-
-                        <th class="no-sort" name='funktionen'>Funktionen</th>
+                      <th class="no-sort" name='funktionen'>Funktionen</th>
                     </tr>
                 </thead>
                 <?php for($k = 0; $k < count($bewerber); $k++){ ?>
@@ -74,7 +52,7 @@ $("input:checkbox").click(function(){
                         <td class='email'><?php echo $bewerber[$k]['email']?></td>
                         <td class='status'><?php echo $bewerber[$k]['status']?></td>
                         <td>
-                            <a 
+                            <a data-toggle="modal" data-target="#exampleModal"
                             id='swap'
                             class='swap'
                             data-bew-id='<?php echo $bewerber[$k]['belegwunsch_id']?>' 
@@ -102,6 +80,24 @@ $("input:checkbox").click(function(){
     </div>
 </form>
 <!-- KEIN THEM AERHALTEN -->
+
+<!-- Modal -->
+<div style=' top: 25%; left: -30%;' class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div style='width: 180%;height: 65%;' class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <div class='swapContent' id='swapContent'></div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <?php if($keinThemaCount == 0){} else{  ?>   

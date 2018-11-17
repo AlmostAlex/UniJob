@@ -41,18 +41,25 @@ class thema_model
 
     public function swapThemen($thID){
         $statement = $this->dbh->prepare(
-        "SELECT themenbezeichnung, thema_id FROM thema WHERE 
-        thema.modul_id = (SELECT modul_id FROM thema WHERE thema_id = ?)
+        "SELECT themenbezeichnung, thema_id
+        FROM thema 
+        WHERE thema.modul_id = (SELECT modul_id FROM thema WHERE thema_id = ?)
         ");
         $statement->bind_param('i', $thID);
         $statement->execute();
         $statement->bind_result($themenbezeichnung, $thema_id);
-  
+        $statement->store_result(); 
+        $status ='';
         $rows = array();
         while ($statement->fetch()) {
+
+            if($this->isNull($thema_id) == "True") { $status = "Vorhanden"; } else {$status = "Vergeben";} 
+
             $row = array(
                 'thema_id' => $thema_id,
                 'themenbezeichnung' => $themenbezeichnung,
+                'status' => $status               
+
             );
             $rows[] = $row;
         }
@@ -60,7 +67,6 @@ class thema_model
         return $rows;
 
     }
-
 
     public function isNull($thID){
         $statement = $this->dbh->prepare(
@@ -77,9 +83,6 @@ class thema_model
         }else{
         return "False";
         }
-        
-  
-
     }
 
 

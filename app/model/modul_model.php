@@ -341,6 +341,17 @@ class modul_model
         
     }
 
+    public function getSw($modul_id)
+    {
+        $statement = $this->dbh->prepare("SELECT sw From modul Where modul_id =?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($sw);
+        $statement->fetch();
+         return $sw;
+        
+    }
+
     public function getModulVerfahrenByID($modul_id)
     {
         $statement = $this->dbh->prepare("SELECT verfahren From modul Where modul_id =?");
