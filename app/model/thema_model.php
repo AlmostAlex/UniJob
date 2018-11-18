@@ -265,6 +265,28 @@ class thema_model
         return $rows;
     }
 
+
+    public function getThemaEdit($thema_id)
+    {
+        $statement = $this->dbh->prepare("SELECT benutzer_id, themenbezeichnung, beschreibung, modul_id, thema_verfuegbarkeit
+                    FROM thema Where thema_id =?");
+        $statement->bind_param('i', $thema_id);
+        $statement->execute();
+        $statement->bind_result($benutzer_id, $themenbezeichnung, $beschreibung, $modul_id, $thema_verfuegbarkeit);
+        $statement->fetch();
+        $statement->store_result();
+
+            $row = array(
+                'themenbezeichnung' => $themenbezeichnung,
+                'beschreibung' => $beschreibung,
+                'modul_id' => $modul_id,
+                'thema_verfuegbarkeit' => $thema_verfuegbarkeit,
+                'benutzer_id' => $benutzer_id
+            );
+       
+        return $row;
+    }
+
     public function getAllModulThema($modul_id)
     {
         $statement = $this->dbh->prepare("SELECT thema_id FROM thema WHERE modul_id = ?");
@@ -309,6 +331,14 @@ class thema_model
         $statement->bind_result($themenbezeichnung);
         $statement->fetch();
         return $themenbezeichnung;
+    }
+
+    public function updateThema($benutzer_id, $themenbezeichnung, $thema_id)
+    {
+        $statement = $this->dbh->prepare("UPDATE thema SET benutzer_id = ?,  themenbezeichnung =?
+                                        WHERE thema_id = ?");
+        $statement->bind_param('isi', $benutzer_id, $themenbezeichnung, $thema_id);
+        $statement->execute(); 
     }
 
     public function getStudiengangbyThema($thema_id)

@@ -17,6 +17,7 @@ class modul_controller
         $this->modul_model = new modul_model();
         $this->thema_model = new thema_model();
         $this->tags_model = new tags_model();
+        $this->user_model = new Model();
         $this->vorkenntnisse_model = new vorkenntnisse_model();
         date_default_timezone_set("Europe/Berlin");
         $this->heute_dt = new DateTime(date("Y-m-d"));
@@ -275,8 +276,22 @@ class modul_controller
 
 public function editThema($thema_id)
     {
+        $thema = $this->thema_model->getThemaEdit($thema_id);
+        $thema['benutzername'] = $this->user_model->getIDBenutzername($thema['benutzer_id']);
+        
+        if (isset($_POST['thema_edit'])) {
+            if(isset($_POST['benutzername'])) { $benutzername = $_POST['benutzername']; }
+            if(isset($_POST['themenbezeichnung'])) { $thema['themenbezeichnung'] =  $_POST['themenbezeichnng']; }
+
+            $thema['benutzer_id'] = $this->user_model->getNachnameID($benutzername);
+            $this->thema_model->updateThema($thema['benutzer_id'],  $thema['themenbezeichnung'], 
+                                            $thema['beschreibung'], $thema_id);
 
 
+
+        }
+
+    include 'app/view/modul_verwaltung/editThema.php';
 
      /*   $check['Abschlussarbeit'] = $check['verfahren_select'] = $check['verfahren_option'] = $check['Seminararbeit'] = $check['fristen'] = '';
         $thema = $this->thema_model->getThema($thema_id);
