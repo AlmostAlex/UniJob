@@ -235,13 +235,25 @@ class einsicht_controller
                     $i = $i + 1;
             }
             $i = 0;
+
+            $bewerbersucht = 0;
+            while($i < $bewerberAnzahl)
+            {
+                if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] != "Hat was!")
+                {
+                    $bewerbersucht = 1;
+                }
+                $i = $i + 1;
+            }
+            $i=0;
+
             //Prüfen, ob es noch Freie Themen gibt, welche vergeben werden können
             //->Bedingung dafür ist, dass es min. soviele Bewerber gibt wie Themen.
             while($j < $themaAnzahl)
             {
                 if($themen[$themen[$j]['thema_id']]['Status'] == "Frei")
                 {
-                    if($bewerberAnzahl >= $themaAnzahl)
+                    if($bewerberAnzahl >= $themaAnzahl || $bewerbersucht = 1)
                     {
                         $bewerbungErhalten = false;
                         //Es wird nach einem Bewerber gesucht, der das Thema als einen seiner Wünsche angegeben hatte.
