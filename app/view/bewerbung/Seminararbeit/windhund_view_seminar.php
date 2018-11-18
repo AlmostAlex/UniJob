@@ -26,7 +26,7 @@
 
             <tr>
                 <td><label for='matrikelnummer'><b>Matrikelnummer:</b><red style='color: red'>*</red></label></td>
-                <td><input style='width: 100%' type='text' class='form-control' id='Matrikelnummer' name='Matrikelnummer' value='<?php echo $matrikelnummer?>' required></td>
+                <td><input style='width: 100%' type='text' class='form-control' id='onlyNumeric' name='Matrikelnummer' value='<?php echo $matrikelnummer?>' required></td>
             </tr>
 
             <tr>
