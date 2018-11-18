@@ -178,7 +178,7 @@ class thema_model
     {
         if ($abfrage_th != '') {
             $statement_thema = $this->dbh->prepare("SELECT thema.thema_id, 
-                    thema.themenbezeichnung, thema.beschreibung, thema.thema_verfuegbarkeit, thema.benutzer_id,
+                    thema.themenbezeichnung, thema.beschreibung, thema.thema_verfuegbarkeit, thema.benutzer_id
                     FROM tags JOIN thema on tags.thema_id = thema.thema_id
                     WHERE thema.modul_id = ?
                     GROUP BY tags.thema_id " . $abfrage_th);
