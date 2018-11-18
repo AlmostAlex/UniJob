@@ -285,10 +285,27 @@ public function editThema($thema_id)
             if(isset($_POST['benutzername'])) { $benutzername = $_POST['benutzername']; }
             if(isset($_POST['themenbezeichnung'])) { $thema['themenbezeichnung'] =  $_POST['themenbezeichnung']; } else {$thema['themenbezeichnung'] = '';}
             if(isset($_POST['beschreibung'])) { $thema['beschreibung'] =  $_POST['beschreibung']; } else {$thema['beschreibung'] = '';}
-
+            if(isset($_POST['tags'])) { $tags =  $_POST['tags']; } else {$tags = '';}
+            if(isset($_POST['vorkenntnisse'])) { $vorkenntnisse =  $_POST['vorkenntnisse']; } else {$vorkenntnisse = '';}
             $thema['benutzer_id'] = $this->user_model->getNachnameID($benutzername);
-            $this->thema_model->updateThema($thema['benutzer_id'],  $thema['themenbezeichnung'], 
+            $this->thema_model->updateThema($thema['benutzer_id'],  $thema['themenbezeichnung'],
                                             $thema['beschreibung'], $thema_id);
+
+            $k = 0;
+            $this->vorkenntnisse_model->deleteThemaVorkenntnisse($thema_id);
+            $this->tags_model->deleteThemaTags($thema_id);
+            while($k < count($vorkenntnisse)){
+                    $vorkenntnisse_string = $vorkenntnisse[$k];
+                    $this->vorkenntnisse_model->insertVorkenntnisse($vorkenntnisse_string, $thema_id);
+                    $k = $k+1;
+            }
+            $k = 0;
+            while($k < count($tags)){
+                    $tags_string = $tags[$k];
+                    $this->tags_model->insertTags($tags_string, $thema_id);
+                    $k = $k+1;
+            }
+            $this->getModal('edit_thema_success', $thema_id);
 
 
 
@@ -420,6 +437,15 @@ public function archivierung($semester_f,$status) // Modal Konfigurationen
             case 'add_thema':
                 $modulbezeichnung = $this->modul_model->getModulbezeichnung($id);
                 include 'app/view/modul_verwaltung/modals/modal_add_thema.php';
+                break;
+
+                case 'edit_thema_success':
+                $modal['case'] = 'automatic';
+                $modal['title'] = 'Das Thema wurde bearbeitet!';
+                $modal['body_class'] = 'alert alert-success';
+                $modal['content'] = '<b>Das Thema wurde erfolgreich bearbeitet.</b><br> Gehe zur <a style="color: green;" href="mt_verwaltung.php">Verwaltungsseite für Module und Themen</a><br><br>';
+                $modal['img'] = '/img/checked.png';
+                include 'app/view/modul_verwaltung/modals/modal_modul.php';
                 break;
 
             case 'archivierung':

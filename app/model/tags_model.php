@@ -25,6 +25,14 @@ class tags_model
         }
     }
 
+    public function deleteThemaTags($thema_id)
+    {
+         $statement = $this->dbh->prepare("DELETE FROM tags 
+         WHERE thema_id =?");
+        $statement->bind_param('i', $thema_id);
+        $statement->execute();
+    }
+
     public function deleteTags($modul_id)
     {
          $statement = $this->dbh->prepare("DELETE tags FROM tags,thema,modul 

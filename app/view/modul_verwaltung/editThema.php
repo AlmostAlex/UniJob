@@ -19,7 +19,7 @@
       </tr>
       <tr>
         <td><label for='Beschreibung'><b>Themenbeschreibung</b><red style='color: red'>*</red></label></td>
-        <td><textarea type='text' id='beschreibung' name='beschreibung' class='form-control'> <?php echo $thema['beschreibung']; ?></textarea></td>
+        <td><textarea type='text' id='beschreibung' name='beschreibung' class='form-control'><?php echo $thema['beschreibung'];?></textarea></td>
       </tr>
       <tr>
         <td></td>
@@ -28,7 +28,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text">Vorkenntnisse</span>
             </div>
-            <vork><input style='width:80%;margin-left:0px;' type="text" name='vorkenntnisse_WiBe[]' placeholder='Eingabe' class="tagsinput-typeahead2" value="<?php $k=0; while($k<count($vorkenntnisse)){echo $vorkenntnisse[$k]['bezeichnung'].","; $k=$k+1;} ?>"/></vork>
+            <vork><input style='width:80%;margin-left:0px;' type="text" name='vorkenntnisse[]' placeholder='Eingabe' class="tagsinput-typeahead2" value="<?php $k=0; while($k<count($vorkenntnisse)){if(isset($vorkenntnisse[$k]['bezeichnung'])){ echo $vorkenntnisse[$k]['bezeichnung'].","; $k=$k+1;} else {echo $vorkenntnisse[$k];$k=$k+1;}} ?>"/></vork>
           </div>
         </td>
       </tr>
@@ -39,7 +39,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text">Tags</span>
             </div>
-            <tags><input style='width:80%;margin-left:0px;' type="text" name='tags_WiBe[]' placeholder='Add Tags' class="tagsinput-typeahead" value="<?php $k=0; while($k<count($tags)){echo $tags[$k]['tag_bezeichnung'].","; $k=$k+1;} ?>"/></tags>
+            <tags><input style='width:80%;margin-left:0px;' type="text" name='tags[]' placeholder='Add Tags' class="tagsinput-typeahead" value="<?php $k=0; while($k<count($tags)){if(isset($tags[$k]['tag_bezeichnung'])){echo $tags[$k]['tag_bezeichnung'].","; $k=$k+1;}else{echo $tags[$k]; $k=$k+1;}} ?>"/></tags>
           </div>
         </td>
       </tr>

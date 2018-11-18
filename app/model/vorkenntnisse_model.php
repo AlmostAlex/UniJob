@@ -22,6 +22,14 @@ class vorkenntnisse_model
         }
     }
 
+    public function deleteThemaVorkenntnisse($thema_id)
+    {
+         $statement = $this->dbh->prepare("DELETE FROM vorkenntnisse 
+         WHERE thema_id = ?");
+        $statement->bind_param('i', $thema_id);
+        $statement->execute();
+    }
+
     public function deleteVorkenntnisse($modul_id)
     {
          $statement = $this->dbh->prepare("DELETE vorkenntnisse FROM bezeichnung,thema,modul 
