@@ -73,6 +73,7 @@
             </tr>
 
          </table>
+         <br>
         <table>
             <div style='margin-bottom:-7px;' id="txtHint"></div>
         </table>

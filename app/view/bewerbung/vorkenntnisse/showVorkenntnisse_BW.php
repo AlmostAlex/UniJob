@@ -1,27 +1,25 @@
 
 <div style="<?php echo $btn;?>">
-<tr style="<?php echo $btn;?>">
-<td><label for='Vorkenntnisse'><b>Vorkenntnisse:</b><red style='color: red'>*</red></label></td>
-<td>     
-        <?php for($j = 0; $j < count($vorkenntnisse); $j++){  ?>    
+  <tr style="<?php echo $btn;?>">
+    <td><label for='Vorkenntnisse'><b>Vorkenntnisse:</b><red style='color: red'>*</red></label></td>
+    <td><?php for($j = 0; $j < count($vorkenntnisse); $j++){  ?>    
 
-<inner>
-<table>
-
-<tr>
-<td><b><?php echo  $vorkenntnisse[$j]['bezeichnung'];?></b>:</td>
-<td style='width:50%;'>
-    <input type="radio" id='<?php echo $j?>' name="Vorkenntnisse_<?php echo $j?>" value="Nein">
-    <label for="Nein"> Nein</label> 
-      <input style='margin-left:10px;' type="radio"  id='<?php echo $j?>' name="Vorkenntnisse_<?php echo $j?>" 
-      value="Ja">
-    <label for="Ja"> Ja</label> 
-    </td>
+  <inner>
+    <table>
+      <tr>
+        <td><b><?php echo  $vorkenntnisse[$j]['bezeichnung'];?></b>:</td>
+        <td style='width:50%;'>
+            <input type="radio" id='<?php echo $j?>' name="Vorkenntnisse_<?php echo $j?>" value="Nein">
+            <label for="Nein"> Nein</label> 
+              <input style='margin-left:10px;' type="radio"  id='<?php echo $j?>' name="Vorkenntnisse_<?php echo $j?>" 
+              value="Ja">
+            <label for="Ja"> Ja</label> 
+          </td>
+        </tr>
+      </table>
+    </inner>       
+  <?php } ?>
+  </td>
   </tr>
-  </table>
-  </inner>       
-<?php } ?>
+</div>
 
-</td>
-</tr>
-        </div>

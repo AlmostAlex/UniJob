@@ -112,11 +112,11 @@
                                 </span>
                             </a>
 
-                            <a>
+                          <!--  <a>
                             <span class="badge badge-info">
                                 <i class="far fa-envelope"></i>
                                 </span>  
-                            </a>
+                            </a> -->
                         </td>
             
                 <?php } ?>   
@@ -192,36 +192,7 @@
  </div>
 <br><br><br>
 </open>
-<style>
 
-/* Important part */
-swap .modal.fade{ 
-    top: 18%; 
-    left: -30%;
-}
-swap .modal-dialog{
-    overflow-y: initial !important
-}
-swap .modal-body{
-    height: 250px;
-    overflow-y: auto;
-}
-swap .modal-footer{
-    margin-top:30px;
-}
-
-swap .modal-content{
-    width: 160%; 
-    height: 65%;  
-}
-
-swap .modal-header{
-    background-color: #3979b5;
-    color: white;
-    padding:6px;
-
-}
-</style>
 <!-- Modal -->
 <swap>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

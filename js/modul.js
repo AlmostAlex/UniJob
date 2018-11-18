@@ -378,8 +378,6 @@ $(document).on("click", '#add_tf', function(a) {
 
 function showVorkenntnisse(thema_id) {
     var xhttp;
-    $("#txtHint").hide();
-    $("#txtHint").fadeIn();
     if (thema_id == "") {
         document.getElementById("txtHint").innerHTML = "";
         return;
@@ -400,8 +398,6 @@ function showVorkenntnisse(thema_id) {
 
 function showVorkenntnisseBW(thema_id) {
     var xhttp;
-    $("#txtHint").hide();
-    $("#txtHint").fadeIn();
     if (thema_id == "") {
         document.getElementById("txtHint").innerHTML = "";
         return;
@@ -409,10 +405,8 @@ function showVorkenntnisseBW(thema_id) {
     // code for IE6, IE5
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("txtHint").innerHTML = this.responseText;
-
         }
     };
     xhttp.open("GET", "/ajax/ajax_controller.php?action=showVorkenntnisseBW&id=" + thema_id, true);

@@ -77,6 +77,7 @@
         <table>
             <div style='margin-bottom:-7px;' id="txtHint"></div>
         </table>
+        <br>
 <table>
     <tr>
          <td colspan=3><br>
