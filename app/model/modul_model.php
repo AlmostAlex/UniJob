@@ -378,6 +378,16 @@ class modul_model
         return $modul_verfuegbarkeit;
     }
 
+    public function getNachrueckverfahren($modul_id)
+    {
+        $statement = $this->dbh->prepare("SELECT nachrueckverfahren From modul Where modul_id =?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($nachrueckverfahren);
+        $statement->fetch();
+        return $nachrueckverfahren;
+    }
+
     public function getFristEnde($modul_id)
     {
         $statement = $this->dbh->prepare("SELECT frist_ende From modul Where modul_id =?");
@@ -447,7 +457,7 @@ class modul_model
     }
 
     public function updateNachrueckverfahren($modul_id, $nachrueckverfahren, $frist_ende_neu) {
-        $modul_vergeben = $this->dbh->prepare("UPDATE modul SET frist_ende = ?, nachrueckverfahren = ? WHERE modul_id = ?");
+        $modul_vergeben = $this->dbh->prepare("UPDATE modul SET frist_ende = ?, nachrueckverfahren = ?, modul_verfuegbarkeit = 'Offen' WHERE modul_id = ?");
         $modul_vergeben->bind_param('ssi', $frist_ende_neu, $nachrueckverfahren, $modul_id);
         $modul_vergeben->execute();
     }

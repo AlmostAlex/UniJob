@@ -51,9 +51,9 @@ class bewerbung_controller
     $modul = $this->modul_model->getModulById($id);
     $themen = $this->thema_model->getThemenVG($id,'');
      if($this->modul_model->getVerfuegbarkeitID($id) == 'Offen'){
-        if($this->modul_model->getModulNachrueckvByID($id) == 'false'){
+ // WENN WINDHUNDVERFAHREN ODER NACHRUECKVERFAHREN IST WIRD DAS WH FORM ANGEZEIGT    
  // WINDHNDVERFAHREN ABSCHLUSS
-            if($this->modul_model->getModulVerfahrenByID($id) == 'Windhundverfahren'){
+            if($this->modul_model->getModulVerfahrenByID($id) == 'Windhundverfahren' || $this->modul_model->getNachrueckverfahren($id) == 'true'){
                         if (isset($_POST['bewerbung_ab_WH'])) {
                             // AB HIER ALLES CHECKEN LASSEN
                                 if($check_modul == 'falseTime'){
@@ -75,8 +75,8 @@ class bewerbung_controller
                     }
             }
 // BEWERBUNGSVERFAHREN ABSCHLUSS
+
         else if($this->modul_model->getModulVerfahrenByID($id) == 'Bewerbungsverfahren'){
-            
             if(isset($_POST['Thema'])) { $thema_id  = $_POST['Thema']; $themenbezeichnung = $this->thema_model->getThemenbezeichnung($thema_id); } 
             else{ $thema_id = $themenbezeichnung = '';}
             if(isset($_POST['Vorname'])) { $vorname = $_POST['Vorname']; } else{ $vorname = '';}
@@ -94,7 +94,6 @@ class bewerbung_controller
                 $vorkenntnisse[$i] = $_POST['Vorkenntnisse_'.$i];
                 $count += 1; 
             }
-
             if($count>0){
                 $vmsg = 'true';
             } else {
@@ -138,15 +137,10 @@ class bewerbung_controller
 
 // BELEGWUNSCHVERFAHREN ABSCHLUSS
             else if($this->modul_model->getModulVerfahrenByID($id) == 'Belegwunschverfahren'){
-
-
                 if(isset($_POST['Thema'])) { $thema_id  = $_POST['Thema']; 
-                $j=0;
-                while ($j < count($thema_id)) {
-                
-                $j++;
-                }
-}               
+                    $j=0;
+                    while ($j < count($thema_id)) { $j++; }
+                }               
                 if(isset($_POST['Vorname'])) { $vorname = $_POST['Vorname']; } else{ $vorname = '';}
                 if(isset($_POST['Nachname'])) { $nachname = $_POST['Nachname']; } else{ $nachname = '';}
                 if(isset($_POST['Matrikelnummer'])) { $matrikelnummer  = $_POST['Matrikelnummer']; } else{ $matrikelnummer = '';}
@@ -189,7 +183,7 @@ class bewerbung_controller
             }
 
             }
-        }
+        
             else{ // Wenn Nachrueckverfahren ist, wird immer winhund-formular angezeigt
              
              include 'app/view/bewerbung/Abschlussarbeit/windhund_view_abschluss.php';    
@@ -215,15 +209,18 @@ class bewerbung_controller
         if(isset($_POST['Studiengang'])) { $studiengang  = $_POST['Studiengang']; } else{ $studiengang = '';}
         $check_modul = $this->modul_model->checkModul($id);
         $check_thema = $this->thema_model->checkThema($thema_id); 
-
+        $modul = $this->modul_model->getModulById($id);
+        $themen = $this->thema_model->getThemenVG($id,'');
        
         if($this->modul_model->getVerfuegbarkeitID($id) == 'Offen'){
-            if($this->modul_model->getModulNachrueckvByID($id) == 'false'){
+           
  // WINDHNDVERFAHREN SEMINAR
-                if($this->modul_model->getModulVerfahrenByID($id) == 'Windhundverfahren'){
-                    $modul = $this->modul_model->getModulById($id);
-                    $themen = $this->thema_model->getThemenVG($id,'');
+                 if($this->modul_model->getModulVerfahrenByID($id) == 'Windhundverfahren' || $this->modul_model->getNachrueckverfahren($id) == 'true'){
+                            $modul = $this->modul_model->getModulById($id);
+                            $themen = $this->thema_model->getThemenVG($id,'');
+                            echo "++++++";   
                         if (isset($_POST['bewerbung_SEM_WH'])) {
+                             echo "11111";   
                             // AB HIER ALLES CHECKEN LASSEN
                                 if($check_modul == 'falseTime'){
                                     $this->getModal("modulFalseTime", $id);
@@ -237,10 +234,11 @@ class bewerbung_controller
                                     $this->getModal("AB_WH_erfolgreich", $thema_id);
                                     $infos = $this->thema_model->getBetreuerByID($thema_id);
                                     include 'app/view/bewerbung/Seminararbeit/fazit_seminar_WH.php';
-                                }      
-                        }
-                    else{
-                        include 'app/view/bewerbung/Seminararbeit/windhund_view_seminar.php';
+                                }
+                                echo "DURCH";      
+                            }
+                        else{
+                            include 'app/view/bewerbung/Seminararbeit/windhund_view_seminar.php';
                     }
             }
 
@@ -360,7 +358,7 @@ else{
         }
     else{  include 'app/view/bewerbung/Seminararbeit/belegwunsch_view_seminar.php'; }
     }
-}
+
     else{ // Wenn Nachrueckverfahren ist, wird immer winhund-formular angezeigt
         include 'app/view/bewerbung/Seminararbeit/windhund_view_seminar.php';
     } 

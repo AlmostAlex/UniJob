@@ -90,7 +90,7 @@ class modul_eintragen_controller
             $modal['case'] = 'automatic';
             $modal['title'] = 'Das Seminar wurde erfolgreich erstellt!';
             $modal['body_class'] = 'alert alert-success';
-            $modal['content'] = 'Das Seminar "<b>'.$bezeichnung.'</b>" wurde erfolgreich erstellt. <br>
+            $modal['content'] = 'Das Seminar wurde erfolgreich erstellt. <br>
                                 Auf der <a href="">Verwaltungsseite</a> können Änderungen vorgenommen werden. <br>';
             $modal['img'] = '/img/checked.png';
             include 'app/view/modul_verwaltung/modals/modal_modul.php';
