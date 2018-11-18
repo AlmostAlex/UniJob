@@ -546,7 +546,7 @@ class thema_model
         $statement->fetch();
 
         $date = date("d.m.Y");
-        $time = date("H.i.s");
+        $time = date("H:i:s");
 
         if ($kategorie == 'Seminararbeit') {
             $bez = $modulbezeichnung;

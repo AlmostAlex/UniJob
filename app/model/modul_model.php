@@ -122,7 +122,7 @@ class modul_model
                      if($vorkenntnisse_string != ''){
                         $this->vorkenntnisse_model->insertVorkenntnisse($vorkenntnisse_string, $thema_id);
                     }
-            } else {echo "thema bitte ausfüllen";}
+            } else {}
             $j = $j + 1;
         }
     }
