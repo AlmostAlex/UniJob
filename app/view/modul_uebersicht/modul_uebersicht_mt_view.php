@@ -39,8 +39,8 @@
                 <th><a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#modul_<?php echo $module[$k]['modul_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></th>
                 <th><b><titel style="line-height:15px;"><?php echo $module[$k]['nachrueckv_status']; ?> 
                 <?php if($module[$k]["kategorie"] == "Seminararbeit"){
-                                echo  $module[$k]["modulbezeichnung"];
-                            } else {  echo  $module[$k]["professur"];} ?> 
+                             echo  'Seminar: '. $module[$k]["modulbezeichnung"];
+                            } else { echo 'Professur: '. $module[$k]["professur"];} ?> 
                             </titel></b><br>
                             <?php if($module[$k]["kategorie"] == "Abschlussarbeit"){
                                 ?><div class='border_round'><b><?php echo $module[$k]['abschlusstyp']; ?></b></div>

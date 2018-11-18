@@ -83,6 +83,37 @@ class thema_model
         $status ='';
         $rows = array();
         while ($statement->fetch()) {
+            if($this->isNull($thema_id) == "True") 
+            { $status = "Vorhanden"; 
+               $bewID='NULL';
+            } else {
+                $status = "Vergeben";
+                $bewID = $this->getBewID($thema_id);    
+            } 
+            $row = array(
+                'thema_id' => $thema_id,
+                'themenbezeichnung' => $themenbezeichnung,
+                'status' => $status,
+                'bewID' => $bewID       
+            );
+            $rows[] = $row;
+        }
+      return $rows;
+    }
+
+    public function swapThemenByBewID($bewID){
+        $statement = $this->dbh->prepare(
+        "SELECT thema.themenbezeichnung, thema.thema_id FROM thema, belegwunsch
+        WHERE thema.modul_id = (SELECT modul_id FROM thema WHERE thema_id =  belegwunsch.wunschthema1 AND belegwunsch.belegwunsch_id = ?)
+        ");
+        $statement->bind_param('i', $bewID);
+        $statement->execute();
+        $statement->bind_result($themenbezeichnung, $thema_id);
+        $statement->store_result(); 
+
+        $status ='';
+        $rows = array();
+        while ($statement->fetch()) {
 
             if($this->isNull($thema_id) == "True") 
             { $status = "Vorhanden"; 
@@ -101,10 +132,9 @@ class thema_model
             );
             $rows[] = $row;
         }
-
         return $rows;
-
     }
+
 
     public function isNull($thID){
         $statement = $this->dbh->prepare(
@@ -377,7 +407,7 @@ class thema_model
     public function keinThema($modul_id)
     {
         $statement = $this->dbh->prepare
-            ("SELECT belegwunsch.matrikelnummer, belegwunsch.vorname, belegwunsch.nachname,
+            ("SELECT belegwunsch.belegwunsch_id, belegwunsch.matrikelnummer, belegwunsch.vorname, belegwunsch.nachname,
         belegwunsch.email, belegwunsch.status
         FROM belegwunsch, modul, thema
         WHERE belegwunsch.erhaltenesThema is Null
@@ -386,12 +416,13 @@ class thema_model
         AND modul.modul_id = ?");
         $statement->bind_param('i', $modul_id);
         $statement->execute();
-        $statement->bind_result($matrikelnummer, $vorname, $nachname, $email, $status);
+        $statement->bind_result($belegwunsch_id, $matrikelnummer, $vorname, $nachname, $email, $status);
 
         $rows = array();
         while ($statement->fetch()) {
 
             $row = array(
+                'belegwunsch_id' => $belegwunsch_id,
                 'matrikelnummer' => $matrikelnummer,
                 'vorname' => $vorname,
                 'nachname' => $nachname,

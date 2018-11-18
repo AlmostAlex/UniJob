@@ -43,7 +43,6 @@ class modul_model
             if (!empty($thema[$j])) {
                 if (!empty($beschreibung[$j])) {
                     $beschreibung_array = $beschreibung[$j];
-                    echo $beschreibung_array;
                 } else{
                     $beschreibung_array = '';
                 }
@@ -51,12 +50,10 @@ class modul_model
                     $tag_string = $tags[$j];
                     print_r($vorkenntnisse);
                     $vorkenntnisse_string = $vorkenntnisse[$j];
-                    echo $vorkenntnisse_string;
                     $betreuer_string = $betreuer[$j];
 
                     //davon ausgehend, dass der Benutzername eingegeben wird !!!!! BEI UNIDB ZUGRIFF NEU SCHREIBEN!!!!!
                     $benutzer_id = $this->user->getNachnameID($betreuer_string);
-                    echo $benutzer_id;
                     if ($tag_string == '') {
                         $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$benutzer_id);
                         $thema_id = $this->thema->lastThemaID();
@@ -115,7 +112,6 @@ class modul_model
 
                     //davon ausgehend, dass der Benutzername eingegeben wird !!!!! BEI UNIDB ZUGRIFF NEU SCHREIBEN!!!!!
                     $benutzer_id = $this->user->getNachnameID($betreuer_string);
-                    echo $benutzer_id;
                     if ($tag_string == '') {
                         $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$benutzer_id);
                     } else {

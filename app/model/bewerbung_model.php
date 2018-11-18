@@ -50,7 +50,7 @@ class bewerbung_model
 
     public function duplicateBewerbungCheck($matrikelnummer, $thema_id)
     {
-        echo $matrikelnummer."   ".$thema_id;
+        
         $statement = $this->dbh->prepare("SELECT bewerbung.matrikelnummer, bewerbung.thema_id FROM test.modul, test.thema, test.bewerbung
                                             WHERE bewerbung.matrikelnummer = ?
                                             AND bewerbung.thema_id = thema.thema_id
@@ -67,8 +67,8 @@ class bewerbung_model
         $statement->store_result();
         if($statement->num_rows > 0) {
             $duplicate = "duplikat";
-            echo "HAAAAAAAAAAAAALLOOOOOOOO";
-        } else { $duplicate = "neu"; echo "NOOOOOOOOOOOPE"; }
+            
+        } else { $duplicate = "neu";  }
         return $duplicate;
     }
 

@@ -52,7 +52,9 @@ class modul_eintragen_controller
                         $vorkenntnisse = $_POST["vorkenntnisse_WiBe"];
                         $betreuer = $_POST["betreuerwindhund"];
                         $eintrag = $this->modul_model->insertSeminar($thema, $modulbezeichnung, $professurbezeichnung, $kategorie, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer);
-                        echo "erfolgreich eingetragen";
+                        $this->getModal('upload_seminar_success');
+                        
+                        //echo "erfolgreich eingetragen";
                     } else {
                         echo "Alles ausfüllen<br>";
                     }
@@ -63,7 +65,9 @@ class modul_eintragen_controller
                         $vorkenntnisse = $_POST["vorkenntnisse_Beleg"];
                         $betreuer = $_POST["betreuerbelegwunsch"];
                         $eintrag = $this->modul_model->insertSeminar($thema, $modulbezeichnung, $professurbezeichnung, $kategorie, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer);
-                        echo "erfolgreich eingetragen";
+                        
+                        $this->getModal('upload_seminar_success');   
+                        //echo "erfolgreich eingetragen";
                     } else {
                         echo "Alles ausfüllen<br>";
                     }
@@ -75,4 +79,26 @@ class modul_eintragen_controller
         }
     }
 
+
+
+    public function getModal($form) // Modal Konfigurationen
+    {
+        $modal['case'] = $modal['title'] = $modal['body_class'] = $modal['content'] = $modal['img'] = $modal['btn'] = $modal['btn_class'] = $modal['btn_url'] = '';
+
+        switch ($form) {
+            case 'upload_seminar_success':
+            $modal['case'] = 'automatic';
+            $modal['title'] = 'Das Seminar wurde erfolgreich erstellt!';
+            $modal['body_class'] = 'alert alert-success';
+            $modal['content'] = 'Das Seminar "<b>'.$bezeichnung.'</b>" wurde erfolgreich erstellt. <br>
+                                Auf der <a href="">Verwaltungsseite</a> können Änderungen vorgenommen werden. <br>';
+            $modal['img'] = '/img/checked.png';
+            include 'app/view/modul_verwaltung/modals/modal_modul.php';
+            break;
+        }
+
+    }
 }
+
+
+
