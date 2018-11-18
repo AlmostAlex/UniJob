@@ -53,8 +53,7 @@ class einsicht_controller
         } 
         else if($action1=='Belegwunschverfahren'){
             $modul_id = $id; 
-            $sw = $this->modul_model->getSw($modul_id); 
-            
+            $sw = $this->modul_model->getSw($modul_id);
             if($this->modul_model->getSw($modul_id) == "True"){ }           
             else{
                 $this->belegwunsch_model->deleteBewerbungModul($modul_id);
@@ -134,7 +133,7 @@ class einsicht_controller
             
             //Status der Themen auf "Frei" setzen und Status der Bewerber auf "Hat nichts!" setzen.
             $bewerberinfos = $this->belegwunsch_model->getBewerberInfos($modul_id);            
-            shuffle($bewerberinfos);
+            //shuffle($bewerberinfos);
             $k=0;
             while($k < $bewerberAnzahl)
             {
@@ -180,7 +179,7 @@ class einsicht_controller
             while($i < $bewerberAnzahl)
             {
                 while($j < $themaAnzahl)
-                {
+                { 
                     if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] != "Hat was!")
                     {
                         if($bewerberinfos[$i]['wunschthema2'] == $themen[$j]['thema_id'])
@@ -203,10 +202,10 @@ class einsicht_controller
             $i = 0; $j = 0;
             //Die Studenten, die noch nichts haben, bekommen ihren dritten Wunsch, wenn dieser noch Frei ist.
             while($i < $bewerberAnzahl)
-            {
-                while($j < $themaAnzahl)
-                {
-                    if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] != "Hat was!")
+            { 
+                if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] != "Hat was!")
+                {    //echo "i = ".$i."- j = ".$j." - Bewerber = ".$bewerberinfos[$i]['belegwunsch_id']." und status = ".$bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status']." - Thema = ".$bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema']." Wunsch3 = ".$bewerberinfos[$i]['wunschthema3']."</br>";
+                    while($j < $themaAnzahl)
                     {
                         if($bewerberinfos[$i]['wunschthema3'] == $themen[$j]['thema_id'])
                         {
@@ -219,8 +218,8 @@ class einsicht_controller
                                 $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
                             }
                         }
+                        $j = $j + 1;
                     }
-                    $j = $j + 1;
                 }
                 $i = $i + 1;
                 $j = 0;
@@ -240,6 +239,7 @@ class einsicht_controller
             {
                 if($themen[$themen[$j]['thema_id']]['Status'] == "Frei")
                 {
+                    echo $themen[$j]['thema_id'];
                     if($bewerberAnzahl >= $themaAnzahl)
                     {
                         $bewerbungErhalten = false;
@@ -248,7 +248,7 @@ class einsicht_controller
                         while($i < $bewerberAnzahl)
                         {
                             if($bewerberinfos[$i]['wunschthema1'] == $themen[$j]['thema_id'])
-                            {
+                            { echo "wunsch1  -  j = ".$j." - i = ".$i."</br>";
                                 $k = 0;
                                 while($k < $themaAnzahl){
                                     if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
@@ -262,7 +262,7 @@ class einsicht_controller
                                 break;
                             }
                             if($bewerberinfos[$i]['wunschthema2'] == $themen[$j]['thema_id'])
-                            {
+                            { echo "wunsch2  -  j = ".$j." - i = ".$i."</br>";
                                 $k = 0;
                                 while($k < $themaAnzahl){
                                     if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
@@ -274,9 +274,9 @@ class einsicht_controller
                                 $TauschThema = $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'];
                                 $bewerbungErhalten = true;
                                 break;
-                            }
+                            } 
                             else if($bewerberinfos[$i]['wunschthema3'] == $themen[$j]['thema_id'])
-                            {
+                            {echo "wunsch3";
                                 $k = 0;
                                 while($k < $themaAnzahl){
                                     if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
@@ -293,6 +293,7 @@ class einsicht_controller
                         }
                         $i = 0;
                         $t = 0;
+
                         if($bewerbungErhalten == true)
                         {
                             //Nach einem Bewerber suchen, der noch kein Thema hat und das alte Thema nehmen könnte
@@ -301,7 +302,7 @@ class einsicht_controller
                                 if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] == "Hat nichts!")
                                 {
                                     if($bewerberinfos[$i]['wunschthema1'] == $TauschThema)
-                                    {
+                                    { echo "wunsch1";
                                         //Sollte man mehr Priorität auf die Wünsche und nicht die Themenvergabe
                                         //setzen wollen, dann kann man die Punkte geringer setzen.
                                         //Momentan wird bei den "if"-Abfragen True rauskommen, da die Themenvergabe
@@ -336,7 +337,7 @@ class einsicht_controller
                                         }
                                     }
                                     if($bewerberinfos[$i]['wunschthema2'] == $TauschThema)
-                                    {
+                                    { echo "wunsch2!!".$i." - ".$j;
                                         $Saldo = 110 + $Punktzahl2 - $Punktzahl1;
                                         if($Saldo >= 0)
                                         {                                           
