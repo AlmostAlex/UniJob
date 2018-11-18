@@ -25,6 +25,17 @@ class thema_model
         }
     }
 
+    public function getModulID($thema_id){
+        $statement = $this->dbh->prepare(
+        "SELECT modul_id FROM thema WHERE thema_id=?
+        ");
+        $statement->bind_param('i', $thema_id);
+        $statement->execute();
+        $statement->bind_result($modul_id);
+        $statement->fetch();
+        return $modul_id;
+    }
+
     public function SwapBewThema($thID){
         $statement = $this->dbh->prepare(
         "SELECT thema.themenbezeichnung 
@@ -307,7 +318,6 @@ class thema_model
 
     public function deleteAllThema($modul_id)
     {
-
         $statement = $this->dbh->prepare("DELETE FROM thema WHERE modul_id=?");
         $statement->bind_param('i', $modul_id);
         $statement->execute();

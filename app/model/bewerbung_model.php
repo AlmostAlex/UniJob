@@ -157,4 +157,55 @@ class bewerbung_model
         }
         return $bewerbung;
     }
+
+    public function countAnzWHBew($modul_id)
+    {
+         $statement = $this->dbh->prepare
+         (" SELECT count(windhund.windhund_id) as anz
+         FROM windhund, thema, modul 
+         WHERE thema.thema_id = windhund.thema_id 
+         AND modul.modul_id = thema.modul_id
+         AND modul.modul_id=?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($anz);
+        $statement->fetch();   
+        return $anz;
+    }
+
+    public function getWHThBew($modul_id){      
+        $statement = $this->dbh->prepare(
+        "SELECT windhund.vorname, windhund.nachname, 
+                windhund.matrikelnummer, windhund.email, windhund.status, thema.themenbezeichnung
+        FROM windhund, thema, modul 
+        WHERE thema.thema_id = windhund.thema_id 
+        AND modul.modul_id = thema.modul_id
+        AND modul.modul_id=?");
+        $statement->bind_param('i', $modul_id);
+        $statement->bind_result($vorname, $nachname, $matrikelnummer, $email, $status, $themenbezeichnung);
+        $statement->execute();
+       
+        while ($statement->fetch()) {
+            $rows[] = array(
+                'vorname' => $vorname,
+                'nachname' => $nachname,
+                'matrikelnummer' => $matrikelnummer,
+                'email' => $email,
+                'status' => $status,
+                'themenbezeichnung' => $themenbezeichnung
+
+            );
+        }
+        return $rows;
+    }
+
+
+
+
+
+
+
+
+
+
 }

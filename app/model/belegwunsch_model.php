@@ -157,6 +157,31 @@ class belegwunsch_model
         return $anz;
     }
 
+    public function getWHThBeleg($modul_id){    
+        $statement = $this->dbh->prepare(
+        "SELECT windhund.vorname, windhund.nachname, 
+                windhund.matrikelnummer, windhund.email, windhund.status, thema.themenbezeichnung
+        FROM windhund, thema, modul 
+        WHERE thema.thema_id = windhund.thema_id 
+        AND modul.modul_id = thema.modul_id
+        AND modul.modul_id=?");
+        $statement->bind_param('i', $modul_id);
+        $statement->bind_result($vorname, $nachname, $matrikelnummer, $email, $status, $themenbezeichnung);
+        $statement->execute();
+       
+        while ($statement->fetch()) {
+            $rows[] = array(
+                'vorname' => $vorname,
+                'nachname' => $nachname,
+                'matrikelnummer' => $matrikelnummer,
+                'email' => $email,
+                'status' => $status,
+                'themenbezeichnung' => $themenbezeichnung
+
+            );
+        }
+        return $rows;
+    }
 
     public function info_belegwunsch($modul_id)
     {

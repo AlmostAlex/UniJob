@@ -186,8 +186,10 @@ class modul_model
                   $state ='href="bewerbung/'.$kategorie.'/'.$modul_id.' "';
             }
 
-            if ((new DateTime(date("Y-m-d")) > new DateTime($frist_ende) && ($anzahl_thema_verfuegbar > "0"))) {
+            if ((new DateTime(date("Y-m-d")) > new DateTime($frist_ende) && ($anzahl_thema_verfuegbar > "0")) 
+                || $this->getVerfuegbarkeitID($modul_id) == "Geschlossen" && ($anzahl_thema_verfuegbar > "0") ) {
                 $nachrueckBtn = 'badge badge-primary';}else{ $nachrueckBtn = 'btn_false'; }
+
 
             if ($nachrueckverfahren=='true') {  $nachrueckv_status = '[Nachrückverfahren]'; $verfahren_anzeige = 'Windhundverfahren';
             } else {  $nachrueckv_status  = ''; $verfahren_anzeige = $verfahren; }
@@ -264,8 +266,9 @@ class modul_model
                   $state ='href="bewerbung/'.$kategorie.'/'.$modul_id.' "';
             }
 
-            if ((new DateTime(date("Y-m-d")) > new DateTime($frist_ende) && ($anzahl_thema_verfuegbar > "0"))) {
+            if ( (new DateTime(date("Y-m-d")) > new DateTime($frist_ende) && ($anzahl_thema_verfuegbar > 0)) ) {
                 $nachrueckBtn = 'badge badge-primary';}else{ $nachrueckBtn = 'btn_false'; }
+
 
             if ($nachrueckverfahren=='true') {  $nachrueckv_status = '[Nachrückverfahren]'; $verfahren_anzeige = 'Windhundverfahren';
             } else {  $nachrueckv_status  = ''; $verfahren_anzeige = $verfahren; }

@@ -8,6 +8,53 @@
              <?php if($infos['anzThemaVergeben'] > 1){ echo "Themen"; } else { echo "Thema"; } ?> vergeben.
     </div>
 
+
+<nachrueckv style='<?php echo $display;?>'>
+<b> <i class="fas fa-arrow-right"></i>   Anmeldungen während des <red>Nachrückverfahrens <i class="fas fa-exclamation"></i></red> </b>
+<!-- NACHRÜCKVERFAHREN TABELLE WENN BEWERBUNGEN ZUM NACHRÜCKVERFAHREN EXISTIEREN! -->
+<form style='margin-bottom:30px;' method="post"> 
+     <div class="table-responsive" id="module">
+        <div class='bewerbung_verwaltung'>
+            <div class='belegSort'>
+                    <b>Informationen aus-/einblenden: </b>
+                        
+                    <div class="form-check form-check-inline"><p><input type="checkbox" name="name_NV" checked="checked" id="name_NV" /><label for="name_NV">Name</label></p></div>
+                    <div class="form-check form-check-inline"><p><input type="checkbox" name="matrikelnummer_NV" checked="checked" id="matrikelnummer_NV" /><label for="matrikelnummer_NV">Matr.</label></p></div>
+                    <div class="form-check form-check-inline"><p><input type="checkbox" name="email_NV" id="email_NV" /><label for="email_NV">E-mail</label></p></div>
+                    <div class="form-check form-check-inline"><p><input type="checkbox" name="status_NV"  id="status_NV" checked="checked" /><label for="status_NV">Status</label></p></div>           
+            </div>
+
+                <table id="sort_einsicht_wh">
+                    <thead>
+                        <tr>
+                            <th class="no-sort" name='anmerkung'>Info</th>
+                            <th>Thema</th>
+                            <th class='name_NV'>Name</th>
+                            <th class='matrikelnummer_NV'>Matrikelnummer</th>
+                            <th class='email_NV'>Email</th>
+                            <th class='status_NV'>Status</th>
+                            <th class="no-sort" name='funktionen'>Funktionen</th>
+                        </tr>
+                    </thead>
+                    <?php for($k = 0; $k < count($anmeldungen); $k++){ ?>
+                    <tr>
+                    <td></td>
+                            <td><?php echo $anmeldungen[$k]['themenbezeichnung']?></td>
+                            <td class='name_NV'><?php echo $anmeldungen[$k]['vorname'] ?> <?php echo $anmeldungen[$k]['nachname'] ?></td>
+                            <td class='matrikelnummer_NV'><?php echo $anmeldungen[$k]['matrikelnummer']?></td>
+                            <td class='email_NV'><?php echo $anmeldungen[$k]['email']?></td>
+                            <td><?php echo $anmeldungen[$k]['status']?></td>
+                            <td></td>
+                    </tr>
+                    <?php } ?>
+                </table>
+        </div>
+    </div>
+</form>
+</nachrueckv>
+
+
+
 <!-- ZUGETEILTE THEMEN -->
 <form style='margin-bottom:30px;' method="post"> 
      <div class="table-responsive" id="module">
@@ -78,48 +125,6 @@
         </div>
     </div>
 </form>
-
-<nachrueckv style='<?php echo $display;?>'>
-   <b> <i class="fas fa-arrow-right"></i>  Anmeldungen während des Nachrückverfahrens </b>
-<!-- NACHRÜCKVERFAHREN TABELLE WENN BEWERBUNGEN ZUM NACHRÜCKVERFAHREN EXISTIEREN! -->
-<form style='margin-bottom:30px;' method="post"> 
-     <div class="table-responsive" id="module">
-        <div class='bewerbung_verwaltung'>
-            <div class='belegSort'>
-                    <b>Informationen aus-/einblenden: </b>
-                        
-                    <div class="form-check form-check-inline"><p><input type="checkbox" name="name" checked="checked" id="name" /><label for="name">Name</label></p></div>
-                    <div class="form-check form-check-inline"><p><input type="checkbox" name="matrikelnummer" checked="checked" id="matr" /><label for="matr">Matr.</label></p></div>
-                    <div class="form-check form-check-inline"><p><input type="checkbox" name="email" id="email" /><label for="email">E-mail</label></p></div>
-                    <div class="form-check form-check-inline"><p><input type="checkbox" name="status"  id="status" checked="checked" /><label for="status">Status</label></p></div>           
-            </div>
-
-                <table id="sort_einsicht_wh">
-                    <thead>
-                        <tr>
-                            <th class="no-sort" name='anmerkung'>Info</th>
-                            <th>Thema</th>
-                            <th class='name'>Name</th>
-                            <th class='matrikelnummer'>Matrikelnummer</th>
-                            <th class='email'>Email</th>
-                            <th class='status'>Status</th>
-                            <th class="no-sort" name='funktionen'>Funktionen</th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td></td>
-                        <td>hi</td>
-                        <td>hi</td>
-                        <td>hi</td>
-                        <td>hi</td>
-                        <td>hi</td>
-                        <td>hi</td>
-                    </tr>
-                </table>
-        </div>
-    </div>
-</form>
-</nachrueckv>
 
 
 <!-- KEIN THEM AERHALTEN -->

@@ -28,7 +28,7 @@
             </tr>
             <tr>
                 <td><label for='matrikelnummer'><b>Matrikelnummer:</b><red style='color: red'>*</red></label></td>
-                <td><input style='width: 100%' type='text' class='form-control' name='Matrikelnummer' id='Matrikelnummer' value='<?php echo $matrikelnummer?>' required></td>
+                <td><input style='width: 100%' type='text' class='form-control' name='Matrikelnummer' id='onlyNumeric' value='<?php echo $matrikelnummer?>' required></td>
             </tr>
             <tr>
             <td><label for='E-Mail'><b>E-Mail:</b><red style='color: red'>*</red></label></td>
@@ -44,7 +44,7 @@
                 
             <tr>
                 <td><label for='Fachsemester'><b>Aktuelles Fachsemester:</b><red style='color: red'>*</red></label></td>
-                <td><input style='width: 100%' type='text' class='form-control' name='Fachsemester' id='Fachsemester' value='<?php echo $fachsemester?>' required></td>
+                <td><input style='width: 100%' type='text' class='form-control' name='Fachsemester' id='onlyNumeric' value='<?php echo $fachsemester?>' required></td>
             </tr>
             <tr>
                 <td><label for='Studiengang'><b>Studiengang:</b><red style='color: red'>*</red></label></td>
@@ -59,7 +59,7 @@
             </tr>
             <tr>
                 <td><label for='Credits'><b>Anzahl Credits:</b><red style='color: red'>*</red></label></td>
-                <td><input type='text' class='form-control' name='Credits' id='Credits' placeholer='Anzahl' value='<?php echo $credits?>' required></td>
+                <td><input type='text' class='form-control' name='Credits' id='onlyNumeric' placeholer='Anzahl' value='<?php echo $credits?>' required></td>
             </tr>
             <tr>
                 <td><label for='Thema'><b>Thema:</b><red style='color: red'>*</red></label></td>
