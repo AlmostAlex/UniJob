@@ -40,10 +40,24 @@ class einsicht_controller
         }
         else if($action1=='Bewerbungsverfahren'){
             $thema_id = $id;
+            $modul_id = $this->thema_model->getModulID($thema_id);
+
+
+            if( ($this->modul_model->getNachrueckverfahren($modul_id) == 'true') 
+                && ($this->bewerbung_model->countAnzWHBew($modul_id)  > 0 ) ){
+                $display = ""; 
+                $anmeldungen = $this->bewerbung_model->getWHThBew($modul_id);    
+            } else { 
+                $display = 'display:none'; 
+            } 
+
             $bew_count_bw = $this->bewerbung_model->bewerbung_count($thema_id);
-                if($bew_count_bw > 0){ // checkt, ob Bewerbungen vorhanden sind
-                    $infos = $this->bewerbung_model->info_bewerbung($thema_id);
-                    $bewerber= $this->bewerbung_model->bewerber($thema_id);
+
+                if($bew_count_bw > 0 ||  ($bew_count_bw > 0  && $this->bewerbung_model->countAnzWHBew($modul_id)  > 0)) { 
+                                        // checkt, ob Bewerbungen vorhanden sind
+                                        // KORR: UND ABER NACHR = 0 --> WENN KEINE BEW ABER NACHRÜCKV DANN JA
+                    $infos = $this->bewerbung_model->info_bewerbung($thema_id);                  
+                    $bewerber = $this->bewerbung_model->bewerber($thema_id);
                     include 'app/view/einsicht/bewerbung_einsicht_view.php';
                 }
                 else{
@@ -52,18 +66,16 @@ class einsicht_controller
                 }
         } 
         else if($action1=='Belegwunschverfahren'){
-
             $modul_id = $id; 
       
             if( ($this->modul_model->getNachrueckverfahren($id) == 'true') && ($this->belegwunsch_model->countAnzWHBeleg($id)  > 0 ) ){
-            $display = ""; 
-                $anmeldungen = $this->belegwunsch_model->getWHThBeleg($modul_id);
-            
+                $display = ""; 
+                $anmeldungen = $this->belegwunsch_model->getWHThBeleg($modul_id);    
             } else { 
                 $display = 'display:none'; 
             }
 
-            $sw = $this->modul_model->getSw($modul_id);
+            $sw = $this->modul_model->getSw($modul_id);  // NOCH WENN NACHRV IST ODER FRIST ENDE EINGETROFFEN IST                                                        
             if($this->modul_model->getSw($modul_id) == "True"){ }           
             else{
                 $this->belegwunsch_model->deleteBewerbungModul($modul_id);

@@ -519,9 +519,7 @@ function showVorkenntnisseBEL3(thema_id) {
 
 // ENDE
 
-
 // archivierung
-
 
 function archivierung(semester) {
     var xmlhttp;
@@ -551,4 +549,14 @@ function archivierung(semester) {
     xmlhttp.open("GET", "/ajax/ajax_controller.php?action=showArchiv&semester=" + semester, true);
     xmlhttp.send();
 }
+// ende
+
+// ONLY NUMERIC BEI BEWERBUNGEN
+
+$(document).ready(function(e) {
+    $("input#onlyNumeric").keypress(function(event) {
+        return /\d/.test(String.fromCharCode(event.keyCode));
+    });
+});
+
 // ende
