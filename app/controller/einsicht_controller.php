@@ -135,7 +135,7 @@ class einsicht_controller
             
             //Status der Themen auf "Frei" setzen und Status der Bewerber auf "Hat nichts!" setzen.
             $bewerberinfos = $this->belegwunsch_model->getBewerberInfos($modul_id);            
-            //shuffle($bewerberinfos);
+            shuffle($bewerberinfos);
             $k=0;
             while($k < $bewerberAnzahl)
             {
@@ -206,7 +206,7 @@ class einsicht_controller
             while($i < $bewerberAnzahl)
             { 
                 if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] != "Hat was!")
-                {    //echo "i = ".$i."- j = ".$j." - Bewerber = ".$bewerberinfos[$i]['belegwunsch_id']." und status = ".$bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status']." - Thema = ".$bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema']." Wunsch3 = ".$bewerberinfos[$i]['wunschthema3']."</br>";
+                {   
                     while($j < $themaAnzahl)
                     {
                         if($bewerberinfos[$i]['wunschthema3'] == $themen[$j]['thema_id'])
@@ -241,7 +241,6 @@ class einsicht_controller
             {
                 if($themen[$themen[$j]['thema_id']]['Status'] == "Frei")
                 {
-                    echo $themen[$j]['thema_id'];
                     if($bewerberAnzahl >= $themaAnzahl)
                     {
                         $bewerbungErhalten = false;
@@ -250,7 +249,7 @@ class einsicht_controller
                         while($i < $bewerberAnzahl)
                         {
                             if($bewerberinfos[$i]['wunschthema1'] == $themen[$j]['thema_id'])
-                            { echo "wunsch1  -  j = ".$j." - i = ".$i."</br>";
+                            {
                                 $k = 0;
                                 while($k < $themaAnzahl){
                                     if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
@@ -261,10 +260,10 @@ class einsicht_controller
                                 $Punktzahl2 = 115;
                                 $TauschThema = $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'];
                                 $bewerbungErhalten = true;
-                                break;
+                                break 1;
                             }
                             if($bewerberinfos[$i]['wunschthema2'] == $themen[$j]['thema_id'])
-                            { echo "wunsch2  -  j = ".$j." - i = ".$i."</br>";
+                            {
                                 $k = 0;
                                 while($k < $themaAnzahl){
                                     if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
@@ -275,10 +274,10 @@ class einsicht_controller
                                 $Punktzahl2 = 110;
                                 $TauschThema = $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'];
                                 $bewerbungErhalten = true;
-                                break;
+                                break 1;
                             } 
                             else if($bewerberinfos[$i]['wunschthema3'] == $themen[$j]['thema_id'])
-                            {echo "wunsch3";
+                            {
                                 $k = 0;
                                 while($k < $themaAnzahl){
                                     if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
@@ -289,7 +288,7 @@ class einsicht_controller
                                 $Punktzahl2 = 105;
                                 $TauschThema = $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'];
                                 $bewerbungErhalten = true;
-                                break;
+                                break 1;
                             }
                             $i = $i + 1;
                         }
@@ -304,7 +303,7 @@ class einsicht_controller
                                 if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] == "Hat nichts!")
                                 {
                                     if($bewerberinfos[$i]['wunschthema1'] == $TauschThema)
-                                    { echo "wunsch1";
+                                    {
                                         //Sollte man mehr Priorität auf die Wünsche und nicht die Themenvergabe
                                         //setzen wollen, dann kann man die Punkte geringer setzen.
                                         //Momentan wird bei den "if"-Abfragen True rauskommen, da die Themenvergabe
@@ -318,10 +317,10 @@ class einsicht_controller
                                             $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
                                             //Das noch nicht vergebene Thema bekommt nun den Bewerber zugewiesen und umgekehrt.
                                             while($t < $bewerberAnzahl){
-                                                if($bewerberinfos[$t]['belegwunsch_id']['Thema'] == $TauschThema){
+                                                if($bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] == $TauschThema){
                                                     $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$t]['belegwunsch_id'];
-                                                    $bewerberinfos[$t]['belegwunsch_id']['Thema'] = $themen[$j]['thema_id'];
-                                                    $t = $bewerberAnzahl;
+                                                    $bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                                                    break;
                                                 }else{$t= $t+1;}
                                             }
                                             //Der Bewerber der vorher noch nichts hatte bekommt nun das Thema vom
@@ -329,27 +328,27 @@ class einsicht_controller
                                             $t = 0;
                                             while($t < $themaAnzahl){
                                                 if($themen[$t]['thema_id'] == $TauschThema){
-                                                    $themen[$t]['thema_id']['Punkte'] = 115;
-                                                    $themen[$t]['thema_id']['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
+                                                    $themen[$themen[$t]['thema_id']]['Punkte'] = 115;
+                                                    $themen[$themen[$t]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
                                                     $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
                                                     $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$t]['thema_id'];
-                                                    $t = $themaAnzahl;
+                                                    break 2;
                                                 }else{$t= $t+1;}
                                             }
                                         }
                                     }
                                     if($bewerberinfos[$i]['wunschthema2'] == $TauschThema)
-                                    { echo "wunsch2!!".$i." - ".$j;
+                                    {
                                         $Saldo = 110 + $Punktzahl2 - $Punktzahl1;
                                         if($Saldo >= 0)
                                         {                                           
                                             $themen[$themen[$j]['thema_id']]['Punkte'] = $Punktzahl2;
                                             $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
                                             while($t < $bewerberAnzahl){
-                                                if($bewerberinfos[$t]['belegwunsch_id']['Thema'] == $TauschThema){
+                                                if($bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] == $TauschThema){
                                                     $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$t]['belegwunsch_id'];
-                                                    $bewerberinfos[$t]['belegwunsch_id']['Thema'] = $themen[$j]['thema_id'];
-                                                    $t = $bewerberAnzahl;
+                                                    $bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                                                    break;
                                                 }else{$t= $t+1;}
                                             }
                                             $t = 0;
@@ -359,7 +358,7 @@ class einsicht_controller
                                                     $themen[$themen[$t]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
                                                     $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
                                                     $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$t]['thema_id'];
-                                                    $t = $themaAnzahl;
+                                                    break 2;
                                                 }else{$t= $t+1;}
                                             }
                                         }
@@ -372,10 +371,10 @@ class einsicht_controller
                                             $themen[$themen[$j]['thema_id']]['Punkte'] = $Punktzahl2;
                                             $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
                                             while($t < $bewerberAnzahl){
-                                                if($bewerberinfos[$t]['belegwunsch_id']['Thema'] == $TauschThema){
+                                                if($bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] == $TauschThema){
                                                     $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$t]['belegwunsch_id'];
-                                                    $bewerberinfos[$t]['belegwunsch_id']['Thema'] = $themen[$j]['thema_id'];
-                                                    $t = $bewerberAnzahl;
+                                                    $bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                                                    break;
                                                 }else{$t=$t+1;}
                                             }
                                             $t = 0;
@@ -385,7 +384,7 @@ class einsicht_controller
                                                     $themen[$themen[$t]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
                                                     $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
                                                     $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$t]['thema_id'];
-                                                    $t = $themaAnzahl;
+                                                    break 2;
                                                 }else{$t=$t+1;}
                                             }
                                         }
