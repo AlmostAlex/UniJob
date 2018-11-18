@@ -28,12 +28,21 @@
             <div class="input-group-prepend">
               <span class="input-group-text">Vorkenntnisse</span>
             </div>
-            <vork><input style='width:80%;margin-left:0px;' type="text" name='vorkenntnisse_WiBe[]' placeholder='Eingabe' class="tagsinput-typeahead2" /></vork>
+            <vork><input style='width:80%;margin-left:0px;' type="text" name='vorkenntnisse_WiBe[]' placeholder='Eingabe' class="tagsinput-typeahead2" value="<?php $k=0; while($k<count($vorkenntnisse)){echo $vorkenntnisse[$k]['bezeichnung'].","; $k=$k+1;} ?>"/></vork>
           </div>
         </td>
       </tr>
-
-
+      <tr>
+        <td></td>
+        <td>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Tags</span>
+            </div>
+            <tags><input style='width:80%;margin-left:0px;' type="text" name='tags_WiBe[]' placeholder='Add Tags' class="tagsinput-typeahead" value="<?php $k=0; while($k<count($tags)){echo $tags[$k]['tag_bezeichnung'].","; $k=$k+1;} ?>"/></tags>
+          </div>
+        </td>
+      </tr>
 
 
 

@@ -279,6 +279,7 @@ public function editThema($thema_id)
         $thema = $this->thema_model->getThemaEdit($thema_id);
         $vorkenntnisse = $this->vorkenntnisse_model->vorkenntnisseByThemaID($thema_id);
         $thema['benutzername'] = $this->user_model->getIDBenutzername($thema['benutzer_id']);
+        $tags = $this->tags_model->TagsByThemaID($thema_id);
         
         if (isset($_POST['thema_edit'])) {
             if(isset($_POST['benutzername'])) { $benutzername = $_POST['benutzername']; }
