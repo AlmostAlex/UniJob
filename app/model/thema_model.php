@@ -177,7 +177,7 @@ class thema_model
             $statement_thema->store_result();
         } else {
             $statement_thema = $this->dbh->prepare("SELECT thema.thema_id, thema.themenbezeichnung, thema.beschreibung, thema.thema_verfuegbarkeit, thema.benutzer_id
-                    FROM tags JOIN thema on tags.thema_id = thema.thema_id
+                    FROM thema
                     WHERE thema.modul_id = ?
                     GROUP BY thema.thema_id");
             $statement_thema->bind_param('i', $modul_id);
