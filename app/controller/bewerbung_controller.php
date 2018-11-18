@@ -143,7 +143,7 @@ class bewerbung_controller
                 if(isset($_POST['Thema'])) { $thema_id  = $_POST['Thema']; 
                 $j=0;
                 while ($j < count($thema_id)) {
-                echo $thema_id[$j];
+                
                 $j++;
                 }
 }               
@@ -191,7 +191,7 @@ class bewerbung_controller
             }
         }
             else{ // Wenn Nachrueckverfahren ist, wird immer winhund-formular angezeigt
-             echo"nachrueckv";
+             
              include 'app/view/bewerbung/Abschlussarbeit/windhund_view_abschluss.php';    
             } 
        } 
@@ -310,7 +310,7 @@ else{
         if(isset($_POST['Thema'])) { $thema_id  = $_POST['Thema']; 
         $j=0;
         while ($j < count($thema_id)) {
-        echo $thema_id[$j];
+        
         $j++;
         }
 }               

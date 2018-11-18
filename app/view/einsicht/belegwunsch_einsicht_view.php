@@ -82,22 +82,6 @@
 </form>
 <!-- KEIN THEM AERHALTEN -->
 
-<!-- Modal -->
-<div style=' top: 25%; left: -30%;' class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div style='width: 180%;height: 65%;' class="modal-content">
-      <div class="modal-header">
-      </div>
-      <div class="modal-body">
-        <div class='swapContent' id='swapContent'></div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" id='closeBeleg' onClick="window.location.href=window.location.href" class="btn btn-secondary" data-dismiss="modal">Fenster schließen</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <?php if($keinThemaCount == 0){} else{  ?>   
@@ -141,7 +125,17 @@
                         <td><?php echo $keinThema[$i]['status']?></td>
                         <td>
 
-                        
+                            <a data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#exampleModal"
+                            id='swap'
+                            class='swap'
+                            data-bew-id='<?php echo $keinThema[$i]['belegwunsch_id']?>' 
+                            data-thema='<?php echo NULL;?>'
+                            onclick="swap(this)"
+                            >  
+                                <span class="badge badge-primary">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </span>
+                            </a>
                         
                         </td>
                     </tr>
@@ -154,5 +148,22 @@
  </div>
 <br><br><br>
 </open>
+
+<!-- Modal -->
+<div style=' top: 25%; left: -30%;' class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div style='width: 180%;height: 65%;' class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <div class='swapContent' id='swapContent'></div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" id='closeBeleg' onClick="window.location.href=window.location.href" class="btn btn-secondary" data-dismiss="modal">Fenster schließen</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 

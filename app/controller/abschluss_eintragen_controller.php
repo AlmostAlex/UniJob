@@ -52,7 +52,9 @@ class abschluss_eintragen_controller
                         $vorkenntnisse = $_POST["vorkenntnisse_WiBe"];
                         $betreuer = $_POST["betreuerwindhund"];
                         $eintrag = $this->modul_model->insertAbschluss($thema, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer);
-                        echo "erfolgreich eingetragen";
+                        
+                        $this->getModal('upload_abschluss_success', $professurbezeichnung);   
+                        //echo "erfolgreich eingetragen";
                     } else {
                         echo "Alles ausfüllen<br>";
                     }
@@ -65,7 +67,8 @@ class abschluss_eintragen_controller
                         $eintrag = $this->modul_model->insertAbschluss($thema, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags,$vorkenntnisse, $betreuer);
                         echo "erfolgreich eingetragen";
                     } else {
-                        echo "Alles ausfüllen<br>";
+                        $this->getModal('upload_abschluss_success', $professurbezeichnung);   
+                        //echo "Alles ausfüllen<br>";
                     }
                 }
             }
@@ -74,4 +77,24 @@ class abschluss_eintragen_controller
             include 'app/view/login/noAccess_view.php';
         }
     }
+
+    public function getModal($form, $professurbezeichnung) // Modal Konfigurationen
+    {
+        $modal['case'] = $modal['title'] = $modal['body_class'] = $modal['content'] = $modal['img'] = $modal['btn'] = $modal['btn_class'] = $modal['btn_url'] = '';
+
+        switch ($form) {
+            case 'upload_abschluss_success':
+            $modal['case'] = 'automatic';
+            $modal['title'] = ' Abschlussarbeiten wurden erfolgreich erstellt!';
+            $modal['body_class'] = 'alert alert-success';
+            $modal['content'] = 'Zur Professur "<b>'.$professurbezeichnung.'</b>" wurden Abschlussarbeiten erfolgreich erstellt. <br>
+                                Auf der <a href="">Verwaltungsseite</a> können Änderungen vorgenommen werden. <br>';
+            $modal['img'] = '/img/checked.png';
+            include 'app/view/modul_verwaltung/modals/modal_modul.php';
+            break;
+        }
+
+    }
+
+
 }

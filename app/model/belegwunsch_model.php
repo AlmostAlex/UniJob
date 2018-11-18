@@ -25,7 +25,7 @@ class belegwunsch_model
             $statement->execute();
         } else {
             $error = $this->dbh->errno . ' ' . $this->dbh->error;
-            echo "Fehlercode: " . $error . "<br/> Eintragung der Bewerbung ist fehlgeschlagen.";
+            
         }
     }
 
@@ -38,7 +38,7 @@ class belegwunsch_model
             $statement->execute();
         } else {
             $error = $this->dbh->errno . ' ' . $this->dbh->error;
-            echo "Fehlercode: " . $error . "<br/> Update der Bewerbung ist fehlgeschlagen.";
+            
         }
     }
 
@@ -55,7 +55,7 @@ class belegwunsch_model
 
     public function duplicateBelegwunschCheck($matrikelnummer, $thema_id)
     {
-        echo $matrikelnummer."   ".$thema_id;
+        
         $statement = $this->dbh->prepare("SELECT belegwunsch.matrikelnummer FROM test.modul, test.thema, test.belegwunsch
                                             WHERE belegwunsch.matrikelnummer = ?
                                             AND belegwunsch.wunschthema1 = thema.thema_id
@@ -72,8 +72,8 @@ class belegwunsch_model
         $statement->store_result();
         if($statement->num_rows > 0) {
             $duplicate = "duplikat";
-            echo "HAAAAAAAAAAAAALLOOOOOOOO";
-        } else { $duplicate = "neu"; echo "NOOOOOOOOOOOPE"; }
+            
+        } else { $duplicate = "neu"; }
         return $duplicate;
     }
 

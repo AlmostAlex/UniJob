@@ -60,7 +60,6 @@ class einsicht_controller
                 $this->belegwunsch_model->deleteBewerbungModul($modul_id);
                $this->Belegwunschverteilung($modul_id);       
             }
-
                           
             $bel_count = $this->belegwunsch_model->beleg_count($modul_id);
             $infos = $this->belegwunsch_model->info_belegwunsch($modul_id);
@@ -83,11 +82,18 @@ class einsicht_controller
     }
 
     public function swap($thID, $bewID){
+
         $themenbezeichnung = $this->thema_model->SwapBewThema($thID);
         $thema_id = $this->thema_model->getTHID($thID);
         $swapThemen = $this->thema_model->swapThemen($thID);
 
         if($thID == NULL){
+        $themenbezeichnung = "kein Thema erhalten";
+        $swapThemen = $this->thema_model->swapThemenByBewID($bewID);   // basierend auf bewerbers ID
+
+
+        include_once(__DIR__."/../view/einsicht/swap.php");
+
         } else {
         include_once(__DIR__."/../view/einsicht/swap.php");
         }
@@ -103,8 +109,6 @@ class einsicht_controller
 
         $this->belegwunsch_model->setModulSW($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu);
         
-        echo 'von'. $bewID_von .' '. $bewThID_von .' zu '.  $bewID_zu .' '. $bewThID_zu ;
-
         // WENN THEMA NULL ODER DAS THEMA VORHANDEN IST
         if($bewThID_zu == 'NULL'){
         $this->belegwunsch_model->tauschzuKeinTH($bewID_von);
@@ -119,8 +123,6 @@ class einsicht_controller
         $swapThemen = $this->thema_model->swapThemen($bewThID_zu);
         $bewID_von  = $bewID_zu; 
         $bewThID_von = $bewThID_zu; 
-            echo  " ---->>>>>>>> ". $bewThID_zu;
-    
         include_once(__DIR__."/../view/einsicht/swap2.php");
         }
 

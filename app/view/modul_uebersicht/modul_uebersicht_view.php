@@ -62,7 +62,8 @@
 
     <?php for($k = 0; $k < count($module); $k++){ ?>
         <div class='modul_text_<?php echo $module[$k]['kategorie']; ?>'>
-            <?php echo $module[$k]['kategorie']; ?></div>
+            <?php if($module[$k]['kategorie'] == 'Seminararbeit') { echo"Seminararbeit zum"; } else { echo "Abschlussarbeit zur"; }?>
+        </div>
             <div class='modul_shadow_<?php echo $module[$k]['kategorie']; ?>'></div>
             <div class='modul_shadow_white'></div>
     <table class='modul_table_uebersicht_<?php echo $module[$k]['kategorie'];?>'>
@@ -71,8 +72,8 @@
                 <th><a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#modul_<?php echo $module[$k]['modul_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a></th>
                 <th><b><titel style="line-height:15px;"><?php echo $module[$k]['nachrueckv_status']; ?> 
                 <?php if($module[$k]["kategorie"] == "Seminararbeit"){
-                                echo  $module[$k]["modulbezeichnung"];
-                            } else {  echo  $module[$k]["professur"];} ?> 
+                                echo  'Seminar: '. $module[$k]["modulbezeichnung"];
+                            } else { echo 'Professur: '. $module[$k]["professur"];} ?> 
                             </titel></b><br>
                             <?php if($module[$k]["kategorie"] == "Abschlussarbeit"){
                                 ?><div class='border_round'><b><?php echo $module[$k]['abschlusstyp']; ?></b></div>
