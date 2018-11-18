@@ -53,8 +53,7 @@ class einsicht_controller
         } 
         else if($action1=='Belegwunschverfahren'){
             $modul_id = $id; 
-            $sw = $this->modul_model->getSw($modul_id); 
-            
+            $sw = $this->modul_model->getSw($modul_id);
             if($this->modul_model->getSw($modul_id) == "True"){ }           
             else{
                 $this->belegwunsch_model->deleteBewerbungModul($modul_id);
@@ -182,7 +181,7 @@ class einsicht_controller
             while($i < $bewerberAnzahl)
             {
                 while($j < $themaAnzahl)
-                {
+                { 
                     if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] != "Hat was!")
                     {
                         if($bewerberinfos[$i]['wunschthema2'] == $themen[$j]['thema_id'])
@@ -205,10 +204,10 @@ class einsicht_controller
             $i = 0; $j = 0;
             //Die Studenten, die noch nichts haben, bekommen ihren dritten Wunsch, wenn dieser noch Frei ist.
             while($i < $bewerberAnzahl)
-            {
-                while($j < $themaAnzahl)
-                {
-                    if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] != "Hat was!")
+            { 
+                if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] != "Hat was!")
+                {   
+                    while($j < $themaAnzahl)
                     {
                         if($bewerberinfos[$i]['wunschthema3'] == $themen[$j]['thema_id'])
                         {
@@ -221,8 +220,8 @@ class einsicht_controller
                                 $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
                             }
                         }
+                        $j = $j + 1;
                     }
-                    $j = $j + 1;
                 }
                 $i = $i + 1;
                 $j = 0;
@@ -261,7 +260,7 @@ class einsicht_controller
                                 $Punktzahl2 = 115;
                                 $TauschThema = $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'];
                                 $bewerbungErhalten = true;
-                                break;
+                                break 1;
                             }
                             if($bewerberinfos[$i]['wunschthema2'] == $themen[$j]['thema_id'])
                             {
@@ -275,8 +274,8 @@ class einsicht_controller
                                 $Punktzahl2 = 110;
                                 $TauschThema = $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'];
                                 $bewerbungErhalten = true;
-                                break;
-                            }
+                                break 1;
+                            } 
                             else if($bewerberinfos[$i]['wunschthema3'] == $themen[$j]['thema_id'])
                             {
                                 $k = 0;
@@ -289,12 +288,13 @@ class einsicht_controller
                                 $Punktzahl2 = 105;
                                 $TauschThema = $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'];
                                 $bewerbungErhalten = true;
-                                break;
+                                break 1;
                             }
                             $i = $i + 1;
                         }
                         $i = 0;
                         $t = 0;
+
                         if($bewerbungErhalten == true)
                         {
                             //Nach einem Bewerber suchen, der noch kein Thema hat und das alte Thema nehmen könnte
@@ -317,10 +317,10 @@ class einsicht_controller
                                             $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
                                             //Das noch nicht vergebene Thema bekommt nun den Bewerber zugewiesen und umgekehrt.
                                             while($t < $bewerberAnzahl){
-                                                if($bewerberinfos[$t]['belegwunsch_id']['Thema'] == $TauschThema){
+                                                if($bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] == $TauschThema){
                                                     $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$t]['belegwunsch_id'];
-                                                    $bewerberinfos[$t]['belegwunsch_id']['Thema'] = $themen[$j]['thema_id'];
-                                                    $t = $bewerberAnzahl;
+                                                    $bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                                                    break;
                                                 }else{$t= $t+1;}
                                             }
                                             //Der Bewerber der vorher noch nichts hatte bekommt nun das Thema vom
@@ -328,11 +328,11 @@ class einsicht_controller
                                             $t = 0;
                                             while($t < $themaAnzahl){
                                                 if($themen[$t]['thema_id'] == $TauschThema){
-                                                    $themen[$t]['thema_id']['Punkte'] = 115;
-                                                    $themen[$t]['thema_id']['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
+                                                    $themen[$themen[$t]['thema_id']]['Punkte'] = 115;
+                                                    $themen[$themen[$t]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
                                                     $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
                                                     $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$t]['thema_id'];
-                                                    $t = $themaAnzahl;
+                                                    break 2;
                                                 }else{$t= $t+1;}
                                             }
                                         }
@@ -345,10 +345,10 @@ class einsicht_controller
                                             $themen[$themen[$j]['thema_id']]['Punkte'] = $Punktzahl2;
                                             $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
                                             while($t < $bewerberAnzahl){
-                                                if($bewerberinfos[$t]['belegwunsch_id']['Thema'] == $TauschThema){
+                                                if($bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] == $TauschThema){
                                                     $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$t]['belegwunsch_id'];
-                                                    $bewerberinfos[$t]['belegwunsch_id']['Thema'] = $themen[$j]['thema_id'];
-                                                    $t = $bewerberAnzahl;
+                                                    $bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                                                    break;
                                                 }else{$t= $t+1;}
                                             }
                                             $t = 0;
@@ -358,7 +358,7 @@ class einsicht_controller
                                                     $themen[$themen[$t]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
                                                     $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
                                                     $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$t]['thema_id'];
-                                                    $t = $themaAnzahl;
+                                                    break 2;
                                                 }else{$t= $t+1;}
                                             }
                                         }
@@ -371,10 +371,10 @@ class einsicht_controller
                                             $themen[$themen[$j]['thema_id']]['Punkte'] = $Punktzahl2;
                                             $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
                                             while($t < $bewerberAnzahl){
-                                                if($bewerberinfos[$t]['belegwunsch_id']['Thema'] == $TauschThema){
+                                                if($bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] == $TauschThema){
                                                     $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$t]['belegwunsch_id'];
-                                                    $bewerberinfos[$t]['belegwunsch_id']['Thema'] = $themen[$j]['thema_id'];
-                                                    $t = $bewerberAnzahl;
+                                                    $bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                                                    break;
                                                 }else{$t=$t+1;}
                                             }
                                             $t = 0;
@@ -384,7 +384,7 @@ class einsicht_controller
                                                     $themen[$themen[$t]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
                                                     $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
                                                     $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$t]['thema_id'];
-                                                    $t = $themaAnzahl;
+                                                    break 2;
                                                 }else{$t=$t+1;}
                                             }
                                         }
