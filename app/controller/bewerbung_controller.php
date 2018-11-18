@@ -218,9 +218,7 @@ class bewerbung_controller
                  if($this->modul_model->getModulVerfahrenByID($id) == 'Windhundverfahren' || $this->modul_model->getNachrueckverfahren($id) == 'true'){
                             $modul = $this->modul_model->getModulById($id);
                             $themen = $this->thema_model->getThemenVG($id,'');
-                            echo "++++++";   
                         if (isset($_POST['bewerbung_SEM_WH'])) {
-                             echo "11111";   
                             // AB HIER ALLES CHECKEN LASSEN
                                 if($check_modul == 'falseTime'){
                                     $this->getModal("modulFalseTime", $id);
@@ -234,8 +232,7 @@ class bewerbung_controller
                                     $this->getModal("AB_WH_erfolgreich", $thema_id);
                                     $infos = $this->thema_model->getBetreuerByID($thema_id);
                                     include 'app/view/bewerbung/Seminararbeit/fazit_seminar_WH.php';
-                                }
-                                echo "DURCH";      
+                                }   
                             }
                         else{
                             include 'app/view/bewerbung/Seminararbeit/windhund_view_seminar.php';

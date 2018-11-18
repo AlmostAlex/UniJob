@@ -79,7 +79,7 @@
     </div>
 </form>
 
-<nachrueckv>
+<nachrueckv style='<?php echo $display;?>'>
    <b> <i class="fas fa-arrow-right"></i>  Anmeldungen während des Nachrückverfahrens </b>
 <!-- NACHRÜCKVERFAHREN TABELLE WENN BEWERBUNGEN ZUM NACHRÜCKVERFAHREN EXISTIEREN! -->
 <form style='margin-bottom:30px;' method="post"> 

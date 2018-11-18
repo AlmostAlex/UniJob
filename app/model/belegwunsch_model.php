@@ -141,6 +141,23 @@ class belegwunsch_model
         return $anzahl_bewerber_check;        
     }
 
+
+    public function countAnzWHBeleg($modul_id)
+    {
+         $statement = $this->dbh->prepare
+         (" SELECT count(windhund.windhund_id) as anz
+         FROM windhund, thema, modul 
+         WHERE thema.thema_id = windhund.thema_id 
+         AND modul.modul_id = thema.modul_id
+         AND modul.modul_id=?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($anz);
+        $statement->fetch();   
+        return $anz;
+    }
+
+
     public function info_belegwunsch($modul_id)
     {
          $statement = $this->dbh->prepare

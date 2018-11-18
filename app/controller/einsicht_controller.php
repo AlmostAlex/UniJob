@@ -52,7 +52,17 @@ class einsicht_controller
                 }
         } 
         else if($action1=='Belegwunschverfahren'){
+
             $modul_id = $id; 
+      
+            if( ($this->modul_model->getNachrueckverfahren($id) == 'true') && ($this->belegwunsch_model->countAnzWHBeleg($id)  > 0 ) ){
+            $display = ""; 
+                $anmeldungen = $this->belegwunsch_model->getWHThBeleg($modul_id);
+            
+            } else { 
+                $display = 'display:none'; 
+            }
+
             $sw = $this->modul_model->getSw($modul_id);
             if($this->modul_model->getSw($modul_id) == "True"){ }           
             else{
