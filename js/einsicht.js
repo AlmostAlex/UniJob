@@ -110,13 +110,12 @@ function swap2(e) {
             contentType: 'application/x-www-form-urlencoded',
             data: { bewID_von: bewID_von, bewThID_von: bewThID_von, thID_zu: thID_zu, bewID_zu: bewID_zu },
             success: function(data, textStatus, jQxhr) {
-                $("#sw1").append('<div style="position: absolute;margin-top: -35px;margin-left: 780px;" >Updated</div> <br> <div class="inner' + ($('#test div').length + 1) + '">' + data + '</div>');
+                $("#sw1").append('<div style="position: absolute;margin-top: -36px; margin-left: 675px;padding: 6px;" class="alert alert-info"><i class="fas fa-info-circle"></i> Updated</div> <br> <div class="inner' + ($('#test div').length + 1) + '">' + data + '</div>').fadeIn(1000);
                 console.log(data);
             },
             error: function(jqXhr, textStatus, errorThrown) {
                 console.log(errorThrown);
             }
-
         }
 
     )

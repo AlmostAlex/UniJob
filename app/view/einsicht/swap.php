@@ -17,7 +17,8 @@
     </tr>
     <tr>
         <td style='width:170px'>
-            <b>1.Bewerber's Thema:</b>
+            <center><b style='font-size:14px;'><?php echo $data['benutzerkennung']; ?>:</b><br>
+            <small>[Matr: <?php echo $data['matrikelnummer'];?>]</small></center>
         </td>
         <td>
             <select style='width:230px;' class='form-control positionTypes'>
@@ -25,7 +26,7 @@
             </select>
         </td>
     <td>
-    <i class="fas fa-arrow-right"></i>
+    <div style='height: 33px;' class="input-group-text"> <i class="fas fa-arrow-right"></i> </div>   
     </td>
     <td style='width:300px'>
         <select style='width:230px;' class='form-control positionTypes' onchange="swap2(this)">  

@@ -28,11 +28,22 @@ class einsicht_controller
         if($action1=='Windhundverfahren'){
             $modul_id = $id;
             $bew_count = $this->windhund_model->bewerbung_count($modul_id);
+
+
             if($bew_count > 0){ // checkt, ob Bewerbungen vorhanden sind
                 $infos = $this->windhund_model->info_windhund($modul_id);
                 $themen = $this->thema_model->einsichtThemaModul($modul_id);
-                $themenVG = $this->thema_model->einsichtThemaModulVerfuegbar($modul_id);
-                    include 'app/view/einsicht/windhund_einsicht_view.php';
+
+                // Abfrage der Infos
+                $semester = $this->modul_model->getSemesterByID($modul_id);
+                //$note = $this->bewerbung_model->getNotes($matrikelnummer, $semester);
+                //echo $semester;
+               
+                if($infos['anzThemaVerfuegbar'] > 0){
+                    $themenVG = $this->thema_model->einsichtThemaModulVerfuegbar($modul_id);
+                   } else {}                   
+                    
+                include 'app/view/einsicht/windhund_einsicht_view.php';
             }else{         
                 $kat = "Anmeldungen"; // Wenn keine Bewerbungen vorhanden sind, dann wird die none Unterseite aufgerufen
                 include 'app/view/einsicht/none_view.php';
@@ -77,10 +88,10 @@ class einsicht_controller
 
             $sw = $this->modul_model->getSw($modul_id);  // NOCH WENN NACHRV IST ODER FRIST ENDE EINGETROFFEN IST                                                        
             if($this->modul_model->getSw($modul_id) == "True"){ }           
-            else{
-                $this->belegwunsch_model->deleteBewerbungModul($modul_id);
-               $this->Belegwunschverteilung($modul_id);       
-            }
+                else{
+                    $this->belegwunsch_model->deleteBewerbungModul($modul_id);
+                    $this->Belegwunschverteilung($modul_id);       
+                }
                           
             $bel_count = $this->belegwunsch_model->beleg_count($modul_id);
             $infos = $this->belegwunsch_model->info_belegwunsch($modul_id);
@@ -107,14 +118,13 @@ class einsicht_controller
         $themenbezeichnung = $this->thema_model->SwapBewThema($thID);
         $thema_id = $this->thema_model->getTHID($thID);
         $swapThemen = $this->thema_model->swapThemen($thID);
+        $data = $this->belegwunsch_model->getDataByBEWID($bewID);
 
         if($thID == NULL){
         $themenbezeichnung = "kein Thema erhalten";
         $swapThemen = $this->thema_model->swapThemenByBewID($bewID);   // basierend auf bewerbers ID
-
-
+       
         include_once(__DIR__."/../view/einsicht/swap.php");
-
         } else {
         include_once(__DIR__."/../view/einsicht/swap.php");
         }
@@ -128,8 +138,9 @@ class einsicht_controller
         $swapThemen = $this->thema_model->swapThemen($bewID_zu);
         $isNull = $this->thema_model->isNull($bewID_zu);
 
-        $this->belegwunsch_model->setModulSW($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu);
-        
+        $data = $this->belegwunsch_model->getDataByBEWID($bewID_zu);
+
+        $this->belegwunsch_model->setModulSW($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu);    
         // WENN THEMA NULL ODER DAS THEMA VORHANDEN IST
         if($bewThID_zu == 'NULL'){
         $this->belegwunsch_model->tauschzuKeinTH($bewID_von);

@@ -65,10 +65,9 @@ class abschluss_eintragen_controller
                         $vorkenntnisse = $_POST["vorkenntnisse_Beleg"];
                         $betreuer = $_POST["betreuerbelegwunsch"];
                         $eintrag = $this->modul_model->insertAbschluss($thema, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags,$vorkenntnisse, $betreuer);
-                        echo "erfolgreich eingetragen";
-                    } else {
                         $this->getModal('upload_abschluss_success', $professurbezeichnung);   
-                        //echo "Alles ausfüllen<br>";
+                    } else { 
+                        echo "Alles ausfüllen<br>";
                     }
                 }
             }

@@ -1,18 +1,19 @@
  <table>
     <tr>
-        <td style='width:140px'>
-        applicant's topic
+        <td style='width:170px'>
+        <center><b style='font-size:14px;'><?php echo $data['benutzerkennung']; ?>:</b><br>
+        <small>[Matr: <?php echo $data['matrikelnummer'];?>]</small></center>
         </td>
         <td>
-        <select class='form-control positionTypes'>
+        <select style='width:230px;' class='form-control positionTypes'>
             <option value='<?php echo $themenbezeichnung;?>' > <?php echo $thema_id;?> <?php echo $themenbezeichnung;?> </option>
         </select>
         </td>
     <td>
-    <i class="fas fa-arrow-right"></i>
+        <div style='height: 33px;' class="input-group-text"> <i class="fas fa-arrow-right"></i> </div>
     </td>
     <td style='width:300px'>
-    <select class='form-control positionTypes' onchange="swap2(this)">  
+    <select style='width:230px;' class='form-control positionTypes' onchange="swap2(this)">  
     <option></option>    
     <option value='NULL'
         data-bew-id-von='<?php echo $bewID_von; ?>'

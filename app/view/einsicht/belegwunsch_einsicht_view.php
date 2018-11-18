@@ -192,17 +192,48 @@
  </div>
 <br><br><br>
 </open>
+<style>
 
+/* Important part */
+swap .modal.fade{ 
+    top: 18%; 
+    left: -30%;
+}
+swap .modal-dialog{
+    overflow-y: initial !important
+}
+swap .modal-body{
+    height: 250px;
+    overflow-y: auto;
+}
+swap .modal-footer{
+    margin-top:30px;
+}
+
+swap .modal-content{
+    width: 160%; 
+    height: 65%;  
+}
+
+swap .modal-header{
+    background-color: #3979b5;
+    color: white;
+    padding:6px;
+
+}
+</style>
 <!-- Modal -->
-<div style=' top: 25%; left: -30%;' class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<swap>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div style='width: 160%; height: 65%;' class="modal-content">
-      <div style='background-color: #3979b5;color: white;' class="modal-header">
+    <div class="modal-content">
+      <div class="modal-header">
           <h4>Thementausch</h4>
       </div>
       <div class="modal-body">
         <div class='swapContent' id='swapContent'></div>
-
+        <br>
+        <br>
       </div>
       <div class="modal-footer">
         <button type="button" id='closeBeleg' onClick="window.location.href=window.location.href" class="btn btn-secondary" data-dismiss="modal">Fenster schließen</button>
@@ -210,5 +241,6 @@
     </div>
   </div>
 </div>
+</swap>
 
 

@@ -66,7 +66,7 @@ class modul_model
                         $this->vorkenntnisse_model->insertVorkenntnisse($vorkenntnisse_string, $thema_id);
                     }
 
-            } else {echo "thema bitte ausfüllen";}
+            } else {}
             $j = $j + 1;
         }
     }
@@ -122,7 +122,7 @@ class modul_model
                      if($vorkenntnisse_string != ''){
                         $this->vorkenntnisse_model->insertVorkenntnisse($vorkenntnisse_string, $thema_id);
                     }
-            } else {echo "thema bitte ausfüllen";}
+            } else {}
             $j = $j + 1;
         }
     }
@@ -546,6 +546,16 @@ class modul_model
             $sem[] = $row;
         }
         return $sem;
+    }
+
+    public function getSemesterByID($modul_id)
+    {
+        $statement = $this->dbh->prepare("SELECT semester FROM modul Where modul_id=?");
+        $statement->bind_param('i', $modul_id);
+        $statement->bind_result($semester);
+        $statement->execute();
+        $statement->fetch();
+        return $semester;
     }
 
     public function getSemesterCountAll()

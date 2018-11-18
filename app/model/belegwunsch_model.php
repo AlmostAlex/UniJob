@@ -157,6 +157,27 @@ class belegwunsch_model
         return $anz;
     }
 
+    public function getDataByBEWID($bewID){ 
+        $statement = $this->dbh->prepare
+        (" SELECT vorname, nachname, matrikelnummer,email FROM belegwunsch WHERE belegwunsch_id=?");
+       $statement->bind_param('i', $bewID);
+       $statement->execute();
+       $statement->bind_result($vorname, $nachname, $matrikelnummer, $email);
+       $statement->fetch(); 
+
+       $teile = explode("@", $email);
+       $benutzerkennung = $teile[0];
+
+       $rows= array(
+        'vorname' => $vorname,
+        'nachname' => $nachname,
+        'matrikelnummer' => $matrikelnummer,
+        'benutzerkennung' => $benutzerkennung
+    );
+       return $rows;
+    }  
+
+
     public function getWHThBeleg($modul_id){    
         $statement = $this->dbh->prepare(
         "SELECT windhund.vorname, windhund.nachname, 

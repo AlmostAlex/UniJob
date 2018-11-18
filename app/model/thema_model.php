@@ -80,6 +80,7 @@ class thema_model
     }
     
     public function swapThemen($thID){
+
         $statement = $this->dbh->prepare(
         "SELECT themenbezeichnung, thema_id
         FROM thema 
@@ -113,11 +114,15 @@ class thema_model
     }
 
     public function swapThemenByBewID($bewID){
+
         $statement = $this->dbh->prepare(
-        "SELECT thema.themenbezeichnung, thema.thema_id FROM thema, belegwunsch
-        WHERE thema.modul_id = (SELECT modul_id FROM thema WHERE thema_id =  belegwunsch.wunschthema1 AND belegwunsch.belegwunsch_id = ?)
-        ");
-        $statement->bind_param('i', $bewID);
+        "SELECT thema.themenbezeichnung, thema.thema_id
+        FROM thema, belegwunsch
+        WHERE belegwunsch.wunschthema1 = thema.thema_id AND belegwunsch.belegwunsch_id = ? 
+        OR belegwunsch.wunschthema2 = thema.thema_id AND belegwunsch.belegwunsch_id = ?
+        OR belegwunsch.wunschthema3 = thema.thema_id AND belegwunsch.belegwunsch_id = ?
+        AND thema.modul_id = (SELECT modul_id FROM thema WHERE thema_id =  belegwunsch.wunschthema1 AND belegwunsch.belegwunsch_id = ?)");
+        $statement->bind_param('iiii', $bewID,$bewID,$bewID,$bewID);
         $statement->execute();
         $statement->bind_result($themenbezeichnung, $thema_id);
         $statement->store_result(); 
