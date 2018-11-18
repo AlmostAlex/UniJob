@@ -216,6 +216,8 @@ class thema_model
   
             if($verfahren == 'Windhundverfahren' || $verfahren == 'Belegwunschverfahren'){ $anz = "";  } 
 
+            if($beschreibung == ''){ $beschreibung = 'Keine Beschreibung vorhanden.';}
+
             $row = array(
                 'thema_id' => $thema_id,
                 'themenbezeichnung' => $themenbezeichnung,

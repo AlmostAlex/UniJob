@@ -196,8 +196,9 @@
 <!-- Modal -->
 <div style=' top: 25%; left: -30%;' class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div style='width: 180%;height: 65%;' class="modal-content">
-      <div class="modal-header">
+    <div style='width: 160%; height: 65%;' class="modal-content">
+      <div style='background-color: #3979b5;color: white;' class="modal-header">
+          <h4>Thementausch</h4>
       </div>
       <div class="modal-body">
         <div class='swapContent' id='swapContent'></div>
