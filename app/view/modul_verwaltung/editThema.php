@@ -19,14 +19,28 @@
       </tr>
       <tr>
         <td><label for='Beschreibung'><b>Themenbeschreibung</b><red style='color: red'>*</red></label></td>
-        <td><textarea type='text' id='beschreibung' name='beschreibung' class='form-control'> <?php echo $thema['beschreibung']; ?> </textarea> </td>
+        <td><textarea type='text' id='beschreibung' name='beschreibung' class='form-control'> <?php echo $thema['beschreibung']; ?></textarea></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Vorkenntnisse</span>
+            </div>
+            <vork><input style='width:80%;margin-left:0px;' type="text" name='vorkenntnisse_WiBe[]' placeholder='Eingabe' class="tagsinput-typeahead2" /></vork>
+          </div>
+        </td>
       </tr>
 
-       <!-- <tr>
-        <td><label for='Vorkenntnisse'><b>Vorkenntnisse</b><red style='color: red'>*</red></label></td>
-        <td>
-            <textarea type='text' id='beschreibung' name='beschreibung' class='form-control'> <?php echo $thema['beschreibung']; ?> </textarea>
-        </td>
+
+
+
+
+<!--
+      <tr>
+        <td><label for='vorkenntnisse'><b>Vorkenntnisse</b><red style='color: red'>*</red></label></td>
+        <div class="input-group"><vork><input style='margin-left: 130px;' type="text" id='vork'  style='display:none;' name='vorkenntnisse_WiBe[]' placeholder='Vorkenntnisse' class="form-control"/></vork></div>
       </tr> -->
 
       <tr>

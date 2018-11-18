@@ -277,11 +277,13 @@ class modul_controller
 public function editThema($thema_id)
     {
         $thema = $this->thema_model->getThemaEdit($thema_id);
+        $vorkenntnisse = $this->vorkenntnisse_model->vorkenntnisseByThemaID($thema_id);
         $thema['benutzername'] = $this->user_model->getIDBenutzername($thema['benutzer_id']);
         
         if (isset($_POST['thema_edit'])) {
             if(isset($_POST['benutzername'])) { $benutzername = $_POST['benutzername']; }
-            if(isset($_POST['themenbezeichnung'])) { $thema['themenbezeichnung'] =  $_POST['themenbezeichnng']; }
+            if(isset($_POST['themenbezeichnung'])) { $thema['themenbezeichnung'] =  $_POST['themenbezeichnung']; } else {$thema['themenbezeichnung'] = '';}
+            if(isset($_POST['beschreibung'])) { $thema['beschreibung'] =  $_POST['beschreibung']; } else {$thema['beschreibung'] = '';}
 
             $thema['benutzer_id'] = $this->user_model->getNachnameID($benutzername);
             $this->thema_model->updateThema($thema['benutzer_id'],  $thema['themenbezeichnung'], 
