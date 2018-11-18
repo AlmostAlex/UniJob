@@ -11,9 +11,7 @@
 <!-- ZUGETEILTE THEMEN -->
 <form style='margin-bottom:30px;' method="post"> 
      <div class="table-responsive" id="module">
-     
      <div class='bewerbung_verwaltung'>
-
         <div class='belegSort'>
         <b>Informationen aus-/einblenden: </b>
             <div class="form-check form-check-inline"> <p><input type="checkbox" name="pri1" id="pri1" checked="checked"/><label for="pri1">Priorität 1</label></p></div>
@@ -80,10 +78,51 @@
         </div>
     </div>
 </form>
+
+<nachrueckv>
+   <b> <i class="fas fa-arrow-right"></i>  Anmeldungen während des Nachrückverfahrens </b>
+<!-- NACHRÜCKVERFAHREN TABELLE WENN BEWERBUNGEN ZUM NACHRÜCKVERFAHREN EXISTIEREN! -->
+<form style='margin-bottom:30px;' method="post"> 
+     <div class="table-responsive" id="module">
+        <div class='bewerbung_verwaltung'>
+            <div class='belegSort'>
+                    <b>Informationen aus-/einblenden: </b>
+                        
+                    <div class="form-check form-check-inline"><p><input type="checkbox" name="name" checked="checked" id="name" /><label for="name">Name</label></p></div>
+                    <div class="form-check form-check-inline"><p><input type="checkbox" name="matrikelnummer" checked="checked" id="matr" /><label for="matr">Matr.</label></p></div>
+                    <div class="form-check form-check-inline"><p><input type="checkbox" name="email" id="email" /><label for="email">E-mail</label></p></div>
+                    <div class="form-check form-check-inline"><p><input type="checkbox" name="status"  id="status" checked="checked" /><label for="status">Status</label></p></div>           
+            </div>
+
+                <table id="sort_einsicht_wh">
+                    <thead>
+                        <tr>
+                            <th class="no-sort" name='anmerkung'>Info</th>
+                            <th>Thema</th>
+                            <th class='name'>Name</th>
+                            <th class='matrikelnummer'>Matrikelnummer</th>
+                            <th class='email'>Email</th>
+                            <th class='status'>Status</th>
+                            <th class="no-sort" name='funktionen'>Funktionen</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td></td>
+                        <td>hi</td>
+                        <td>hi</td>
+                        <td>hi</td>
+                        <td>hi</td>
+                        <td>hi</td>
+                        <td>hi</td>
+                    </tr>
+                </table>
+        </div>
+    </div>
+</form>
+</nachrueckv>
+
+
 <!-- KEIN THEM AERHALTEN -->
-
-
-
 <?php if($keinThemaCount == 0){} else{  ?>   
 
 <table style='border:0px solid transparent'>
