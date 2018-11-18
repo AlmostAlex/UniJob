@@ -32,7 +32,7 @@
                 </tr>
                 <tr>
                     <td><label for="Modul"><b>Professur:</b><red>*</red></label></td>
-                    <td colspan = 3><input type="text" class="form-control" id="professurbezeichnung" name='professurbezeichnung' placeholder="Bezeichnung der Fakultät" required> </td>
+                    <td colspan = 3><input type="text" class="form-control" id="professurbezeichnung" name='professurbezeichnung' placeholder="Bezeichnung der Professur" required> </td>
                     <td></td>
                 </tr>
                 <tr>
