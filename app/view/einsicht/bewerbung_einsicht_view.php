@@ -22,7 +22,7 @@
                         <div class="form-check form-check-inline"><p><input type="checkbox" name="status_NV"  id="status_NV" checked="checked" /><label for="status_NV">Status</label></p></div>           
                 </div>
 
-                    <table id="sort_einsicht_wh">
+                    <table id="sort_nachr_bew">
                         <thead>
                             <tr>
                                 <th class="no-sort" name='anmerkung'>Info</th>

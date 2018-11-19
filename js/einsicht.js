@@ -47,6 +47,19 @@ $(document).ready(function() {
 
     });
 
+
+    $('#sort_nachr_bew').DataTable({
+        "columnDefs": [{
+            "targets": 'no-sort',
+            "orderable": false,
+        }],
+        "order": [],
+        "paging": false,
+        "info": false,
+        "searching": false,
+
+    });
+
 });
 
 $(function() {
