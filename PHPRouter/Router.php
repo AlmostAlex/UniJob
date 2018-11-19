@@ -1,9 +1,14 @@
 <?php 
+/*
+use PHPRouter\Exceptions\BadController;
+use PHPRouter\Exceptions\BadMiddleware;
+use PHPRouter\Exceptions\HttpError;
+use PHPRouter\Exceptions\InvalidArgumetException; */
 
-include("PHPRouter\Exceptions\BadController.php");
-include("PHPRouter\Exceptions\BadMiddleware.php");
-include("PHPRouter\Exceptions\HttpError.php");
-include("PHPRouter\Exceptions\InvalidArgumentException.php");
+include("PHPRouter/Exceptions/BadController.php");
+include("PHPRouter/Exceptions/BadMiddleware.php");
+include("PHPRouter/Exceptions/HttpError.php");
+include("PHPRouter/Exceptions/InvalidArgumentException.php");
 
 class Router {
     /**

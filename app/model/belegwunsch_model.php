@@ -56,7 +56,7 @@ class belegwunsch_model
     public function duplicateBelegwunschCheck($matrikelnummer, $thema_id)
     {
         
-        $statement = $this->dbh->prepare("SELECT belegwunsch.matrikelnummer FROM test.modul, test.thema, test.belegwunsch
+        $statement = $this->dbh->prepare("SELECT belegwunsch.matrikelnummer FROM modul, thema, belegwunsch
                                             WHERE belegwunsch.matrikelnummer = ?
                                             AND belegwunsch.wunschthema1 = thema.thema_id
                                             AND thema.modul_id = modul.modul_id

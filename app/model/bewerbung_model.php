@@ -51,7 +51,7 @@ class bewerbung_model
     public function duplicateBewerbungCheck($matrikelnummer, $thema_id)
     {
         
-        $statement = $this->dbh->prepare("SELECT bewerbung.matrikelnummer, bewerbung.thema_id FROM test.modul, test.thema, test.bewerbung
+        $statement = $this->dbh->prepare("SELECT bewerbung.matrikelnummer, bewerbung.thema_id FROM modul, thema, bewerbung
                                             WHERE bewerbung.matrikelnummer = ?
                                             AND bewerbung.thema_id = thema.thema_id
                                             AND thema.modul_id = modul.modul_id

@@ -208,17 +208,29 @@ class thema_model
             $benutzer = $this->user->getIDNachname($benutzer_id);
 
             $statement_anz = $this->dbh->prepare(
-                "SELECT count(bewerbung.bewerbung_id) as anz, modul.verfahren 
+                "SELECT count(bewerbung.bewerbung_id) as anz
                 FROM  bewerbung, modul, thema
                 WHERE modul.modul_id = thema.modul_id
                 AND bewerbung.thema_id = thema.thema_id 
                 AND thema.thema_id =?");
             $statement_anz->bind_param('i', $thema_id);
-            $statement_anz->execute();
-            $statement_anz->bind_result($anz, $verfahren);
+            $statement_anz->execute();               
+            $statement_anz->bind_result($anz);         
             $statement_anz->store_result(); 
             $statement_anz->fetch();   
-  
+
+            $statement_anz = $this->dbh->prepare(
+                "SELECT modul.verfahren
+                FROM   modul, thema
+                WHERE modul.modul_id = thema.modul_id
+                AND thema.thema_id =?");
+            $statement_anz->bind_param('i', $thema_id);
+            $statement_anz->execute();               
+            $statement_anz->bind_result($verfahren);         
+            $statement_anz->store_result(); 
+            $statement_anz->fetch();   
+
+
             if($verfahren == 'Windhundverfahren' || $verfahren == 'Belegwunschverfahren'){ $anz = "";  } 
 
             if($beschreibung == ''){ $beschreibung = 'Keine Beschreibung vorhanden.';}
@@ -233,6 +245,7 @@ class thema_model
             );
             $rows[] = $row;
         }
+        $statement_anz->close();
         return $rows;
     }
 

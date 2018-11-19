@@ -144,20 +144,23 @@ class modul_model
         $statement->execute();
         $statement->bind_result($modul_id, $modulbezeichnung, $professur,$kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $frist_start, $frist_ende, $kickoff, $studiengang, $modul_verfuegbarkeit,$archivierung,$nachrueckverfahren);
         $statement->store_result();
+       
 
         $rows = array();
         while ($statement->fetch()) {
         if($abfrage_th != '')
         {
+            echo '++'.  $abfrage_th;
         $statement_thema = $this->dbh->prepare("SELECT thema.thema_id
         FROM tags JOIN thema on tags.thema_id = thema.thema_id 
         WHERE thema.modul_id = ?
-        GROUP BY tags.thema_id ".$abfrage_th);
+         ".$abfrage_th."");
         $statement_thema->bind_param('i', $modul_id);
         $statement_thema->execute();
         $statement_thema->bind_result($thema_id);
         $statement_thema->store_result();
         }else{
+            echo '--'. $abfrage_th;
             $statement_thema = $this->dbh->prepare("SELECT thema.thema_id
             FROM tags JOIN thema on tags.thema_id = thema.thema_id 
             WHERE thema.modul_id = ?");
@@ -470,7 +473,8 @@ class modul_model
         $statement = $this->dbh->prepare("SELECT semester, count(modul_id) AS anzahl FROM modul WHERE archivierung='false' GROUP BY semester");
         $statement->execute();
         $statement->bind_result($semester, $anzahl);
-    
+        $statement->store_result();
+
         $s_row = array();
         while ($statement->fetch()) {
             $row = array(
@@ -483,9 +487,11 @@ class modul_model
     }
 
     public function count_b() {
-        $statement = $this->dbh->prepare("SELECT user.benutzername, user.benutzer_id, count(modul_id) AS anzahl FROM modul, user WHERE modul.benutzer_id = user.benutzer_id AND modul.archivierung='false' GROUP BY benutzername");
+        $statement = $this->dbh->prepare("SELECT user.benutzername, user.benutzer_id, count(modul_id) AS anzahl FROM modul, user 
+        WHERE modul.benutzer_id = user.benutzer_id AND modul.archivierung='false' GROUP BY benutzer_id");
         $statement->execute();
         $statement->bind_result($benutzername, $benutzer_id, $anzahl);
+        $statement->store_result();
 
         $b_row = array();
         while ($statement->fetch()) {

@@ -1,9 +1,12 @@
 <?php 
-
+/*
 use PHPRouter\Exceptions\InvalidArgumentException;
 use PHPRouter\Exceptions\FileNotFoundException;
 use PHPRouter\Exceptions\NoAcces;
-
+*/
+include(__DIR__."/Exceptions/InvalidArgumentException.php");
+include(__DIR__."/Exceptions/FileNotFoundException.php");
+//include(__DIR__."/Exceptions/NoAcces.php");
 
 class Response {
 
