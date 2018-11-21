@@ -36,6 +36,7 @@ $(document).ready(function() {
     });
 
     $('#sort_einsicht_bel').DataTable({
+        autoWidth: true,
         "columnDefs": [{
             "targets": 'no-sort',
             "orderable": false,
@@ -59,7 +60,6 @@ $(document).ready(function() {
         "searching": false,
 
     });
-
 });
 
 $(function() {

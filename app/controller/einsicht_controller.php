@@ -25,10 +25,10 @@ class einsicht_controller
 
     public function Einsicht($action, $action1, $id)
     {
+
         if($action1=='Windhundverfahren'){
             $modul_id = $id;
             $bew_count = $this->windhund_model->bewerbung_count($modul_id);
-
 
             if($bew_count > 0){ // checkt, ob Bewerbungen vorhanden sind
                 $infos = $this->windhund_model->info_windhund($modul_id);

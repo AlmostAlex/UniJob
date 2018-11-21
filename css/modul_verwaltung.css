@@ -73,6 +73,7 @@
     }
     
     .border-round-Offen {
+        width: 100px;
         font-size: 12.5px;
         margin: 1px;
         background-color: white;

@@ -78,9 +78,14 @@ class tags_model
 
     public function getTagsBezeichnung()
     {
-
         
-        $statement = $this->dbh->prepare("SELECT tags.tag_bezeichnung FROM `tags`,`thema`,`modul`  WHERE tags.thema_id = thema.thema_id AND thema.modul_id = modul.modul_id AND modul.archivierung = 'false' GROUP BY tags.tag_bezeichnung");
+        $statement = $this->dbh->prepare("SELECT tags.tag_bezeichnung 
+        FROM `tags`,`thema`,`modul` 
+        WHERE tags.thema_id = thema.thema_id 
+        AND thema.modul_id = modul.modul_id 
+        AND modul.archivierung = 'false' 
+        AND DATE(modul.frist_start) < CURDATE()
+        GROUP BY tags.tag_bezeichnung");
         $statement->bind_result($tag_bezeichnung);
         $statement->execute();
 
@@ -90,12 +95,8 @@ class tags_model
                 'tag_bezeichnung' => $tag_bezeichnung
             );  
         }
-      
-        if(count($tag_bezeichnung) == 0){
-        } else{
-             return $rows;
-        }
-
+        $rows = array_unique($rows,SORT_REGULAR);
+        return $rows;
        
     }
 

@@ -65,7 +65,7 @@
         </tr>   
     </table>
 
-    <button type="button" class="btn btn-primary" href="/modul_uebersicht">Zurück zur Übersicht</button>
+    <div type="button" style='color:white;' class="btn btn-primary"><a href='/modul_uebersicht'>Zurück zur Übersichtx</a></div>
     </div>
     </bewerbung>
 <br><br>

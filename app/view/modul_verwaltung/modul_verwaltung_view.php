@@ -82,7 +82,7 @@
                         <td style='width:15%;'>
                             <center>
                                 <div class='modul_<?php echo $module[$i]["modul_verfuegbarkeit"]; ?>'>
-                                   <div class='border-round-<?php echo $module[$i]["modul_verfuegbarkeit"]; ?>'> 
+                                   <div class='border-round-offen'> 
                                        <?php echo $module[$i]["modul_verfuegbarkeit"]; ?>
                                     </div>
                                 </div>

@@ -50,13 +50,13 @@
                     <div class='border_round'><i class='far fa-clock'></i> <b><?php echo $module[$k]['start_anzeige'] .' - '. $module[$k]['ende_anzeige']; ?> </b></div>
                 </th>
                 <th style="width:192px; height:85px">
-                    <button align="center" style='color:white;' class="<?php echo $module[$k]['btn_form']?>">
+                    <div align="center" style='color:white;' class="<?php echo $module[$k]['btn_form']?>">
                         <span>
                             <a align="center" style='color:white;'  <?php echo $module[$k]['state']; ?>>  
                                 <?php echo $module[$k]['btn_msg']?>
                             </a>
                         </span>
-                    </button></br>
+                            </div></br>
                         <div style="margin-left:34px" class='border_round'><b><?php echo "Kickoff: ".$module[$k]['kickoff_anzeige']; ?> </b></div>
                 </th></center>
             </tr>
@@ -84,16 +84,25 @@
                                     <b class='information_titel'>Inhaltliche Informationen:</b><br>
                                         <div class='information_content_inhalt'> 
                                             <b>Bevorzugter Studiengang:</b>  <?php echo $module[$k]["studiengang"];?><br>
+                                            <?php $vorkenntnisse = $this->modulUebersichtVorkenntisse($themen[$p]['thema_id']); ?>
+                                            <?php if(count($vorkenntnisse) == 0) { echo ""; } else { ?> 
                                             <b>Empfohlenen Vorkenntnisse: </b>
-                                            <?php $vorkenntnisse = $this->modulUebersichtVorkenntisse($themen[$p]['thema_id']); for ($l = 0; $l < count($vorkenntnisse); $l++) {?> 
-                                            <?php echo $vorkenntnisse[$l]['bezeichnung']; }?> <br>
-                                            <b>Hinweise:</b> <?php echo $module[$k]["hinweise"];?> <br>
-                                            <b>Beschreibung:</b> <?php echo $themen[$p]["themenbeschreibung"];?> <br>
+                                            <?php for ($l = 0; $l < count($vorkenntnisse); $l++) {?> 
+                                            <?php  echo $vorkenntnisse[$l]['bezeichnung']; }?>
+                                            <br>
+                                            <?php } ?>
+
+                                            <?php if($module[$k]["hinweise"] == '') { echo "";  } else { ?>
+                                            <b>Hinweise:</b> <?php echo $module[$k]["hinweise"];?> 
+                                            <br>
+                                            <?php } ?>
+
+                                            <b>Beschreibung:</b> <?php echo $themen[$p]["themenbeschreibung"];?> 
                                             <?php if($themen[$p]["bewerber_anz"] == '') {echo '';} else{ ?> 
                                             <br><b>Anzahl Bewerber:</b> <?php echo $themen[$p]["bewerber_anz"];?>
                                             <?php } ?>
                                             <br>
-                                            <br>    
+                                            <br>   
                                           <tags>
                                             <?php $tags = $this->modulUebersichtTags($themen[$p]['thema_id']); for ($y = 0; $y < count($tags); $y++) {?>                             
                                                 <div class="badge badge-primary" id='add_tf' value='<?php echo $tags[$y]['tag_bezeichnung'];?>'><?php echo $tags[$y]['tag_bezeichnung'];?></div>                                                           

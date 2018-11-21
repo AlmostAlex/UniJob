@@ -1,7 +1,7 @@
 
 
 <div class="verwaltungsbox">
-    <h4 class='card-title'><i class="fa fa-info-circle" aria-hidden="true"></i>  Zum Eintrag eines Moduls</h4>
+    <h4 class='card-title'><i class="fa fa-info-circle" aria-hidden="true"></i>  Zum Eintrag der Abschlussthemen einer Professur</h4>
     Um erfolgreich einen Kurs anzulegen, ist es zunächst erforderlich, dass:<br>
     <ul>
     <li>  alle <b>Pflichtfelder</b> <red>*</red> ausgefüllt werden,</li>
@@ -9,9 +9,7 @@
     <li>  und ein <b>Verfahren</b> gewählt wird.</li>
     <li>  beim Verfahren <b>"Belegwunsch"</b>, sind mindestens <b>drei</b> Themen erforderlich.</li>
    
-    <li>Bei Abschlussarbeiten geben Sie bitte zudem Ihre Professur an und geben Sie an, ob die Arbeit für Bachelor-, Masterstudiengänge oder beides verfügbar ist.</li> </ul>  
-    Es können zum Kurs beliebig viele Themen angelegt werden. Es besteht zudem die Möglichkeit,
-    nachträglich Themen zu eingetragenen Kursen hochzuladen. <a href="/mt_verwaltung.php"><i class="fa fa-arrow-right"></i>Themen eintragen</a>
+    <li>Es können beliebig viele Themen angelegt werden und im Nachhinein ergänzt werden. <br><a href="/mt_verwaltung"><i class="fa fa-arrow-right"></i>Themen eintragen</a>
 </div>
 <div class="form_thema">
     <form action='' method="post" name='mod' id='mod'>

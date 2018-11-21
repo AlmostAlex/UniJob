@@ -63,7 +63,7 @@
         <b>Informationen aus-/einblenden: </b>
             <div class="form-check form-check-inline"> <p><input type="checkbox" name="pri1" id="pri1" checked="checked"/><label for="pri1">Priorität 1</label></p></div>
             <div class="form-check form-check-inline"><p><input type="checkbox" name="pri2" id="pri2" checked="checked" /><label for="pri2">Priorität 2</label></p></div>
-            <div class="form-check form-check-inline"><p><input type="checkbox" name="pri3" id="pri3"  checked="checked" /><label for="pri3">Priorität 3</label></p></div>
+            <div class="form-check form-check-inline"><p><input type="checkbox" name="pri3" id="pri3"  /><label for="pri3">Priorität 3</label></p></div>
             <div class="form-check form-check-inline"><p><input type="checkbox" name="matrikelnummer" id="matr" /><label for="matr">Matr.</label></p></div>
             <div class="form-check form-check-inline"><p><input type="checkbox"  name="email"  id="email" /><label for="email">E-mail</label></p></div>
             <div class="form-check form-check-inline"><p><input type="checkbox" name="status"  id="status" /><label for="status">Status</label></p></div>
@@ -72,7 +72,7 @@
             <table id="sort_einsicht_bel"> 
                 <thead>
                     <tr>
-                        
+                        <th>Info</th>
                         <th><u>Erhaltenes Thema</u></th>
 
                         <th class='pri1'>Pr1</th>  
@@ -88,7 +88,7 @@
                 </thead>
                 <?php for($k = 0; $k < count($bewerber); $k++){ ?>
                     <tr> 
-                       
+                       <td style='width:5%; vertical-align: top;'></td>
                         <td style='width:10%; vertical-align: top;'><b><?php echo $bewerber[$k]['themenbezeichnung'] ?></b></td>
 
                         <td style='width:10%; vertical-align: top;' class='pri1'><?php echo $bewerber[$k]['pri1']?></td>

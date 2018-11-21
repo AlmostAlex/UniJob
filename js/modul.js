@@ -389,7 +389,6 @@ function showVorkenntnisse(thema_id) {
 
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("txtHint").innerHTML = this.responseText;
-
         }
     };
     xhttp.open("GET", "/ajax/ajax_controller.php?action=showVorkenntnisse&id=" + thema_id, true);
@@ -546,11 +545,48 @@ function archivierung(semester) {
 // ende
 
 // ONLY NUMERIC BEI BEWERBUNGEN
-
 $(document).ready(function(e) {
-    $("input#onlyNumeric").keypress(function(event) {
+    $('input#onlyNumeric').keydown(function(e) {
+        var key = e.which;
+        if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
+            key >= 48 && key <= 57 || // numbers   
+            key >= 96 && key <= 105 || // Numeric keypad
+            key == 190 || key == 188 || key == 109 || key == 110 || // comma, period and minus, . on keypad
+            key == 8 || key == 9 || key == 13 || // Backspace and Tab and EnterEnd
+            key == 35 || key == 36 || // Home and 
+            key == 37 || key == 39 || // left and right arrows
+            key == 46 || key == 45) // Del and Ins
+            return true;
+
+        return false;
+    });
+});
+
+/*
+$(document).ready(function(e) {
+    $("input #onlyNumeric").keypress(function(event) {
         return /\d/.test(String.fromCharCode(event.keyCode));
     });
 });
+
+
+
+$(document).ready(function(e) {
+    $('input #onlyNumeric').keypress(function(event) {
+        if ($.browser.mozilla == true) {
+            if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 9 || event.keyCode == 16 || event.keyCode == 46) {
+                return true;
+            }
+        }
+        if (event.which < 48 || event.which > 57) {
+            event.preventDefault();
+        }
+    });
+}); 
+
+$('input #onlyNumeric').on('keypress', function(event) {
+    var isAlphaNum = String.fromCharCode(event.charCode).match(/[a-zA-Z0-9]/);
+
+});*/
 
 // ende

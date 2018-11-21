@@ -139,7 +139,11 @@ class modul_model
     public function getModule($filter_modul, $abfrage_th)
     {
         
-        $statement = $this->dbh->prepare("SELECT modul.modul_id,modul.modulbezeichnung,modul.professur,modul.kategorie,modul.abschlusstyp,modul.hinweise,modul.verfahren,modul.semester,modul.frist_start,modul.frist_ende,modul.kickoff,modul.studiengang,modul.modul_verfuegbarkeit,modul.archivierung,modul.nachrueckverfahren
+        $statement = $this->dbh->prepare(
+            "SELECT modul.modul_id,modul.modulbezeichnung,modul.professur,modul.kategorie,
+            modul.abschlusstyp,modul.hinweise,modul.verfahren,modul.semester,modul.frist_start,
+            modul.frist_ende,modul.kickoff,modul.studiengang,modul.modul_verfuegbarkeit,
+            modul.archivierung,modul.nachrueckverfahren
                FROM modul Where archivierung = 'false'". $filter_modul);    
         $statement->execute();
         $statement->bind_result($modul_id, $modulbezeichnung, $professur,$kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $frist_start, $frist_ende, $kickoff, $studiengang, $modul_verfuegbarkeit,$archivierung,$nachrueckverfahren);
@@ -148,9 +152,9 @@ class modul_model
 
         $rows = array();
         while ($statement->fetch()) {
+
         if($abfrage_th != '')
         {
-            echo '++'.  $abfrage_th;
         $statement_thema = $this->dbh->prepare("SELECT thema.thema_id
         FROM tags JOIN thema on tags.thema_id = thema.thema_id 
         WHERE thema.modul_id = ?
@@ -160,37 +164,40 @@ class modul_model
         $statement_thema->bind_result($thema_id);
         $statement_thema->store_result();
         }else{
-            echo '--'. $abfrage_th;
             $statement_thema = $this->dbh->prepare("SELECT thema.thema_id
-            FROM tags JOIN thema on tags.thema_id = thema.thema_id 
+            FROM thema
             WHERE thema.modul_id = ?");
             $statement_thema->bind_param('i', $modul_id);
             $statement_thema->execute();
             $statement_thema->bind_result($thema_id);
-            $statement_thema->store_result();}
+            $statement_thema->store_result();
+        }
+
         if($statement_thema->num_rows !== 0)
         {
             if (new DateTime($frist_start) > new DateTime(date("Y-m-d"))) {
                 $deleteBtn = 'badge badge-danger';
+                $modul_verfuegbarkeit = 'Nicht öffentlich';
             } else {  $deleteBtn = 'btn_false';}
 
             
             $anzahl_thema_verfuegbar = $this->getModulThemaAnzahlVerfuegbar($modul_id, "Verfügbar");
-            if ((new DateTime(date("Y-m-d")) > new DateTime($frist_ende) || ($anzahl_thema_verfuegbar == "0"))) {
+            if ( ((new DateTime(date("Y-m-d")) > new DateTime($frist_ende)) || ($anzahl_thema_verfuegbar == 0) ) ) {
                 $archivBtn = 'badge badge-warning';
                 $btn_form  = 'btn btn-secondary disabled btn';
                 $btn_msg ='Geschlossen'; 
                 $state ='none';
                 $this->updateVerfuegbarkeit($modul_id,"Geschlossen");
-                
-            } else { $archivBtn = 'btn_false';
+            }  else { 
+                  $archivBtn = 'btn_false';
                   $btn_form  = 'button-two'; 
                   $btn_msg ='Anmeldung'; 
                   $state ='href="bewerbung/'.$kategorie.'/'.$modul_id.' "';
             }
 
-            if ((new DateTime(date("Y-m-d")) > new DateTime($frist_ende) && ($anzahl_thema_verfuegbar > "0")) 
-                || $this->getVerfuegbarkeitID($modul_id) == "Geschlossen" && ($anzahl_thema_verfuegbar > "0") ) {
+
+            if ((new DateTime(date("Y-m-d")) > new DateTime($frist_ende) && ($anzahl_thema_verfuegbar > 0)) 
+                || $this->getVerfuegbarkeitID($modul_id) == "Geschlossen" && ($anzahl_thema_verfuegbar > 0) ) {
                 $nachrueckBtn = 'badge badge-primary';}else{ $nachrueckBtn = 'btn_false'; }
 
 
@@ -243,6 +250,127 @@ class modul_model
         return $rows;
     }
 
+
+/* GET MODULE BEI ÜBERSICHT */
+
+
+public function getModuleByUebersicht($filter_modul, $abfrage_th)
+{
+    
+    $statement = $this->dbh->prepare("SELECT modul.modul_id,modul.modulbezeichnung,
+    modul.professur,modul.kategorie,modul.abschlusstyp,modul.hinweise,modul.verfahren,
+    modul.semester,modul.frist_start,modul.frist_ende,modul.kickoff,modul.studiengang,
+    modul.modul_verfuegbarkeit,modul.archivierung,modul.nachrueckverfahren
+    FROM modul 
+    WHERE DATE(`frist_start`) < CURDATE()
+    AND archivierung = 'false'". $filter_modul);    
+
+    $statement->execute();
+    $statement->bind_result($modul_id, $modulbezeichnung, $professur,$kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $frist_start, $frist_ende, $kickoff, $studiengang, $modul_verfuegbarkeit,$archivierung,$nachrueckverfahren);
+    $statement->store_result();
+   
+
+    $rows = array();
+    while ($statement->fetch()) {
+       
+    if($abfrage_th != '')
+    {
+            $statement_thema = $this->dbh->prepare("SELECT thema.thema_id
+            FROM tags JOIN thema on tags.thema_id = thema.thema_id 
+            WHERE thema.modul_id = ?
+            ".$abfrage_th."");
+            $statement_thema->bind_param('i', $modul_id);
+            $statement_thema->execute();
+            $statement_thema->bind_result($thema_id);
+            $statement_thema->store_result();    
+    }else{
+        $statement_thema = $this->dbh->prepare("SELECT thema.thema_id
+        FROM thema
+        WHERE thema.modul_id = ?");
+        $statement_thema->bind_param('i', $modul_id);
+        $statement_thema->execute();
+        $statement_thema->bind_result($thema_id);
+        $statement_thema->store_result();
+    }
+
+    if($statement_thema->num_rows !== 0)
+    {
+        if (new DateTime($frist_start) > new DateTime(date("Y-m-d"))) {
+            $deleteBtn = 'badge badge-danger';
+        } else {  $deleteBtn = 'btn_false';}
+
+        
+        $anzahl_thema_verfuegbar = $this->getModulThemaAnzahlVerfuegbar($modul_id, "Verfügbar");
+        if ( ((new DateTime(date("Y-m-d")) >= new DateTime($frist_ende)) || ($anzahl_thema_verfuegbar == 0) ) ) {
+            $archivBtn = 'badge badge-warning';
+            $btn_form  = 'btn btn-secondary disabled btn';
+            $btn_msg ='Geschlossen'; 
+            $state ='none';
+            $this->updateVerfuegbarkeit($modul_id,"Geschlossen");
+            
+        } else { 
+              $archivBtn = 'btn_false';
+              $btn_form  = 'button-two'; 
+              $btn_msg ='Anmeldung'; 
+              $state ='href="bewerbung/'.$kategorie.'/'.$modul_id.' "';
+
+        }
+
+        if ((new DateTime(date("Y-m-d")) > new DateTime($frist_ende) && ($anzahl_thema_verfuegbar > 0)) 
+            || $this->getVerfuegbarkeitID($modul_id) == "Geschlossen" && ($anzahl_thema_verfuegbar > 0) ) {
+            $nachrueckBtn = 'badge badge-primary';}else{ $nachrueckBtn = 'btn_false'; }
+
+
+        if ($nachrueckverfahren=='true') {  $nachrueckv_status = '[Nachrückverfahren]'; $verfahren_anzeige = 'Windhundverfahren';
+        } else {  $nachrueckv_status  = ''; $verfahren_anzeige = $verfahren; }
+
+        if($verfahren=='Windhundverfahren'){$einsicht_wh_btn ='badge badge-info'; }
+        else{ $einsicht_wh_btn ='btn_false'; }
+        
+        if($verfahren=='Bewerbungsverfahren'){ $einsicht_bw_btn ='badge badge-info';} 
+        else{ $einsicht_bw_btn ='btn_false';}
+
+        if($verfahren=='Belegwunschverfahren'){ $einsicht_bel_btn ='badge badge-info';} 
+        else{ $einsicht_bel_btn ='btn_false';}
+
+        $start_dt = new DateTime($frist_start);
+        $row = array(
+            'modul_id' => $modul_id,
+            'modulbezeichnung' => $modulbezeichnung,
+            'professur' => $professur,
+            'kategorie' => $kategorie,
+            'abschlusstyp' => $abschlusstyp,
+            'hinweise' => $hinweise,
+            'verfahren' => $verfahren,
+            'semester' => $semester,
+            'frist_start' => $frist_start,
+            'start_anzeige' => date("d.m.Y", strtotime($frist_start)),
+            'frist_ende' => $frist_ende,
+            'ende_anzeige' => date("d.m.Y", strtotime($frist_ende)),
+            'kickoff' => $kickoff,
+            'kickoff_anzeige' => date("d.m.Y", strtotime($kickoff)),
+            'studiengang' => $studiengang,
+            'modul_verfuegbarkeit' => $modul_verfuegbarkeit,
+            'archivierung' => $archivierung,
+            'checkDeleteBtn' => $deleteBtn,
+            'checkArchivBtn'=> $archivBtn,
+            'checkNachrueckBtn' => $nachrueckBtn,
+            'nachrueckv_status'=> $nachrueckv_status,
+            'verfahren_anzeige'=> $verfahren_anzeige,
+            'btn_form'=> $btn_form,
+            'btn_msg'=> $btn_msg,
+            'state'=> $state,
+            'einsicht_wh_btn'=> $einsicht_wh_btn,
+            'einsicht_bw_btn'=> $einsicht_bw_btn,
+            'einsicht_bel_btn'=> $einsicht_bel_btn                
+        );
+        $rows[] = $row;
+        }
+    }
+    return $rows;
+}
+
+/* ------------------------------- */
 
     public function getModulById($modul_id)
     {
@@ -470,7 +598,11 @@ class modul_model
 
 
     public function count_s() {
-        $statement = $this->dbh->prepare("SELECT semester, count(modul_id) AS anzahl FROM modul WHERE archivierung='false' GROUP BY semester");
+        $statement = $this->dbh->prepare("SELECT semester, count(modul_id) AS anzahl 
+        FROM modul  
+        WHERE archivierung='false' 
+        AND DATE(`frist_start`) < CURDATE()
+        GROUP BY semester");
         $statement->execute();
         $statement->bind_result($semester, $anzahl);
         $statement->store_result();
@@ -487,8 +619,15 @@ class modul_model
     }
 
     public function count_b() {
-        $statement = $this->dbh->prepare("SELECT user.benutzername, user.benutzer_id, count(modul_id) AS anzahl FROM modul, user 
-        WHERE modul.benutzer_id = user.benutzer_id AND modul.archivierung='false' GROUP BY benutzer_id");
+        $statement = $this->dbh->prepare(
+        "SELECT user.benutzername, user.benutzer_id, 
+        count(thema_id) AS anzahl 
+        FROM modul, thema, user 
+        WHERE thema.benutzer_id = user.benutzer_id
+        AND thema.modul_id = modul.modul_id 
+        AND modul.archivierung='false'
+        AND DATE(modul.frist_start) < CURDATE() 
+        GROUP BY benutzer_id");
         $statement->execute();
         $statement->bind_result($benutzername, $benutzer_id, $anzahl);
         $statement->store_result();
@@ -505,7 +644,11 @@ class modul_model
         return $b_row;
     }
     public function count_k() {
-        $statement = $this->dbh->prepare("SELECT kategorie, count(modul_id) AS anzahl FROM modul WHERE archivierung='false' GROUP BY kategorie");
+        $statement = $this->dbh->prepare("SELECT kategorie, count(modul_id) AS anzahl 
+        FROM modul 
+        WHERE archivierung='false' 
+        AND DATE(frist_start) < CURDATE() 
+        GROUP BY kategorie");
         $statement->execute();
         $statement->bind_result($kategorie, $anzahl);
 

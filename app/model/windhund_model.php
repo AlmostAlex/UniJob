@@ -28,8 +28,8 @@ class windhund_model
     public function bewerbung_count($modul_id)
     {
          $statement = $this->dbh->prepare
-         ("SELECT count(windhund_id) as anzahl_bewerber_check
-         FROM Windhund, thema, modul 
+         ("SELECT count(windhund.windhund_id) as anzahl_bewerber_check
+         FROM windhund, thema, modul 
          WHERE thema.thema_id = windhund.thema_id 
          AND thema.modul_id = modul.modul_id
          AND modul.modul_id = ?");
@@ -37,6 +37,7 @@ class windhund_model
         $statement->execute();
         $statement->bind_result($anzahl_bewerber_check);
         $statement->fetch();
+
         return $anzahl_bewerber_check;        
     }
 

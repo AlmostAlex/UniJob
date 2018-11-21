@@ -25,9 +25,9 @@
                         <li>Informieren Sie sich auf dieser Informationsseite über die verschiedenen Vergabeverfahren.</li>
                         <li>Suchen Sie auf der folgenden Seite nach den passenden Modulen und Themen.<br>
                         <a href="Themen_uebersicht_student.php"><i class="fa fa-arrow-right" aria-hidden="true"></i> zur Themenübersicht</a></li>
-                        <li>Wenn sie das passende Thema gefunden haben, klicken sie auf "zur Anmeldung".<br>
+                        <li>Wenn Sie ein Thema bearbeiten möchten, klicken Sie auf „Anmelden“. Sie gelangen dann entsprechend zum Formular.</li>
                         Sie werden dadurch zu dem Anmeldeformular weitergeleitet und können Ihre Bewerbung einsenden.</li>
-                        <li>Beim mehrmaligen Abschicken einer Bewerbung <b>(Nicht einer Anmeldung)</b>, wird nur der letzte Datensatz berücksichtigt.</li>
+                        <li>Beim mehrmaligen Abschicken einer Bewerbung oder eines Belegwunsches, wird nur der letzte Datensatz berücksichtigt.</li>
                         <li>Bei Themenspezifischen Fragen wenden Sie sich an den zugehörigen Betreuer.</li>
                     </ol>
                     </div>
