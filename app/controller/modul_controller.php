@@ -78,7 +78,7 @@ class modul_controller
             // mit den generierten IDs die Themen holen. Daher --> True.
             // Anders ist es jedoch, wenn man bereits eine Modul_id (wie bei Edit)
             case 'true':
-                return $this->thema_model->getThemen($modul_id, '');
+                return $this->thema_model->getThemen($modul_id, '', '');
                 break;
         }
     }
@@ -270,7 +270,7 @@ class modul_controller
             $this->getModal('edit_modul_success', $modul_id);
         }
 
-        $themen = $this->thema_model->getThemen($modul_id, '');
+        $themen = $this->thema_model->getThemen($modul_id, '', '');
         include 'app/view/modul_verwaltung/edit_modul_view.php';
 }
 
@@ -313,7 +313,7 @@ public function editThema($thema_id)
 // Archivierung
 
 public function ArchivierungThemen($modul_id,$abfrage_th){
-    return $this->thema_model->getThemen($modul_id,$abfrage_th);
+    return $this->thema_model->getThemen($modul_id,$f_abfrage_s, $b_abfrage);
 }
 
 public function archivierung($semester_f,$status) // Modal Konfigurationen
