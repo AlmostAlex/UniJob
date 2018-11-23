@@ -179,13 +179,13 @@ class thema_model
         return $thema_id;
     }
 
-    public function getThemen($modul_id, $abfrage_th)
+    public function getThemen($modul_id, $f_abfrage_s, $b_abfrage)
     {
-        if ($abfrage_th != '') {
+        if ($f_abfrage_s != '') {
             $statement_thema = $this->dbh->prepare("SELECT thema.thema_id, 
                     thema.themenbezeichnung, thema.beschreibung, thema.thema_verfuegbarkeit, thema.benutzer_id
                     FROM tags JOIN thema on tags.thema_id = thema.thema_id
-                    WHERE thema.modul_id = ?
+                    WHERE thema.modul_id = ? ".$b_abfrage."
                     GROUP BY tags.thema_id " . $abfrage_th);
             $statement_thema->bind_param('i', $modul_id);
             $statement_thema->execute();
@@ -194,7 +194,7 @@ class thema_model
         } else {
             $statement_thema = $this->dbh->prepare("SELECT thema.thema_id, thema.themenbezeichnung, thema.beschreibung, thema.thema_verfuegbarkeit, thema.benutzer_id
                     FROM thema
-                    WHERE thema.modul_id = ?
+                    WHERE thema.modul_id = ? ".$b_abfrage."
                     GROUP BY thema.thema_id");
             $statement_thema->bind_param('i', $modul_id);
             $statement_thema->execute();

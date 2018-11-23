@@ -21,8 +21,8 @@ class modul_uebersicht_controller
         $this->vorkenntnisse_model = new vorkenntnisse_model();
     }
 
-public function modulUebersichtThemen($modul_id,$abfrage_th){
-    return $this->thema_model->getThemen($modul_id,$abfrage_th);
+public function modulUebersichtThemen($modul_id, $f_abfrage_s, $b_abfrage){
+    return $this->thema_model->getThemen($modul_id, $f_abfrage_s, $b_abfrage);
 }
 
 public function modulUebersichtVorkenntisse($thema_id){
@@ -37,7 +37,7 @@ public function modulUebersichtTags($thema_id){
         $s_row = $this->modul_model->count_s(); // Anzahl der Semester, Betreuer und Kategorien für die Filteranzeige - Ausgangssicht
         $b_row = $this->modul_model->count_b();
         $k_row = $this->modul_model->count_k();
-        $module = $this->modul_model->getModuleByUebersicht('', '');
+        $module = $this->modul_model->getModuleByUebersicht('', '', '');
 
         if(count($module) > 0) {
             $tagsBezFilter = $this->tags_model->getTagsBezeichnung();
@@ -77,7 +77,7 @@ public function modulUebersichtTags($thema_id){
                     $abfrage_modul = $s_abfrage .''. $a_abfrage;
                     $abfrage_th =  $b_abfrage .''. $f_abfrage_s;
 
-                    $module = $this->modul_model->getModuleByUebersicht($abfrage_modul, $abfrage_th);      
+                    $module = $this->modul_model->getModuleByUebersicht($abfrage_modul, $f_abfrage_s, $b_abfrage);      
                     $betreuer_anzeige = $this->user_model->getIDBenutzername($betreuer);
                     include(__DIR__."/../view/modul_uebersicht/modul_uebersicht_mt_view.php"); 
                 break; 

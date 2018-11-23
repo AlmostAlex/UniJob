@@ -254,7 +254,7 @@ class modul_model
 /* GET MODULE BEI ÜBERSICHT */
 
 
-public function getModuleByUebersicht($filter_modul, $abfrage_th)
+public function getModuleByUebersicht($filter_modul, $f_abfrage_s, $b_abfrage)
 {
     
     $statement = $this->dbh->prepare("SELECT modul.modul_id,modul.modulbezeichnung,
@@ -273,12 +273,12 @@ public function getModuleByUebersicht($filter_modul, $abfrage_th)
     $rows = array();
     while ($statement->fetch()) {
        
-    if($abfrage_th != '')
+    if($f_abfrage_s != '')
     {
             $statement_thema = $this->dbh->prepare("SELECT thema.thema_id
             FROM tags JOIN thema on tags.thema_id = thema.thema_id 
-            WHERE thema.modul_id = ?
-            ".$abfrage_th."");
+            WHERE thema.modul_id = ? ".$b_abfrage." 
+            ".$f_abfrage_s);
             $statement_thema->bind_param('i', $modul_id);
             $statement_thema->execute();
             $statement_thema->bind_result($thema_id);
@@ -286,7 +286,7 @@ public function getModuleByUebersicht($filter_modul, $abfrage_th)
     }else{
         $statement_thema = $this->dbh->prepare("SELECT thema.thema_id
         FROM thema
-        WHERE thema.modul_id = ?");
+        WHERE thema.modul_id = ? ".$b_abfrage);
         $statement_thema->bind_param('i', $modul_id);
         $statement_thema->execute();
         $statement_thema->bind_result($thema_id);
