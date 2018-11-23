@@ -186,7 +186,7 @@ class thema_model
                     thema.themenbezeichnung, thema.beschreibung, thema.thema_verfuegbarkeit, thema.benutzer_id
                     FROM tags JOIN thema on tags.thema_id = thema.thema_id
                     WHERE thema.modul_id = ? ".$b_abfrage."
-                    GROUP BY tags.thema_id " . $abfrage_th);
+                    GROUP BY tags.thema_id " . $f_abfrage_s);
             $statement_thema->bind_param('i', $modul_id);
             $statement_thema->execute();
             $statement_thema->bind_result($thema_id, $themenbezeichnung, $beschreibung, $thema_verfuegbarkeit, $benutzer_id);
