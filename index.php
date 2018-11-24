@@ -53,6 +53,10 @@ $router->map(["GET", "POST"],["/bewerbung/{action}/{id}"], function ($action,$id
     $bewerbung->Route($action,$id,'true','show'); 
 });
 
+$router->map(["GET", "POST"],["/export.php"], function ($action,$id) {
+    $response->render("app/view/einsicht/export.php");
+});
+
 
 /* PUBLIC END*/ 
 

@@ -73,6 +73,13 @@ if(isset($_GET["action"]) && $_GET["action"] =='swapAgain'){
     $controller = new einsicht_controller();
     $controller->swapAgainst($_GET["bewID_von"], $_GET["bewThID_von"], $_GET["bewID_zu"], $_GET["thID_zu"]);
 
+} 
+
+// Export
+
+if(isset($_GET["action"]) && $_GET["action"] =='export'){
+
+include('../app/view/einsicht/export.php');
 
 } 
 

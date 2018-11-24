@@ -3,7 +3,7 @@
     <div class='alert alert-secondary' role='alert'>
         Von insgesamt <b><?php echo $infos['anzThema']; ?></b> 
         Themen 
-             <?php if($infos['kategorie'] == "Seminararbeit"){ echo 'sind im Modul <b> "'. $infos['modulbezeichnung'].'"';} else {  echo 'in der Professur <b>"'. $infos['professur'].'"';} ?> 
+             <?php if($infos['kategorie'] == "Seminararbeit"){ echo 'sind im Modul <button> "'. $infos['modulbezeichnung'].'"';} else {  echo 'in der Professur <b>"'. $infos['professur'].'"';} ?> 
             </b> <?php if($infos['anzThemaVergeben'] > 1){ echo "sind ".$infos['anzThemaVergeben'].""; } else if($infos['anzThemaVergeben'] == 0){ echo "kein";} else { echo "ist ein ".$infos['anzThemaVergeben'].""; } ?>
              <?php if($infos['anzThemaVergeben'] > 1){ echo "Themen"; } else { echo "Thema"; } ?> vergeben.
     </div>
@@ -169,7 +169,7 @@
                         <td><?php echo $keinThema[$i]['status']?></td>
                         <td>
 
-                            <a data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#exampleModal"
+                            <a data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#swapModal"
                             id='swap'
                             class='swap'
                             data-bew-id='<?php echo $keinThema[$i]['belegwunsch_id']?>' 
@@ -193,9 +193,129 @@
 <br><br><br>
 </open>
 
+<!-- EXPORT LINKAGE -->
+<export> 
+    <button  style='color:white; float:right;' class="btn btn-primary" data-keyboard="false" data-toggle="modal" data-target="#exportEinsichtbeleg">
+     Exportieren
+    </button>
+</export>
+
+ <style>
+ export h4{
+     font-size: 17px;
+     padding:0px;
+ }
+
+ export .modal-header{
+     padding:5px 0 0 0;
+ }
+ </style>
+
+
+<!-- MODAL EXPORT -->
+<export>
+    <div class="modal fade" id="exportEinsichtbeleg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div  class="modal-dialog" role="document">
+            <div style='width:700px' class="modal-content">
+                <div class="modal-header">
+                    <h4>Listen exportieren</h4>
+                </div>
+                <div class="modal-body">
+
+                <div class="alert alert-info" role="alert">
+                hi hih ihi hi hih ihi   hi hih ihi    hihi hihi  
+                hi hih ihi hi hih ihi   hi hih ihi    hihi hihi   
+                hi hih ihi hi hih ihi   hi hih ihi    hihi hihi   
+                hi hih ihi hi hih ihi   hi hih ihi    hihi hihi     
+                hihi hihi hihi hihi    hihi hihi   hihi hihi    hihi hihi
+                </div>
+
+<table>
+<tr>
+    <td> Konfigurationen:</td>
+</tr>
+    <tr>
+        <td><b>Liste:</b></td>
+            <td>
+                <input type="radio" id="all" name="Liste" value="All">
+                <label for="Gesamt"> Alle</label> 
+                <input type="radio" id="nachrv" name="Liste" value="nachrv">
+                <label for="nachrv"> Nachrückverfahren</label>
+                <input type="radio" id="vergebene" name="Liste" value="vergebene">
+                <label for="vergebene"> Vergebene</label>
+                <input type="radio" id="Nvergebene" name="Liste" value="Nvergebene">
+                <label for="Nvergebene"> Nicht vergebene</label>
+            </td>
+    </tr>
+    <tr>
+        <td><b>Attribute</b></td>
+    
+    
+    </tr>  
+</table>
+
+
+
+
+                </div>
+                <div class="modal-footer">
+
+<a id="downloadlink" href="#">Click Me</a>
+<div id="wait"></div>
+<form id="hiddenform" method="POST" action="export/download.php">
+    <input type="hidden" id="filedata" name="data" value="">
+</form>
+
+                <button id='exportBL' type="button" class="btn btn-primary">Export ausführen</button>
+                <button type="button" id='closeBeleg' class="btn btn-secondary" data-dismiss="modal">Fenster schließen</button>               
+                </div>
+            </div>
+        </div>
+    </div>
+</export>
+
+ <script>
+    $(document).ready(function(){
+      $('#exportBL').on('click', function(){
+            $.ajax({
+                url: 'export.php',
+                type: 'post',
+                data: { creat_csv: true},
+                success: function(response){
+                   // window.location.href = 'export.csv';
+                document.location.href = '/ajax/ajax_controller.php?action=export&id=4';
+                   //alert(response);
+                   //document.location.href = '/php_scripts/utils/csv_export.php?query_name='+query_name;
+  
+                }
+            });
+        });
+    });
+
+
+    $(document).ready(function(){
+  $("#downloadlink").click(function(){       // click the link to download
+      lock();                                // start indicator
+      $.get("export/create.php",function(filedata){ // AJAX call returns with CSV file data
+          $("#filedata").val(filedata);      // insert into the hidden form
+          unlock();                          // update indicator
+          $("#hiddenform").submit();         // submit the form data to the download page
+      });
+  });
+
+  function lock(){
+      $("#wait").text("Creating File...");
+  }
+
+  function unlock(){
+      $("#wait").text("Done");
+  }
+});
+ </script>
+
 <!-- Modal -->
 <swap>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="swapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -203,7 +323,6 @@
       </div>
       <div class="modal-body">
         <div class='swapContent' id='swapContent'></div>
-    
       </div>
       <div class="modal-footer">
         <button type="button" id='closeBeleg' onClick="window.location.href=window.location.href" class="btn btn-secondary" data-dismiss="modal">Fenster schließen</button>
