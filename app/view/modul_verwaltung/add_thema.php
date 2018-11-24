@@ -4,7 +4,7 @@
     <ul>
         <li> Es können mehrere Themen nachträglich
          <?php if($kategorie == 'Seminararbeit') { echo "zum dazugehörigen Seminar <b>".$modulbezeichnung."</b>"; } 
-        else{ echo "zur Professur <b>".$modulbezeichnung."</b>"; } ?>l hinzugefügt werden.</li>
+        else{ echo "zur Professur <b>".$modulbezeichnung."</b>"; } ?> hinzugefügt werden.</li>
         <li> Um Tags erfolgreich einzutragen, müssen diese durch ein ' <b>,</b> ' oder durch die Enter-Taste bestätigt bzw. getrennt werden.</li>
     </ul>
 </div>

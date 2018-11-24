@@ -5,9 +5,9 @@
         Auf der Verwaltungsseite für Modul(-themen), können folgende Funktionen ausgeführt werden:
     <ul>
         <li>Module und Themen können <b>bearbeitet</b> und <b>gelöscht</b> werden.</li>
-        <li>Existiert nur <b>ein Thema im Modul</b>, das gelöscht werden soll, wird das <b>gesamte Modul</b> gelöscht.</li>
-        <li>Zudem können zu den Modulen Bewerbungen eingesehen und verwaltet werden.</li>
-        <li>Es können zudem Themen zusätzlich zu den Modulen hinzugefügt werden.</li>
+        <li>Existiert im Modul nur <b>ein Thema</b>, das gelöscht werden soll, wird das <b>gesamte Modul</b> gelöscht.</li>
+        <li>Es können Bewerbungen zu den Modulen eingesehen und verwaltet werden.</li>
+        <li>Weitere Themen können nachträglich zu den Modulen hinzugefügt werden.</li>
     </ul>
     Es können keine Module und Themen gelöscht werden, sobald der Starttermin eingetroffen ist.<br>
     Sobald der Starttermin gültig ist, sind keine Bearbeitungen im Bezug auf das ausgewählte Verfahren und Termine mehr
