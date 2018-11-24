@@ -104,14 +104,10 @@ function swap(e) {
 }
 
 function swap2(e) {
-
-
     var bewID_von = $(e).find(':selected').data('bew-id-von');
     var bewThID_von = $(e).find(':selected').data('bew-thema-vorher');
-
     var thID_zu = $(e).find(':selected').data('thema');
     var bewID_zu = $(e).find(':selected').data('bew-id');
-
     $(e).prop('disabled', 'disabled');
 
 

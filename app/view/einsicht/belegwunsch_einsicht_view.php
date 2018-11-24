@@ -194,11 +194,7 @@
 </open>
 
 <!-- EXPORT LINKAGE -->
-<export> 
-    <button  style='color:white; float:right;' class="btn btn-primary" data-keyboard="false" data-toggle="modal" data-target="#exportEinsichtbeleg">
-     Exportieren
-    </button>
-</export>
+
 
  <style>
  export h4{
@@ -207,9 +203,19 @@
  }
 
  export .modal-header{
-     padding:5px 0 0 0;
+    padding:5px 0 0 0;
+    background-color: #3f91d8;
+    color: white;
  }
  </style>
+
+
+
+<export> 
+    <button  style='color:white; float:right;' class="btn btn-primary" data-keyboard="false" data-toggle="modal" data-target="#exportEinsichtbeleg">
+     Exportieren
+    </button>
+</export>
 
 
 <!-- MODAL EXPORT -->
@@ -231,13 +237,10 @@
                 </div>
 
 <table>
-<tr>
-    <td> Konfigurationen:</td>
-</tr>
     <tr>
-        <td><b>Liste:</b></td>
+        <td><b>Listenart:</b></td>
             <td>
-                <input type="radio" id="all" name="Liste" value="All">
+                <input type="radio" id="all" name="Liste" value="All" checked>
                 <label for="Gesamt"> Alle</label> 
                 <input type="radio" id="nachrv" name="Liste" value="nachrv">
                 <label for="nachrv"> Nachrückverfahren</label>
@@ -248,25 +251,45 @@
             </td>
     </tr>
     <tr>
-        <td><b>Attribute</b></td>
-    
-    
+        <td><b>Attribute:</b></td>   
+        <td>
+        <input id="ExerhThema" type="checkbox" />
+        <label for="ExerhThema"> Erhaltenes Thema</label> 
+
+
+                <input id="Exmatr" type="checkbox" />
+        <label for="Exmatr">Matrikelnr.</label> 
+
+        <input id="Exemail" type="checkbox" />
+        <label for="Exemail">E-Mail</label> 
+
+        </td>
+    </tr>
+    <hr>
+    <tr> 
+        
+    <td></td>
+        <td>
+        <input id="Expri1" type="checkbox" />
+        <label for="Expri1"> Pri1</label> 
+
+        <input id="Expri2" type="checkbox" />
+        <label for="Expri2"> Pri2</label> 
+
+        <input id="Expri3" type="checkbox" />
+        <label for="Expri3">Pri3</label> 
+
+        </td>
     </tr>  
 </table>
+</div>
 
-
-
-
-                </div>
                 <div class="modal-footer">
+                <a class="btn btn-primary" id="downloadlink" href="#">Click Me</a>
+                <form id="hiddenform" method="POST" action="../../app/view/export/download.php">
+                    <input type="hidden" id="filedata" name="data" value="">
+                </form>
 
-<a id="downloadlink" href="#">Click Me</a>
-<div id="wait"></div>
-<form id="hiddenform" method="POST" action="export/download.php">
-    <input type="hidden" id="filedata" name="data" value="">
-</form>
-
-                <button id='exportBL' type="button" class="btn btn-primary">Export ausführen</button>
                 <button type="button" id='closeBeleg' class="btn btn-secondary" data-dismiss="modal">Fenster schließen</button>               
                 </div>
             </div>
@@ -275,47 +298,28 @@
 </export>
 
  <script>
-    $(document).ready(function(){
-      $('#exportBL').on('click', function(){
-            $.ajax({
-                url: 'export.php',
-                type: 'post',
-                data: { creat_csv: true},
-                success: function(response){
-                   // window.location.href = 'export.csv';
-                document.location.href = '/ajax/ajax_controller.php?action=export&id=4';
-                   //alert(response);
-                   //document.location.href = '/php_scripts/utils/csv_export.php?query_name='+query_name;
-  
-                }
-            });
-        });
-    });
 
 
-    $(document).ready(function(){
-  $("#downloadlink").click(function(){       // click the link to download
-      lock();                                // start indicator
-      $.get("export/create.php",function(filedata){ // AJAX call returns with CSV file data
-          $("#filedata").val(filedata);      // insert into the hidden form
-          unlock();                          // update indicator
-          $("#hiddenform").submit();         // submit the form data to the download page
-      });
+$(document).ready(function(){
+
+  $("#downloadlink").click(function(){  
+    var liste = $("input[name='Liste']:checked").val();
+
+    $.get('../../app/view/export/download.php','action=export',function(){
+     document.location.href = '../../app/view/export/download.php?action=export';
+
+                 /*         
+     $.get("export/download.php?action=export",function(filedata){ // AJAX call returns with CSV file data
+          $("#filedata").val(filedata);      // insert into the hidden form                       
+          $("#hiddenform").submit();         // submit the form data to the download page*/
+      }); 
   });
-
-  function lock(){
-      $("#wait").text("Creating File...");
-  }
-
-  function unlock(){
-      $("#wait").text("Done");
-  }
 });
  </script>
 
 <!-- Modal -->
 <swap>
-<div class="modal fade" id="swapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
