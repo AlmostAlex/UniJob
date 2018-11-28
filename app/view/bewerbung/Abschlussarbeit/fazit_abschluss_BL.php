@@ -25,8 +25,20 @@
             <td><?php echo $email;?></td>
         </tr>
         <tr>
+            <td><label><b>Fachsemester:</b></label></td>
+            <td><?php echo $fachsemester;?></td>
+        </tr>
+        <tr>
+            <td><label><b>Credits:</b></label></td>
+            <td><?php echo $credits;?></td>
+        </tr>
+        <tr>
             <td><label><b>Matrikelnummer:</b></label></td>
             <td><?php echo $matrikelnummer;?></td>
+        </tr>
+        <tr>
+            <td><label><b>Studiengang:</b></label></td>
+            <td><?php echo $studiengang;?></td>
         </tr>
         <tr>
             <td><label><b>Zulassung:</b></label></td>

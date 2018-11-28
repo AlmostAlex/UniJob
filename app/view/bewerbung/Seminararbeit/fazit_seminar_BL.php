@@ -29,6 +29,22 @@
             <td><?php echo $matrikelnummer;?></td>
         </tr>
         <tr>
+            <td><label><b>Fachsemester:</b></label></td>
+            <td><?php echo $fachsemester;?></td>
+        </tr>
+        <tr>
+            <td><label><b>Credits:</b></label></td>
+            <td><?php echo $credits;?></td>
+        </tr>
+        <tr>
+            <td><label><b>Seminarteilnahme:</b></label></td>
+            <td><?php echo $seminarteilnahme;?></td>
+        </tr>
+        <tr>
+            <td><label><b>Studiengang:</b></label></td>
+            <td><?php echo $studiengang;?></td>
+        </tr>
+        <tr>
             <td><label><b>Zulassung:</b></label></td>
             <td><?php echo $zulassung .''. $seminarteilnahme; ?></td>
         </tr>          
@@ -65,7 +81,7 @@
         </tr>   
     </table>
 
-    <div type="button" style='color:white;' class="btn btn-primary"><a href='/modul_uebersicht'>Zurück zur Übersichtx</a></div>
+    <div type="button" style='color:white;' class="btn btn-primary"><a href='/modul_uebersicht'>Zurück zur Übersicht</a></div>
     </div>
     </bewerbung>
 <br><br>

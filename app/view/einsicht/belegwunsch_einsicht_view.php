@@ -1,7 +1,7 @@
 <br><h4>Verwaltung der Anmeldungen zum Belegwunschverfahren</h4>
-<open >
+<open>
     <div class='alert alert-secondary' role='alert'>
-        Von insgesamt <b><?php echo $infos['anzThema']; ?></b> 
+        Von insgesamt <b><?php echo $infos['anzThema']; ?></b>
         Themen 
              <?php if($infos['kategorie'] == "Seminararbeit"){ echo 'sind im Modul <button> "'. $infos['modulbezeichnung'].'"';} else {  echo 'in der Professur <b>"'. $infos['professur'].'"';} ?> 
             </b> <?php if($infos['anzThemaVergeben'] > 1){ echo "sind ".$infos['anzThemaVergeben'].""; } else if($infos['anzThemaVergeben'] == 0){ echo "kein";} else { echo "ist ein ".$infos['anzThemaVergeben'].""; } ?>
@@ -56,7 +56,7 @@
 
 
 <!-- ZUGETEILTE THEMEN -->
-<form style='margin-bottom:30px;' method="post"> 
+<form style='margin-bottom:30px;' method="post">
      <div class="table-responsive" id="module">
      <div class='bewerbung_verwaltung'>
         <div class='belegSort'>
@@ -69,19 +69,19 @@
             <div class="form-check form-check-inline"><p><input type="checkbox" name="status"  id="status" /><label for="status">Status</label></p></div>
         </div>
 
-            <table id="sort_einsicht_bel"> 
+            <table id="sort_einsicht_bel">
                 <thead>
                     <tr>
                         <th>Info</th>
                         <th><u>Erhaltenes Thema</u></th>
 
-                        <th class='pri1'>Pr1</th>  
-                        <th class='pri2'>Pr2</th>  
+                        <th class='pri1'>Pr1</th>
+                        <th class='pri2'>Pr2</th>
                         <th class='pri3'>Pr3</th>
 
                         <th class='matrikelnummer'>Matrikelnr.</th>
                         <th class='email'>Email</th>
-                        <th class='status'>Status</th>  
+                        <th class='status'>Status</th>
 
                       <th class="no-sort" name='funktionen'>Funktionen</th>
                     </tr>

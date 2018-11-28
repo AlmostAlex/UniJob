@@ -17,11 +17,11 @@ class belegwunsch_model
         $this->heute_dt = new DateTime(date("Y-m-d"));
     }
 
-    public function insertBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3)
+    public function insertBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $studiengang, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3, $punkte)
     {
-        if ($statement = $this->dbh->prepare("INSERT INTO `belegwunsch` (`vorname`, `nachname`, `matrikelnummer`, `email`, `status`, `voraussetzung`, `seminarteilnahme`, `wunschthema1`, `wunschthema2`, `wunschthema3`)
-        VALUES (?,?,?,?,'offen',?,?,?,?,?)")) {
-            $statement->bind_param('ssisssiii', $vorname, $nachname, $matrikelnummer, $email, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3);
+        if ($statement = $this->dbh->prepare("INSERT INTO `belegwunsch` (`vorname`, `nachname`, `matrikelnummer`, `email`, `studiengang`, `status`, `voraussetzung`, `seminarteilnahme`, `wunschthema1`, `wunschthema2`, `wunschthema3`, `punkte`)
+        VALUES (?,?,?,?,?,'offen',?,?,?,?,?,?)")) {
+            $statement->bind_param('ssissssiiid', $vorname, $nachname, $matrikelnummer, $email, $studiengang, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3, $punkte['gesamt']);
             $statement->execute();
         } else {
             $error = $this->dbh->errno . ' ' . $this->dbh->error;
@@ -29,12 +29,12 @@ class belegwunsch_model
         }
     }
 
-    public function updateBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3)
+    public function updateBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $studiengang, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3, $punkte)
     {
         $status = "offen";
-        if ($statement = $this->dbh->prepare("UPDATE belegwunsch, thema SET belegwunsch.vorname = ?, belegwunsch.nachname = ?, belegwunsch.email = ?, belegwunsch.status = ?, belegwunsch.voraussetzung = ?, belegwunsch.seminarteilnahme = ?, belegwunsch.wunschthema1 = ?, belegwunsch.wunschthema2 = ?, belegwunsch.wunschthema3 = ? WHERE belegwunsch.matrikelnummer = ? AND belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = (SELECT modul_id FROM thema WHERE thema_id = ?)"))
+        if ($statement = $this->dbh->prepare("UPDATE belegwunsch, thema SET belegwunsch.vorname = ?, belegwunsch.nachname = ?, belegwunsch.email = ?, belegwunsch.studiengang = ?, belegwunsch.status = ?, belegwunsch.voraussetzung = ?, belegwunsch.seminarteilnahme = ?, belegwunsch.wunschthema1 = ?, belegwunsch.wunschthema2 = ?, belegwunsch.wunschthema3 = ?, belegwunsch.punkte = ? WHERE belegwunsch.matrikelnummer = ? AND belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = (SELECT modul_id FROM thema WHERE thema_id = ?)"))
         {
-            $statement->bind_param('ssssssiiiii', $vorname, $nachname, $email, $status, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3, $matrikelnummer, $wunschthema1);
+            $statement->bind_param('ssssssiiidii', $vorname, $nachname, $email, $studiengang, $status, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3, $punkte['gesamt'], $matrikelnummer, $wunschthema1);
             $statement->execute();
         } else {
             $error = $this->dbh->errno . ' ' . $this->dbh->error;
@@ -141,6 +141,31 @@ class belegwunsch_model
         return $anzahl_bewerber_check;        
     }
 
+    public function beleg_countStudien($modul_id, $studiengang)
+    {
+         $statement = $this->dbh->prepare
+         ("SELECT COUNT(belegwunsch_id)
+         FROM belegwunsch, thema, modul
+         WHERE belegwunsch.studiengang = ? AND belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = modul.modul_id AND modul.modul_id = ?");
+        $statement->bind_param('si', $studiengang, $modul_id);
+        $statement->execute();
+        $statement->bind_result($anzahl_bewerber_check);
+        $statement->fetch();
+        return $anzahl_bewerber_check;        
+    }
+
+    public function beleg_countRest($modul_id, $studiengang)
+    {
+         $statement = $this->dbh->prepare
+         ("SELECT COUNT(belegwunsch_id)
+         FROM belegwunsch, thema, modul
+         WHERE belegwunsch.studiengang != ? AND belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = modul.modul_id AND modul.modul_id = ?");
+        $statement->bind_param('si', $studiengang, $modul_id);
+        $statement->execute();
+        $statement->bind_result($anzahl_bewerber_check);
+        $statement->fetch();
+        return $anzahl_bewerber_check;        
+    }
 
     public function countAnzWHBeleg($modul_id)
     {
@@ -237,13 +262,14 @@ class belegwunsch_model
     return $infos;
     } 
 
-    public function getBewerberInfos($modul_id){
+    public function getBewerberInfos($studiengang, $modul_id){
         
-        $statement = $this->dbh->prepare("SELECT belegwunsch_id, wunschthema1, wunschthema2, wunschthema3
+        $statement = $this->dbh->prepare("SELECT belegwunsch_id, wunschthema1, wunschthema2, wunschthema3, studiengang, punkte
                                         FROM belegwunsch, thema 
-                                        WHERE belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = ?");
-        $statement->bind_param('i', $modul_id);
-        $statement->bind_result($belegwunsch_id, $wunschthema1, $wunschthema2, $wunschthema3);
+                                        WHERE belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = ? AND belegwunsch.studiengang != ?
+                                        ORDER BY belegwunsch.punkte Desc");
+        $statement->bind_param('is', $modul_id, $studiengang);
+        $statement->bind_result($belegwunsch_id, $wunschthema1, $wunschthema2, $wunschthema3, $studiengang, $punkte);
         $statement->execute();
         $row = array();
         while ($statement->fetch()) {
@@ -252,6 +278,32 @@ class belegwunsch_model
                 'wunschthema1' => $wunschthema1,
                 'wunschthema2' => $wunschthema2,
                 'wunschthema3' => $wunschthema3,
+                'studiengang' => $studiengang,
+                'bewertung' => $punkte
+            );
+            $row[] = $rows;
+        }
+        return $row;
+    }
+
+    public function getBewerberInfosPlus($studiengang, $modul_id){
+        
+        $statement = $this->dbh->prepare("SELECT belegwunsch_id, wunschthema1, wunschthema2, wunschthema3, studiengang, punkte
+                                        FROM belegwunsch, thema 
+                                        WHERE belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = ? AND belegwunsch.studiengang = ?
+                                        ORDER BY belegwunsch.punkte Desc");
+        $statement->bind_param('is', $modul_id, $studiengang);
+        $statement->bind_result($belegwunsch_id, $wunschthema1, $wunschthema2, $wunschthema3, $studiengang, $punkte);
+        $statement->execute();
+        $row = array();
+        while ($statement->fetch()) {
+            $rows = array(
+                'belegwunsch_id' => $belegwunsch_id,
+                'wunschthema1' => $wunschthema1,
+                'wunschthema2' => $wunschthema2,
+                'wunschthema3' => $wunschthema3,
+                'studiengang' => $studiengang,
+                'bewertung' => $punkte
             );
             $row[] = $rows;
         }
