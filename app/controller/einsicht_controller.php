@@ -706,7 +706,7 @@ class einsicht_controller
         }
         $i = 0;
         while($i < $bewerberAnzahlRest){
-            $bewerberinfoAlle[$bewerberAnzahlStudien+$i] = $bewerberinfoPlus[$i];
+            $bewerberinfos[$bewerberAnzahlStudien+$i] = $bewerberinfoPlus[$i];
             $i = $i + 1;
         }
         print_r($bewerberinfos);
@@ -738,7 +738,6 @@ class einsicht_controller
             $i = $i + 1;
         }
     }
-
     public function export($action,$id,$list)
     {
         if($action == 'exportBEL'){
