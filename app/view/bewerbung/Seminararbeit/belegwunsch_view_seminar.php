@@ -41,7 +41,26 @@
                         </div>
                     </div>                              
                 </td>           
-</tr>
+            </tr>
+            <tr>
+                <td><label for='Fachsemester'><b>Aktuelles Fachsemester:</b><red style='color: red'>*</red></label></td>
+                <td><input style='width: 100%' type='text' class='form-control' name='Fachsemester' id='onlyNumeric' value='<?php echo $fachsemester?>' required></td>
+            </tr>
+            <tr>
+                <td><label for='Credits'><b>Anzahl Credits:</b><red style='color: red'>*</red></label></td>
+                <td><input type='text' class='form-control' name='Credits' id='onlyNumeric' placeholer='Anzahl' value='<?php echo $credits?>' required></td>
+            </tr>
+            <tr>
+                <td><label for='Studiengang'><b>Studiengang:</b><red style='color: red'>*</red></label></td>
+                <td>
+                    <select class='form-control' name='Studiengang' id='Studiengang' required>
+                        <option value='Betriebswirtschaftlehre' <?php if($studiengang == "Betriebswirtschaftslehre"){echo "selected";}?> >Betriebswirtschaftslehre</option>
+                        <option value='Wirtschaftsinformatik' <?php if($studiengang == "Wirtschaftsinformatik"){echo "selected";}?> >Wirtschaftsinformatik</option>
+                        <option value='Volkswirtschaftslehre' <?php if($studiengang == "Volkswirtschaftslehre"){echo "selected";}?> >Volkswirtschaftslehre</option>
+                        <option value='Wirtschaftspädagogik' <?php if($studiengang == "Wirtschaftspädagogik"){echo "selected";}?> >Wirtschaftspädagogik</option>                   
+                    </select>
+                </td>
+            </tr>
             <tr>
                 <td><label for='Thema'><b>Thema 1:</b><red style='color: red'>*</red></label></td>
                 <td>

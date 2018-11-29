@@ -492,6 +492,16 @@ public function getModuleByUebersicht($filter_modul, $f_abfrage_s, $b_abfrage)
         return $verfahren;
     }
 
+    public function getModulStudiengang($modul_id)
+    {
+        $statement = $this->dbh->prepare("SELECT studiengang FROM modul Where modul_id =?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($studiengang);
+        $statement->fetch();
+        return $studiengang;
+    }
+
     public function getModulNachrueckvByID($modul_id)
     {
         $statement = $this->dbh->prepare("SELECT nachrueckverfahren From modul Where modul_id =?");
