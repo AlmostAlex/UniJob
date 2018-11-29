@@ -167,6 +167,7 @@ class einsicht_controller
         $bewerberAnzahlStudien = $this->belegwunsch_model->beleg_countStudien($modul_id, $studiengang);
         $bewerberAnzahlRest = $this->belegwunsch_model->beleg_countRest($modul_id, $studiengang);
         $themaAnzahl = $this->modul_model->getThemenAnzahl($modul_id);
+        echo $bewerberAnzahlStudien;
             
         //Status der Themen auf "Frei" setzen und Status der Bewerber auf "Hat nichts!" setzen.
         $bewerberinfos = $this->belegwunsch_model->getBewerberInfosPlus($studiengang, $modul_id);
@@ -188,27 +189,76 @@ class einsicht_controller
             $k = $k + 1;
         }
             
-            $themen = $this->thema_model->getAllModulThema($modul_id);
-            $k=0;
-            while($k < $themaAnzahl)
-            {
-                $themen[$themen[$k]['thema_id']]['Status'] = "Frei";
-                $themen[$themen[$k]['thema_id']]['Punkte'] = 0;
-                $themen[$themen[$k]['thema_id']]['Bewerber'] = "Noch kein Bewerber";
-                $k = $k + 1;
-            }
+        $themen = $this->thema_model->getAllModulThema($modul_id);
+        $k=0;
+        while($k < $themaAnzahl)
+        {
+            $themen[$themen[$k]['thema_id']]['Status'] = "Frei";
+            $themen[$themen[$k]['thema_id']]['Punkte'] = 0;
+            $themen[$themen[$k]['thema_id']]['Bewerber'] = "Noch kein Bewerber";
+            $k = $k + 1;
+        }
             
-            //Die Studenten bekommen ihren ersten Wunsch, wenn dieser noch frei ist.
-            $i = 0; $j = 0;
-            while($i < $bewerberAnzahlStudien)
+        //Die Studenten bekommen ihren ersten Wunsch, wenn dieser noch frei ist.
+        $i = 0; $j = 0;
+        while($i < $bewerberAnzahlStudien)
+        {
+            while($j < $themaAnzahl)
             {
-                while($j < $themaAnzahl)
+                if($bewerberinfos[$i]['wunschthema1'] == $themen[$j]['thema_id'])
                 {
-                    if($bewerberinfos[$i]['wunschthema1'] == $themen[$j]['thema_id'])
+                    if($themen[$themen[$j]['thema_id']]['Status'] == "Frei")
+                    {
+                        $themen[$themen[$j]['thema_id']]['Punkte'] = 115;
+                        $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
+                        $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
+                        $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
+                        $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                    }
+                }
+                $j = $j + 1;
+            }
+            $i = $i + 1;
+            $j = 0;
+        }
+        $i = 0; $j = 0;
+        //Die Studenten, die noch nichts haben, bekommen ihren zweiten Wunsch, wenn dieser noch Frei ist.
+        while($i < $bewerberAnzahlStudien)
+        {
+            while($j < $themaAnzahl)
+            { 
+                if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] != "Hat was!")
+                {
+                    if($bewerberinfos[$i]['wunschthema2'] == $themen[$j]['thema_id'])
                     {
                         if($themen[$themen[$j]['thema_id']]['Status'] == "Frei")
                         {
-                            $themen[$themen[$j]['thema_id']]['Punkte'] = 115;
+                            $themen[$themen[$j]['thema_id']]['Punkte'] = 110;
+                            $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
+                            $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
+                            $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
+                            $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                        }
+                    }
+                }
+                $j = $j + 1;
+            }
+            $i = $i + 1;
+            $j = 0;
+        }
+        $i = 0; $j = 0;
+        //Die Studenten, die noch nichts haben, bekommen ihren dritten Wunsch, wenn dieser noch Frei ist.
+        while($i < $bewerberAnzahlStudien)
+        { 
+            if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] != "Hat was!")
+            {   
+                while($j < $themaAnzahl)
+                {
+                    if($bewerberinfos[$i]['wunschthema3'] == $themen[$j]['thema_id'])
+                    {
+                        if($themen[$themen[$j]['thema_id']]['Status'] == "Frei")
+                        {
+                            $themen[$themen[$j]['thema_id']]['Punkte'] = 105;
                             $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
                             $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
                             $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
@@ -217,242 +267,193 @@ class einsicht_controller
                     }
                     $j = $j + 1;
                 }
-                $i = $i + 1;
-                $j = 0;
             }
-            $i = 0; $j = 0;
-            //Die Studenten, die noch nichts haben, bekommen ihren zweiten Wunsch, wenn dieser noch Frei ist.
-            while($i < $bewerberAnzahlStudien)
+            $i = $i + 1;
+            $j = 0;
+        }
+        $i = 0; $j = 0;
+        //Gesamtpunktzahl nach der ersten iteraltion bestimmen.
+        $gesamtPunktzahl = 0;
+        while($i < $themaAnzahl)
+        {
+            $gesamtPunktzahl += $themen[$themen[$j]['thema_id']]['Punkte'];
+            $i = $i + 1;
+        }
+        $i = 0;
+
+        $bewerbersucht = 0;
+        while($i < $bewerberAnzahlStudien)
+        {
+            if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] != "Hat was!")
             {
-                while($j < $themaAnzahl)
-                { 
-                    if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] != "Hat was!")
+                $bewerbersucht = 1;
+            }
+            $i = $i + 1;
+        }
+        $i=0;
+
+        //Prüfen, ob es noch Freie Themen gibt, welche vergeben werden können
+        //->Bedingung dafür ist, dass es min. soviele Bewerber gibt wie Themen.
+        while($j < $themaAnzahl)
+        {
+            if($themen[$themen[$j]['thema_id']]['Status'] == "Frei")
+            {
+                if($bewerberAnzahlStudien >= $themaAnzahl || $bewerbersucht = 1)
+                {
+                    $bewerbungErhalten = false;
+                    //Es wird nach einem Bewerber gesucht, der das Thema als einen seiner Wünsche angegeben hatte.
+                    //Wird er gefunden, dann werden seine Daten zwischengespeichert.
+                    while($i < $bewerberAnzahlStudien)
                     {
+                        if($bewerberinfos[$i]['wunschthema1'] == $themen[$j]['thema_id'])
+                        {
+                            $k = 0;
+                            while($k < $themaAnzahl){
+                                if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
+                                    $Punktzahl1 = $themen[$themen[$k]['thema_id']]['Punkte'];
+                                    $k = $themaAnzahl;
+                                }else{$k=$k+1;}
+                            }
+                            $Punktzahl2 = 115;
+                            $TauschThema = $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'];
+                            $bewerbungErhalten = true;
+                            break 1;
+                        }
                         if($bewerberinfos[$i]['wunschthema2'] == $themen[$j]['thema_id'])
                         {
-                            if($themen[$themen[$j]['thema_id']]['Status'] == "Frei")
-                            {
-                                $themen[$themen[$j]['thema_id']]['Punkte'] = 110;
-                                $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
-                                $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
-                                $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
-                                $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                            $k = 0;
+                            while($k < $themaAnzahl){
+                                if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
+                                    $Punktzahl1 = $themen[$themen[$k]['thema_id']]['Punkte'];
+                                    $k = $themaAnzahl;
+                                }else{$k=$k+1;}
                             }
-                        }
-                    }
-                    $j = $j + 1;
-                }
-                $i = $i + 1;
-                $j = 0;
-            }
-            $i = 0; $j = 0;
-            //Die Studenten, die noch nichts haben, bekommen ihren dritten Wunsch, wenn dieser noch Frei ist.
-            while($i < $bewerberAnzahlStudien)
-            { 
-                if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] != "Hat was!")
-                {   
-                    while($j < $themaAnzahl)
-                    {
-                        if($bewerberinfos[$i]['wunschthema3'] == $themen[$j]['thema_id'])
+                            $Punktzahl2 = 110;
+                            $TauschThema = $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'];
+                            $bewerbungErhalten = true;
+                            break 1;
+                        } 
+                        else if($bewerberinfos[$i]['wunschthema3'] == $themen[$j]['thema_id'])
                         {
-                            if($themen[$themen[$j]['thema_id']]['Status'] == "Frei")
-                            {
-                                $themen[$themen[$j]['thema_id']]['Punkte'] = 105;
-                                $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
-                                $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
-                                $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
-                                $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                            $k = 0;
+                            while($k < $themaAnzahl){
+                                if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
+                                    $Punktzahl1 = $themen[$themen[$k]['thema_id']]['Punkte'];
+                                    $k = $themaAnzahl;
+                                }else{$k=$k+1;}
                             }
+                            $Punktzahl2 = 105;
+                            $TauschThema = $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'];
+                            $bewerbungErhalten = true;
+                            break 1;
                         }
-                        $j = $j + 1;
+                        $i = $i + 1;
                     }
-                }
-                $i = $i + 1;
-                $j = 0;
-            }
-            $i = 0; $j = 0;
-            //Gesamtpunktzahl nach der ersten iteraltion bestimmen.
-            $gesamtPunktzahl = 0;
-            while($i < $themaAnzahl)
-            {
-                    $gesamtPunktzahl += $themen[$themen[$j]['thema_id']]['Punkte'];
-                    $i = $i + 1;
-            }
-            $i = 0;
+                    $i = 0;
+                    $t = 0;
 
-            $bewerbersucht = 0;
-            while($i < $bewerberAnzahlStudien)
-            {
-                if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] != "Hat was!")
-                {
-                    $bewerbersucht = 1;
-                }
-                $i = $i + 1;
-            }
-            $i=0;
-
-            //Prüfen, ob es noch Freie Themen gibt, welche vergeben werden können
-            //->Bedingung dafür ist, dass es min. soviele Bewerber gibt wie Themen.
-            while($j < $themaAnzahl)
-            {
-                if($themen[$themen[$j]['thema_id']]['Status'] == "Frei")
-                {
-                    if($bewerberAnzahlStudien >= $themaAnzahl || $bewerbersucht = 1)
+                    if($bewerbungErhalten == true)
                     {
-                        $bewerbungErhalten = false;
-                        //Es wird nach einem Bewerber gesucht, der das Thema als einen seiner Wünsche angegeben hatte.
-                        //Wird er gefunden, dann werden seine Daten zwischengespeichert.
+                        //Nach einem Bewerber suchen, der noch kein Thema hat und das alte Thema nehmen könnte
                         while($i < $bewerberAnzahlStudien)
                         {
-                            if($bewerberinfos[$i]['wunschthema1'] == $themen[$j]['thema_id'])
+                            if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] == "Hat nichts!")
                             {
-                                $k = 0;
-                                while($k < $themaAnzahl){
-                                    if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
-                                        $Punktzahl1 = $themen[$themen[$k]['thema_id']]['Punkte'];
-                                        $k = $themaAnzahl;
-                                    }else{$k=$k+1;}
-                                }
-                                $Punktzahl2 = 115;
-                                $TauschThema = $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'];
-                                $bewerbungErhalten = true;
-                                break 1;
-                            }
-                            if($bewerberinfos[$i]['wunschthema2'] == $themen[$j]['thema_id'])
-                            {
-                                $k = 0;
-                                while($k < $themaAnzahl){
-                                    if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
-                                        $Punktzahl1 = $themen[$themen[$k]['thema_id']]['Punkte'];
-                                        $k = $themaAnzahl;
-                                    }else{$k=$k+1;}
-                                }
-                                $Punktzahl2 = 110;
-                                $TauschThema = $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'];
-                                $bewerbungErhalten = true;
-                                break 1;
-                            } 
-                            else if($bewerberinfos[$i]['wunschthema3'] == $themen[$j]['thema_id'])
-                            {
-                                $k = 0;
-                                while($k < $themaAnzahl){
-                                    if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
-                                        $Punktzahl1 = $themen[$themen[$k]['thema_id']]['Punkte'];
-                                        $k = $themaAnzahl;
-                                    }else{$k=$k+1;}
-                                }
-                                $Punktzahl2 = 105;
-                                $TauschThema = $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'];
-                                $bewerbungErhalten = true;
-                                break 1;
-                            }
-                            $i = $i + 1;
-                        }
-                        $i = 0;
-                        $t = 0;
-
-                        if($bewerbungErhalten == true)
-                        {
-                            //Nach einem Bewerber suchen, der noch kein Thema hat und das alte Thema nehmen könnte
-                            while($i < $bewerberAnzahlStudien)
-                            {
-                                if($bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] == "Hat nichts!")
+                                if($bewerberinfos[$i]['wunschthema1'] == $TauschThema)
                                 {
-                                    if($bewerberinfos[$i]['wunschthema1'] == $TauschThema)
+                                    //Sollte man mehr Priorität auf die Wünsche und nicht die Themenvergabe
+                                    //setzen wollen, dann kann man die Punkte geringer setzen.
+                                    //Momentan wird bei den "if"-Abfragen True rauskommen, da die Themenvergabe
+                                    //als Priorität angegeben wurde
+                                    $Saldo = 115 + $Punktzahl2 - $Punktzahl1;
+                                    if($Saldo >= 0)
                                     {
-                                        //Sollte man mehr Priorität auf die Wünsche und nicht die Themenvergabe
-                                        //setzen wollen, dann kann man die Punkte geringer setzen.
-                                        //Momentan wird bei den "if"-Abfragen True rauskommen, da die Themenvergabe
-                                        //als Priorität angegeben wurde
-                                        $Saldo = 115 + $Punktzahl2 - $Punktzahl1;
-                                        if($Saldo >= 0)
-                                        {
-                                            //Hier findet der "tausch" statt.
-                                            //Punkte aktuallisierung
-                                            $themen[$themen[$j]['thema_id']]['Punkte'] = $Punktzahl2;
-                                            $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
-                                            //Das noch nicht vergebene Thema bekommt nun den Bewerber zugewiesen und umgekehrt.
-                                            while($t < $bewerberAnzahlStudien){
-                                                if($bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] == $TauschThema){
-                                                    $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$t]['belegwunsch_id'];
-                                                    $bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
-                                                    break;
-                                                }else{$t= $t+1;}
-                                            }
-                                            //Der Bewerber der vorher noch nichts hatte bekommt nun das Thema vom
-                                            //vorherigen Bewerber
-                                            $t = 0;
-                                            while($t < $themaAnzahl){
-                                                if($themen[$t]['thema_id'] == $TauschThema){
-                                                    $themen[$themen[$t]['thema_id']]['Punkte'] = 115;
-                                                    $themen[$themen[$t]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
-                                                    $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
-                                                    $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$t]['thema_id'];
-                                                    break 2;
-                                                }else{$t= $t+1;}
-                                            }
+                                        //Hier findet der "tausch" statt.
+                                        //Punkte aktuallisierung
+                                        $themen[$themen[$j]['thema_id']]['Punkte'] = $Punktzahl2;
+                                        $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
+                                        //Das noch nicht vergebene Thema bekommt nun den Bewerber zugewiesen und umgekehrt.
+                                        while($t < $bewerberAnzahlStudien){
+                                            if($bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] == $TauschThema){
+                                                $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$t]['belegwunsch_id'];
+                                                $bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                                                break;
+                                            }else{$t= $t+1;}
                                         }
-                                    }
-                                    if($bewerberinfos[$i]['wunschthema2'] == $TauschThema)
-                                    {
-                                        $Saldo = 110 + $Punktzahl2 - $Punktzahl1;
-                                        if($Saldo >= 0)
-                                        {                                           
-                                            $themen[$themen[$j]['thema_id']]['Punkte'] = $Punktzahl2;
-                                            $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
-                                            while($t < $bewerberAnzahlStudien){
-                                                if($bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] == $TauschThema){
-                                                    $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$t]['belegwunsch_id'];
-                                                    $bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
-                                                    break;
-                                                }else{$t= $t+1;}
-                                            }
-                                            $t = 0;
-                                            while($t < $themaAnzahl){
-                                                if($themen[$t]['thema_id'] == $TauschThema){
-                                                    $themen[$themen[$t]['thema_id']]['Punkte'] = 110;
-                                                    $themen[$themen[$t]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
-                                                    $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
-                                                    $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$t]['thema_id'];
-                                                    break 2;
-                                                }else{$t= $t+1;}
-                                            }
-                                        }
-                                    }
-                                    if($bewerberinfos[$i]['wunschthema3'] == $TauschThema)
-                                    {
-                                        $Saldo = 105 + $Punktzahl2 - $Punktzahl1;
-                                        if($Saldo >= 0)
-                                        {
-                                            $themen[$themen[$j]['thema_id']]['Punkte'] = $Punktzahl2;
-                                            $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
-                                            while($t < $bewerberAnzahlStudien){
-                                                if($bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] == $TauschThema){
-                                                    $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$t]['belegwunsch_id'];
-                                                    $bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
-                                                    break;
-                                                }else{$t=$t+1;}
-                                            }
-                                            $t = 0;
-                                            while($t < $themaAnzahl){
-                                                if($themen[$t]['thema_id'] == $TauschThema){
-                                                    $themen[$themen[$t]['thema_id']]['Punkte'] = 105;
-                                                    $themen[$themen[$t]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
-                                                    $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
-                                                    $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$t]['thema_id'];
-                                                    break 2;
-                                                }else{$t=$t+1;}
-                                            }
+                                        //Der Bewerber der vorher noch nichts hatte bekommt nun das Thema vom
+                                        //vorherigen Bewerber
+                                        $t = 0;
+                                        while($t < $themaAnzahl){
+                                            if($themen[$t]['thema_id'] == $TauschThema){
+                                                $themen[$themen[$t]['thema_id']]['Punkte'] = 115;
+                                                $themen[$themen[$t]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
+                                                $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
+                                                $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$t]['thema_id'];
+                                                break 2;
+                                            }else{$t= $t+1;}
                                         }
                                     }
                                 }
-                                $i = $i +1;
+                                if($bewerberinfos[$i]['wunschthema2'] == $TauschThema)
+                                {
+                                    $Saldo = 110 + $Punktzahl2 - $Punktzahl1;
+                                    if($Saldo >= 0)
+                                    {                                           
+                                        $themen[$themen[$j]['thema_id']]['Punkte'] = $Punktzahl2;
+                                        $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
+                                        while($t < $bewerberAnzahlStudien){
+                                            if($bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] == $TauschThema){
+                                                $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$t]['belegwunsch_id'];
+                                                $bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                                                break;
+                                            }else{$t= $t+1;}
+                                        }
+                                        $t = 0;
+                                        while($t < $themaAnzahl){
+                                            if($themen[$t]['thema_id'] == $TauschThema){
+                                                $themen[$themen[$t]['thema_id']]['Punkte'] = 110;
+                                                $themen[$themen[$t]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
+                                                $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
+                                                $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$t]['thema_id'];
+                                                break 2;
+                                            }else{$t= $t+1;}
+                                        }
+                                    }
+                                }
+                                if($bewerberinfos[$i]['wunschthema3'] == $TauschThema)
+                                {
+                                    $Saldo = 105 + $Punktzahl2 - $Punktzahl1;
+                                    if($Saldo >= 0)
+                                    {
+                                        $themen[$themen[$j]['thema_id']]['Punkte'] = $Punktzahl2;
+                                        $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
+                                        while($t < $bewerberAnzahlStudien){
+                                            if($bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] == $TauschThema){
+                                                $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfos[$t]['belegwunsch_id'];
+                                                $bewerberinfos[$bewerberinfos[$t]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                                                break;
+                                            }else{$t=$t+1;}
+                                        }
+                                        $t = 0;
+                                        while($t < $themaAnzahl){
+                                            if($themen[$t]['thema_id'] == $TauschThema){
+                                                $themen[$themen[$t]['thema_id']]['Punkte'] = 105;
+                                                $themen[$themen[$t]['thema_id']]['Bewerber'] = $bewerberinfos[$i]['belegwunsch_id'];
+                                                $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Status'] = "Hat was!";
+                                                $bewerberinfos[$bewerberinfos[$i]['belegwunsch_id']]['Thema'] = $themen[$t]['thema_id'];
+                                                break 2;
+                                            }else{$t=$t+1;}
+                                        }
+                                    }
+                                }
                             }
+                            $i = $i +1;
                         }
                     }
                 }
-                $j = $j + 1;
             }
+            $j = $j + 1;
+        }
         $themafrei = 0;
         $i = 0;
         while($i < $themaAnzahl)
@@ -463,23 +464,26 @@ class einsicht_controller
             }
             $i = $i + 1;
         }
+        $i = 0;
 
-        
         if($themafrei != 0 && $bewerberAnzahlRest != 0)
         {
             while($i < $bewerberAnzahlRest)
             {
                 while($j < $themaAnzahl)
                 {
-                    if($bewerberinfoPlus[$i]['wunschthema1'] == $themen[$j]['thema_id'])
+                    if($bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Status'] != "Hat was!")
                     {
-                        if($themen[$themen[$j]['thema_id']]['Status'] == "Frei")
+                        if($bewerberinfoPlus[$i]['wunschthema1'] == $themen[$j]['thema_id'])
                         {
-                            $themen[$themen[$j]['thema_id']]['Punkte'] = 115;
-                            $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfoPlus[$i]['belegwunsch_id'];
-                            $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
-                            $bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Status'] = "Hat was!";
-                            $bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                            if($themen[$themen[$j]['thema_id']]['Status'] == "Frei")
+                            {
+                                $themen[$themen[$j]['thema_id']]['Punkte'] = 115;
+                                $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfoPlus[$i]['belegwunsch_id'];
+                                $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
+                                $bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Status'] = "Hat was!";
+                                $bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                            }
                         }
                     }
                     $j = $j + 1;
@@ -537,9 +541,181 @@ class einsicht_controller
                 $i = $i + 1;
                 $j = 0;
             }
+            //Prüfen, ob es noch Freie Themen gibt, welche vergeben werden können
+        //->Bedingung dafür ist, dass es min. soviele Bewerber gibt wie Themen.
+        while($j < $themaAnzahl)
+        {
+            if($themen[$themen[$j]['thema_id']]['Status'] == "Frei")
+            {
+                if($bewerberAnzahlRest >= $themaAnzahl || $bewerbersucht = 1)
+                {
+                    $bewerbungErhalten = false;
+                    //Es wird nach einem Bewerber gesucht, der das Thema als einen seiner Wünsche angegeben hatte.
+                    //Wird er gefunden, dann werden seine Daten zwischengespeichert.
+                    while($i < $bewerberAnzahlRest)
+                    {
+                        if($bewerberinfoPlus[$i]['wunschthema1'] == $themen[$j]['thema_id'])
+                        {
+                            $k = 0;
+                            while($k < $themaAnzahl){
+                                if($bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
+                                    $Punktzahl1 = $themen[$themen[$k]['thema_id']]['Punkte'];
+                                    $k = $themaAnzahl;
+                                }else{$k=$k+1;}
+                            }
+                            $Punktzahl2 = 115;
+                            $TauschThema = $bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Thema'];
+                            $bewerbungErhalten = true;
+                            break 1;
+                        }
+                        if($bewerberinfoPlus[$i]['wunschthema2'] == $themen[$j]['thema_id'])
+                        {
+                            $k = 0;
+                            while($k < $themaAnzahl){
+                                if($bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
+                                    $Punktzahl1 = $themen[$themen[$k]['thema_id']]['Punkte'];
+                                    $k = $themaAnzahl;
+                                }else{$k=$k+1;}
+                            }
+                            $Punktzahl2 = 110;
+                            $TauschThema = $bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Thema'];
+                            $bewerbungErhalten = true;
+                            break 1;
+                        } 
+                        else if($bewerberinfoPlus[$i]['wunschthema3'] == $themen[$j]['thema_id'])
+                        {
+                            $k = 0;
+                            while($k < $themaAnzahl){
+                                if($bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Thema'] == $themen[$k]['thema_id']){
+                                    $Punktzahl1 = $themen[$themen[$k]['thema_id']]['Punkte'];
+                                    $k = $themaAnzahl;
+                                }else{$k=$k+1;}
+                            }
+                            $Punktzahl2 = 105;
+                            $TauschThema = $bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Thema'];
+                            $bewerbungErhalten = true;
+                            break 1;
+                        }
+                        $i = $i + 1;
+                    }
+                    $i = 0;
+                    $t = 0;
+
+                    if($bewerbungErhalten == true)
+                    {
+                        //Nach einem Bewerber suchen, der noch kein Thema hat und das alte Thema nehmen könnte
+                        while($i < $bewerberAnzahlRest)
+                        {
+                            if($bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Status'] == "Hat nichts!")
+                            {
+                                if($bewerberinfoPlus[$i]['wunschthema1'] == $TauschThema)
+                                {
+                                    //Sollte man mehr Priorität auf die Wünsche und nicht die Themenvergabe
+                                    //setzen wollen, dann kann man die Punkte geringer setzen.
+                                    //Momentan wird bei den "if"-Abfragen True rauskommen, da die Themenvergabe
+                                    //als Priorität angegeben wurde
+                                    $Saldo = 115 + $Punktzahl2 - $Punktzahl1;
+                                    if($Saldo >= 0)
+                                    {
+                                        //Hier findet der "tausch" statt.
+                                        //Punkte aktuallisierung
+                                        $themen[$themen[$j]['thema_id']]['Punkte'] = $Punktzahl2;
+                                        $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
+                                        //Das noch nicht vergebene Thema bekommt nun den Bewerber zugewiesen und umgekehrt.
+                                        while($t < $bewerberAnzahlRest){
+                                            if($bewerberinfoPlus[$bewerberinfoPlus[$t]['belegwunsch_id']]['Thema'] == $TauschThema){
+                                                $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfoPlus[$t]['belegwunsch_id'];
+                                                $bewerberinfoPlus[$bewerberinfoPlus[$t]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                                                break;
+                                            }else{$t= $t+1;}
+                                        }
+                                        //Der Bewerber der vorher noch nichts hatte bekommt nun das Thema vom
+                                        //vorherigen Bewerber
+                                        $t = 0;
+                                        while($t < $themaAnzahl){
+                                            if($themen[$t]['thema_id'] == $TauschThema){
+                                                $themen[$themen[$t]['thema_id']]['Punkte'] = 115;
+                                                $themen[$themen[$t]['thema_id']]['Bewerber'] = $bewerberinfoPlus[$i]['belegwunsch_id'];
+                                                $bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Status'] = "Hat was!";
+                                                $bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Thema'] = $themen[$t]['thema_id'];
+                                                break 2;
+                                            }else{$t= $t+1;}
+                                        }
+                                    }
+                                }
+                                if($bewerberinfoPlus[$i]['wunschthema2'] == $TauschThema)
+                                {
+                                    $Saldo = 110 + $Punktzahl2 - $Punktzahl1;
+                                    if($Saldo >= 0)
+                                    {                                           
+                                        $themen[$themen[$j]['thema_id']]['Punkte'] = $Punktzahl2;
+                                        $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
+                                        while($t < $bewerberAnzahlRest){
+                                            if($bewerberinfoPlus[$bewerberinfoPlus[$t]['belegwunsch_id']]['Thema'] == $TauschThema){
+                                                $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfoPlus[$t]['belegwunsch_id'];
+                                                $bewerberinfoPlus[$bewerberinfoPlus[$t]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                                                break;
+                                            }else{$t= $t+1;}
+                                        }
+                                        $t = 0;
+                                        while($t < $themaAnzahl){
+                                            if($themen[$t]['thema_id'] == $TauschThema){
+                                                $themen[$themen[$t]['thema_id']]['Punkte'] = 110;
+                                                $themen[$themen[$t]['thema_id']]['Bewerber'] = $bewerberinfoPlus[$i]['belegwunsch_id'];
+                                                $bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Status'] = "Hat was!";
+                                                $bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Thema'] = $themen[$t]['thema_id'];
+                                                break 2;
+                                            }else{$t= $t+1;}
+                                        }
+                                    }
+                                }
+                                if($bewerberinfoPlus[$i]['wunschthema3'] == $TauschThema)
+                                {
+                                    $Saldo = 105 + $Punktzahl2 - $Punktzahl1;
+                                    if($Saldo >= 0)
+                                    {
+                                        $themen[$themen[$j]['thema_id']]['Punkte'] = $Punktzahl2;
+                                        $themen[$themen[$j]['thema_id']]['Status'] = "Vergeben";
+                                        while($t < $bewerberAnzahlRest){
+                                            if($bewerberinfoPlus[$bewerberinfoPlus[$t]['belegwunsch_id']]['Thema'] == $TauschThema){
+                                                $themen[$themen[$j]['thema_id']]['Bewerber'] = $bewerberinfoPlus[$t]['belegwunsch_id'];
+                                                $bewerberinfoPlus[$bewerberinfoPlus[$t]['belegwunsch_id']]['Thema'] = $themen[$j]['thema_id'];
+                                                break;
+                                            }else{$t=$t+1;}
+                                        }
+                                        $t = 0;
+                                        while($t < $themaAnzahl){
+                                            if($themen[$t]['thema_id'] == $TauschThema){
+                                                $themen[$themen[$t]['thema_id']]['Punkte'] = 105;
+                                                $themen[$themen[$t]['thema_id']]['Bewerber'] = $bewerberinfoPlus[$i]['belegwunsch_id'];
+                                                $bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Status'] = "Hat was!";
+                                                $bewerberinfoPlus[$bewerberinfoPlus[$i]['belegwunsch_id']]['Thema'] = $themen[$t]['thema_id'];
+                                                break 2;
+                                            }else{$t=$t+1;}
+                                        }
+                                    }
+                                }
+                            }
+                            $i = $i +1;
+                        }
+                    }
+                }
+            }
+            $j = $j + 1;
         }
-
-
+        }
+        $i = 0;
+        while($i < $bewerberAnzahlRest){
+            $bewerberinfoAlle[$bewerberAnzahlStudien+$i] = $bewerberinfoPlus[$i];
+            $i = $i + 1;
+        }
+        print_r($bewerberinfos);
+        echo "</br></br></br>";
+        print_r($bewerberinfoPlus);
+        echo "</br></br></br>";
+        $bewerberinfoAlle = $bewerberinfos + $bewerberinfoPlus;
+        print_r($bewerberinfoAlle);
+        echo "</br></br></br>";
         
         $i = 0;
         //In der Datenbank den Bewerben die Themen zuordnen und nochmal die Punkte bestimmen.
