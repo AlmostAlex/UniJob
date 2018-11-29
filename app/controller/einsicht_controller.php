@@ -738,4 +738,51 @@ class einsicht_controller
             $i = $i + 1;
         }
     }
+
+    public function export($action,$id,$list)
+    {
+        if($action == 'exportBEL'){
+        
+            if($list == 'all'){ // Alle Listen d.h Vergebene, Nicht-vergebene und Liste nachdem Nachrückv. falls vorhanden
+                $bewerber = $this->thema_model->einsichtThemaModulBeleg($id); // Hole alle, die ein Thema haben
+                $keinThemaCount = $this->thema_model->keinThemaCount($id); // Hole alle, die KEIN Thema haben
+                $keinThema = $this->thema_model->keinThema($id);
+            
+            }
+
+            include('../app/view/export/download.php');
+        }
+    }
+
+          
+function convertToWindowsCharset($string) {
+    $charset =  mb_detect_encoding(
+    $string,
+    "UTF-8, ISO-8859-1, ISO-8859-15",
+    true
+    );
+        $string =  mb_convert_encoding($string, "Windows-1252", $charset);
+        return $string;
+    }
+
+
+    public function getModal($form, $id)
+    {
+    
+        $infos = $this->belegwunsch_model->info_belegwunsch($id);
+
+        switch ($form) {
+            case 'export_bel':
+            include 'app/view/modals/export.php';
+            break;
+
+            case 'swap':
+            include 'app/view/modals/swap.php';
+            break;
+        }
+
+    }
+
+
+
 }

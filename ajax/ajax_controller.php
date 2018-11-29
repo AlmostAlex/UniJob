@@ -77,10 +77,10 @@ if(isset($_GET["action"]) && $_GET["action"] =='swapAgain'){
 
 // Export
 
-if(isset($_GET["action"]) && $_GET["action"] =='export'){
+if(isset($_GET["action"]) && $_GET["action"] =='exportBEL'){
+$controller = new einsicht_controller();
+$controller->export($_GET['action'],$_GET['id'], $_GET['list']);
 
-include('../app/view/einsicht/export.php');
-
-} 
+}
 
 ?>
