@@ -111,14 +111,7 @@
                                     <i class="fas fa-exchange-alt"></i>
                                 </span>
                             </a>
-
-                          <!--  <a>
-                            <span class="badge badge-info">
-                                <i class="far fa-envelope"></i>
-                                </span>  
-                            </a> -->
-                        </td>
-            
+                        </td>            
                 <?php } ?>   
                 </table>
             <hr class="my-4"> 
@@ -195,145 +188,12 @@
 
 <!-- EXPORT LINKAGE -->
 
-
- <style>
- export h4{
-     font-size: 17px;
-     padding:0px;
- }
-
- export .modal-header{
-    padding:5px 0 0 0;
-    background-color: #3f91d8;
-    color: white;
- }
- </style>
-
-
-
 <export> 
     <button  style='color:white; float:right;' class="btn btn-primary" data-keyboard="false" data-toggle="modal" data-target="#exportEinsichtbeleg">
      Exportieren
     </button>
 </export>
+<?php $this->getModal('export_bel', $modul_id); $this->getModal('swap', $modul_id);?>
 
-
-<!-- MODAL EXPORT -->
-<export>
-    <div class="modal fade" id="exportEinsichtbeleg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div  class="modal-dialog" role="document">
-            <div style='width:700px' class="modal-content">
-                <div class="modal-header">
-                    <h4>Listen exportieren</h4>
-                </div>
-                <div class="modal-body">
-
-                <div class="alert alert-info" role="alert">
-                hi hih ihi hi hih ihi   hi hih ihi    hihi hihi  
-                hi hih ihi hi hih ihi   hi hih ihi    hihi hihi   
-                hi hih ihi hi hih ihi   hi hih ihi    hihi hihi   
-                hi hih ihi hi hih ihi   hi hih ihi    hihi hihi     
-                hihi hihi hihi hihi    hihi hihi   hihi hihi    hihi hihi
-                </div>
-
-<table>
-    <tr>
-        <td><b>Listenart:</b></td>
-            <td>
-                <input type="radio" id="all" name="Liste" value="All" checked>
-                <label for="Gesamt"> Alle</label> 
-                <input type="radio" id="nachrv" name="Liste" value="nachrv">
-                <label for="nachrv"> Nachrückverfahren</label>
-                <input type="radio" id="vergebene" name="Liste" value="vergebene">
-                <label for="vergebene"> Vergebene</label>
-                <input type="radio" id="Nvergebene" name="Liste" value="Nvergebene">
-                <label for="Nvergebene"> Nicht vergebene</label>
-            </td>
-    </tr>
-    <tr>
-        <td><b>Attribute:</b></td>   
-        <td>
-        <input id="ExerhThema" type="checkbox" />
-        <label for="ExerhThema"> Erhaltenes Thema</label> 
-
-
-                <input id="Exmatr" type="checkbox" />
-        <label for="Exmatr">Matrikelnr.</label> 
-
-        <input id="Exemail" type="checkbox" />
-        <label for="Exemail">E-Mail</label> 
-
-        </td>
-    </tr>
-    <hr>
-    <tr> 
-        
-    <td></td>
-        <td>
-        <input id="Expri1" type="checkbox" />
-        <label for="Expri1"> Pri1</label> 
-
-        <input id="Expri2" type="checkbox" />
-        <label for="Expri2"> Pri2</label> 
-
-        <input id="Expri3" type="checkbox" />
-        <label for="Expri3">Pri3</label> 
-
-        </td>
-    </tr>  
-</table>
-</div>
-
-                <div class="modal-footer">
-                <a class="btn btn-primary" id="downloadlink" href="#">Click Me</a>
-                <form id="hiddenform" method="POST" action="../../app/view/export/download.php">
-                    <input type="hidden" id="filedata" name="data" value="">
-                </form>
-
-                <button type="button" id='closeBeleg' class="btn btn-secondary" data-dismiss="modal">Fenster schließen</button>               
-                </div>
-            </div>
-        </div>
-    </div>
-</export>
-
- <script>
-
-
-$(document).ready(function(){
-
-  $("#downloadlink").click(function(){  
-    var liste = $("input[name='Liste']:checked").val();
-
-    $.get('../../app/view/export/download.php','action=export',function(){
-     document.location.href = '../../app/view/export/download.php?action=export';
-
-                 /*         
-     $.get("export/download.php?action=export",function(filedata){ // AJAX call returns with CSV file data
-          $("#filedata").val(filedata);      // insert into the hidden form                       
-          $("#hiddenform").submit();         // submit the form data to the download page*/
-      }); 
-  });
-});
- </script>
-
-<!-- Modal -->
-<swap>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-          <h4>Thementausch</h4>
-      </div>
-      <div class="modal-body">
-        <div class='swapContent' id='swapContent'></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" id='closeBeleg' onClick="window.location.href=window.location.href" class="btn btn-secondary" data-dismiss="modal">Fenster schließen</button>
-      </div>
-    </div>
-  </div>
-</div>
-</swap>
 
 

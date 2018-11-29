@@ -156,3 +156,20 @@ $(document).ready(function(e) {
         })
     });
 });
+
+/* EXPORT */
+
+
+$(document).ready(function() {
+
+    $("#downloadlink").click(function() {
+        //var liste = $("input[name='Liste']:checked").val();
+        var liste = document.getElementById("Liste").value;
+        var id = $("#Liste").data('modul-id');
+        alert(id);
+        $.get('../../ajax/ajax_controller.php', 'action=exportBEL&id=' + id + '&list=all', function() {
+            document.location.href = '../../ajax/ajax_controller.php?action=exportBEL&id=' + id + '&list=all';
+
+        });
+    });
+});

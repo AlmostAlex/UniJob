@@ -283,3 +283,14 @@ swap .modal-header {
     color: white;
     padding: 6px;
 }
+
+export h4 {
+    font-size: 17px;
+    padding: 0px;
+}
+
+export .modal-header {
+    padding: 5px 0 0 0;
+    background-color: #3f91d8;
+    color: white;
+}
