@@ -49,6 +49,7 @@
                     <option value='Wirtschaftsinformatik' <?php if($studiengang == 'Wirtschaftsinformatik'){echo "selected";} ?>>Wirtschaftsinformatik</option>
                     <option value='Wirtschaftspädagogik' <?php if($studiengang == 'Wirtschaftspädagogik'){echo "selected";} ?>>Wirtschaftspädagogik</option>
                     <option value='Volkswirtschaftslehre' <?php if($studiengang == 'Volkswirtschaftslehre'){echo "selected";} ?>>Volkswirtschaftslehre</option>
+                    <option value='Angewandte Informatik' <?php if($studiengang == "Angewandte Informatik"){echo "selected";}?> >Angewandte Informatik</option>
                 </td>
             </tr>
             <tr>

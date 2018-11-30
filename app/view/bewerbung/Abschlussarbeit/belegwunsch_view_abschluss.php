@@ -43,10 +43,11 @@
                 <td><label for='Studiengang'><b>Studiengang:</b><red style='color: red'>*</red></label></td>
                 <td>
                     <select class='form-control' name='Studiengang' id='Studiengang' required>
-                        <option value='Betriebswirtschaftlehre' <?php if($studiengang == "Betriebswirtschaftslehre"){echo "selected";}?> >Betriebswirtschaftslehre</option>
+                        <option value='Betriebswirtschaftslehre' <?php if($studiengang == "Betriebswirtschaftslehre"){echo "selected";}?> >Betriebswirtschaftslehre</option>
                         <option value='Wirtschaftsinformatik' <?php if($studiengang == "Wirtschaftsinformatik"){echo "selected";}?> >Wirtschaftsinformatik</option>
                         <option value='Volkswirtschaftslehre' <?php if($studiengang == "Volkswirtschaftslehre"){echo "selected";}?> >Volkswirtschaftslehre</option>
                         <option value='Wirtschaftspädagogik' <?php if($studiengang == "Wirtschaftspädagogik"){echo "selected";}?> >Wirtschaftspädagogik</option>                   
+                        <option value='Angewandte Informatik' <?php if($studiengang == "Angewandte Informatik"){echo "selected";}?> >Angewandte Informatik</option>
                     </select>
                 </td>
             </tr>

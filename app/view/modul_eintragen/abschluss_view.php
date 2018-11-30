@@ -127,10 +127,11 @@
                     <td colspan='3'>
                         <select class="form-control" name="Studiengang" id="Studiengang" required>
                             <option value="None">Keiner</option>
-                            <option value="Betriebswirtschaftlehre">Betriebswirtschaftslehre</option>
+                            <option value="Betriebswirtschaftslehre">Betriebswirtschaftslehre</option>
                             <option value="Wirtschaftsinformatik">Wirtschaftsinformatik</option>
                             <option value="Volkswirtschaftslehre">Volkswirtschaftslehre</option>
                             <option value="Wirtschaftspädagogik">Wirtschaftspädagogik</option>
+                            <option value="Angewandte Informatik">Angewandte Informatik</option>                        
                         </select>
                     </td>
                 </tr>

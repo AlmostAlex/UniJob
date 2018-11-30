@@ -99,6 +99,8 @@
               "selected" : "" ); ?>>Volkswirtschaftslehre</option>
             <option value='Wirtschaftspädagogik' <?php echo (($modul["studiengang"]=='Wirtschaftspädagogik' )?
               "selected" : "" ); ?>>Wirtschaftspädagogik</option>
+            <option value='Angewandte Informatik' <?php echo (($modul["studiengang"]=='Angewandte Informatik' )?
+              "selected" : "" ); ?>>Angewandte Informatik</option>
           </select>
         </td>
       </tr>
