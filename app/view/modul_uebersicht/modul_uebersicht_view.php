@@ -45,7 +45,7 @@
        <td> <!-- data-selected-text-format="count > 2" -->
             <select class="selectpicker" title=""  data-size="5" style="width:auto;height: 10px;" data-live-search="true" id='tags' data-style="btn-primary" multiple data-max-options="10"  onchange="filter();">
                 <?php for ($i = 0; $i < count($tagsBezFilter); $i++) { ?>
-                    <option><?php echo $tagsBezFilter[$i]['tag_bezeichnung'];?></option>      
+                    <option><?php if(isset($tagsBezFilter[$i]['tag_bezeichnung'])){echo $tagsBezFilter[$i]['tag_bezeichnung'];}?></option>      
                 <?php } ?>
             </select>   
         </td>
