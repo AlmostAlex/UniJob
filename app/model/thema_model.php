@@ -423,8 +423,10 @@ class thema_model
         $statement->execute();
         $statement->bind_result($themenbezeichnung, $wunschthema1, $wunschthema2, $wunschthema3, $belegwunsch_id, $matrikelnummer, $vorname, $nachname, $email, $status, $erhaltenesthema);
         $statement->store_result();
+
+        $row[] = array();
         while ($statement->fetch()) {
-            $row[] = array(
+            $rows = array(
                 'themenbezeichnung' => $themenbezeichnung,
                 'pri1ID' => $wunschthema1,
                 'pri2ID' => $wunschthema2,
@@ -441,7 +443,7 @@ class thema_model
                 'status' => $status,
                 'erhaltenesthema' => $erhaltenesthema
             );
-            
+           $row[] = $rows;
         }
          return $row;
     }

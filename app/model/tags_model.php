@@ -88,15 +88,17 @@ class tags_model
         GROUP BY tags.tag_bezeichnung");
         $statement->bind_result($tag_bezeichnung);
         $statement->execute();
-
-        $tagsBezFilter = array();
+       
+        $tagsBezFilter[] = array();
         while ($statement->fetch()) {
-            $rows[] = array(
+            $rows = array(
                 'tag_bezeichnung' => $tag_bezeichnung
-            );  
+            );    
+            $tagsBezFilter = $rows;
         }
-        $rows = array_unique($rows,SORT_REGULAR);
-        return $rows;
+      
+        $tagsBezFilter = array_unique($tagsBezFilter,SORT_REGULAR);
+        return $tagsBezFilter;
        
     }
 

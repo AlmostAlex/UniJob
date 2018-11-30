@@ -81,4 +81,20 @@ if(isset($_GET["action"]) && ($_GET["action"] =='expWH' || $_GET["action"] =='ex
     $controller = new einsicht_controller();
     $controller->export($_GET['action'],$_GET['art'],$_GET['id']);
 }
+
+
+
+if(isset($_GET["action"]) && $_GET["action"] =='benutzer'){
+
+
+    $countryResult[] = '111';
+    $countryResult[] = '222';
+    $countryResult[] = '322';
+   return json_encode($countryResult);
+    
+}
+
+
+
+
 ?>

@@ -590,3 +590,22 @@ $('input #onlyNumeric').on('keypress', function(event) {
 });*/
 
 // ende
+
+$(document).ready(function() {
+    $('#txtCountry').typeahead({
+        source: function(query) {
+            var result = null;
+            $.ajax({
+                url: "/ajax/benutzer.php&query=" + query,
+                type: "get",
+                dataType: "html",
+                async: false,
+                success: function(data) {
+                    result = data;
+                }
+            });
+            console.log(result);
+            return JSON.parse(result);
+        }
+    });
+});
