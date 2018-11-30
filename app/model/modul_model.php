@@ -262,7 +262,7 @@ public function getModuleByUebersicht($filter_modul, $f_abfrage_s, $b_abfrage)
     modul.semester,modul.frist_start,modul.frist_ende,modul.kickoff,modul.studiengang,
     modul.modul_verfuegbarkeit,modul.archivierung,modul.nachrueckverfahren
     FROM modul 
-    WHERE DATE(`frist_start`) < CURDATE()
+    WHERE DATE(`frist_start`) <= CURDATE()
     AND archivierung = 'false'". $filter_modul);    
 
     $statement->execute();
