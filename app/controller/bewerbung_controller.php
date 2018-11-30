@@ -382,7 +382,7 @@ else{
 
         if($seminarteilnahme == "ja" OR $seminarteilnahme == " ")
         {
-	        $seminarpunkte += 0;
+	        $seminarpunkte -= 10;
         } else { $seminarpunkte += 10;}
 
         if($studiengang == $studiengang_db)
