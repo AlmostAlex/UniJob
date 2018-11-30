@@ -4,11 +4,13 @@ $ausgabe = '';
 
 if($art=='all'|| $art=='verfTh'){ 
 $ausgabe .= '"Liste - Thema erhalten"; '."\n";
-$ausgabe .= '"Vorname";"Nachname";"E-Mail";"Matrikelnummer";"Erhaltenes Thema";"Priorität 1";"Priorität 2";"Priorität 3"; '."\n";
+$ausgabe .= '"Vorname";"Nachname";"E-Mail";"Matrikelnummer"; "Studiengang"; "Fachsemester"; "Credits";
+            "Erhaltenes Thema";"Priorität 1";"Priorität 2";"Priorität 3"; '."\n";
     for($k = 0; $k < count($bewerber); $k++){ 
 
     $ausgabe .= 
         $bewerber[$k]['vorname'] .';'. $bewerber[$k]['nachname'] .';'. $bewerber[$k]['email'] .';'. $bewerber[$k]['matrikelnummer'] .';'. 
+        $bewerber[$k]['studiengang'] .';'. $bewerber[$k]['fachsemester'] .';'. $bewerber[$k]['credits'] .';'.
         $bewerber[$k]['themenbezeichnung'] .';'. $bewerber[$k]['pri1'] .';'. $bewerber[$k]['pri2'] .';'. 
         $bewerber[$k]['pri3'] .';'. "\n";
     }

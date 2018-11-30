@@ -413,7 +413,8 @@ class thema_model
         if($statement = $this->dbh->prepare(
             "SELECT thema.themenbezeichnung, belegwunsch.wunschthema1, belegwunsch.wunschthema2, belegwunsch.wunschthema3, belegwunsch.belegwunsch_id, 
             belegwunsch.matrikelnummer, belegwunsch.vorname, belegwunsch.nachname,
-            belegwunsch.email, belegwunsch.status, belegwunsch.erhaltenesthema
+            belegwunsch.email, belegwunsch.status, belegwunsch.erhaltenesthema,
+            belegwunsch.studiengang, belegwunsch.fachsemester, belegwunsch.credits
             FROM thema, belegwunsch, modul
             WHere thema.thema_id = belegwunsch.erhaltenesThema
             AND thema.modul_id = modul.modul_id
@@ -421,7 +422,9 @@ class thema_model
             ")) {
         $statement->bind_param('i', $modul_id);
         $statement->execute();
-        $statement->bind_result($themenbezeichnung, $wunschthema1, $wunschthema2, $wunschthema3, $belegwunsch_id, $matrikelnummer, $vorname, $nachname, $email, $status, $erhaltenesthema);
+        $statement->bind_result($themenbezeichnung, $wunschthema1, $wunschthema2, $wunschthema3, 
+        $belegwunsch_id, $matrikelnummer, $vorname, $nachname, $email, $status, $erhaltenesthema,
+        $studiengang, $fachsemester, $credits);
         $statement->store_result();
 
         $row[] = array();
@@ -441,7 +444,10 @@ class thema_model
                 'nachname' => $nachname,
                 'email' => $email,
                 'status' => $status,
-                'erhaltenesthema' => $erhaltenesthema
+                'erhaltenesthema' => $erhaltenesthema,
+                'studiengang' => $studiengang,
+                'fachsemester' => $fachsemester,
+                'credits' => $credits
             );
            $row[] = $rows;
         }
