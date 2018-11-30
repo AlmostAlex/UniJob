@@ -162,7 +162,7 @@ class einsicht_controller
 
     public function Belegwunschverteilung($modul_id){
         //Festlegen der Bewerberanzahl und der ThemaAnzahl
-        //Festlegen der Bewerberanzahl und der ThemaAnzahl
+
         $studiengang = $this->modul_model->getModulStudiengang($modul_id);
         $bewerberAnzahlStudien = $this->belegwunsch_model->beleg_countStudien($modul_id, $studiengang);
         $bewerberAnzahlRest = $this->belegwunsch_model->beleg_countRest($modul_id, $studiengang);
@@ -738,19 +738,55 @@ class einsicht_controller
             $i = $i + 1;
         }
     }
-    public function export($action,$id,$list)
+    public function export($action,$art,$id)
     {
-        if($action == 'exportBEL'){
-        
-            if($list == 'all'){ // Alle Listen d.h Vergebene, Nicht-vergebene und Liste nachdem Nachrückv. falls vorhanden
+        if($action == 'expWH'){     
+            if($art == 'all'){ // Alle Listen d.h Vergebene, Nicht-vergebene und Liste nachdem Nachrückv. falls vorhanden
                 $bewerber = $this->thema_model->einsichtThemaModulBeleg($id); // Hole alle, die ein Thema haben
                 $keinThemaCount = $this->thema_model->keinThemaCount($id); // Hole alle, die KEIN Thema haben
                 $keinThema = $this->thema_model->keinThema($id);
-            
+                include('../app/view/export/download.php');
             }
-
-            include('../app/view/export/download.php');
+            else if($art == 'verfTh'){
+                echo "verf";
+            }
+            else if($art == 'vergTh'){
+                echo "verg";
+            }
+            else if($art == 'nachr'){
+                echo "nr";
+            }
         }
+
+        else if($action == 'expBEL'){
+             // Alle Listen d.h Vergebene, Nicht-vergebene und Liste nachdem Nachrückv. falls vorhanden
+                $bewerber = $this->thema_model->einsichtThemaModulBeleg($id); // Hole alle, die ein Thema haben
+                $keinThemaCount = $this->thema_model->keinThemaCount($id); // Hole alle, die KEIN Thema haben
+                $keinThema = $this->thema_model->keinThema($id);
+
+                if( ($this->modul_model->getNachrueckverfahren($id) == 'true') && 
+                ($this->belegwunsch_model->countAnzWHBeleg($id)  > 0 ) ){
+                    $cWH = true;  }  else { $cWH = false;}
+                $anmeldungen = $this->belegwunsch_model->getWHThBeleg($id); 
+                // Nachr fehlt
+                include('../app/view/export/download.php');
+            
+        }
+
+        if($action == 'expBEW'){     
+            if($art == 'all'){ // Alle Listen d.h Vergebene, Nicht-vergebene und Liste nachdem Nachrückv. falls vorhanden
+            }
+            else if($art == 'verfTh'){
+                echo "verf";
+            }
+            else if($art == 'vergTh'){
+                echo "verg";
+            }
+            else if($art == 'nachr'){
+                echo "nr";
+            }
+        }
+
     }
 
           
@@ -771,8 +807,8 @@ function convertToWindowsCharset($string) {
         $infos = $this->belegwunsch_model->info_belegwunsch($id);
 
         switch ($form) {
-            case 'export_bel':
-            include 'app/view/modals/export.php';
+            case '_bel':
+            include 'app/view/modals/.php';
             break;
 
             case 'swap':

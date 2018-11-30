@@ -144,7 +144,7 @@ class belegwunsch_model
     public function beleg_countStudien($modul_id, $studiengang)
     {
          $statement = $this->dbh->prepare
-         ("SELECT COUNT(belegwunsch_id)
+         ("SELECT COUNT(belegwunsch_id) as anzahl_bewerber_check
          FROM belegwunsch, thema, modul
          WHERE belegwunsch.studiengang = ? AND belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = modul.modul_id AND modul.modul_id = ?");
         $statement->bind_param('si', $studiengang, $modul_id);
@@ -214,18 +214,20 @@ class belegwunsch_model
         $statement->bind_param('i', $modul_id);
         $statement->bind_result($vorname, $nachname, $matrikelnummer, $email, $status, $themenbezeichnung);
         $statement->execute();
-       
-        while ($statement->fetch()) {
-            $rows[] = array(
-                'vorname' => $vorname,
-                'nachname' => $nachname,
-                'matrikelnummer' => $matrikelnummer,
-                'email' => $email,
-                'status' => $status,
-                'themenbezeichnung' => $themenbezeichnung
+        
+        $rows = array();
+            while ($statement->fetch()) {
+                $row = array(
+                    'vorname' => $vorname,
+                    'nachname' => $nachname,
+                    'matrikelnummer' => $matrikelnummer,
+                    'email' => $email,
+                    'status' => $status,
+                    'themenbezeichnung' => $themenbezeichnung
+                );
+                $rows[] = $row;  
+            } 
 
-            );
-        }
         return $rows;
     }
 

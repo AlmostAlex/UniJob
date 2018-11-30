@@ -7,7 +7,21 @@
             </b> <?php if($infos['anzThemaVergeben'] > 1){ echo "sind"; } else { echo "ist ein"; } ?>
             <b><?php echo $infos['anzThemaVergeben']; ?></b> <?php if($infos['anzThemaVergeben'] > 1){ echo "Themen"; } else { echo "Thema"; } ?> vergeben.
     </div>
-              
+
+<!--
+<div class="dropdown">
+  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Export
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <a data-verfahren='expWH' data-modul-id='<?php echo $id?>' id='ListeAll' name="ListeAll" class="dropdown-item" href="#">Export - Alle Listen</a>
+    <a data-verfahren='expWH' data-modul-id='<?php echo $id?>' id='ListeVerfTh' name ='ListeVerfTh' class="dropdown-item" href="#">Export - Vergebene Themen</a>
+    <a data-verfahren='expWH' data-modul-id='<?php echo $id?>' id='ListeVergTh' name='ListeVergTh' class="dropdown-item" href="#">Export - Nicht vergebene Themen</a>
+    <a data-verfahren='expWH' data-modul-id='<?php echo $id?>' id='ListeNachr' name='ListeNachr' class="dropdown-item" href="#">Export - Nachrückverfahren</a>
+  </div>
+</div>
+-->
+
     <form style='margin-bottom:100px;' method="post"> 
         <div class="table-responsive" id="module">  
             <div class='bewerbung_verwaltung'>

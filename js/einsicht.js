@@ -157,9 +157,9 @@ $(document).ready(function(e) {
     });
 });
 
-/* EXPORT */
 
 
+/* 
 $(document).ready(function() {
 
     $("#downloadlink").click(function() {
@@ -172,4 +172,56 @@ $(document).ready(function() {
 
         });
     });
+});
+*/
+
+/* EXPORT */
+
+
+$(document).ready(function() {
+
+    //all
+    $("#ListeAll").click(function() {
+        //var liste = $("input[name='Liste']:checked").val();
+        //var liste = document.getElementById("ListeAll").value;
+        var id = $("#ListeAll").data('modul-id');
+        var verf = $("#ListeAll").data('verfahren');
+        $.get('../../ajax/ajax_controller.php', 'action=' + verf + '&art=all&id=' + id, function() {
+            document.location.href = '../../ajax/ajax_controller.php?action=' + verf + '&art=all&id=' + id;
+
+        });
+    });
+
+
+    $("#ListeVerfTh").click(function() {
+        //var liste = $("input[name='Liste']:checked").val();
+        var id = $("#ListeVerfTh").data('modul-id');
+        var verf = $("#ListeVerfTh").data('verfahren');
+        $.get('../../ajax/ajax_controller.php', 'action=' + verf + '&art=verfTh&id=' + id, function() {
+            document.location.href = '../../ajax/ajax_controller.php?action=' + verf + '&art=verfTh&id=' + id;
+
+        });
+    });
+
+    $("#ListeVergTh").click(function() {
+        //var liste = $("input[name='Liste']:checked").val();
+        var id = $("#ListeVergTh").data('modul-id');
+        var verf = $("#ListeVergTh").data('verfahren');
+        $.get('../../ajax/ajax_controller.php', 'action=' + verf + '&art=vergTh&id=' + id, function() {
+            document.location.href = '../../ajax/ajax_controller.php?action=' + verf + '&art=vergTh&id=' + id;
+
+        });
+    });
+
+
+    $("#ListeNachr").click(function() {
+        //var liste = $("input[name='Liste']:checked").val();
+        var id = $("#ListeNachr").data('modul-id');
+        var verf = $("#ListeNachr").data('verfahren');
+        $.get('../../ajax/ajax_controller.php', 'action=' + verf + '&art=nachr&id=' + id, function() {
+            document.location.href = '../../ajax/ajax_controller.php?action=' + verf + '&art=nachr&id=' + id;
+
+        });
+    });
+
 });

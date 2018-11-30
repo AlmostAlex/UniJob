@@ -3,11 +3,26 @@
     <div class='alert alert-secondary' role='alert'>
         Von insgesamt <b><?php echo $infos['anzThema']; ?></b>
         Themen 
-             <?php if($infos['kategorie'] == "Seminararbeit"){ echo 'sind im Modul <button> "'. $infos['modulbezeichnung'].'"';} else {  echo 'in der Professur <b>"'. $infos['professur'].'"';} ?> 
+             <?php if($infos['kategorie'] == "Seminararbeit"){ echo 'sind im Modul "'. $infos['modulbezeichnung'].'"';} else {  echo 'in der Professur <b>"'. $infos['professur'].'"';} ?> 
             </b> <?php if($infos['anzThemaVergeben'] > 1){ echo "sind ".$infos['anzThemaVergeben'].""; } else if($infos['anzThemaVergeben'] == 0){ echo "kein";} else { echo "ist ein ".$infos['anzThemaVergeben'].""; } ?>
              <?php if($infos['anzThemaVergeben'] > 1){ echo "Themen"; } else { echo "Thema"; } ?> vergeben.
     </div>
 
+<!-- EXPORT LINKAGE -->
+
+<div class="dropdown">
+  <button style='float:right;' class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Exportieren
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <a data-verfahren='expBEL' data-modul-id='<?php echo $id?>' id='ListeAll' name="ListeAll" class="dropdown-item" href="#">Export - Alle Listen</a>
+    <a data-verfahren='expBEL' data-modul-id='<?php echo $id?>' id='ListeVerfTh' name ='ListeVerfTh' class="dropdown-item" href="#">Export - Vergebene Themen</a>
+    <a data-verfahren='expBEL' data-modul-id='<?php echo $id?>' id='ListeVergTh' name='ListeVergTh' class="dropdown-item" href="#">Export - kein Thema erhalten</a>
+    <a data-verfahren='expBEL' data-modul-id='<?php echo $id?>' id='ListeNachr' name='ListeNachr' class="dropdown-item" href="#">Export - Nachrückverfahren</a>
+  </div>
+</div>
+
+<br><br>
 
 <nachrueckv style='<?php echo $display;?>'>
 <b> <i class="fas fa-arrow-right"></i>   Anmeldungen während des <red>Nachrückverfahrens <i class="fas fa-exclamation"></i></red> </b>
@@ -186,14 +201,6 @@
 <br><br><br>
 </open>
 
-<!-- EXPORT LINKAGE -->
 
-<export> 
-    <button  style='color:white; float:right;' class="btn btn-primary" data-keyboard="false" data-toggle="modal" data-target="#exportEinsichtbeleg">
-     Exportieren
-    </button>
-</export>
-<?php $this->getModal('export_bel', $modul_id); $this->getModal('swap', $modul_id);?>
-
-
+<?php $this->getModal('swap', $modul_id);?>
 
