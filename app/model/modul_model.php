@@ -611,7 +611,7 @@ public function getModuleByUebersicht($filter_modul, $f_abfrage_s, $b_abfrage)
         $statement = $this->dbh->prepare("SELECT semester, count(modul_id) AS anzahl 
         FROM modul  
         WHERE archivierung='false' 
-        AND DATE(`frist_start`) < CURDATE()
+        AND DATE(`frist_start`) <= CURDATE()
         GROUP BY semester");
         $statement->execute();
         $statement->bind_result($semester, $anzahl);
@@ -636,7 +636,7 @@ public function getModuleByUebersicht($filter_modul, $f_abfrage_s, $b_abfrage)
         WHERE thema.benutzer_id = user.benutzer_id
         AND thema.modul_id = modul.modul_id 
         AND modul.archivierung='false'
-        AND DATE(modul.frist_start) < CURDATE() 
+        AND DATE(modul.frist_start) <= CURDATE() 
         GROUP BY benutzer_id");
         $statement->execute();
         $statement->bind_result($benutzername, $benutzer_id, $anzahl);
@@ -657,7 +657,7 @@ public function getModuleByUebersicht($filter_modul, $f_abfrage_s, $b_abfrage)
         $statement = $this->dbh->prepare("SELECT kategorie, count(modul_id) AS anzahl 
         FROM modul 
         WHERE archivierung='false' 
-        AND DATE(frist_start) < CURDATE() 
+        AND DATE(frist_start) <= CURDATE() 
         GROUP BY kategorie");
         $statement->execute();
         $statement->bind_result($kategorie, $anzahl);

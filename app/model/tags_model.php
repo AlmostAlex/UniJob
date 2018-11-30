@@ -84,7 +84,7 @@ class tags_model
         WHERE tags.thema_id = thema.thema_id 
         AND thema.modul_id = modul.modul_id 
         AND modul.archivierung = 'false' 
-        AND DATE(modul.frist_start) < CURDATE()
+        AND DATE(modul.frist_start) <= CURDATE()
         GROUP BY tags.tag_bezeichnung");
         $statement->bind_result($tag_bezeichnung);
         $statement->execute();
