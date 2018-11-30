@@ -17,11 +17,11 @@ class belegwunsch_model
         $this->heute_dt = new DateTime(date("Y-m-d"));
     }
 
-    public function insertBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $studiengang, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3, $punkte)
+    public function insertBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $studiengang, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3, $fachsemester, $credits, $punkte)
     {
-        if ($statement = $this->dbh->prepare("INSERT INTO `belegwunsch` (`vorname`, `nachname`, `matrikelnummer`, `email`, `studiengang`, `status`, `voraussetzung`, `seminarteilnahme`, `wunschthema1`, `wunschthema2`, `wunschthema3`, `punkte`)
-        VALUES (?,?,?,?,?,'offen',?,?,?,?,?,?)")) {
-            $statement->bind_param('ssissssiiid', $vorname, $nachname, $matrikelnummer, $email, $studiengang, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3, $punkte['gesamt']);
+        if ($statement = $this->dbh->prepare("INSERT INTO `belegwunsch` (`vorname`, `nachname`, `matrikelnummer`, `email`, `studiengang`, `status`, `voraussetzung`, `seminarteilnahme`, `wunschthema1`, `wunschthema2`, `wunschthema3`, `fachsemester`, `credits`, `punkte`)
+        VALUES (?,?,?,?,?,'offen',?,?,?,?,?,?,?,?)")) {
+            $statement->bind_param('ssissssiiiiid', $vorname, $nachname, $matrikelnummer, $email, $studiengang, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3, $fachsemester, $credits, $punkte['gesamt']);
             $statement->execute();
         } else {
             $error = $this->dbh->errno . ' ' . $this->dbh->error;
@@ -29,12 +29,12 @@ class belegwunsch_model
         }
     }
 
-    public function updateBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $studiengang, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3, $punkte)
+    public function updateBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $studiengang, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3, $fachsemester, $credits, $punkte)
     {
         $status = "offen";
-        if ($statement = $this->dbh->prepare("UPDATE belegwunsch, thema SET belegwunsch.vorname = ?, belegwunsch.nachname = ?, belegwunsch.email = ?, belegwunsch.studiengang = ?, belegwunsch.status = ?, belegwunsch.voraussetzung = ?, belegwunsch.seminarteilnahme = ?, belegwunsch.wunschthema1 = ?, belegwunsch.wunschthema2 = ?, belegwunsch.wunschthema3 = ?, belegwunsch.punkte = ? WHERE belegwunsch.matrikelnummer = ? AND belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = (SELECT modul_id FROM thema WHERE thema_id = ?)"))
+        if ($statement = $this->dbh->prepare("UPDATE belegwunsch, thema SET belegwunsch.vorname = ?, belegwunsch.nachname = ?, belegwunsch.email = ?, belegwunsch.studiengang = ?, belegwunsch.status = ?, belegwunsch.voraussetzung = ?, belegwunsch.seminarteilnahme = ?, belegwunsch.wunschthema1 = ?, belegwunsch.wunschthema2 = ?, belegwunsch.wunschthema3 = ?, belegwunsch.fachsemester = ?, belegwunsch.credits = ?, belegwunsch.punkte = ? WHERE belegwunsch.matrikelnummer = ? AND belegwunsch.wunschthema1 = thema.thema_id AND thema.modul_id = (SELECT modul_id FROM thema WHERE thema_id = ?)"))
         {
-            $statement->bind_param('ssssssiiidii', $vorname, $nachname, $email, $studiengang, $status, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3, $punkte['gesamt'], $matrikelnummer, $wunschthema1);
+            $statement->bind_param('ssssssiiidii', $vorname, $nachname, $email, $studiengang, $status, $voraussetzungen, $seminarteilnahme, $wunschthema1, $wunschthema2, $wunschthema3, $fachsemester, $credits, $punkte['gesamt'], $matrikelnummer, $wunschthema1);
             $statement->execute();
         } else {
             $error = $this->dbh->errno . ' ' . $this->dbh->error;

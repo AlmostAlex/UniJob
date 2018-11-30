@@ -165,7 +165,7 @@ class bewerbung_controller
                             // HIER INSERT BEWERBUNG
                             $punkte = $this->punkteverteilung($thema1, $fachsemester, $studiengang, $credits, " ");
                             if(($this->belegwunsch_model->duplicateBelegwunschCheck($matrikelnummer, $thema1)) == "duplikat"){
-                                $this->belegwunsch_model->updateBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $studiengang, $zulassung, $seminarteilnahme, $thema1, $thema2, $thema3, $punkte);
+                                $this->belegwunsch_model->updateBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $studiengang, $zulassung, $seminarteilnahme, $thema1, $thema2, $thema3, $fachsemester, $credits, $punkte);
                                 $this->getModal("AB_BL_erfolgreich", $id);
                                 $infos1 = $this->thema_model->getBetreuerByID($thema1);
                                 $infos2 = $this->thema_model->getBetreuerByID($thema2);
@@ -173,7 +173,7 @@ class bewerbung_controller
                                 include 'app/view/bewerbung/Abschlussarbeit/fazit_abschluss_BL.php';
                                 
                             } else {
-                            $this->belegwunsch_model->insertBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $studiengang, $zulassung, $seminarteilnahme, $thema1, $thema2, $thema3, $punkte);
+                            $this->belegwunsch_model->insertBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $studiengang, $zulassung, $seminarteilnahme, $thema1, $thema2, $thema3, $fachsemester, $credits, $punkte);
                             $this->getModal("AB_BL_erfolgreich", $thema_id);
                             $infos1 = $this->thema_model->getBetreuerByID($thema1);
                             $infos2 = $this->thema_model->getBetreuerByID($thema2);
@@ -341,7 +341,7 @@ else{
                     // HIER INSERT BEWERBUNG
                     $punkte = $this->punkteverteilung($thema1, $fachsemester, $studiengang, $credits, $seminarteilnahme);
                     if(($this->belegwunsch_model->duplicateBelegwunschCheck($matrikelnummer, $thema1)) == "duplikat"){
-                        $this->belegwunsch_model->updateBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $studiengang, $zulassung, $seminarteilnahme, $thema1, $thema2, $thema3, $punkte);
+                        $this->belegwunsch_model->updateBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $studiengang, $zulassung, $seminarteilnahme, $thema1, $thema2, $thema3, $fachsemester, $credits, $punkte);
                         $this->getModal("AB_BL_erfolgreich", $id);
                         $infos1 = $this->thema_model->getBetreuerByID($thema1);
                         $infos2 = $this->thema_model->getBetreuerByID($thema2);
@@ -349,7 +349,7 @@ else{
                         include 'app/view/bewerbung/Seminararbeit/fazit_seminar_BL.php';
                         
                     } else {
-                    $this->belegwunsch_model->insertBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $studiengang, $zulassung, $seminarteilnahme, $thema1, $thema2, $thema3, $punkte);
+                    $this->belegwunsch_model->insertBelegwunsch($vorname, $nachname, $matrikelnummer, $email, $studiengang, $zulassung, $seminarteilnahme, $thema1, $thema2, $thema3, $fachsemester, $credits, $punkte);
                     $this->getModal("AB_BW_erfolgreich", $thema_id);
                     $infos1 = $this->thema_model->getBetreuerByID($thema1);
                     $infos2 = $this->thema_model->getBetreuerByID($thema2);
