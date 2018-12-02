@@ -17,8 +17,8 @@
   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
     <a data-verfahren='expBEL' data-modul-id='<?php echo $id?>' id='ListeAll' name="ListeAll" class="dropdown-item" href="#">Export - Alle Listen</a>
     <a data-verfahren='expBEL' data-modul-id='<?php echo $id?>' id='ListeVerfTh' name ='ListeVerfTh' class="dropdown-item" href="#">Export - Vergebene Themen</a>
-    <a data-verfahren='expBEL' data-modul-id='<?php echo $id?>' id='ListeVergTh' name='ListeVergTh' class="dropdown-item" href="#">Export - kein Thema erhalten</a>
-    <a data-verfahren='expBEL' data-modul-id='<?php echo $id?>' id='ListeNachr' name='ListeNachr' class="dropdown-item" href="#">Export - Nachrückverfahren</a>
+    <a data-verfahren='expBEL' data-modul-id='<?php echo $id?>' <?php if($keinThemaCount  != '0'){echo 'id="ListeVergTh" ';}?> name="ListeVergTh" class="dropdown-item <?php if($keinThemaCount  == '0'){echo 'disabled';}?>" href="#">Export - kein Thema erhalten</a>
+    <a data-verfahren='expBEL' data-modul-id='<?php echo $id?>' <?php if($this->modul_model->getNachrueckverfahren($id) == 'true'){echo 'id="ListeNachr"';}?> name="ListeNachr" class="dropdown-item <?php if($this->modul_model->getNachrueckverfahren($id) == 'false'){echo 'disabled';}?>" href="#">Export - Nachrückverfahren</a>
   </div>
 </div>
 
@@ -71,7 +71,7 @@
 
 
 <!-- ZUGETEILTE THEMEN -->
-<form style='margin-bottom:30px;' method="post">
+<form style='<?php echo $display_bew; ?>' style='margin-bottom:30px;' method="post">
      <div class="table-responsive" id="module">
      <div class='bewerbung_verwaltung'>
         <div class='belegSort'>
@@ -100,26 +100,27 @@
 
                       <th class="no-sort" name='funktionen'>Funktionen</th>
                     </tr>
-                </thead>
-                <?php for($k = 0; $k < count($bewerber); $k++){ ?>
+                </thead> 
+                <?php for($p = 0; $p < count((array)$bewerber); $p++){ ?>
+               
                     <tr> 
                        <td style='width:5%; vertical-align: top;'></td>
-                        <td style='width:10%; vertical-align: top;'><b><?php echo $bewerber[$k]['themenbezeichnung'] ?></b></td>
+                        <td style='width:10%; vertical-align: top;'><b><?php echo $bewerber[$p]['themenbezeichnung'] ?></b></td>
 
-                        <td style='width:10%; vertical-align: top;' class='pri1'><?php echo $bewerber[$k]['pri1']?></td>
-                        <td style='width:10%; vertical-align: top;' class='pri2'><?php echo $bewerber[$k]['pri2']?></td>
-                        <td style='width:10%; vertical-align: top;' class='pri3'><?php echo $bewerber[$k]['pri3']?></td>
+                        <td style='width:10%; vertical-align: top;' class='pri1'><?php echo $bewerber[$p]['pri1']?></td>
+                        <td style='width:10%; vertical-align: top;' class='pri2'><?php echo $bewerber[$p]['pri2']?></td>
+                        <td style='width:10%; vertical-align: top;' class='pri3'><?php echo $bewerber[$p]['pri3']?></td>
 
-                        <td class='matrikelnummer'><?php echo $bewerber[$k]['matrikelnummer']?></td>
-                        <td class='email'><?php echo $bewerber[$k]['email']?></td>
-                        <td class='status'><?php echo $bewerber[$k]['status']?></td>
+                        <td class='matrikelnummer'><?php echo $bewerber[$p]['matrikelnummer']?></td>
+                        <td class='email'><?php echo $bewerber[$p]['email']?></td>
+                        <td class='status'><?php echo $bewerber[$p]['status']?></td>
                         <td style='width:2%;'>
                             <a data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#exampleModal"
                             id='swap'
                             class='swap'
-                            data-bew-id='<?php echo $bewerber[$k]['belegwunsch_id']?>' 
-                            data-matr='<?php echo $bewerber[$k]['matrikelnummer']?>' 
-                            data-thema='<?php echo $bewerber[$k]['erhaltenesthema']?>'
+                            data-bew-id='<?php echo $bewerber[$p]['belegwunsch_id']?>' 
+                            data-matr='<?php echo $bewerber[$p]['matrikelnummer']?>' 
+                            data-thema='<?php echo $bewerber[$p]['erhaltenesthema']?>'
                             onclick="swap(this)"
                             > 
                                 <span class="badge badge-primary">

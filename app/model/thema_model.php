@@ -427,7 +427,7 @@ class thema_model
         $studiengang, $fachsemester, $credits);
         $statement->store_result();
 
-        $row[] = array();
+        $row = array();
         while ($statement->fetch()) {
             $rows = array(
                 'themenbezeichnung' => $themenbezeichnung,

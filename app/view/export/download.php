@@ -1,11 +1,19 @@
 <?php 
+    ini_set('memory_limit', '1G');
+    ini_set("auto_detect_line_endings", true);
+    header('Content-Encoding: UTF-8');
+    header('Content-type: text/csv; charset=UTF-8');
+    header("Content-disposition: attachment; filename=filename.csv");
+    header("Pragma: public");
+    set_time_limit(0);
+    header("Expires: 0"); 
+
 
 $ausgabe = ''; 
 
 if($art=='all'|| $art=='verfTh'){ 
 $ausgabe .= '"Liste - Thema erhalten"; '."\n";
-$ausgabe .= '"Vorname";"Nachname";"E-Mail";"Matrikelnummer"; "Studiengang"; "Fachsemester"; "Credits";
-            "Erhaltenes Thema";"Priorität 1";"Priorität 2";"Priorität 3"; '."\n";
+$ausgabe .= '"Vorname";"Nachname";"E-Mail";"Matrikelnummer";"Studiengang";"Fachsemester";"Credits";"Erhaltenes Thema";"Priorität 1";"Priorität 2";"Priorität 3"; '."\n";
     for($k = 0; $k < count($bewerber); $k++){ 
 
     $ausgabe .= 
@@ -50,12 +58,6 @@ $ausgabe .= '"Vorname";"Nachname";"E-Mail";"Matrikelnummer"; "Studiengang"; "Fac
     
     $str = convertToWindowsCharset($ausgabe);
     echo $str;
-
-    header('Content-Encoding: UTF-8');
-    header('Content-type: text/csv; charset=UTF-8');
-    header("Content-disposition: attachment; filename=filename.csv");
-    header("Pragma: public");
-    header("Expires: 0"); 
   die();
 
 
