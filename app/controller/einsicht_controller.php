@@ -96,20 +96,22 @@ class einsicht_controller
             $bel_count = $this->belegwunsch_model->beleg_count($modul_id);
             $infos = $this->belegwunsch_model->info_belegwunsch($modul_id);
             $bewerber = $this->thema_model->einsichtThemaModulBeleg($modul_id);
+
             $keinThemaCount = $this->thema_model->keinThemaCount($modul_id);
             $keinThema = $this->thema_model->keinThema($modul_id);
-          
-                include 'app/view/einsicht/belegwunsch_einsicht_view.php';  
-            }
+            if((count((array)$bewerber)) > 0) {  
+                include 'app/view/einsicht/belegwunsch_einsicht_view.php';
+            }      
             else{
+                $display_bew = "display:none;";
                 $kat = "Bewerbungen"; // Wenn keine Bewerbungen vorhanden sind, dann wird die none Unterseite aufgerufen
                 include 'app/view/einsicht/none_view.php';  
             }
         }
-        else{ // das verfahren existiert nicht
-            echo "Das Verfahren existiert nicht";
+        else {
+            echo "Verfahren existiert nicht";
         }
-        
+       
     }
 
     public function swap($thID, $bewID){

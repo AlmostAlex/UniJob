@@ -81,7 +81,7 @@
         </tr>   
     </table>
 
-    <div type="button" style='color:white;' class="btn btn-primary"><a href='/modul_uebersicht'>Zurück zur Übersicht</a></div>
+    <div type="button" style="color:white;" class="btn btn-primary"><a href='/modul_uebersicht'>Zurück zur Übersicht</a></div>
     </div>
     </bewerbung>
 <br><br>
