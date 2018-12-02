@@ -118,7 +118,7 @@ class einsicht_controller
 
         $themenbezeichnung = $this->thema_model->SwapBewThema($thID);
         $thema_id = $this->thema_model->getTHID($thID);
-        $swapThemen = $this->thema_model->swapThemen($thID);
+        $swapThemen = $this->thema_model->swapThemen($thID, $bewID);
         $data = $this->belegwunsch_model->getDataByBEWID($bewID);
 
         if($thID == NULL){
