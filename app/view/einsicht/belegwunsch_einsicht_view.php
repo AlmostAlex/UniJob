@@ -178,7 +178,7 @@
                         <td><?php echo $keinThema[$i]['status']?></td>
                         <td>
 
-                            <a data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#swapModal"
+                            <a data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#exampleModal"
                             id='swap'
                             class='swap'
                             data-bew-id='<?php echo $keinThema[$i]['belegwunsch_id']?>' 
