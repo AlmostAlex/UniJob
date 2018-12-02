@@ -99,6 +99,7 @@ class einsicht_controller
             $keinThemaCount = $this->thema_model->keinThemaCount($modul_id);
             $keinThema = $this->thema_model->keinThema($modul_id);
           
+            if($bel_count > 0){
                 include 'app/view/einsicht/belegwunsch_einsicht_view.php';  
             }
             else{
