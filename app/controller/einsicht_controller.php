@@ -136,7 +136,7 @@ class einsicht_controller
         $themenbezeichnung = $this->thema_model->SwapBewThema($bewID_zu);
         $thema_id = $this->thema_model->getTHID($bewID_zu);
         
-        $swapThemen = $this->thema_model->swapThemen($bewID_zu);
+        $swapThemen = $this->thema_model->swapThemen($bewThID_zu, $bewID_zu);
         $isNull = $this->thema_model->isNull($bewID_zu);
 
         $data = $this->belegwunsch_model->getDataByBEWID($bewID_zu);
@@ -153,7 +153,7 @@ class einsicht_controller
 
         $this->belegwunsch_model->tauschzuVergTH($bewID_von, $bewThID_von, $bewID_zu, $bewThID_zu);
         $themenbezeichnung = "Kein Thema erhalten";
-        $swapThemen = $this->thema_model->swapThemen($bewThID_zu);
+        $swapThemen = $this->thema_model->swapThemen($bewThID_zu, $bewID_zu);
         $bewID_von  = $bewID_zu; 
         $bewThID_von = $bewThID_zu; 
         include_once(__DIR__."/../view/einsicht/swap2.php");
