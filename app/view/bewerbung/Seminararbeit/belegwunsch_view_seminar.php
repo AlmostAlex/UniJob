@@ -115,10 +115,10 @@
          <td colspan=3><br>
          <div class="abfrageZulassung" role="alert">
                 <center><label for='Vorkenntnisse'>
-                <b>Hast du bereits erfolgreich an einem Seminar teilgenommen?</b> <br><br>
-                            <input type="radio" id="seminarteilnahme" name="seminarteilnahme" value="Ja" <?php if($seminarteilnahme == "Ja"){echo "checked";} ?>>
+                <b>Haben Sie bereits an einem Seminar erfolgreich teilgenommen (bestanden)?</b><red style='color: red'>*</red> <br><br>
+                            <input required type="radio" id="seminarteilnahme" name="seminarteilnahme" value="Ja" <?php if($seminarteilnahme == "Ja"){echo "checked";} ?>>
                             <label for="Ja">Ja</label> 
-                            <input type="radio" id="seminarteilnahme" name="seminarteilnahme" value="Nein" <?php if($seminarteilnahme == "Nein"){echo "checked";} ?> >
+                            <input required type="radio" id="seminarteilnahme" name="seminarteilnahme" value="Nein" <?php if($seminarteilnahme == "Nein"){echo "checked";} ?> >
                             <label for="Nein">Nein</label> 
                 </label></center>
             </div>

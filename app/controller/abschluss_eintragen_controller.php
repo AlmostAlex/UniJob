@@ -24,7 +24,7 @@ class abschluss_eintragen_controller
 
         if (isset($_SESSION['login'])) { // erstmal wird die Authentifizierung überprüft
             if (isset($_POST['modul_eintrag1']) || isset($_POST['modul_eintrag2'])) { // WINDHUND UND BEWERBUNG // muss noch geändert werden zu $this->kategorie etc.
-                $abschlusstyp = $_POST["Abschlusstyp"];
+                if( isset($_post['Abschlusstyp'])){ $abschlusstyp = $_post['Abschlusstyp'];} else { $abschlusstyp = ''; }
                 $professurbezeichnung = $_POST["professurbezeichnung"];
                 $hinweise = $_POST["hinweise"];
                 $start = date("Y-m-d", strtotime($_POST["Start"]));
@@ -33,6 +33,7 @@ class abschluss_eintragen_controller
                 $semester = $_POST["Semester"];
                 $studiengang = $_POST["Studiengang"];
                 $verfahren = $_POST["verfahren"];
+
 
                 if ($semester == 'WiSe') {
                     $jahr1 = $_POST["Semester_input2"];
@@ -52,7 +53,6 @@ class abschluss_eintragen_controller
                         $vorkenntnisse = $_POST["vorkenntnisse_WiBe"];
                         $betreuer = $_POST["betreuerwindhund"];
                         $eintrag = $this->modul_model->insertAbschluss($thema, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer);
-                        
                         $this->getModal('upload_abschluss_success', $professurbezeichnung);   
                         //echo "erfolgreich eingetragen";
                     } else {

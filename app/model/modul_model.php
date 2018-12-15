@@ -55,10 +55,10 @@ class modul_model
                     //davon ausgehend, dass der Benutzername eingegeben wird !!!!! BEI UNIDB ZUGRIFF NEU SCHREIBEN!!!!!
                     $benutzer_id = $this->user->getNachnameID($betreuer_string);
                     if ($tag_string == '') {
-                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$benutzer_id);
+                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$betreuer_string);
                         $thema_id = $this->thema->lastThemaID();
                     } else {
-                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$benutzer_id);
+                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$betreuer_string);
                         $thema_id = $this->thema->lastThemaID();
                         $this->tags_model->insertTags($tag_string, $thema_id);
                     }
@@ -113,9 +113,10 @@ class modul_model
                     //davon ausgehend, dass der Benutzername eingegeben wird !!!!! BEI UNIDB ZUGRIFF NEU SCHREIBEN!!!!!
                     $benutzer_id = $this->user->getNachnameID($betreuer_string);
                     if ($tag_string == '') {
-                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$benutzer_id);
+                        echo '-' . $betreuer_string; 
+                        $this->thema->insertThema($modul_id, $thema_array,$beschreibung_array,$betreuer_string);
                     } else {
-                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$benutzer_id);
+                        $this->thema->insertThema($modul_id, $thema_array,$beschreibung_array,$betreuer_string);
                         $thema_id = $this->thema->lastThemaID();
                         $this->tags_model->insertTags($tag_string, $thema_id);
                     }

@@ -167,6 +167,7 @@ $(function() {
     $("#Belegwunschverfahren").css("display", "none");
     $("#SoSe").css("display", "none");
     $("#WiSe").css("display", "none");
+    $("#Schwerpunktbwl").css("display", "none");
 
     $('#Semester').change(function() {
 
@@ -203,6 +204,15 @@ $(function() {
             $('#SoSe').slideUp("slow");
             $('#WiSe').slideDown("slow");
         }
+    });
+
+    $('#Studiengang').change(function() {
+        if ($('#Studiengang').val() == 'Betriebswirtschaftslehre') {
+            $('#Schwerpunktbwl').slideDown("slow");
+        } else {
+            $('#Schwerpunktbwl').slideUp("slow");
+        }
+
     });
 
     $('#verfahren').change(function() {

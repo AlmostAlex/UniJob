@@ -95,7 +95,7 @@
         </tr>   
     </table>
 
-   <div type="button" style='color:white;' class="btn btn-primary"><a href='/modul_uebersicht'>Zurück zur Übersichtx</a></div>
+   <div type="button"  class="btn btn-primary"><a style='color:white;' href='/modul_uebersicht'>Zurück zur Übersichtx</a></div>
     </div>
     </bewerbung>
 <br><br>

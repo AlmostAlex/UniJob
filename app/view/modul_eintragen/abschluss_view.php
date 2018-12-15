@@ -27,7 +27,7 @@
                 <tr>
 
 <!-- Group of default radios - option 1 -->
-
+<!--
 <td><label for="Abschlusstyp"><b>Kategorie:</b><red style="color: red" >*</red></label></td>
     <td>
     <div class="custom-control custom-radio">
@@ -35,15 +35,15 @@
     <label class="custom-control-label" for="defaultGroupExample1">Master</label>
     </div>
     </td>
-<td>
-    <!-- Group of default radios - option 2 -->
+<td> 
+
     <div class="custom-control custom-radio">
     <input type="radio" class="custom-control-input" id="defaultGroupExample2" value='Master' name="Abschlusstyp">
     <label class="custom-control-label" for="defaultGroupExample2">Bachelor</label>
     </div>
 </td>
                                                                
-           <td></td>
+           <td></td>-->
                 </tr>
                 <tr>
                     <td><label for="Modul"><b>Professur:</b><red>*</red></label></td>
@@ -130,8 +130,19 @@
                             <option value="Betriebswirtschaftslehre">Betriebswirtschaftslehre</option>
                             <option value="Wirtschaftsinformatik">Wirtschaftsinformatik</option>
                             <option value="Volkswirtschaftslehre">Volkswirtschaftslehre</option>
-                            <option value="Wirtschaftspädagogik">Wirtschaftspädagogik</option>
-                            <option value="Angewandte Informatik">Angewandte Informatik</option>                        
+                            <option value="Wirtschaftspädagogik">Wirtschaftspädagogik</option>                      
+                        </select>
+                    </td>
+                </tr>
+
+                <tr id='Schwerpunktbwl'>
+                    <td><b>Schwerpunkt</b></td>
+                    <td>
+                        <select class="form-control" name="Schwerpunkt" id="Schwerpunkt">
+                            <option value="None">Keiner</option>
+                            <option value="Finanzen, Rechnungswesen, Steuern">Finanzen, Rechnungswesen, Steuern</option>
+                            <option value="Unternehmensführung">Unternehmensführung</option>
+                            <option value="Marketing und E-Business">Marketing und E-Business</option>                    
                         </select>
                     </td>
                 </tr>

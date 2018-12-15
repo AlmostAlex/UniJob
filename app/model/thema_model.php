@@ -13,16 +13,12 @@ class thema_model
         $this->user = new Model();
     }
 
-    public function insertThema($modul_id, $themenbezeichnung, $themenbeschreibung, $id)
+    public function insertThema($modul_id, $themenbezeichnung, $themenbeschreibung, $betreuer)
     {
-        if ($statement = $this->dbh->prepare("INSERT INTO `thema` (`themenbezeichnung`, `beschreibung`, `modul_id`, `thema_verfuegbarkeit`, `benutzer_id`)
-        VALUES (?,?,?, 'Verfügbar',?)")) {
-            $statement->bind_param('ssis', $themenbezeichnung, $themenbeschreibung, $modul_id, $id);
+      $statement = $this->dbh->prepare("INSERT INTO `thema` (`themenbezeichnung`, `beschreibung`, `modul_id`, `thema_verfuegbarkeit`, `benutzer_id`, `betreuer`)
+        VALUES (?,?,?, 'Verfügbar',?,?)");
+            $statement->bind_param('ssiis', $themenbezeichnung, $themenbeschreibung, $modul_id, $_SESSION['login'], $betreuer);
             $statement->execute();
-        } else {
-            $error = $this->dbh->errno . ' ' . $this->dbh->error;
-            echo "Fehlercode: " . $error . "<br/> Eintragung vom Thema ist fehlgeschlagen.";
-        }
     }
 
     public function getModulID($thema_id){
@@ -185,10 +181,11 @@ class thema_model
     public function getThemen($modul_id, $f_abfrage_s, $b_abfrage)
     {
         if ($f_abfrage_s != '') {
-            $statement_thema = $this->dbh->prepare("SELECT thema.thema_id, 
+            $statement_thema = $this->dbh->prepare("SELECT user.benutzername, thema.thema_id, 
                     thema.themenbezeichnung, thema.beschreibung, thema.thema_verfuegbarkeit, thema.benutzer_id
                     FROM tags JOIN thema on tags.thema_id = thema.thema_id
                     WHERE thema.modul_id = ? ".$b_abfrage."
+                    ORDER BY user.benutzername
                     GROUP BY tags.thema_id " . $f_abfrage_s);
             $statement_thema->bind_param('i', $modul_id);
             $statement_thema->execute();
@@ -417,7 +414,8 @@ class thema_model
             "SELECT thema.themenbezeichnung, belegwunsch.wunschthema1, belegwunsch.wunschthema2, belegwunsch.wunschthema3, belegwunsch.belegwunsch_id, 
             belegwunsch.matrikelnummer, belegwunsch.vorname, belegwunsch.nachname,
             belegwunsch.email, belegwunsch.status, belegwunsch.erhaltenesthema,
-            belegwunsch.studiengang, belegwunsch.fachsemester, belegwunsch.credits
+            belegwunsch.studiengang, belegwunsch.fachsemester, belegwunsch.credits, belegwunsch.seminarteilnahme,
+            belegwunsch.punkte
             FROM thema, belegwunsch, modul
             WHere thema.thema_id = belegwunsch.erhaltenesThema
             AND thema.modul_id = modul.modul_id
@@ -426,8 +424,8 @@ class thema_model
         $statement->bind_param('i', $modul_id);
         $statement->execute();
         $statement->bind_result($themenbezeichnung, $wunschthema1, $wunschthema2, $wunschthema3, 
-        $belegwunsch_id, $matrikelnummer, $vorname, $nachname, $email, $status, $erhaltenesthema,
-        $studiengang, $fachsemester, $credits);
+        $belegwunsch_id, $matrikelnummer, $vorname, $nachname, $email, $status, $erhaltenesthema, 
+        $studiengang, $fachsemester, $credits, $seminarteilnahme, $punkte);
         $statement->store_result();
 
         $row = array();
@@ -450,7 +448,9 @@ class thema_model
                 'erhaltenesthema' => $erhaltenesthema,
                 'studiengang' => $studiengang,
                 'fachsemester' => $fachsemester,
-                'credits' => $credits
+                'credits' => $credits,
+                'seminarteilnahme' => $seminarteilnahme,
+                'punkte' => $punkte
             );
            $row[] = $rows;
         }
@@ -466,7 +466,8 @@ class thema_model
     {
         $statement = $this->dbh->prepare
             ("SELECT belegwunsch.belegwunsch_id, belegwunsch.matrikelnummer, belegwunsch.vorname, belegwunsch.nachname,
-        belegwunsch.email, belegwunsch.status
+        belegwunsch.email, belegwunsch.status, belegwunsch.studiengang, belegwunsch.credits, belegwunsch.fachsemester,
+        belegwunsch.wunschthema1, belegwunsch.wunschthema2, belegwunsch.wunschthema3, belegwunsch.seminarteilnahme, belegwunsch.punkte
         FROM belegwunsch, modul, thema
         WHERE belegwunsch.erhaltenesThema is Null
         AND belegwunsch.wunschthema1 = thema.thema_id
@@ -474,8 +475,8 @@ class thema_model
         AND modul.modul_id = ?");
         $statement->bind_param('i', $modul_id);
         $statement->execute();
-        $statement->bind_result($belegwunsch_id, $matrikelnummer, $vorname, $nachname, $email, $status);
-
+        $statement->bind_result($belegwunsch_id, $matrikelnummer, $vorname, $nachname, $email, $status, $studiengang, $credits, $fachsemester, $wunschthema1, $wunschthema2, $wunschthema3, $seminarteilnahme, $punkte);
+        $statement->store_result();
         $rows = array();
         while ($statement->fetch()) {
 
@@ -486,6 +487,14 @@ class thema_model
                 'nachname' => $nachname,
                 'email' => $email,
                 'status' => $status,
+                'studiengang'=>$studiengang,
+                'credits' => $credits,
+                'fachsemester' => $fachsemester,
+                'pri1' => $this->getThemenbezeichnung($wunschthema1),
+                'pri2' => $this->getThemenbezeichnung($wunschthema2),
+                'pri3' => $this->getThemenbezeichnung($wunschthema3),
+                'seminarteilnahme' => $seminarteilnahme,
+                'punkte' => $punkte
             );
             $rows[] = $row;
         }
