@@ -57,8 +57,9 @@
                             </a>
                         </span>
                             </div></br>
+                            <?php if($module[$k]['kickoff_anzeige'] != "01.01.1970"){ ?>
                         <div style="margin-left:34px" class='border_round'><b><?php echo "Kickoff: ".$module[$k]['kickoff_anzeige']; ?> </b></div>
-                </th></center>
+                   <?php }else{} ?>                </th></center>
             </tr>
         </table>
         <inside>

@@ -7,6 +7,28 @@
               <?php echo $bezeichnung; ?></span></h5>
         </td>
       </tr>
+      <!-- Abschlusstyp
+      <tr style='<?php echo $displayBez; ?>'>
+      <td ><label for="Abschlusstyp"><b>Kategorie:</b></label></td>
+                <td>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="radio1" value='Bachelor' name="Abschlusstyp">
+                        <label class="custom-control-label" for="radio1">Master</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="radio2" value='Master' name="Abschlusstyp">
+                        <label class="custom-control-label" for="radio2">Bachelor</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="custom-control custom-radio" >
+                        <input type="radio" class="custom-control-input" id="radio3" value='' name="Abschlusstyp">
+                        <label class="custom-control-label" for="radio3">Keine Angabe</label>
+                    </div>
+                </td>
+              </tr> -->
       <tr style='<?php echo $displayBez; ?>'>
         <td ><label for='Bezeichnung'><b>Seminarbezeichnung:</b>
             <red style='color: red'>*</red>
@@ -47,7 +69,7 @@
                     </td>
                     <td style='padding-bottom: 30px;'>
                         <div class='input-group date' id='datetimepicker1'>
-                            <input type="text" class="form-control" name="Kickoff"  autocomplete="off" value='<?php echo $kickoff_anzeige; ?>' placeholder="TT-MM-JJJJ" id="datepicker_kickoff" required>
+                            <input type="text" class="form-control" name="Kickoff"  autocomplete="off" value='<?php if($kickoff_anzeige != "01-01-1970"){echo $kickoff_anzeige;}else{} ?>' placeholder="TT-MM-JJJJ" id="datepicker_kickoff">
                             <span id='datebox' class="input-group-addon">
                                 <i class="far fa-calendar-alt"></i>
                             </span>

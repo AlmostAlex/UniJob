@@ -233,13 +233,13 @@ class modul_controller
         if (isset($_POST['modul_edit'])) {
             $start_anzeige = date("d-m-Y", strtotime($_POST['Start']));
             $ende_anzeige = date("d-m-Y", strtotime($_POST['Ende']));
-            $kickoff_anzeige = date("d-m-Y", strtotime($_POST['Kickoff']));
+            if(isset($_POST['Kickoff'])){$kickoff_anzeige = date("d-m-Y", strtotime($_POST['Kickoff']));}else{$kickoff_anzeige="";}
             if(isset($_POST['modulbezeichnung'])) {$modulbezeichnung = $_POST['modulbezeichnung'];} else{ $modulbezeichnung ='';}
 
             $start = date("Y-m-d", strtotime($_POST['Start']));
             $ende = date("Y-m-d", strtotime($_POST['Ende']));
-            $kickoff = date("Y-m-d", strtotime($_POST['Kickoff']));
-
+            if(isset($_POST['Kickoff'])){$kickoff = date("Y-m-d", strtotime($_POST['Kickoff']));}else{$kickoff ="";}
+            //$abschlusstyp = $_POST['Abschlusstyp'];
             $semester = $_POST['SemesterEdit'];
             
             if($semester =='SoSe') {
