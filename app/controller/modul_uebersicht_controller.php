@@ -59,7 +59,7 @@ public function modulUebersichtTags($thema_id){
                         $search_s = 'display:none;';
                     }else{ $s_abfrage = " AND modul.semester = '{$semester}'"; $search_s = ''; $x_s = 'x';}
                     if($art == ''){ $a_abfrage =  $x_a = '';  $search_a = 'display:none;'; }else{ $a_abfrage = " AND modul.kategorie = '{$art}'"; $search_a = ''; $x_a = 'x';}
-                    if($betreuer == ''){ $b_abfrage = $x_b = ''; $search_b = 'display:none;'; }else{ $b_abfrage = " AND thema.benutzer_id = '{$betreuer}'"; $search_b = ''; $x_b = 'x';}
+                    if($betreuer == ''){ $b_abfrage = $x_b = ''; $search_b = 'display:none;'; }else{ $b_abfrage = " AND thema.betreuer = '{$betreuer}'"; $search_b = ''; $x_b = 'x';}
                     $search_f = '';
                     if(count(array_filter($tags_array)) == 0) {
                         $f_abfrage = $f_abfrage_s = $search_f  ='';
@@ -78,7 +78,6 @@ public function modulUebersichtTags($thema_id){
                     $abfrage_th =  $b_abfrage .''. $f_abfrage_s;
 
                     $module = $this->modul_model->getModuleByUebersicht($abfrage_modul, $f_abfrage_s, $b_abfrage);      
-                    $betreuer_anzeige = $this->user_model->getIDBenutzername($betreuer);
                     include(__DIR__."/../view/modul_uebersicht/modul_uebersicht_mt_view.php"); 
                 break; 
             }        

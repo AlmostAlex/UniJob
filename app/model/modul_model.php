@@ -14,14 +14,24 @@ class modul_model
         $this->vorkenntnisse_model = new vorkenntnisse_model();
     }
 
-    public function insertSeminar($thema, $modulbezeichnung, $professurbezeichnung, $kategorie, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer)
+    public function insertSeminar($thema, $modulbezeichnung, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer)
     {
+        if($kickoff != 1){
+            echo $kickoff;
+            echo "IST NICHT LEER";
         //Erst eintragung des Moduls
-        $statement = $this->dbh->prepare("INSERT INTO `modul` (`modulbezeichnung`, `professur`, `kategorie`, `hinweise`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `kickoff`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren`)
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,'Offen','false','false')");
-        $statement->bind_param('ssssssssssi', $modulbezeichnung, $professurbezeichnung, $kategorie, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $_SESSION['login']);
+        $statement = $this->dbh->prepare("INSERT INTO `modul` (`modulbezeichnung`, `professur`, `kategorie`, `abschlusstyp`, `hinweise`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `kickoff`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren`)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,'Offen','false','false')");
+        $statement->bind_param('sssssssssssi', $modulbezeichnung, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $_SESSION['login']);
         $statement->execute();
-
+        }
+        else{
+            echo "IST LEEER!";
+            $statement = $this->dbh->prepare("INSERT INTO `modul` (`modulbezeichnung`, `professur`, `kategorie`, `abschlusstyp`, `hinweise`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren`)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,'Offen','false','false')");
+            $statement->bind_param('ssssssssssi', $modulbezeichnung, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $studiengang, $_SESSION['login']);
+            $statement->execute();
+        }
         //dann die hierdurch entstandene modul_id holen
         $modul_id = $this->lastModulID();
 
@@ -631,23 +641,21 @@ public function getModuleByUebersicht($filter_modul, $f_abfrage_s, $b_abfrage)
 
     public function count_b() {
         $statement = $this->dbh->prepare(
-        "SELECT user.benutzername, user.benutzer_id, 
+        "SELECT betreuer, 
         count(thema_id) AS anzahl 
-        FROM modul, thema, user 
-        WHERE thema.benutzer_id = user.benutzer_id
-        AND thema.modul_id = modul.modul_id 
+        FROM modul, thema
+        WHERE thema.modul_id = modul.modul_id 
         AND modul.archivierung='false'
         AND DATE(modul.frist_start) <= CURDATE() 
-        GROUP BY benutzer_id");
+        GROUP BY betreuer");
         $statement->execute();
-        $statement->bind_result($benutzername, $benutzer_id, $anzahl);
+        $statement->bind_result($benutzername, $anzahl);
         $statement->store_result();
 
         $b_row = array();
         while ($statement->fetch()) {
             $row = array(
                 'benutzername' => $benutzername,
-                'benutzer_id' => $benutzer_id,
                 'anzahl' => $anzahl
             );
             $b_row[] = $row;          

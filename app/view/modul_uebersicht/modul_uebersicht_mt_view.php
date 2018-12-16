@@ -6,7 +6,7 @@
 <ul class="tags">
 <li><a style='<?php echo $search_s; ?>'> <?php echo $semester; ?> <delete onclick="r_semester();"><?php echo $x_s; ?></delete></a></li>
 <li><a style='<?php echo $search_a; ?>'> <?php echo $art; ?> <delete onclick="r_art();"><?php echo $x_a; ?></delete></a></li>
-<li><a style='<?php echo $search_b; ?>'> <?php echo $betreuer_anzeige; ?> <delete onclick="r_betreuer();"><?php echo $x_b; ?></delete></a></li>
+<li><a style='<?php echo $search_b; ?>'> <?php echo $betreuer; ?> <delete onclick="r_betreuer();"><?php echo $x_b; ?></delete></a></li>
 
 <?php for ($i = 0; $i < count($tags_array); $i++) {?>
 <li>

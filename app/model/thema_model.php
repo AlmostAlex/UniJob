@@ -350,11 +350,11 @@ class thema_model
         return $themenbezeichnung;
     }
 
-    public function updateThema($benutzer_id, $themenbezeichnung, $beschreibung, $thema_id)
+    public function updateThema($themenbezeichnung, $beschreibung, $thema_id)
     {
-        $statement = $this->dbh->prepare("UPDATE thema SET benutzer_id = ?,  themenbezeichnung =?, beschreibung = ?
+        $statement = $this->dbh->prepare("UPDATE thema SET themenbezeichnung =?, beschreibung = ?
                                         WHERE thema_id = ?");
-        $statement->bind_param('issi', $benutzer_id, $themenbezeichnung, $beschreibung, $thema_id);
+        $statement->bind_param('ssi', $themenbezeichnung, $beschreibung, $thema_id);
         $statement->execute(); 
     }
 

@@ -11,7 +11,7 @@
 
       <tr>
         <td><label for='Betreuer'><b>Betreuer:</b><red style='color: red'>*</red></label></td>
-        <td><input type='text' id='benutzername' name='benutzername' class='form-control' value='<?php echo $thema['benutzername']; ?>'></td>
+        <td><input type='text' id='betreuer' name='betreuer' class='form-control' value='<?php echo $thema['benutzername']; ?>'></td>
       </tr>
 
       <tr>

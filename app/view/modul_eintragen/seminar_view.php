@@ -23,6 +23,27 @@
                     <th>
                     <th>
                 </tr>
+                <td><label for="Abschlusstyp"><b>Kategorie:</b></label></td>
+                <td>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="radio1" value='Bachelor' name="Abschlusstyp">
+                        <label class="custom-control-label" for="radio1">Master</label>
+                    </div>
+                </td>
+                <td>
+                 <!-- Group of default radios - option 2 -->
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="radio2" value='Master' name="Abschlusstyp">
+                        <label class="custom-control-label" for="radio2">Bachelor</label>
+                    </div>
+                </td>
+                <td>
+                 <!-- Group of default radios - option 3 -->
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="radio3" value='' name="Abschlusstyp">
+                        <label class="custom-control-label" for="radio3">Keine Angabe</label>
+                    </div>
+                </td>
                 <tr>
                     <td><label for="Modul"><b>Seminarbezeichnung:</b><red>*</red></label></td>
                     <td colspan = 3><input type="text" class="form-control" id="modulbezeichnung" name='modulbezeichnung' placeholder="Bezeichnung der Veranstaltung" required> </td>
@@ -59,7 +80,7 @@
                     </td>
                     <td style='padding-bottom: 30px;'>
                         <div class='input-group date' id='datetimepicker1'>
-                            <input type="text" class="form-control" name="Kickoff" autocomplete="off" placeholder="TT-MM-JJJJ" id="datepicker_kickoff" required>
+                            <input type="text" class="form-control" name="Kickoff" autocomplete="off" placeholder="TT-MM-JJJJ" id="datepicker_kickoff">
                             <span id='datebox' class="input-group-addon">
                                 <i class="far fa-calendar-alt"></i>
                             </span>

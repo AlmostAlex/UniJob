@@ -282,13 +282,12 @@ public function editThema($thema_id)
         $tags = $this->tags_model->TagsByThemaID($thema_id);
         
         if (isset($_POST['thema_edit'])) {
-            if(isset($_POST['benutzername'])) { $benutzername = $_POST['benutzername']; }
+            if(isset($_POST['betreuer'])) { $benutzername = $_POST['betreuer']; }
             if(isset($_POST['themenbezeichnung'])) { $thema['themenbezeichnung'] =  $_POST['themenbezeichnung']; } else {$thema['themenbezeichnung'] = '';}
             if(isset($_POST['beschreibung'])) { $thema['beschreibung'] =  $_POST['beschreibung']; } else {$thema['beschreibung'] = '';}
             if(isset($_POST['tags'])) { $tags =  $_POST['tags']; } else {$tags = '';}
             if(isset($_POST['vorkenntnisse'])) { $vorkenntnisse =  $_POST['vorkenntnisse']; } else {$vorkenntnisse = '';}
-            $thema['benutzer_id'] = $this->user_model->getNachnameID($benutzername);
-            $this->thema_model->updateThema($thema['benutzer_id'],  $thema['themenbezeichnung'],
+            $this->thema_model->updateThema($thema['themenbezeichnung'],
                                             $thema['beschreibung'], $thema_id);
 
             $k = 0;
