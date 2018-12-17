@@ -42,7 +42,7 @@
                              echo  'Seminar: '. $module[$k]["modulbezeichnung"];
                             } else { echo 'Professur: '. $module[$k]["professur"];} ?> 
                             </titel></b><br>
-                            <?php if($module[$k]["kategorie"] == "Abschlussarbeit"){
+                            <?php if($module[$k]["kategorie"] == "Seminararbeit"){
                                 ?><div class='border_round'><b><?php echo $module[$k]['abschlusstyp']; ?></b></div>
                             <?php } ?>
                     <div class='border_round'><b><?php echo $module[$k]['verfahren_anzeige']; ?></b></div>

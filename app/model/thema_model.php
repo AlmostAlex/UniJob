@@ -13,11 +13,11 @@ class thema_model
         $this->user = new Model();
     }
 
-    public function insertThema($modul_id, $themenbezeichnung, $themenbeschreibung, $betreuer)
+    public function insertThema($modul_id, $themenbezeichnung, $themenbeschreibung, $betreuer, $abschlussThemaTyp)
     {
-      $statement = $this->dbh->prepare("INSERT INTO `thema` (`themenbezeichnung`, `beschreibung`, `modul_id`, `thema_verfuegbarkeit`, `benutzer_id`, `betreuer`)
-        VALUES (?,?,?, 'Verfügbar',?,?)");
-            $statement->bind_param('ssiis', $themenbezeichnung, $themenbeschreibung, $modul_id, $_SESSION['login'], $betreuer);
+      $statement = $this->dbh->prepare("INSERT INTO `thema` (`themenbezeichnung`, `beschreibung`, `modul_id`, `thema_verfuegbarkeit`, `benutzer_id`, `betreuer`,`abschluss`)
+        VALUES (?,?,?, 'Verfügbar',?,?,?)");
+            $statement->bind_param('ssiiss', $themenbezeichnung, $themenbeschreibung, $modul_id, $_SESSION['login'], $betreuer, $abschlussThemaTyp);
             $statement->execute();
     }
 
@@ -181,24 +181,25 @@ class thema_model
     public function getThemen($modul_id, $f_abfrage_s, $b_abfrage)
     {
         if ($f_abfrage_s != '') {
-            $statement_thema = $this->dbh->prepare("SELECT user.benutzername, thema.thema_id, 
+            $statement_thema = $this->dbh->prepare("SELECT user.benutzername, thema.betreuer, thema.thema_id, 
                     thema.themenbezeichnung, thema.beschreibung, thema.thema_verfuegbarkeit, thema.benutzer_id
                     FROM tags JOIN thema on tags.thema_id = thema.thema_id
                     WHERE thema.modul_id = ? ".$b_abfrage."
-                    ORDER BY user.benutzername
+                    ORDER BY thema.betreuer
                     GROUP BY tags.thema_id " . $f_abfrage_s);
             $statement_thema->bind_param('i', $modul_id);
             $statement_thema->execute();
-            $statement_thema->bind_result($thema_id, $themenbezeichnung, $beschreibung, $thema_verfuegbarkeit, $benutzer_id);
+            $statement_thema->bind_result($thema_id, $themenbezeichnung, $beschreibung, $thema_verfuegbarkeit, $benutzer_id, $betreuer);
             $statement_thema->store_result();
         } else {
-            $statement_thema = $this->dbh->prepare("SELECT thema.thema_id, thema.themenbezeichnung, thema.beschreibung, thema.thema_verfuegbarkeit, thema.benutzer_id
+            $statement_thema = $this->dbh->prepare("SELECT thema.thema_id, thema.themenbezeichnung, 
+            thema.beschreibung, thema.thema_verfuegbarkeit, thema.benutzer_id, thema.betreuer
                     FROM thema
                     WHERE thema.modul_id = ? ".$b_abfrage."
                     GROUP BY thema.thema_id");
             $statement_thema->bind_param('i', $modul_id);
             $statement_thema->execute();
-            $statement_thema->bind_result($thema_id, $themenbezeichnung, $beschreibung, $thema_verfuegbarkeit, $benutzer_id);
+            $statement_thema->bind_result($thema_id, $themenbezeichnung, $beschreibung, $thema_verfuegbarkeit, $benutzer_id, $betreuer);
             $statement_thema->store_result();   
         }
 // es wird alles in ein Array gepackt und dann an den Controller weitergeleitet, dieser return die Ausgabe an die View
@@ -222,13 +223,14 @@ class thema_model
             if($verfahren == 'Windhundverfahren' || $verfahren == 'Belegwunschverfahren'){ $anz = "";  } 
 
             if($beschreibung == ''){ $beschreibung = 'Keine Beschreibung vorhanden.';}
+            if($betreuer == ''){$betreuer="-";}
 
             $row = array(
                 'thema_id' => $thema_id,
                 'themenbezeichnung' => $themenbezeichnung,
                 'themenbeschreibung' => $beschreibung,
                 'thema_verfuegbarkeit' => $thema_verfuegbarkeit,
-                'benutzer' => $benutzer,
+                'benutzer' => $betreuer,
                 'bewerber_anz' => $anz
             );
             $rows[] = $row;

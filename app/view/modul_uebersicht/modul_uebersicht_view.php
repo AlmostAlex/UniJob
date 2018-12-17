@@ -60,6 +60,14 @@
 <br><br>
 <h4>Seminar- und Abschlussarbeiten</h4>
 
+
+
+<?php if(empty($module)){echo 
+    "<br><br><center><div class='alert alert-info' role='alert'>
+    <i class='fas fa-exclamation-circle'></i> Es stehen keine Seminar- oder Abschlussarbeitsthemen zur Verfügung.</div>
+    </center>";} ?>
+
+
     <?php for($k = 0; $k < count($module); $k++){ ?>
         <div class='modul_text_<?php echo $module[$k]['kategorie']; ?>'>
             <?php if($module[$k]['kategorie'] == 'Seminararbeit') { echo"Seminararbeit zum"; } else { echo "Abschlussarbeit zur"; }?>
@@ -75,7 +83,7 @@
                                 echo  'Seminar: '. $module[$k]["modulbezeichnung"];
                             } else { echo 'Professur: '. $module[$k]["professur"];} ?> 
                             </titel></b><br>
-                            <?php if($module[$k]["kategorie"] == "Abschlussarbeit"){
+                            <?php if($module[$k]["kategorie"] == "Seminararbeit"){
                                 ?><div class='border_round'><b><?php echo $module[$k]['abschlusstyp']; ?></b></div>
                             <?php } ?>
                     <div class='border_round'><b><?php echo $module[$k]['verfahren_anzeige']; ?></b></div>

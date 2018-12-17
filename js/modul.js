@@ -18,15 +18,20 @@ $(function() {
 
 $(document).ready(function(e) {
     var maxGroup = 100;
-
+    var rowCount = 0;
     //add more fields group        
     $(".addMore2").click(function() {
         $(".taggin").css("display", "none");
 
         if ($('feld2').find('.fieldGroup').length < maxGroup) {
-            var fieldHTML = $('<div class="form-group fieldGroup" style="opacity:1.0;">' + $(".fieldGroupCopy").html() + '</div>').fadeIn(1000);
+            var fieldHTML =
+                $('<div class="form-group fieldGroup" style="opacity:1.0;"> <div id="row"' + rowCount + '>' +
+                    $(".fieldGroupCopy").html() +
+                    '</div>').fadeIn(1000);
             $('feld2').find('.fieldGroup:last').after(fieldHTML);
 
+            //$('.fieldGroup').html('<div id="row"' + rowCount + '><input type="text" name="txt">M11<input type="radio" id="m" name="genderForRow"' + rowCount + '>F<input type="radio" id="f" name="genderForRow"' + rowCount + '><input type="checkbox" name="txt"><br></div>'); // end append
+            rowCount++;
             //       fieldHTML.find('.bootstrap-tagsinput').remove();
 
             fieldHTML.fadeIn("slow");

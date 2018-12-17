@@ -22,10 +22,8 @@
                     <th style="padding-left: 250px;">
                     <th>
                     <th>
-                </tr>
-                
+                </tr>              
                 <tr>
-
 <!-- Group of default radios - option 1 -->
 <!--
 <td><label for="Abschlusstyp"><b>Kategorie:</b><red style="color: red" >*</red></label></td>
@@ -60,7 +58,7 @@
                             </span>
                         </div>
                         <dates>
-                            <text style='padding-right: 15px;' class='dateText' for="starttermin">Bewerbungsstart</text>
+                            <text style='padding-right: 62px;' class='dateText' for="starttermin">Bewerbungsstart</text>
                         </dates>
                     </td>
                     <td style='padding-bottom: 30px;'>
@@ -71,19 +69,8 @@
                             </span>
                         </div>
                         <dates>
-                        <text style='padding-right: 20px;padding-left: 20px;margin-top: 10px;height: 30px;'  for="endtermin">Bewerbungsende</text>
+                        <text style='padding-right: 62px;padding-left: 55px;margin-top: 10px;height: 30px;'  for="endtermin">Bewerbungsende</text>
                         </dates>
-                    </td>
-                    <td style='padding-bottom: 30px;'>
-                        <div class='input-group date' id='datetimepicker1'>
-                            <input type="text" class="form-control" name="Kickoff" autocomplete="off" placeholder="TT-MM-JJJJ" id="datepicker_kickoff" required>
-                            <span id='datebox' class="input-group-addon">
-                                <i class="far fa-calendar-alt"></i>
-                            </span>
-                        </div>    
-                        <dates>                       
-                        <text style='padding-right: 27px;padding-left: 30px;' class='dateText'  for="kickofftermin">Kickofftermin</text>
-                    </dates>                   
                     </td>
                 </tr>                             
                 <!-- Auswahl Semester-->
@@ -134,28 +121,35 @@
                         </select>
                     </td>
                 </tr>
+            </table>
 
-                <tr id='Schwerpunktbwl'>
-                    <td><b>Schwerpunkt</b></td>
-                    <td>
-                        <select class="form-control" name="Schwerpunkt" id="Schwerpunkt">
-                            <option value="None">Keiner</option>
-                            <option value="Finanzen, Rechnungswesen, Steuern">Finanzen, Rechnungswesen, Steuern</option>
-                            <option value="Unternehmensführung">Unternehmensführung</option>
-                            <option value="Marketing und E-Business">Marketing und E-Business</option>                    
-                        </select>
-                    </td>
-                </tr>
-
+            <div id='Schwerpunktbwl'>
+                <table>        
+                    <tr>
+                        <td style='min-width: 37.3%; width: 34.3%;'><label for="Schwerpunkt"><b><b>Schwerpunkt / Master:</b></label></td>
+                        <td>
+                            <select style='min-width: 97.3%; width: 97.4%;' class="form-control" name="Schwerpunkt" id="Schwerpunkt">
+                                <option value="None">Keiner</option>
+                                <option value="Finanzen, Rechnungswesen, Steuern">Finanzen, Rechnungswesen, Steuern</option>
+                                <option value="Unternehmensführung">Unternehmensführung</option>
+                                <option value="Marketing und E-Business">Marketing und E-Business</option>                    
+                            </select>
+                        </td>
+                    </tr>
+                </table>            
+            </div>
+            <table>
                 <!-- Verfahrenauswahl -->   
                 <tr>
-                    <td><label for="Verfahren"><b>Verfahren:</b></label></td>  
-                    <td colspan='3'><select  name="verfahren" id="verfahren" class="form-control">
+                    <td style='min-width: 37.3%; width: 34.3%;'><label for="Verfahren"><b>Verfahren:</b><red>*</red></label></td>  
+                    <td colspan='3'>
+                        <select style='min-width: 97.3%; width: 97.4%;' name="verfahren" id="verfahren" class="form-control">
                             <option value=""></option>
                             <option value="Windhundverfahren">Windhundverfahren</option>
                             <option value="Bewerbungsverfahren">Bewerbungsverfahren</option>
                             <option value="Belegwunschverfahren">Belegwunschverfahren</option>
-                        </select></td>  
+                        </select>
+                    </td>  
                 </tr>            
                 <tr>
                     <td></td>
@@ -168,7 +162,8 @@
    
     <!-- Das kopierende Feld bei Windhund oder Bewerbung  -->
     <!--  COPY FIELDS --> 
-<div class="form-group fieldGroupCopy" style="display: none;">     
+<div class="form-group fieldGroupCopy" style="display: none;">   
+  
     <table>
         <tr>
             <td class='first_td'><label style='width: 150px;' for="Betreuer"><b>Betreuer:</b></label></td>
@@ -179,6 +174,16 @@
             <td class='first_td'><label for="titel"><b>Titel:</b></label></td>
             <td><space><input  style='margin-left: 90px;'  type="text" name="themenbezeichnungwindhund[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
         </tr>
+            <tr>
+            <td class='first_td'><label style='width: 150px;'  for="AbschlusstypThema"><b>Abschlusstyp:</b></label></td>
+            <td>
+            <select style='min-width: 84.3%; width: 67.4%; margin-left: 87px;' name="abschlussThemaTyp[]" id="verfahren" class="form-control">
+                <option value="Bachelor">nur Bachelor</option>
+                <option value="Master">nur Master</option>
+                <option value="Bachelor/Master">Beides</option>
+            </select>
+            </td>
+            </tr>
        <tr>
             <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
             <td><textarea style='margin-left: 90px;' type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
@@ -205,6 +210,11 @@
                 </div>
             </td>
         </tr>
+        <tr>
+        <td colspan='3'>
+        <hr>
+        </td>
+    </tr>
     </table>
 </div>
 <!--  COPY FIELD END -->
@@ -212,7 +222,6 @@
 <!--  COPY FIELDS BELEGWUNSCH --> 
 <div class="form-group fieldGroupCopy2" style="display: none;">
     <table>
-        <tr>
             <td class='first_td'><label style='width: 150px;' for="Betreuer"><b>Betreuer:</b></label></td>
             <td><space><input type="text" class="form-control" name='betreuerbelegwunsch[]' placeholder="Betreuer des Themas"></space> </td>
             <td><a href="javascript:void(0)" class="btn btn-danger remove">-</a></td>
@@ -221,6 +230,17 @@
             <td class='first_td'><label for="titel"><b>Titel:</b></label></td>
             <td><space><input type="text" name="themenbezeichnungbelegwunsch[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
         </tr>
+        <tr>
+            <td class='first_td'><label style='width: 150px;'  for="AbschlusstypThema"><b>Abschlusstyp:</b></label></td>
+            <td>
+            <select style='min-width: 84.3%; width: 67.4%; margin-left: 87px;' name="abschlussThemaTypBeleg[]" id="verfahren" class="form-control">
+                <option value="Bachelor">nur Bachelor</option>
+                <option value="Master">nur Master</option>
+                <option value="Bachelor/Master">Beides</option>
+            </select>
+            </td>
+        </tr>
+        <tr>
             <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
             <td><textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
         </tr>
@@ -246,6 +266,12 @@
                 </div>
             </td>
         </tr>
+        <tr>
+        <td colspan='3'>
+        <hr>
+        </td>
+        </tr>
+        <tr>
     </table>
 </div>
 <!--  COPY FIELD END -->
@@ -253,26 +279,41 @@
 
 <!-- Wenn Windhund oder Bewerbungsverfahren gewählt wurde...  -->
 <feld2>
+
+       
     <div id="WindUndBew">
         <div class="form_ueberschrift">Themenangaben</div><br>
-        <table>
-            <div class="form-group fieldGroup"> 
+
+     <table>   
+            <div class="form-group fieldGroup">
                 <tr>
                     <td class='first_td'><label style='width: 150px;' for="Betreuer"><b>Betreuer:</b></label></td>
                     <td><space><input type="text" class="form-control" name='betreuerwindhund[]' placeholder="Betreuer des Themas"></space> </td>
-                    <td><a href="javascript:void(0)" class="btn btn-success addMore2">+</a></td>
+                    <td ><a href="javascript:void(0)" class="btn btn-success addMore2">+</a></td>
                 </tr>
                 <tr>
                     <td class='first_td'><label for="titel"><b>Titel:</b></label></td>
                     <td><space><input type="text" name="themenbezeichnungwindhund[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
                 </tr>
+
+                    <tr>
+                    <td class='first_td'><label style='width: 150px;'  for="AbschlusstypThema"><b>Abschlusstyp:</b></label></td>
+                    <td>
+                    <select style='min-width: 84.3%; width: 67.4%; margin-left: 87px;' name="abschlussThemaTyp[]" id="verfahren" class="form-control">
+                        <option value="Bachelor">nur Bachelor</option>
+                        <option value="Master">nur Master</option>
+                        <option value="Bachelor/Master">Beides</option>
+                    </select>
+                    </td>
+                    </tr>
+
                 <tr>
                     <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
-                    <td colspan='2'><textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
+                    <td colspan='3'><textarea type="text" name="themenbeschreibung[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td  colspan='2'>
+                    <td  colspan='3'>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span style='margin-left:88px' class="input-group-text">Vorkenntnisse</span>
@@ -283,7 +324,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td colspan='2'>
+                    <td colspan='3'>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span style='margin-left:88px' class="input-group-text">Tags</span>
@@ -293,10 +334,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan='3'><input style='float:right;'type="submit" name="modul_eintrag1" class="btn btn-primary" value="Modul eintragen"/> </td>
+                    <td colspan='4'><input style='float:right;'type="submit" name="modul_eintrag1" class="btn btn-primary" value="Modul eintragen"/> </td>
                 </tr>
-            </div>
-        </table> 
+           </div>
+        </table>  
+        
     </div>     
 </feld2>
 <!-- ENDE-->
@@ -317,6 +359,16 @@
                 <td><space><input type="text" name="themenbezeichnungbelegwunsch[]" id="validationCustom03" class="form-control" placeholder="Titel des Themas"/><space></td>  
             </tr>
             <tr>
+            <td class='first_td'><label style='width: 150px;'  for="AbschlusstypThema"><b>Abschlusstyp:</b></label></td>
+            <td>
+            <select style='min-width: 84.3%; width: 67.4%; margin-left: 87px;' name="abschlussThemaTypBeleg[]" id="verfahren" class="form-control">
+                <option value="Bachelor">nur Bachelor</option>
+                <option value="Master">nur Master</option>
+                <option value="Bachelor/Master">Beides</option>
+            </select>
+            </td>
+            </tr>
+            <tr>
                 <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
                 <td><textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
             </tr>
@@ -344,6 +396,11 @@
                     </div>
                 </td>
             </tr>
+            <tr>
+        <td colspan='3'>
+        <hr>
+        </td>
+        </tr>
 
         <!-- 2 -->
             <tr>
@@ -355,6 +412,16 @@
                 <td><space><input type="text" name="themenbezeichnungbelegwunsch[]" id="validationCustom03" class="form-control" placeholder="Titel des Themas"/></space></td>  
             </tr>
             <tr>
+            <td class='first_td'><label style='width: 150px;'  for="AbschlusstypThema"><b>Abschlusstyp:</b></label></td>
+            <td>
+            <select style='min-width: 84.3%; width: 67.4%; margin-left: 87px;' name="abschlussThemaTypBeleg[]" id="verfahren" class="form-control">
+                <option value="Bachelor">nur Bachelor</option>
+                <option value="Master">nur Master</option>
+                <option value="Bachelor/Master">Beides</option>
+            </select>
+            </td>
+            </tr>
+            <tr>
                 <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>
                 <td><textarea type="text" name="themenbeschreibungbelegwunsch[]" class="form-control" placeholder="Beschreibung des Themas"/></textarea></td>
             </tr>
@@ -382,6 +449,11 @@
                     </div>
                 </td>
             </tr>
+            <tr>
+        <td colspan='3'>
+        <hr>
+        </td>
+        </tr>
         <!-- 3 -->
             <tr>
                 <td class='first_td'><label for="Betreuer"><b>Betreuer:</b></label></td>
@@ -390,6 +462,16 @@
             <tr>
                 <td><label for="titel"><b>Titel: <red style="color: red"> * </red></b></label></td>
                 <td><space><input type="text" name="themenbezeichnungbelegwunsch[]" id="validationCustom03" class="form-control" placeholder="Titel des Themas"/></space></td>  
+            </tr>
+            <tr>
+            <td class='first_td'><label style='width: 150px;'  for="AbschlusstypThema"><b>Abschlusstyp:</b></label></td>
+            <td>
+            <select style='min-width: 84.3%; width: 67.4%; margin-left: 87px;' name="abschlussThemaTypBeleg[]" id="verfahren" class="form-control">
+                <option value="Bachelor">nur Bachelor</option>
+                <option value="Master">nur Master</option>
+                <option value="Bachelor/Master">Beides</option>
+            </select>
+            </td>
             </tr>
             <tr>
                 <td><label for="Beschreibung"><b>Beschreibung:</b></label></td>

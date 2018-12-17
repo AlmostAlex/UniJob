@@ -38,10 +38,10 @@
                     </div>
                 </td>
                 <td>
-                 <!-- Group of default radios - option 3 -->
+                 <!-- Group of default radios - option 2 -->
                     <div class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" id="radio3" value='' name="Abschlusstyp">
-                        <label class="custom-control-label" for="radio3">Keine Angabe</label>
+                        <input type="radio" class="custom-control-input" id="radio2" value='Bachelor/Master' name="Abschlusstyp">
+                        <label class="custom-control-label" for="radio2">Beides</label>
                     </div>
                 </td>
                 <tr>
@@ -64,7 +64,7 @@
                             </span>
                         </div>
                         <dates>
-                            <text style='padding-right: 15px;padding-left: 20px;margin-top: 10px;height: 30px;'  for="starttermin">Bewerbungsstart</text>
+                            <text style='padding-right: 15px;padding-left: 20px;margin-top: 10px;height: 30px;'  for="starttermin">Bewerbungsstart <red>*</red> </text>
                         </dates>
                     </td>
                     <td style='padding-bottom: 30px;'>
@@ -75,7 +75,7 @@
                             </span>
                         </div>
                         <dates>
-                        <text style='padding-right: 20px;padding-left: 20px;margin-top: 10px;height: 30px;'  for="endtermin">Bewerbungsende</text>
+                        <text style='padding-right: 20px;padding-left: 20px;margin-top: 10px;height: 30px;'  for="endtermin">Bewerbungsende <red>*</red> </text>
                         </dates>
                     </td>
                     <td style='padding-bottom: 30px;'>
@@ -134,16 +134,31 @@
                             <option value="Betriebswirtschaftslehre">Betriebswirtschaftslehre</option>
                             <option value="Wirtschaftsinformatik">Wirtschaftsinformatik</option>
                             <option value="Volkswirtschaftslehre">Volkswirtschaftslehre</option>
-                            <option value="Wirtschaftspädagogik">Wirtschaftspädagogik</option>
-                            <option value="Angewandte Informatik">Angewandte Informatik</option>                        
+                            <option value="Wirtschaftspädagogik">Wirtschaftspädagogik</option>                     
                         </select>
                     </td>
                 </tr>
-
+                </table>
+                    <div id='Schwerpunktbwl'>
+                        <table>        
+                            <tr>
+                            <td style='min-width: 37.3%; width: 34.3%;'><label for="Schwerpunkt"><b><b>Schwerpunkt / Master:</b></label></td>
+                                <td>
+                                    <select style='min-width: 97.3%; width: 97.4%;' class="form-control" name="Schwerpunkt" id="Schwerpunkt">
+                                        <option value="None">Keiner</option>
+                                        <option value="Finanzen, Rechnungswesen, Steuern">Finanzen, Rechnungswesen, Steuern</option>
+                                        <option value="Unternehmensführung">Unternehmensführung</option>
+                                        <option value="Marketing und E-Business">Marketing und E-Business</option>                    
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>            
+                    </div>
+                <table>
                 <!-- Verfahrenauswahl -->   
                 <tr>
-                    <td><label for="Verfahren"><b>Verfahren:</b></label></td>  
-                    <td colspan='3'><select  name="verfahren" id="verfahren" class="form-control">
+                    <td style='min-width: 34%; width: 34.3%;'><label for="Verfahren"><b>Verfahren:</b></label></td>  
+                    <td colspan='3'><select style='min-width: 98%; width: 97.4%;' name="verfahren" id="verfahren" class="form-control">
                             <option value=""></option>
                             <option value="Windhundverfahren">Windhundverfahren</option>
                             <option value="Bewerbungsverfahren">Bewerbungsverfahren</option>
@@ -163,11 +178,13 @@
     <!--  COPY FIELDS --> 
 <div class="form-group fieldGroupCopy" style="display: none;">     
     <table>
+
         <tr>
             <td class='first_td'><label style='width: 150px;' for="Betreuer"><b>Betreuer:</b></label></td>
             <td><space><input style='margin-left: 90px;' type="text" class="form-control" name='betreuerwindhund[]' placeholder="Betreuer des Themas"></space> </td>
             <td><a href="javascript:void(0)" class="btn btn-danger remove">-</a></td>
         </tr>
+
         <tr>
             <td class='first_td'><label for="titel"><b>Titel:</b></label></td>
             <td><space><input  style='margin-left: 90px;'  type="text" name="themenbezeichnungwindhund[]" class="form-control" placeholder="Titel des Themas"/></space></td>  
@@ -201,8 +218,6 @@
 </div>
 </td>
 </tr>
-
-
     </table>
 </div>
 <!--  COPY FIELD END -->

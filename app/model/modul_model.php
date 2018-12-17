@@ -14,22 +14,19 @@ class modul_model
         $this->vorkenntnisse_model = new vorkenntnisse_model();
     }
 
-    public function insertSeminar($thema, $modulbezeichnung, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer)
+    public function insertSeminar($thema, $modulbezeichnung, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer, $schwerpunkt)
     {
-        if($kickoff != 1){
-            echo $kickoff;
-            echo "IST NICHT LEER";
+        if($kickoff != 1){ //kickoff ist nicht leer
         //Erst eintragung des Moduls
-        $statement = $this->dbh->prepare("INSERT INTO `modul` (`modulbezeichnung`, `professur`, `kategorie`, `abschlusstyp`, `hinweise`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `kickoff`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren`)
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,'Offen','false','false')");
-        $statement->bind_param('sssssssssssi', $modulbezeichnung, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $_SESSION['login']);
+        $statement = $this->dbh->prepare("INSERT INTO `modul` (`modulbezeichnung`, `professur`, `kategorie`, `abschlusstyp`, `hinweise`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `kickoff`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren`,`schwerpunkt`)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,'Offen','false','false',?)");
+        $statement->bind_param('sssssssssssis', $modulbezeichnung, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $_SESSION['login'],$schwerpunkt);
         $statement->execute();
         }
-        else{
-            echo "IST LEEER!";
-            $statement = $this->dbh->prepare("INSERT INTO `modul` (`modulbezeichnung`, `professur`, `kategorie`, `abschlusstyp`, `hinweise`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren`)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,'Offen','false','false')");
-            $statement->bind_param('ssssssssssi', $modulbezeichnung, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $studiengang, $_SESSION['login']);
+        else{ //kickoff ist leer
+            $statement = $this->dbh->prepare("INSERT INTO `modul` (`modulbezeichnung`, `professur`, `kategorie`, `abschlusstyp`, `hinweise`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren`,`schwerpunkt`)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,'Offen','false','false',?)");
+            $statement->bind_param('ssssssssssis', $modulbezeichnung, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $studiengang, $_SESSION['login'],$schwerpunkt);
             $statement->execute();
         }
         //dann die hierdurch entstandene modul_id holen
@@ -48,6 +45,8 @@ class modul_model
             $beschreibung = $_POST['themenbeschreibungbelegwunsch'];
         }
 
+        $abschlussThemaTyp = '';
+
         //Und hier alle Themen mit den passenden Beschreibungen zu dem gerade angelegten Modul hinzufügen
         while ($j < count($thema)) {
             if (!empty($thema[$j])) {
@@ -65,10 +64,10 @@ class modul_model
                     //davon ausgehend, dass der Benutzername eingegeben wird !!!!! BEI UNIDB ZUGRIFF NEU SCHREIBEN!!!!!
                     $benutzer_id = $this->user->getNachnameID($betreuer_string);
                     if ($tag_string == '') {
-                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$betreuer_string);
+                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$betreuer_string,$abschlussThemaTyp);
                         $thema_id = $this->thema->lastThemaID();
                     } else {
-                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$betreuer_string);
+                        $this->thema->insertThema($modul_id, $thema_array, $beschreibung_array,$betreuer_string,$abschlussThemaTyp);
                         $thema_id = $this->thema->lastThemaID();
                         $this->tags_model->insertTags($tag_string, $thema_id);
                     }
@@ -81,12 +80,13 @@ class modul_model
         }
     }
 
-    public function insertAbschluss($thema, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer)
+    public function insertAbschluss($thema, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer, $schwerpunkt)
     {
         //Erst eintragung des Moduls
-        $statement = $this->dbh->prepare("INSERT INTO `modul` (`professur`, `kategorie`, `abschlusstyp`, `hinweise`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `kickoff`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren` )
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,'Offen','false','false')");
-        $statement->bind_param('ssssssssssi', $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $_SESSION['login']);
+        
+        $statement = $this->dbh->prepare("INSERT INTO `modul` (`professur`, `kategorie`, `abschlusstyp`, `hinweise`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `kickoff`, `studiengang`, `benutzer_id`, `schwerpunkt`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren`)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,'Offen','false','false')");
+        $statement->bind_param('ssssssssssis', $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $_SESSION['login'],$schwerpunkt);
         $statement->execute();
 
         //dann die hierdurch entstandene modul_id holen
@@ -96,15 +96,23 @@ class modul_model
         array_filter($_POST['themenbezeichnungwindhund']);
         array_filter($_POST['themenbezeichnungbelegwunsch']);
         array_filter($_POST['themenbeschreibung']);
+        array_filter($_POST['abschlussThemaTyp']);
+        array_filter($_POST['abschlussThemaTypBeleg']);
+        
         //  array_filter($_POST['tags']);
-
+        $abschlussThemaTyp = $_POST['abschlussThemaTyp'];
         if ($verfahren == 'Windhundverfahren' || $verfahren == 'Bewerbungsverfahren') {
             $j = 1;
             $beschreibung = $_POST['themenbeschreibung'];
+            $abschlussThemaTyp = $_POST['abschlussThemaTyp'];
+            
         } else {
             $j = 0;
             $beschreibung = $_POST['themenbeschreibungbelegwunsch'];
+            $abschlussThemaTyp = $_POST['abschlussThemaTypBeleg'];
         }
+
+        print_r($abschlussThemaTyp);
 
         //Und hier alle Themen mit den passenden Beschreibungen zu dem gerade angelegten Modul hinzufügen
         while ($j < count($thema)) {
@@ -120,13 +128,14 @@ class modul_model
                     $vorkenntnisse_string = $vorkenntnisse[$j];
                     $betreuer_string = $betreuer[$j];
 
+                    $abschlussThemaTyp_array =  $abschlussThemaTyp[$j];
+
                     //davon ausgehend, dass der Benutzername eingegeben wird !!!!! BEI UNIDB ZUGRIFF NEU SCHREIBEN!!!!!
                     $benutzer_id = $this->user->getNachnameID($betreuer_string);
                     if ($tag_string == '') {
-                        echo '-' . $betreuer_string; 
-                        $this->thema->insertThema($modul_id, $thema_array,$beschreibung_array,$betreuer_string);
+                        $this->thema->insertThema($modul_id, $thema_array,$beschreibung_array,$betreuer_string,$abschlussThemaTyp_array);
                     } else {
-                        $this->thema->insertThema($modul_id, $thema_array,$beschreibung_array,$betreuer_string);
+                        $this->thema->insertThema($modul_id, $thema_array,$beschreibung_array,$betreuer_string,$abschlussThemaTyp_array);
                         $thema_id = $this->thema->lastThemaID();
                         $this->tags_model->insertTags($tag_string, $thema_id);
                     }
@@ -148,8 +157,7 @@ class modul_model
     }
 
     public function getModule($filter_modul, $abfrage_th)
-    {
-        
+    {      
         $statement = $this->dbh->prepare(
             "SELECT modul.modul_id,modul.modulbezeichnung,modul.professur,modul.kategorie,
             modul.abschlusstyp,modul.hinweise,modul.verfahren,modul.semester,modul.frist_start,
@@ -647,6 +655,7 @@ public function getModuleByUebersicht($filter_modul, $f_abfrage_s, $b_abfrage)
         WHERE thema.modul_id = modul.modul_id 
         AND modul.archivierung='false'
         AND DATE(modul.frist_start) <= CURDATE() 
+        AND NOT betreuer =''
         GROUP BY betreuer");
         $statement->execute();
         $statement->bind_result($benutzername, $anzahl);
