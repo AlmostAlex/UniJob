@@ -2,14 +2,12 @@
 
 <div class="verwaltungsbox">
     <h4 class='card-title'><i class="fa fa-info-circle" aria-hidden="true"></i> Zum Eintrag eines Seminars einer Professur</h4>
-    Um erfolgreich einen Kurs anzulegen, ist es zunächst erforderlich, dass:<br>
+    Um erfolgreich ein Seminarthema anzulegen, ist es zunächst erforderlich, dass:<br>
     <ul>
-    <li>  alle <b>Pflichtfelder</b> <red>*</red> ausgefüllt werden,</li>
-    <li>  eine <b>Kategorie</b> gewählt wird,</li>
+    <li>  alle <b>Pflichtfelder</b> <red>*</red> ausgefüllt werden</li>
     <li>  und ein <b>Verfahren</b> gewählt wird.</li>
     <li>  beim Verfahren <b>"Belegwunsch"</b>, sind mindestens <b>drei</b> Themen erforderlich.</li>
-   
-    <li>Es können beliebig viele Themen angelegt werden und im Nachhinein ergänzt werden. <br><a href="/mt_verwaltung"><i class="fa fa-arrow-right"></i>Themen eintragen</a>
+    <li>  Es können beliebig viele Themen über die Verwaltungsseite angelegt und im Nachhinein ergänzt werden</li>
 </div>
 <div class="form_thema">
     <form action='' method="post" name='mod' id='mod'>
@@ -23,7 +21,7 @@
                     <th>
                     <th>
                 </tr>
-                <td><label for="Abschlusstyp"><b>Kategorie:</b></label></td>
+                <td><label for="Abschlusstyp"><b>Kategorie:</b><red>*</red></label></td>
                 <td>
                     <div class="custom-control custom-radio">
                         <input type="radio" class="custom-control-input" id="radio1" value='Bachelor' name="Abschlusstyp">
@@ -51,7 +49,7 @@
                 </tr>
                 <tr>
                     <td><label for="Modul"><b>Professur:</b><red>*</red></label></td>
-                    <td colspan = 3><input type="text" class="form-control" id="professurbezeichnung" name='professurbezeichnung' placeholder="Bezeichnung der Professur" required> </td>
+                    <td colspan = 3><input type="text" class="form-control" id="professurbezeichnung" name='professurbezeichnung' placeholder="Name der Professur" required> </td>
                     <td></td>
                 </tr>
                 <tr>

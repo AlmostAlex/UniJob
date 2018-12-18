@@ -23,8 +23,8 @@
                 <div class='navhd'><i class="fas fa-list-ul"></i> <a href="/mt_verwaltung">Modul- und Themenverwaltung</a></div>
                 <div class='navhd'><i class="far fa-plus-square"></i> <a href="/abschlussarbeit_eintragen">Abschlussthemen eintragen</a></div>
                 <div class='navhd'><i class="fas fa-plus-square"></i> <a href="/seminar_eintragen">Seminarthemen eintragen</a></div>
-                <div class='navhd'><i class="fas fa-archive"></i> <a href="/archivierung">Archvierungen einsehen</a></div>
-                <div class='navhd'><i class="far fa-chart-bar"></i> <a href="/report_wahl">Report erstellen</a></div>
+               <!-- <div class='navhd'><i class="fas fa-archive"></i> <a href="/archivierung">Archvierungen einsehen</a></div> -->
+                <!--<div class='navhd'><i class="far fa-chart-bar"></i> <a href="/report_wahl">Report erstellen</a></div> -->
             </p>
         </div>
     </navihd>       
@@ -35,12 +35,13 @@
     <div class="nav_box">
         <h5 class="mt-0">Kontakt</h5>
         <p>
-            Henrik Wesseloh<br>
-            Platz der Göttinger Sieben 5<br>
-            37073 Göttingen<br>
-            Tel. +49 (0)551 39 7331<br>
-            Fax. +49 (0)551 39 9735<br><br>
-            <i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:henrik.wesseloh@uni-goettingen.de"> henrik.wesseloh@uni-goettingen.de</a>
+        Henrik Wesseloh<br>
+        M. Sc. in Wirtsch.-Inf.<br>
+        Professur für Anwendungssysteme <br>und E-Business <br>
+        Platz der Göttinger Sieben 5<br>
+        37073 Göttingen<br>
+        Tel. +49 (0)551 / 39-7331 <br>
+        <i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:henrik.wesseloh@uni-goettingen.de"> henrik.wesseloh@uni-goettingen.de</a>
         </p>
     </div>
 </div>

@@ -2,14 +2,13 @@
 
 <div class="verwaltungsbox">
     <h4 class='card-title'><i class="fa fa-info-circle" aria-hidden="true"></i>  Zum Eintrag der Abschlussthemen einer Professur</h4>
-    Um erfolgreich einen Kurs anzulegen, ist es zunächst erforderlich, dass:<br>
+    Um erfolgreich ein Abschlussthema anzulegen, ist es zunächst erforderlich, dass:<br>
     <ul>
-    <li>  alle <b>Pflichtfelder</b> <red>*</red> ausgefüllt werden,</li>
-    <li>  eine <b>Kategorie</b> gewählt wird,</li>
+    <li>  alle <b>Pflichtfelder</b> <red>*</red> ausgefüllt werden</li>
     <li>  und ein <b>Verfahren</b> gewählt wird.</li>
     <li>  beim Verfahren <b>"Belegwunsch"</b>, sind mindestens <b>drei</b> Themen erforderlich.</li>
-   
-    <li>Es können beliebig viele Themen angelegt werden und im Nachhinein ergänzt werden. <br><a href="/mt_verwaltung"><i class="fa fa-arrow-right"></i>Themen eintragen</a>
+    <li>  Es können beliebig viele Themen über die Verwaltungsseite angelegt und im Nachhinein ergänzt werden.</li>
+    </ul>
 </div>
 <div class="form_thema">
     <form action='' method="post" name='mod' id='mod'>
@@ -45,7 +44,7 @@
                 </tr>
                 <tr>
                     <td><label for="Modul"><b>Professur:</b><red>*</red></label></td>
-                    <td colspan = 3><input type="text" class="form-control" id="professurbezeichnung" name='professurbezeichnung' placeholder="Bezeichnung der Veranstaltung" required> </td>
+                    <td colspan = 3><input type="text" class="form-control" id="professurbezeichnung" name='professurbezeichnung' placeholder="Name der Professur" required> </td>
                     <td></td>
                 </tr>
                 <tr>

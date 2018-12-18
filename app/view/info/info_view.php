@@ -1,7 +1,8 @@
 <info>
 <h2 class="card-title">Themenvergabe für Seminar- und Abschlussarbeitsthemen</h2>
-   Herzlich Willkommen zum Tool zur Anmeldung und Vergabe von Seminar- und Abschlussarbeitsthemen. <br>
-   Hier finden Sie zentrale Informationen zur Vergabe der einzelnen Modulen und der dazugehörigen Themen.<br>
+   Herzlich Willkommen auf der Plattform zur Vergabe von Seminar- und Abschlussarbeitsthemen. <br>
+   Hier finden Sie zentrale Informationen der beteiligten Wiwi- Lehrstühle und können sich entsprechend auf ein Thema bewerben.
+   <br>
 <br>
 <form>
 <table class="tg" style="width: 100%; margin: 1px;">
@@ -22,13 +23,12 @@
                         <div id='allg_info'>
                     <h4 style="margin-bottom: 10px">Vorgehensweise zur Bewerbung auf ein Seminar- oder Abschlussarbeitsthema</h4> 
                     <ol>
-                        <li>Informieren Sie sich auf dieser Informationsseite über die verschiedenen Vergabeverfahren.</li>
-                        <li>Suchen Sie auf der folgenden Seite nach den passenden Modulen und Themen.<br>
-                        <a href="Themen_uebersicht_student.php"><i class="fa fa-arrow-right" aria-hidden="true"></i> zur Themenübersicht</a></li>
-                        <li>Wenn Sie ein Thema bearbeiten möchten, klicken Sie auf „Anmelden“. Sie gelangen dann entsprechend zum Formular.</li>
-                        Sie werden dadurch zu dem Anmeldeformular weitergeleitet und können Ihre Bewerbung einsenden.</li>
-                        <li>Beim mehrmaligen Abschicken einer Bewerbung oder eines Belegwunsches, wird nur der letzte Datensatz berücksichtigt.</li>
-                        <li>Bei Themenspezifischen Fragen wenden Sie sich an den zugehörigen Betreuer.</li>
+                    <li>	Informieren Sie sich auf dieser Informationsseite über die verschiedenen Vergabeverfahren.</li>
+                    <li>	Suchen Sie unter <a href="Themen_uebersicht_student.php"><i class="fa fa-arrow-right" aria-hidden="true"></i> Themenübersicht</a> nach den passenden Seminaren oder Abschlussarbeiten.</li>
+                    <li>    Wenn Sie sich für ein Thema entschieden haben, klicken Sie auf „Bewerben“. Sie gelangen dann zu einem entsprechenden Formular.</li>
+                    <li>	Warten Sie bis Sie von den Lehrstühlen eine entsprechende Bestätigung bzw. Absage erhalten.</li>
+                    <li>	Bei themenspezifischen oder organisatorischen Fragen wenden Sie sich an die zugehörigen Betreuer oder Lehrstühle.</li>
+
                     </ol>
                     </div>
                 </div>
@@ -50,29 +50,28 @@
             <td class="tg-28r4" style="padding:0px;"> 
                  <div id='collapseTwo' class='collapse' role='tabpanel' aria-labelledby='headingOne' data-parent='#accordion'>                   
                     <div class="card-body">
-                    <h4>Wie funktionieren die Verfahren?</h4>                       
-                    <i>Wie funktioniert das <b>Bewerbungsverfahren</b>?</i>
-                    Sie bewerben sich verbindlich für eine, von Ihnen, gewünschte Veranstaltung.
-                    Anhand der Kriterien<i>(Siehe "Informationen zur Bewerben")</i> berechnet ein Algorithmus mit Hilfe einer Punktvergabe Ihre Priorität und prüft, ob Sie die Bedingungen erfüllen, um in der Veranstaltung zugelassen zu werden. Die Kriterien werden nicht gleichermaßen berechnet.
-                    Die Bewerbung gilt nur innerhalb der Bewerbungsfrist.
-                    Alle Anmeldungen werden zeitunabhängig innerhalb der Bewerbungsfrist gleichwertig behandelt.
-                    Nach Ende der Frist bekommen sie eine Benachrichtigung, ob Sie in der Veranstaltung mit Ihrem gewünschten Thema eingetragen worden sind.
+                    <h4>Wie funktionieren die halbautomatischen Zuteilungsverfahren?</h4>                       
+                    <i>Wie funktioniert das <b>Bewerbungsverfahren</b> (meist bei Abschlussarbeitsthemen)?</i><br><br>
+                    Sie bewerben sich verbindlich auf eines der aufgeführten Themen. 
+                    Anhand Ihrer Angaben berechnet ein Algorithmus mit Hilfe einer Punktvergabe Ihre Priorität und prüft, ob Sie die Bedingungen erfüllen, um z. B. das Thema bearbeiten zu dürfen. 
+                    Ein entsprechendes Ranking entscheidet, ob Sie das gewünschte Thema erhalten.
+                    Alle Anmeldungen werden zeitunabhängig innerhalb der Bewerbungsfrist gleichwertig behandelt. 
+                    Nach der Zuteilung bekommen Sie eine Benachrichtigung, ob Sie das Seminar bzw. Abschlussarbeitsthema erhalten haben.  
                     <br><br>
-                    <i>Wie funktioniert das <b>Windhundverfahren</b> bzw. First Come First Serve</i>?
-                    Die Bewerber, die sich verbindlich am schnellsten in eine Veranstaltung eintragen, bekommen garantiert ihren gewünschten Platz. Interessenten einer Veranstaltung sollten sich also schnellstmöglich eintragen, da sonst Ihnen ein Platz entgehen würde.
-                    Die Bewerbung gilt nur innerhalb der Bewerbungsfrist.
+
+                     <i>Wie funktioniert das <b>Belegwunschverfahren</b> (meist bei Seminarthemen)?</i><br><br>
+                     Sie wählen verbindlich im Formular drei verschiedene Themen absteigend nach Ihrer gewählten Präferenz aus. 
+                     Anhand Ihrer Angaben berechnet ein Algorithmus mit Hilfe einer Punktvergabe Ihre Priorität und versucht möglichst alle Themen optimal zu verteilen. 
+                     Auf diese Weise besteht die höchste Chance, dass alle Studierenden ein Thema erhalten – eine Garantie für ein Thema besteht jedoch nicht. 
+                     Alle Anmeldungen werden zeitunabhängig innerhalb der Bewerbungsfrist gleichwertig behandelt. Nach der Zuteilung bekommen Sie eine Benachrichtigung, welches Seminar bzw. 
+                     Abschlussarbeitsthema Sie erhalten haben.<br><br>
+
+
+                    <i>Wie funktioniert das <b>Windhundverfahren</b> bzw. <b>Nachrückverfahren</b>? </i><br><br>
+                    Die Bewerber, die sich verbindlich am schnellsten auf ein Thema bewerben, bekommen dieses unabhängig Ihrer Priorität im Windhundverfahren zugewiesen. Bereits vergebene Themen sind entsprechend nicht mehr wählbar.
+                    Ein Nachrückverfahren findet statt, wenn am Ende des ursprünglichen Bewerbungszeitraums noch freie Themen zur Verfügung stehen sollten und der Lehrstuhl diese entsprechend über die Plattform freigibt. Das Nachrückverfahren ist ab dem Zeitpunkt der Freischaltung für sieben Tage geöffnet.
                     <br><br>
-                    <i>Wie funktioniert das <b>Belegwunschverfahren</b>?</i>
-                    Sie wählen verbindlich im Formular drei verschiedene Themen absteigend nach ihrer gewählten Priorität aus.
-                    Sie müssen alle Themenauswahlfelder ausfüllen und dürfen sich nicht wiederholen. Die Bewerbung gilt nur innerhalb der Bewerbungsfrist. Anhand eines Algorithmus werden ihre Prioritäten berücksichtigt und das bestmögliche Optimum für alle Studenten ausgewertet. 
-                    Trotzdem ist dies keine Garantie, dass Sie ihre Belegwünsche bekommen. Alle Anmeldungen werden zeitunabhängig innerhalb der Bewerbungsfrist gleichwertig behandelt.
-                    Nach Ende der Frist bekommen sie eine Benachrichtigung in welcher Veranstaltung Sie zugeteilt wurden. 
-                    <br><br>
-                    <h4>Nachrückverfahren</h4> 
-                    Ein Nachrückverfahren findet statt, wenn am Ende der Frist noch nicht vergebene Themen zur Verfügung stehen.<br>
-                    Falls nach dem Ablauf der Vergabefrist noch Plätze übrig sind, werden diese nachträglich im Windhundverfahren (in der Regel mit einer Dauer von einer Woche) vergeben.
-                    Der Start dieses Verfahrens kann sich um einige Tage verzögern. Bitte prüfen Sie regelmäßig die Seite, damit Sie sich rechtzeitig für einen Platz anmelden können.
-                                                
+                        
                 </div>  
                 </div>
             </td>           
@@ -99,12 +98,13 @@
                         <li>Nachname </li> 
                         <li>Matrikelnummer</li>  
                         <li>Studentische E-Mail-Adresse</li>  
-                        <li>Studiengang</li> 
+                        <li>Studiengang (ggf. Schwerpunkt)</li> 
                         <li>Fachsemester</li> 
                         <li>Anzahl der Credits</li>   
-                        <li>Versuch (Wurde bereits das Seminar nicht bestanden?)</li>  
-                        <li>3 Wunschthemen (bei Belegwunschverfahren)</li> 
+                        <li>Wurde ein vergleichbares Seminar bereits bestanden? (nur bei Seminarthemen)</li>  
+                        <li>Angabe von drei Wunschthemen (nur bei Belegwunschverfahren)</li> 
                         </ul> 
+                        Beim mehrmaligen Abschicken eines Formulars für das entsprechende Modul (Seminar- oder Abschlussarbeit), wird nur der letzte Datensatz berücksichtigt.
                     </div>
                 </div>
             </td>           

@@ -1,11 +1,13 @@
 
 <div class="verwaltungsbox">
     <h4 class='card-title'>Verwaltungsbereich</h4>
-            Folgende Funktionen stehen zur Verfügung: <br>
-        <b>1.</b> Es können Module mit den dazugehörigen Themen eingetragen werden.<br>
-        <b>2.</b> Es können eingetragene Module und Themen verwaltet, bearbeitet und gelöscht werden.<br>
-        <b>3.</b> Zudem können Themen nachträglich zum Modul hinzugefügt werden.<br>
-        <b>4.</b> Es kann ein Report erstellt und exportiert werden.ree
+        Folgende Funktionen stehen zur Verfügung: <br> 
+        <b>1.</b>Es können Module (Seminare oder Abschlussarbeiten) mit den dazugehörigen Themen eingetragen werden.<br> 
+        <b>2.</b>Es können eingetragene Module und Themen verwaltet, bearbeitet und gelöscht werden.<br> 
+        <b>3.</b> Es können Themen nachträglich zu einem Modul hinzugefügt werden.<br> 
+        <b>4.</b> Es kann ein Report erstellt und exportiert werden.<br> 
+
+
 </div>
  
 <div class="Verwaltungsbereich">
