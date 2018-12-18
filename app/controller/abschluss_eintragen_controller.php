@@ -50,7 +50,6 @@ class abschluss_eintragen_controller
 
 //ABSCHLUSS BEI WINDHUND UND BEWERBUNGSVERFAHREN
                 if ($verfahren == "Windhundverfahren" || $verfahren == "Bewerbungsverfahren") {
-
                     if (!empty(array_filter($_POST['themenbezeichnungwindhund']))) {
                         $thema = $_POST['themenbezeichnungwindhund'];
                         $tags = $_POST["tags_WiBe"];
@@ -64,13 +63,14 @@ class abschluss_eintragen_controller
                         echo "Alles ausfüllen<br>";
                     }
                 } else if ($verfahren == "Belegwunschverfahren") {
+                    echo "bel drin";
                     if (!empty(array_filter($_POST['themenbezeichnungbelegwunsch']))) {
                         $thema = $_POST['themenbezeichnungbelegwunsch'];
                         $tags = $_POST["tags_Beleg"];
                         $vorkenntnisse = $_POST["vorkenntnisse_Beleg"];
                         $betreuer = $_POST["betreuerbelegwunsch"];
-                        $abschlussthema = $_POST["abschlussThemaTypBeleg"];
-                        $eintrag = $this->modul_model->insertAbschluss($thema, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags,$vorkenntnisse, $betreuer, $schwerpunkt);
+
+                        $eintrag = $this->modul_model->insertAbschluss($thema, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer, $schwerpunkt);
                         $this->getModal('upload_abschluss_success', $professurbezeichnung);   
                     } else { 
                         echo "Alles ausfüllen<br>";

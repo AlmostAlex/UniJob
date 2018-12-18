@@ -48,6 +48,7 @@ class modul_eintragen_controller
                 }
 
                 $semester = $semester . ' ' . $jahr;
+                echo '+++++++'. $semester;
 
 // SEMINAR UND ABSCHLUSS BEI WINDHUND UND BEWERBUNGSVERFAHREN
                 if ($verfahren == "Windhundverfahren" || $verfahren == "Bewerbungsverfahren") {
