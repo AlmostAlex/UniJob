@@ -77,13 +77,13 @@ $router->map(["GET", "POST"],["/ajax/tags/{term}"], function ($term) {
 });
 
 $router->map(["GET", "POST"],["/seminar_eintragen"], function () {
-    $modul_add = new modul_eintragen_controller();
-    $modul_add->modulEintragung();
+    $modul_add1 = new modul_eintragen_controller();
+    $modul_add1->modulEintragung();
 });
 
 $router->map(["GET", "POST"],["/abschlussarbeit_eintragen"], function () {
-    $modul_add = new abschluss_eintragen_controller();
-    $modul_add->modulEintragung();
+    $modul_add2 = new abschluss_eintragen_controller();
+    $modul_add2->modulEintragung();
 });
 
 

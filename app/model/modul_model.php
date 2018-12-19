@@ -81,13 +81,15 @@ class modul_model
     }
 
     public function insertAbschluss($thema, $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $tags, $vorkenntnisse, $betreuer, $schwerpunkt)
-    {
-        //Erst eintragung des Moduls
+    {        
+        if($statement = $this->dbh->prepare("INSERT INTO `modul` (`professur`, `kategorie`, `abschlusstyp`, `hinweise`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `studiengang`, `benutzer_id`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren`,`schwerpunkt`)
+            VALUES (?,?,?,?,?,?,?,?,?,?,'Offen','false','false',?)")){
+            $statement->bind_param('sssssssssis', $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $studiengang, $_SESSION['login'],$schwerpunkt);
+            $statement->execute();
+        }else{$error = $this->dbh->errno . ' ' . $this->dbh->error;
+            echo "Fehlercode: " . $error . "<br/> Update der Bewerbung ist fehlgeschlagen.";
+        }
         
-        $statement = $this->dbh->prepare("INSERT INTO `modul` (`professur`, `kategorie`, `abschlusstyp`, `hinweise`, `verfahren`, `semester`, `frist_start`, `frist_ende`, `kickoff`, `studiengang`, `benutzer_id`, `schwerpunkt`, `modul_verfuegbarkeit`,`archivierung`,`nachrueckverfahren`)
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,'Offen','false','false')");
-        $statement->bind_param('ssssssssssis', $professurbezeichnung, $kategorie, $abschlusstyp, $hinweise, $verfahren, $semester, $start, $ende, $kickoff, $studiengang, $_SESSION['login'],$schwerpunkt);
-        $statement->execute();
 
         //dann die hierdurch entstandene modul_id holen
         $modul_id = $this->lastModulID();
@@ -112,7 +114,6 @@ class modul_model
             $abschlussThemaTyp = $_POST['abschlussThemaTypBeleg'];
         }
 
-        print_r($abschlussThemaTyp);
 
         //Und hier alle Themen mit den passenden Beschreibungen zu dem gerade angelegten Modul hinzufügen
         while ($j < count($thema)) {
