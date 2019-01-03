@@ -46,24 +46,24 @@
         </tr>
         <tr>
             <td><label><b>Betreuer:</b></label></td>
-            <td><?php echo $infos['betreuer'];?></td>      
+            <td><?php echo $infos['betreuer'];?></td>
         </tr>
         <tr>
             <td><label><b>Art:</b></label></td>
-            <td><?php echo $infos['kategorie'];?></td>      
-        </tr>   
+            <td><?php echo $infos['kategorie'];?></td>
+        </tr>
         <tr>
             <td><label><b><?php echo $infos['kat'];?></b></label></td>
-            <td><?php echo $infos['bez'];?></td>      
-        </tr>   
+            <td><?php echo $infos['bez'];?></td>
+        </tr>
         <tr>
             <td><label><b>Thema:</b></label></td>
-            <td><?php echo $themenbezeichnung;?></td>      
-        </tr>   
-        <tr>
+            <td><?php echo $themenbezeichnung;?></td>
+        </tr>
+ <!--       <tr>
             <td><label><b>Kick-Off:</b></label></td>
-            <td><i style='color:red;' class="fas fa-exclamation"></i> <?php echo $infos['kickoff'];;?></td>      
-        </tr>   
+            <td><i style='color:red;' class="fas fa-exclamation"></i> <?php //echo $infos['kickoff'];?></td>
+        </tr>   -->
     </table>
 
      <div type="button" style='color:white;' class="btn btn-primary"><a href='/modul_uebersicht'>Zurück zur Übersichtx</a></div>

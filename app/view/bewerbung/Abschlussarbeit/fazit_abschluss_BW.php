@@ -89,10 +89,10 @@
             <td><label><b>Thema:</b></label></td>
             <td><?php echo $themenbezeichnung;?></td>      
         </tr>   
-        <tr>
+ <!--       <tr>
             <td><label><b>Kick-Off:</b></label></td>
-            <td><i style='color:red;' class="fas fa-exclamation"></i> <?php echo $infos['kickoff'];;?></td>      
-        </tr>   
+            <td><i style='color:red;' class="fas fa-exclamation"></i> <?php //echo $infos['kickoff'];?></td>      
+        </tr>    -->
     </table>
 
      <div type="button" style='color:white;' class="btn btn-primary"><a href='/modul_uebersicht'>Zurück zur Übersichtx</a></div>

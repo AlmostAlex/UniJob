@@ -72,9 +72,11 @@
             <td><?php echo $themenbezeichnung3." (".$infos3['betreuer'].")";?></td>      
         </tr>
         <tr>
-            <td><label><b>Kick-Off:</b></label></td>
-            <td><i style='color:red;' class="fas fa-exclamation"></i> <?php echo $infos1['kickoff'];;?></td>      
-        </tr> 
+ <!--           <td><label><b>Kick-Off:</b></label></td>
+            <td><i style='color:red;' class="fas fa-exclamation"></i> 
+            <?php// echo $infos1['kickoff'];?>
+            </td>      
+        </tr>  -->
     </table>
 
    <div type="button" style='color:white;' class="btn btn-primary"><a href='/modul_uebersicht'>Zurück zur Übersichtx</a></div>
