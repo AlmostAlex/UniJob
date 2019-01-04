@@ -7,7 +7,14 @@ include_once(__DIR__."/../model/vorkenntnisse_model.php");
 include_once(__DIR__."/../model/windhund_model.php");
 include_once(__DIR__."/../model/bewerbung_model.php");
 include_once(__DIR__."/../model/belegwunsch_model.php");
-include_once(__DIR__."/../../db.php"); 
+include_once(__DIR__."/../../db.php");
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+require __DIR__.'/../../vendor/autoload.php';
 
 class einsicht_controller
 {
@@ -1178,6 +1185,47 @@ function convertToWindowsCharset($string) {
 
     }
 
+    public function sendMail($wahl, $student)
+    {
 
+        $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+        try {
+            //Server settings
+            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'user@example.com';                 // SMTP username
+            $mail->Password = 'secret';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                    // TCP port to connect to
 
+            //Recipients
+            $mail->setFrom('from@example.com', 'Mailer');
+            while($i < count($student)){
+                $mail->addAddress($student[$i]['email'], $student[$i]['vorname']." ".$student[$i]['nachname']);     // Add a recipient
+                $i = $i + 1;
+            }
+            $mail->addReplyTo('info@example.com', 'Information');
+
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $annehmenbody = "Sie haben das <b>Thema</b> erhalten!";
+            $ablehnenbody = "Sie haben das Thema leider <b>nicht</b> erhalten.";
+            if($wahl == "annehmen"){
+                $mail->Subject = 'Here is the subject';
+                $mail->Body    = $annehmenbody;
+                $mail->AltBody = strip_tags($annehmenbody);
+            }else{
+                $mail->Subject = 'Here is the subject';
+                $mail->Body    = $ablehnenbody;
+                $mail->AltBody = strip_tags($ablehnenbody);
+            }
+
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        }
+    }
 }
