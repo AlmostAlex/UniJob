@@ -42,7 +42,10 @@
                             <td class='matrikelnummer_NV'><?php echo $anmeldungen[$k]['matrikelnummer']?></td>
                             <td class='email_NV'><?php echo $anmeldungen[$k]['email']?></td>
                             <td><?php echo $anmeldungen[$k]['status']?></td>
-                            <td></td>
+                            <td style='width:28%;' align='center'>
+                            <span data-toggle='tooltip' data-placement='top' title='Modul löschen' class='<?php echo $module[$i]["checkDeleteBtn"] ?>'>
+                                <a href='#' data-toggle='modal' data-target='#Sicherheitsabfrage_<?php echo $module[$i]["modul_id"]; ?>'><i class="far fa-check-circle"></i></a>
+                            </span></td>
                         </tr>
                         <?php } ?>
                     </table>
@@ -77,7 +80,7 @@
                         <th class='studiengang'>Studiengang</th>
                         <th class='punkte'>Punkte</th>
                         <th class='status'>Status</th>
-                        <th class="no-sort" name='funktionen'>Funktionen</th>
+                        <th class="no-sort" name='funktionen'>Funktionenn</th>
                     </tr>
                 </thead>
                 <?php for($k = 0; $k < count($bewerber); $k++){ ?>
@@ -90,7 +93,10 @@
                         <td class='studiengang'><?php echo $bewerber[$k]['studiengang']?></td>
                         <td class='punkte'><?php echo $bewerber[$k]['gesamt_punkte']?></td>
                         <td class='status'><?php echo $bewerber[$k]['status']?></td>
-                        <td></td>
+                        <td style='width:28%;' align='center'>
+                            <span data-toggle='tooltip' data-placement='top' title='Diesen Bewerber annehmen  /  alle anderen ablehnen' class='badge badge-warning'>
+                                <a href='#' data-toggle='modal' data-target='#Sicherheitsabfrage_<?php echo $module[$i]["modul_id"]; ?>'><i class="far fa-check-circle" style="color:white"></i></a>
+                            </span></td>
                     </tr>
                 <?php } ?>               
             </table>
