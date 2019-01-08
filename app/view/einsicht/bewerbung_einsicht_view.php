@@ -95,7 +95,7 @@
                         <td class='status'><?php echo $bewerber[$k]['status']?></td>
                         <td style='width:28%;' align='center'>
                             <span data-toggle='tooltip' data-placement='top' title='Diesen Bewerber annehmen  /  alle anderen ablehnen' class='badge badge-warning'>
-                                <a href='#' data-toggle='modal' data-target='#Sicherheitsabfrage_<?php echo $module[$i]["modul_id"]; ?>'><i class="far fa-check-circle" style="color:white"></i></a>
+                                <a href='#' data-toggle='modal' data-target='#annehmen_<?php echo $module[$i]["modul_id"]; ?>'><i class="far fa-check-circle" style="color:white"></i></a>
                             </span></td>
                     </tr>
                 <?php } ?>               

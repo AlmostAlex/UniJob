@@ -1181,6 +1181,14 @@ function convertToWindowsCharset($string) {
             case 'swap':
             include 'app/view/modals/swap.php'; 
             break;
+
+            case 'annehmen':
+            include 'app/view/modals/annehmen.php';
+            break;
+
+            case 'ablehnen':
+            include 'app/view/modals/ablehnen.php';
+            break;
         }
 
     }
