@@ -105,6 +105,47 @@ class bewerbung_model
         return $anzahl_bewerber_check;        
     }
 
+    public function bewerbung_count_all($modul_id)
+    {
+         $statement = $this->dbh->prepare
+         ("SELECT count(bewerbung_id) as anzahl_bewerber_check
+         FROM bewerbung, modul, thema
+         WHERE thema.thema_id = bewerbung.thema_id 
+         AND thema.modul_id = modul.modul_id
+         AND modul.modul_id= ?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($anzahl_bewerber_check);
+        $statement->fetch();
+        return $anzahl_bewerber_check;        
+    }
+    public function info_bewerbung_all($modul_id)
+    {   
+             $statement = $this->dbh->prepare
+             ("SELECT modul.modulbezeichnung, modul.professur, modul.kategorie,
+                        (SELECT count(bewerbung.bewerbung_id) 
+                        FROM thema, bewerbung, modul
+                        WHERE thema.thema_id = bewerbung.thema_id 
+                        AND thema.modul_id = modul.modul_id
+                        AND modul.modul_id = $modul_id)
+                    as anzBew
+                FROM thema,bewerbung,modul
+                WHERE thema.thema_id = bewerbung.thema_id
+                AND modul.modul_id = thema.modul_id
+                AND modul.modul_id  =?");
+            $statement->bind_param('i', $modul_id);
+            $statement->execute();
+            $statement->bind_result($modulbezeichnung,$professur,$kategorie,$anzBew);
+            $statement->fetch();
+    if($kategorie == 'Abschlussarbeit') {$modulbezeichnung = $professur;}
+            $infos = array(
+                'modulbezeichnung' => $modulbezeichnung,
+                'kategorie' => $kategorie,
+                'anzBew' => $anzBew
+            );
+    
+        return $infos;
+        } 
 
     public function info_bewerbung($thema_id)
     {   
@@ -130,6 +171,24 @@ class bewerbung_model
     
         return $infos;
         } 
+        public function bewerber_thema_all($modul_id){
+            $statement = $this->dbh->prepare
+            ("SELECT thema.thema_id, thema.themenbezeichnung
+            FROM bewerbung
+            WHERE bewerbung.thema_id = ?");
+           $statement->bind_param('i', $thema_id);
+           $statement->execute();
+           $statement->bind_result($thema_id, $themenbezeichnung);
+        
+        while ($statement->fetch()) {
+            $thema_bew[] = array(
+                'thema_id' => $thema_id,
+                'themenbezeichnung' => $themenbezeichnung
+            );
+        }
+        return $thema_bew;
+    }
+
 
         public function bewerber($thema_id){
             $statement = $this->dbh->prepare

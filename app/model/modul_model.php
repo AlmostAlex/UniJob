@@ -227,8 +227,11 @@ class modul_model
             if($verfahren=='Windhundverfahren'){$einsicht_wh_btn ='badge badge-info'; }
             else{ $einsicht_wh_btn ='btn_false'; }
             
-            if($verfahren=='Bewerbungsverfahren'){ $einsicht_bw_btn ='badge badge-info';} 
-            else{ $einsicht_bw_btn ='btn_false';}
+            if($verfahren=='Bewerbungsverfahren'){ 
+                $einsicht_bw_btn_all = $einsicht_bw_btn ='badge badge-info';
+            } else{ $einsicht_bw_btn ='btn_false';
+                  $einsicht_bw_btn_all ='btn_false'; 
+            }
 
             if($verfahren=='Belegwunschverfahren'){ $einsicht_bel_btn ='badge badge-info';} 
             else{ $einsicht_bel_btn ='btn_false';}
@@ -243,6 +246,7 @@ class modul_model
                 'hinweise' => $hinweise,
                 'verfahren' => $verfahren,
                 'semester' => $semester,
+                'einsicht_bw_btn_all' => $einsicht_bw_btn_all,
                 'frist_start' => $frist_start,
                 'start_anzeige' => date("d.m.Y", strtotime($frist_start)),
                 'frist_ende' => $frist_ende,
