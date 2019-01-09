@@ -30,10 +30,10 @@ class einsicht_controller
         $this->belegwunsch_model = new belegwunsch_model();
     }
 
-    public function Einsicht($action, $action1, $id)
+    public function Einsicht($action, $action1, $action2, $id)
     {
 
-        if($action1=='Windhundverfahren'){
+        if($action1=='Windhundverfahren' && $action2=='none'){
             $modul_id = $id;
             $bew_count = $this->windhund_model->bewerbung_count($modul_id);
 
@@ -56,7 +56,7 @@ class einsicht_controller
                 include 'app/view/einsicht/none_view.php';
             }            
         }
-        else if($action1=='Bewerbungsverfahren'){
+        else if($action1=='Bewerbungsverfahren' && $action2=='none'){
             $thema_id = $id;
             $modul_id = $this->thema_model->getModulID($thema_id);
 
@@ -83,7 +83,40 @@ class einsicht_controller
                     include 'app/view/einsicht/none_view.php'; 
                 }
         } 
-        else if($action1=='Belegwunschverfahren'){
+        else if($action1=='Bewerbungsverfahren' && $action2=='modul'){
+            echo "hihihihi";
+            $modul_id = $id;
+
+            //$modul_id = $this->thema_model->getModulID($thema_id);
+
+
+            if( ($this->modul_model->getNachrueckverfahren($modul_id) == 'true') 
+                && ($this->bewerbung_model->countAnzWHBew($modul_id)  > 0 ) ){
+                $display = ""; 
+                $anmeldungen = $this->bewerbung_model->getWHThBew($modul_id);    
+            } else { 
+                $display = 'display:none'; 
+            } 
+
+            $bew_count_bw_all = $this->bewerbung_model->bewerbung_count_all($modul_id);
+            echo $bew_count_bw_all;
+
+                if($bew_count_bw_all > 0 ||  ($bew_count_bw_all > 0  && $this->bewerbung_model->countAnzWHBew($modul_id)  > 0)) { 
+                                        // checkt, ob Bewerbungen vorhanden sind
+                                        // KORR: UND ABER NACHR = 0 --> WENN KEINE BEW ABER NACHRÜCKV DANN JA
+                 $infos = $this->bewerbung_model->info_bewerbung_all($modul_id);                  
+                $bewerber = $this->bewerbung_model->bewerber_thema_all($modul_id);
+                 include 'app/view/einsicht/bewerbung_einsicht_all_view.php';
+                }
+                else{
+                    $kat = "Bewerbungen"; // Wenn keine Bewerbungen vorhanden sind, dann wird die none Unterseite aufgerufen
+                    include 'app/view/einsicht/none_view.php'; 
+                } 
+        } 
+
+
+
+        else if($action1=='Belegwunschverfahren' && $action2=='none'){
             $modul_id = $id; 
       
             if( ($this->modul_model->getNachrueckverfahren($id) == 'true') && ($this->belegwunsch_model->countAnzWHBeleg($id)  > 0 ) ){
