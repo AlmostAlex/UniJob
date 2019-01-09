@@ -95,13 +95,14 @@
                         <td class='status'><?php echo $bewerber[$k]['status']?></td>
                         <td style='width:28%;' align='center'>
                             <span data-toggle='tooltip' data-placement='top' title='Diesen Bewerber annehmen  /  alle anderen ablehnen' class='badge badge-warning'>
-                                <a href='#' data-toggle='modal' data-target='#annehmen_<?php echo $module[$i]["modul_id"]; ?>'><i class="far fa-check-circle" style="color:white"></i></a>
-                            </span></td>
+                                <a href='#' data-toggle='modal' data-target='#annehmen_<?php echo $bewerber[$k]["matrikelnummer"]; ?>'><i class="far fa-check-circle" style="color:white"></i></a>
+                            </span>
+                            <?php $this->getModal('annehmen', $bewerber[$k]["matrikelnummer"]); $this->getModal('ablehnen', $bewerber[$k]["matrikelnummer"]); ?>
+                        </td>
                     </tr>
-                <?php } ?>               
+                <?php } ?>
             </table>
-                <hr class="my-4"> 
-
+                <hr class="my-4">
         </div>
     </div>
 </form>

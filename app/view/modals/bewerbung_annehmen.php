@@ -1,29 +1,29 @@
 <!-- Modal -->
-<div class="modal fade" id="<?php echo $modal['case'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="annehmen_<?php echo $id;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id='titel'>
-          <?php echo $modal['title'];?>
+          <?php echo "Sicherheitsfrage: Bewerber annehmen?";?>
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <div class='<?php echo $modal['body_class'];?>'>
+        <div class='alert alert-danger'>
           <center>
-            <img style='float:left;' src='<?php echo $modal['img'];?>'>
-            <?php echo $modal['content'];?>
+          <!--  <img style='float:left;' src='<?php// echo $modal['img'];?>'> -->
+            <?php echo "Den Studenten mit der Matrikelnummer '".$id."' annehmen? Die übrigen Bewerber werden hierdurch abgelehnt. Alle Bewerber werden über ihr Ergebnis informiert!";?>
             <center>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Fenster schließen</button>
-        <button href='<?php echo $modal['btn_url']?>' type='<?php echo $modal['type']?>' name='<?php echo $modal['name']?>' class='
+        <a href='<?php echo $modal['btn_url']?>' class='
           <?php echo $modal['btn_class']?>'>
-          <?php echo $modal['btn'];?></button>
+          <?php echo $modal['btn'];?></a>
       </div>
     </div>
   </div>

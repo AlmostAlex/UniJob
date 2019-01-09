@@ -1170,24 +1170,26 @@ function convertToWindowsCharset($string) {
 
     public function getModal($form, $id)
     {
-    
-        $infos = $this->belegwunsch_model->info_belegwunsch($id);
-
         switch ($form) {
             case '_bel':
+            $infos = $this->belegwunsch_model->info_belegwunsch($id);
             include 'app/view/modals/.php';
             break;
 
             case 'swap':
+            $infos = $this->belegwunsch_model->info_belegwunsch($id);
             include 'app/view/modals/swap.php'; 
             break;
 
             case 'annehmen':
-            include 'app/view/modals/annehmen.php';
+            $modal['btn'] = '<i class="far fa-trash-alt"></i> Modul löschen';
+            $modal['btn_class'] = 'btn btn-danger';
+            $modal['btn_url'] = '/mt_verwaltung/modul/delete/' . $id;
+            include 'app/view/modals/bewerbung_annehmen.php';
             break;
 
             case 'ablehnen':
-            include 'app/view/modals/ablehnen.php';
+            include 'app/view/modals/bewerbung_ablehnen.php';
             break;
         }
 
