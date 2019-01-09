@@ -1180,19 +1180,13 @@ function convertToWindowsCharset($string) {
             $infos = $this->belegwunsch_model->info_belegwunsch($id);
             include 'app/view/modals/swap.php'; 
             break;
-
-            case 'annehmen':
-            $modal['btn'] = '<i class="far fa-trash-alt"></i> Modul löschen';
-            $modal['btn_class'] = 'btn btn-danger';
-            $modal['btn_url'] = '/mt_verwaltung/modul/delete/' . $id;
-            include 'app/view/modals/bewerbung_annehmen.php';
-            break;
-
-            case 'ablehnen':
-            include 'app/view/modals/bewerbung_ablehnen.php';
-            break;
         }
+    }
 
+    public function getAnnahmeModal($iteration, $matrikelnummer, $thema_id)
+    {
+        $modal['btn_url'] = '/einsicht/annehmen/'.$iteration.'/'.$thema_id;
+        include 'app/view/modals/bewerbung_annehmen.php';
     }
 
     public function sendMail($wahl, $student)

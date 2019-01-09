@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="annehmen_<?php echo $id;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="annehmen_<?php echo $matrikelnummer;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -15,15 +15,13 @@
         <div class='alert alert-danger'>
           <center>
           <!--  <img style='float:left;' src='<?php// echo $modal['img'];?>'> -->
-            <?php echo "Den Studenten mit der Matrikelnummer '".$id."' annehmen? Die übrigen Bewerber werden hierdurch abgelehnt. Alle Bewerber werden über ihr Ergebnis informiert!";?>
+            <?php echo "Den Studenten mit der Matrikelnummer '".$matrikelnummer."' annehmen? Die übrigen Bewerber werden hierdurch abgelehnt. Alle Bewerber werden über ihr Ergebnis informiert!";?>
             <center>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Fenster schließen</button>
-        <a href='<?php echo $modal['btn_url']?>' class='
-          <?php echo $modal['btn_class']?>'>
-          <?php echo $modal['btn'];?></a>
+        <button type="button" class="btn btn-danger" style="background-color:green" href=<?php echo $modal['btn_url']; ?>>Aktion bestätigen</button>
       </div>
     </div>
   </div>
