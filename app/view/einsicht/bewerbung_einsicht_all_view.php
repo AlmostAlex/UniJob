@@ -33,11 +33,13 @@
                         <th class='anz'>Anz. Bewerber</th>
                     </tr>
                 </thead>
+                <?php for($k = 0; $k < count($bew_thema); $k++){  echo count($bew_thema); ?>
                     <tr>
                     <td>PFEIL</td>
                     <td>THEMA</td> 
                     <td>5</td>
                     </tr>
+                <?php }  ?>
             </table>
                 <hr class="my-4">
         </div>
