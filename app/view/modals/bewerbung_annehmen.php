@@ -21,7 +21,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Fenster schließen</button>
-        <button type="button" class="btn btn-danger" style="background-color:green" href=<?php echo $modal['btn_url']; ?>>Aktion bestätigen</button>
+        <a href='<?php echo $modal['btn_url']?>' class="btn btn-danger" style="background-color:green; color:white">Aktion bestätigen </a>
       </div>
     </div>
   </div>

@@ -98,6 +98,10 @@ $router->map(["GET", "POST"],["/einsicht/{action1}/modul/{id}"], function ($acti
     $modul->Einsicht('einsicht',$action1,'modul',$id); 
 });
 
+$router->map(["GET", "POST"],["/einsicht","/einsicht/annehmen/{genommen}/{thema_id}"], function ($genommen,$thema_id) {
+    $modul = new einsicht_controller();
+    $modul->mailBearbeitung($genommen, $thema_id); 
+});
 $router->map(["GET", "GET"], ["/fazit_abschluss.php"], function (Response $response) {
     $response->render("app/view/bewerbung/Abschlussarbeit/fazit_abschluss.php");
 });
