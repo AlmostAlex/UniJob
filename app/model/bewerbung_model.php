@@ -172,7 +172,7 @@ class bewerbung_model
         return $infos;
         } 
 
-        public function bewerber_thema_all($modul_id){
+    /*    public function bewerber_thema_all($modul_id){
 
             $statement = $this->dbh->prepare
             ("SELECT thema.thema_id, thema.themenbezeichnung
@@ -190,7 +190,8 @@ class bewerbung_model
             );
         }
         return $row;
-    }
+    } */
+
 
 
         public function bewerber($thema_id){
@@ -203,9 +204,10 @@ class bewerbung_model
            $statement->bind_param('i', $thema_id);
            $statement->execute();
            $statement->bind_result($vorname, $nachname, $matrikelnummer, $email, $fachsemester, $credits, $studiengang, $gesamt_punkte, $status);
-        
+          
+           $rows = array();
         while ($statement->fetch()) {
-            $bewerbung[] = array(
+            $bewerbung = array(
                 'vorname' => $vorname,
                 'nachname' => $nachname,
                 'matrikelnummer' => $matrikelnummer,
@@ -216,8 +218,9 @@ class bewerbung_model
                 'gesamt_punkte' => $gesamt_punkte,
                 'status' => $status
             );
+            $rows[] = $bewerbung;
         }
-        return $bewerbung;
+        return $rows;
     }
 
     public function countAnzWHBew($modul_id)

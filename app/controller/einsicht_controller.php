@@ -30,6 +30,11 @@ class einsicht_controller
         $this->belegwunsch_model = new belegwunsch_model();
     }
 
+    public function bewerber($thema_id)
+    {
+        return $this->bewerbung_model->bewerber($thema_id);
+    }
+
     public function Einsicht($action, $action1, $action2, $id)
     {
 
@@ -75,6 +80,7 @@ class einsicht_controller
                                         // checkt, ob Bewerbungen vorhanden sind
                                         // KORR: UND ABER NACHR = 0 --> WENN KEINE BEW ABER NACHRÜCKV DANN JA
                     $infos = $this->bewerbung_model->info_bewerbung($thema_id);                  
+                   echo "nanana";
                     $bewerber = $this->bewerbung_model->bewerber($thema_id);
                     include 'app/view/einsicht/bewerbung_einsicht_view.php';
                 }
@@ -84,9 +90,7 @@ class einsicht_controller
                 }
         } 
         else if($action1=='Bewerbungsverfahren' && $action2=='modul'){
-            echo "hihihihi";
             $modul_id = $id;
-
             //$modul_id = $this->thema_model->getModulID($thema_id);
 
 
@@ -99,14 +103,17 @@ class einsicht_controller
             } 
 
             $bew_count_bw_all = $this->bewerbung_model->bewerbung_count_all($modul_id);
-            echo $bew_count_bw_all;
+            //echo $bew_count_bw_all;
 
                 if($bew_count_bw_all > 0 ||  ($bew_count_bw_all > 0  && $this->bewerbung_model->countAnzWHBew($modul_id)  > 0)) { 
                                         // checkt, ob Bewerbungen vorhanden sind
                                         // KORR: UND ABER NACHR = 0 --> WENN KEINE BEW ABER NACHRÜCKV DANN JA
-                 $infos = $this->bewerbung_model->info_bewerbung_all($modul_id);                  
-                $bew_thema = $this->bewerbung_model->bewerber_thema_all($modul_id);
-                echo count($bew_thema);
+                $infos = $this->bewerbung_model->info_bewerbung_all($modul_id);                  
+                //$bew_thema = $this->bewerbung_model->bewerber_thema_all($modul_id);
+                
+            
+                $themen = $this->thema_model->themen_all($modul_id);
+                //echo count($bew_thema);
                  include 'app/view/einsicht/bewerbung_einsicht_all_view.php';
                 }
                 else{

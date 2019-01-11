@@ -325,6 +325,47 @@ class thema_model
         return $rows;
     }
 
+
+    public function themen_all($modul_id)
+    {
+        $statement = $this->dbh->prepare("SELECT thema.thema_id, thema.themenbezeichnung 
+        FROM thema
+        WHERE thema.modul_id = ?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($thema_id, $themenbezeichnung);
+        $statement->store_result();
+
+        $rows = array();
+        while ($statement->fetch()) {
+
+            $row = array(
+                'thema_id' => $thema_id,
+                'themenbezeichnung' => $themenbezeichnung, 
+                'anz_bew_th' => $this->bewerbung_countTh($thema_id)            
+            );
+            $rows[] = $row;
+        }
+
+        return $rows;
+    }
+
+    public function bewerbung_countTh($thema_id)
+    {
+         $statement = $this->dbh->prepare
+         ("SELECT count(bewerbung_id) as anzahl
+         FROM bewerbung, thema 
+         WHERE thema.thema_id = bewerbung.thema_id 
+         AND bewerbung.thema_id= ?");
+        $statement->bind_param('i', $thema_id);
+        $statement->execute();
+        $statement->bind_result($anzahl);
+        $statement->fetch();
+        return $anzahl;        
+    }
+
+
+
     public function deleteAllThema($modul_id)
     {
         $statement = $this->dbh->prepare("DELETE FROM thema WHERE modul_id=?");

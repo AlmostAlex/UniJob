@@ -8,8 +8,57 @@
  </div>
 
 
- 
 
+<nachrueckv style='<?php echo $display;?>'>
+   <b> <i class="fas fa-arrow-right"></i>   Anmeldungen während des <red>Nachrückverfahrens <i class="fas fa-exclamation"></i></red> </b>
+<!-- NACHRÜCKVERFAHREN TABELLE WENN BEWERBUNGEN ZUM NACHRÜCKVERFAHREN EXISTIEREN! -->
+    <form style='margin-bottom:30px;' method="post"> 
+        <div class="table-responsive" id="module">
+            <div class='bewerbung_verwaltung'>
+                <div class='belegSort'>
+                        <b>Informationen aus-/einblenden: </b>
+                            
+                        <div class="form-check form-check-inline"><p><input type="checkbox" name="name_NV" checked="checked" id="name_NV" /><label for="name_NV">Name</label></p></div>
+                        <div class="form-check form-check-inline"><p><input type="checkbox" name="matrikelnummer_NV" checked="checked" id="matrikelnummer_NV" /><label for="matrikelnummer_NV">Matr.</label></p></div>
+                        <div class="form-check form-check-inline"><p><input type="checkbox" name="email_NV" id="email_NV" /><label for="email_NV">E-mail</label></p></div>
+                        <div class="form-check form-check-inline"><p><input type="checkbox" name="status_NV"  id="status_NV" checked="checked" /><label for="status_NV">Status</label></p></div>           
+                </div>
+
+                    <table id="sort_nachr_bew">
+                        <thead>
+                            <tr>
+                                <th class="no-sort" name='anmerkung'>Info</th>
+                                <th>Thema</th>
+                                <th class='name_NV'>Name</th>
+                                <th class='matrikelnummer_NV'>Matrikelnummer</th>
+                                <th class='email_NV'>Email</th>
+                                <th class='status_NV'>Status</th>
+                                <th class="no-sort" name='funktionen'>Funktionen</th>
+                            </tr>
+                        </thead>
+                        <?php for($k = 0; $k < count($anmeldungen); $k++){ ?>
+                        <tr>
+                            <td></td>
+                            <td><?php echo $anmeldungen[$k]['themenbezeichnung']?></td>
+                            <td class='name_NV'><?php echo $anmeldungen[$k]['vorname'] ?> <?php echo $anmeldungen[$k]['nachname'] ?></td>
+                            <td class='matrikelnummer_NV'><?php echo $anmeldungen[$k]['matrikelnummer']?></td>
+                            <td class='email_NV'><?php echo $anmeldungen[$k]['email']?></td>
+                            <td><?php echo $anmeldungen[$k]['status']?></td>
+                            <td style='width:28%;' align='center'>
+                            <span data-toggle='tooltip' data-placement='top' title='Modul löschen' class='<?php echo $module[$i]["checkDeleteBtn"] ?>'>
+                                <a href='#' data-toggle='modal' data-target='#Sicherheitsabfrage_<?php echo $module[$i]["modul_id"]; ?>'><i class="far fa-check-circle"></i></a>
+                            </span></td>
+                        </tr>
+                        <?php } ?>
+                    </table>
+            </div>
+        </div>
+    </form>
+</nachrueckv>
+<hr>
+
+<!-- BEWERBUNGEN MIT ALLEN THEMEN -->
+<b> <i class="fas fa-arrow-right"></i>   Bewerbungen zu den Themen </b>
 <form style='margin-bottom:100px;' method="post"> 
      <div class="table-responsive" id="module">  
         <div class='bewerbung_verwaltung'>
@@ -24,26 +73,65 @@
                 <div class="form-check form-check-inline"><p><input type="checkbox" name="status"  id="status" checked="checked" /><label for="status">Status</label></p></div>           
             </div>
 
+           <?php for($k = 0; $k < count($themen); $k++){  ?> 
+
+            <script> $(document).ready(function() {$('#sort_einsicht_all_<?php echo $themen[$k]['thema_id'];?>').DataTable({
+            autoWidth: true,"columnDefs": [{"targets": 'no-sort',"orderable": false,}],
+            "order": [], "paging": false, "info": false, "searching": false,}); });</script>
+
+           <table style='padding: 0px;margin-bottom: 0px;'>
+            <tr>
+                <td style='width:50px;'>
+                    <a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#thema_<?php echo $themen[$k]['thema_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a>
+                </td>
+                <td>
+                Thema: <?php echo $themen[$k]['themenbezeichnung']; ?>
+                </td>
+                <td style='width:200px;'>Anz. Bewerber: <?php echo $themen[$k]['anz_bew_th']?></td>
+            </tr>
+           </table>
+
+           <div id='thema_<?php echo $themen[$k]['thema_id']; ?>' class='collapse' role='tabpanel' aria-labelledby='headingOne' data-parent='#accordion'>
             
-            <table id="sort_einsicht_wh">
+            <table style='border:0px;' id="sort_einsicht_all_<?php echo $themen[$k]['thema_id']; ?>">
                 <thead>
                     <tr>
                         <th class="no-sort" name='anmerkung'></th>
-                        <th class='matrikelnummer'>Themenbezeichnung</th>
-                        <th class='anz'>Anz. Bewerber</th>
+                        <th class='matrikelnummer'>Matrikelnr.</th>
+                        <th>FS</th>
+                        <th>Credits</th>
+                        <th>Studieng.</th>
+                        <th>Punkte</th>
+                        <th>Status</th>
+                        <th class="no-sort">Funktionen</th>
                     </tr>
                 </thead>
-                <?php for($k = 0; $k < count($bew_thema); $k++){  echo count($bew_thema); ?>
-                    <tr>
-                    <td>PFEIL</td>
-                    <td>THEMA</td> 
-                    <td>5</td>
-                    </tr>
-                <?php }  ?>
-            </table>
-                <hr class="my-4">
-        </div>
-    </div>
+            <?php $bewerber = $this->bewerber($themen[$k]['thema_id']); for ($p = 0; $p < count($bewerber); $p++) {?>   
+                <tr>
+                <td></td>
+                <td><?php echo $bewerber[$p]['matrikelnummer']; ?></td>
+                <td><?php echo $bewerber[$p]['fachsemester']; ?></td>
+                <td><?php echo $bewerber[$p]['credits']; ?></td>
+                <td><?php echo $bewerber[$p]['studiengang']; ?></td>
+                <td><?php echo $bewerber[$p]['gesamt_punkte']; ?></td>
+                <td><?php echo $bewerber[$p]['status']; ?></td>
+                <td></td>
+                </tr>
+                  
+                <?php }  ?>   
+                
+                </table>
+                <BR>
+            </div>
+      
+ <?php }  ?> 
+                              
+        </div> 
+        </div> 
+
 </form>
+
+
+
 
 </open>
