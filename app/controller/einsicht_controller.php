@@ -1222,6 +1222,18 @@ function convertToWindowsCharset($string) {
         include 'app/view/modals/bewerbung_annehmen.php';
     }
 
+    public function mailBearbeitung($genommen, $thema_id)
+    {
+        $bewerber = $this->bewerbung_model->bewerber($thema_id);
+        $themabezeichnung = $this->thema_model->getThemenbezeichnung($thema_id);
+        $betreff_angenommen = "Sie wurden für das Thema '#thema' angenommen!";
+        $inhalt_angenommen = "Hallo #bewerber, </br> hiermit möchten wir Sie darüber informieren, dass sie das Thema #thema erhalten haben.";
+        //$inhalt_angenommen = str_replace("#thema", $themabezeichnung, $inhalt_angenommen1, $count);
+        //echo $count;
+        include 'app/view/einsicht/annehmen_view.php';
+        
+    }
+
     public function sendMail($wahl, $student)
     {
 
