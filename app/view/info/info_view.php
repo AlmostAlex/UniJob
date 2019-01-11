@@ -24,7 +24,7 @@
                     <h4 style="margin-bottom: 10px">Vorgehensweise zur Bewerbung auf ein Seminar- oder Abschlussarbeitsthema</h4> 
                     <ol>
                     <li>	Informieren Sie sich auf dieser Informationsseite über die verschiedenen Vergabeverfahren.</li>
-                    <li>	Suchen Sie unter <a href="Themen_uebersicht_student.php"><i class="fa fa-arrow-right" aria-hidden="true"></i> Themenübersicht</a> nach den passenden Seminaren oder Abschlussarbeiten.</li>
+                    <li>	Suchen Sie unter <a href="modul_uebersicht"><i class="fa fa-arrow-right" aria-hidden="true"></i> Themenübersicht</a> nach den passenden Seminaren oder Abschlussarbeiten.</li>
                     <li>    Wenn Sie sich für ein Thema entschieden haben, klicken Sie auf „Bewerben“. Sie gelangen dann zu einem entsprechenden Formular.</li>
                     <li>	Warten Sie bis Sie von den Lehrstühlen eine entsprechende Bestätigung bzw. Absage erhalten.</li>
                     <li>	Bei themenspezifischen oder organisatorischen Fragen wenden Sie sich an die zugehörigen Betreuer oder Lehrstühle.</li>
@@ -51,7 +51,7 @@
                  <div id='collapseTwo' class='collapse' role='tabpanel' aria-labelledby='headingOne' data-parent='#accordion'>                   
                     <div class="card-body">
                     <h4>Wie funktionieren die halbautomatischen Zuteilungsverfahren?</h4>                       
-                    <i>Wie funktioniert das <b>Bewerbungsverfahren</b> (meist bei Abschlussarbeitsthemen)?</i><br><br>
+                    <i>Wie funktioniert das <b>Bewerbungsverfahren</b> (meist bei Abschlussarbeitsthemen)?</i><br><br>
                     Sie bewerben sich verbindlich auf eines der aufgeführten Themen. 
                     Anhand Ihrer Angaben berechnet ein Algorithmus mit Hilfe einer Punktvergabe Ihre Priorität und prüft, ob Sie die Bedingungen erfüllen, um z. B. das Thema bearbeiten zu dürfen. 
                     Ein entsprechendes Ranking entscheidet, ob Sie das gewünschte Thema erhalten.
@@ -67,7 +67,7 @@
                      Abschlussarbeitsthema Sie erhalten haben.<br><br>
 
 
-                    <i>Wie funktioniert das <b>Windhundverfahren</b> bzw. <b>Nachrückverfahren</b>? </i><br><br>
+                    <i>Wie funktioniert das <b>Windhundverfahren</b> bzw. <b>Nachrückverfahren</b>? </i><br><br>
                     Die Bewerber, die sich verbindlich am schnellsten auf ein Thema bewerben, bekommen dieses unabhängig Ihrer Priorität im Windhundverfahren zugewiesen. Bereits vergebene Themen sind entsprechend nicht mehr wählbar.
                     Ein Nachrückverfahren findet statt, wenn am Ende des ursprünglichen Bewerbungszeitraums noch freie Themen zur Verfügung stehen sollten und der Lehrstuhl diese entsprechend über die Plattform freigibt. Das Nachrückverfahren ist ab dem Zeitpunkt der Freischaltung für sieben Tage geöffnet.
                     <br><br>
