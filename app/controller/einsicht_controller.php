@@ -105,7 +105,8 @@ class einsicht_controller
                                         // checkt, ob Bewerbungen vorhanden sind
                                         // KORR: UND ABER NACHR = 0 --> WENN KEINE BEW ABER NACHRÜCKV DANN JA
                  $infos = $this->bewerbung_model->info_bewerbung_all($modul_id);                  
-                $bewerber = $this->bewerbung_model->bewerber_thema_all($modul_id);
+                $bew_thema = $this->bewerbung_model->bewerber_thema_all($modul_id);
+                echo count($bew_thema);
                  include 'app/view/einsicht/bewerbung_einsicht_all_view.php';
                 }
                 else{

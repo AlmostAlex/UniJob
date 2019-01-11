@@ -171,22 +171,25 @@ class bewerbung_model
     
         return $infos;
         } 
+
         public function bewerber_thema_all($modul_id){
+
             $statement = $this->dbh->prepare
             ("SELECT thema.thema_id, thema.themenbezeichnung
-            FROM bewerbung
-            WHERE bewerbung.thema_id = ?");
-           $statement->bind_param('i', $thema_id);
+            FROM modul,thema,bewerbung
+            WHERE modul.modul_id = thema.modul_id
+            AND thema.modul_id =?");
+           $statement->bind_param('i', $modul_id);
            $statement->execute();
            $statement->bind_result($thema_id, $themenbezeichnung);
         
         while ($statement->fetch()) {
-            $thema_bew[] = array(
+            $row[] = array(
                 'thema_id' => $thema_id,
                 'themenbezeichnung' => $themenbezeichnung
             );
         }
-        return $thema_bew;
+        return $row;
     }
 
 

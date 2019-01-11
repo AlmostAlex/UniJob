@@ -141,6 +141,7 @@ class modul_model
                         $this->tags_model->insertTags($tag_string, $thema_id);
                     }
                      if($vorkenntnisse_string != ''){
+                        $thema_id = $this->thema->lastThemaID();
                         $this->vorkenntnisse_model->insertVorkenntnisse($vorkenntnisse_string, $thema_id);
                     }
             } else {}
