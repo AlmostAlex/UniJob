@@ -112,6 +112,10 @@
                                 <a href='/einsicht/<?php echo $module[$i]["verfahren"];?>/<?php echo $module[$i]["modul_id"]; ?>'><i style='color:white;' class="far fa-user"></i> </a>
                             </span>
                             
+                            <span data-toggle='tooltip' data-placement='top' title='Alle Bewerbungen einsehen' class='<?php echo $module[$i]["einsicht_bw_btn_all"] ?>'>
+                                <a href='/einsicht/<?php echo $module[$i]["verfahren"];?>/modul/<?php echo $module[$i]["modul_id"]; ?>'><i class="fas fa-users"></i></i> </a>
+                            </span>
+
                             <?php $this->getModal('delete_modul', $module[$i]["modul_id"]); $this->getModal('archivierung', $module[$i]["modul_id"]); $this->getModal('nachrueckverfahren', $module[$i]["modul_id"]);?>
                         </td>
                     </tr>

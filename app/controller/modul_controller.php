@@ -1,12 +1,10 @@
 <?php
-
-
 include_once(__DIR__."/../model/modul_model.php");
 include_once(__DIR__."/../model/thema_model.php");
 include_once(__DIR__."/../model/tags_model.php");
 include_once(__DIR__."/../model/user_model.php");
 include_once(__DIR__."/../model/vorkenntnisse_model.php");
-include_once(__DIR__."/../../db.php"); 
+include_once(__DIR__."/../../db.php");
 
 class modul_controller
 {

@@ -7,7 +7,14 @@ include_once(__DIR__."/../model/vorkenntnisse_model.php");
 include_once(__DIR__."/../model/windhund_model.php");
 include_once(__DIR__."/../model/bewerbung_model.php");
 include_once(__DIR__."/../model/belegwunsch_model.php");
-include_once(__DIR__."/../../db.php"); 
+include_once(__DIR__."/../../db.php");
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+require __DIR__.'/../../vendor/autoload.php';
 
 class einsicht_controller
 {
@@ -23,10 +30,10 @@ class einsicht_controller
         $this->belegwunsch_model = new belegwunsch_model();
     }
 
-    public function Einsicht($action, $action1, $id)
+    public function Einsicht($action, $action1, $action2, $id)
     {
 
-        if($action1=='Windhundverfahren'){
+        if($action1=='Windhundverfahren' && $action2=='none'){
             $modul_id = $id;
             $bew_count = $this->windhund_model->bewerbung_count($modul_id);
 
@@ -49,7 +56,7 @@ class einsicht_controller
                 include 'app/view/einsicht/none_view.php';
             }            
         }
-        else if($action1=='Bewerbungsverfahren'){
+        else if($action1=='Bewerbungsverfahren' && $action2=='none'){
             $thema_id = $id;
             $modul_id = $this->thema_model->getModulID($thema_id);
 
@@ -76,7 +83,40 @@ class einsicht_controller
                     include 'app/view/einsicht/none_view.php'; 
                 }
         } 
-        else if($action1=='Belegwunschverfahren'){
+        else if($action1=='Bewerbungsverfahren' && $action2=='modul'){
+            echo "hihihihi";
+            $modul_id = $id;
+
+            //$modul_id = $this->thema_model->getModulID($thema_id);
+
+
+            if( ($this->modul_model->getNachrueckverfahren($modul_id) == 'true') 
+                && ($this->bewerbung_model->countAnzWHBew($modul_id)  > 0 ) ){
+                $display = ""; 
+                $anmeldungen = $this->bewerbung_model->getWHThBew($modul_id);    
+            } else { 
+                $display = 'display:none'; 
+            } 
+
+            $bew_count_bw_all = $this->bewerbung_model->bewerbung_count_all($modul_id);
+            echo $bew_count_bw_all;
+
+                if($bew_count_bw_all > 0 ||  ($bew_count_bw_all > 0  && $this->bewerbung_model->countAnzWHBew($modul_id)  > 0)) { 
+                                        // checkt, ob Bewerbungen vorhanden sind
+                                        // KORR: UND ABER NACHR = 0 --> WENN KEINE BEW ABER NACHRÜCKV DANN JA
+                 $infos = $this->bewerbung_model->info_bewerbung_all($modul_id);                  
+                $bewerber = $this->bewerbung_model->bewerber_thema_all($modul_id);
+                 include 'app/view/einsicht/bewerbung_einsicht_all_view.php';
+                }
+                else{
+                    $kat = "Bewerbungen"; // Wenn keine Bewerbungen vorhanden sind, dann wird die none Unterseite aufgerufen
+                    include 'app/view/einsicht/none_view.php'; 
+                } 
+        } 
+
+
+
+        else if($action1=='Belegwunschverfahren' && $action2=='none'){
             $modul_id = $id; 
       
             if( ($this->modul_model->getNachrueckverfahren($id) == 'true') && ($this->belegwunsch_model->countAnzWHBeleg($id)  > 0 ) ){
@@ -1163,21 +1203,66 @@ function convertToWindowsCharset($string) {
 
     public function getModal($form, $id)
     {
-    
-        $infos = $this->belegwunsch_model->info_belegwunsch($id);
-
         switch ($form) {
             case '_bel':
+            $infos = $this->belegwunsch_model->info_belegwunsch($id);
             include 'app/view/modals/.php';
             break;
 
             case 'swap':
+            $infos = $this->belegwunsch_model->info_belegwunsch($id);
             include 'app/view/modals/swap.php'; 
             break;
         }
-
     }
 
+    public function getAnnahmeModal($iteration, $matrikelnummer, $thema_id)
+    {
+        $modal['btn_url'] = '/einsicht/annehmen/'.$iteration.'/'.$thema_id;
+        include 'app/view/modals/bewerbung_annehmen.php';
+    }
 
+    public function sendMail($wahl, $student)
+    {
 
+        $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+        try {
+            //Server settings
+            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'user@example.com';                 // SMTP username
+            $mail->Password = 'secret';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                    // TCP port to connect to
+
+            //Recipients
+            $mail->setFrom('from@example.com', 'Mailer');
+            while($i < count($student)){
+                $mail->addAddress($student[$i]['email'], $student[$i]['vorname']." ".$student[$i]['nachname']);     // Add a recipient
+                $i = $i + 1;
+            }
+            $mail->addReplyTo('info@example.com', 'Information');
+
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $annehmenbody = "Sie haben das <b>Thema</b> erhalten!";
+            $ablehnenbody = "Sie haben das Thema leider <b>nicht</b> erhalten.";
+            if($wahl == "annehmen"){
+                $mail->Subject = 'Here is the subject';
+                $mail->Body    = $annehmenbody;
+                $mail->AltBody = strip_tags($annehmenbody);
+            }else{
+                $mail->Subject = 'Here is the subject';
+                $mail->Body    = $ablehnenbody;
+                $mail->AltBody = strip_tags($ablehnenbody);
+            }
+
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        }
+    }
 }

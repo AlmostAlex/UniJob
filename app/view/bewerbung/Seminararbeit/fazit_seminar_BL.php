@@ -62,15 +62,18 @@
         </tr>
         <tr>
             <td><label><b>Thema mit Priorität 1:</b></label></td>
-            <td><?php echo $themenbezeichnung1." (".$infos1['betreuer'].")";?></td>      
+            <?php if($infos1['betreuer'] != ""){ ?> <td><?php echo $themenbezeichnung1." (".$infos1['betreuer'].")";?></td> <?php }
+            else{ ?> <td><?php echo $themenbezeichnung1;?></td> <?php } ?>     
         </tr>
         <tr>
             <td><label><b>Thema mit Priorität 2:</b></label></td>
-            <td><?php echo $themenbezeichnung2." (".$infos2['betreuer'].")";?></td>      
+            <?php if($infos2['betreuer'] != ""){ ?> <td><?php echo $themenbezeichnung2." (".$infos2['betreuer'].")";?></td> <?php }
+            else{ ?> <td><?php echo $themenbezeichnung2;?></td> <?php } ?>     
         </tr>
         <tr>
             <td><label><b>Thema mit Priorität 3:</b></label></td>
-            <td><?php echo $themenbezeichnung3." (".$infos3['betreuer'].")";?></td>      
+            <?php if($infos3['betreuer'] != ""){ ?> <td><?php echo $themenbezeichnung3." (".$infos3['betreuer'].")";?></td> <?php }
+            else{ ?> <td><?php echo $themenbezeichnung3;?></td> <?php } ?>     
         </tr>
         <tr>
             <td><label><b>Kick-Off:</b></label></td>

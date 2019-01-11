@@ -61,23 +61,28 @@
         </tr>
         <tr>
             <td><label><b>Thema mit Priorität 1:</b></label></td>
-            <td><?php echo $themenbezeichnung1." (".$infos1['betreuer'].")";?></td>      
+<?php if($infos1['betreuer'] != ""){ ?> <td><?php echo $themenbezeichnung1." (".$infos1['betreuer'].")";?></td> <?php }
+else{ ?> <td><?php echo $themenbezeichnung1;?></td> <?php } ?>     
         </tr>
         <tr>
-            <td><label><b>Thema mit Priorität 2:</b></label></td>
-            <td><?php echo $themenbezeichnung2." (".$infos2['betreuer'].")";?></td>      
+        <td><label><b>Thema mit Priorität 2:</b></label></td>
+<?php if($infos2['betreuer'] != ""){ ?> <td><?php echo $themenbezeichnung2." (".$infos2['betreuer'].")";?></td> <?php }
+else{ ?> <td><?php echo $themenbezeichnung2;?></td> <?php } ?>     
         </tr>
         <tr>
-            <td><label><b>Thema mit Priorität 3:</b></label></td>
-            <td><?php echo $themenbezeichnung3." (".$infos3['betreuer'].")";?></td>      
+        <td><label><b>Thema mit Priorität 3:</b></label></td>
+<?php if($infos3['betreuer'] != ""){ ?> <td><?php echo $themenbezeichnung3." (".$infos3['betreuer'].")";?></td> <?php }
+else{ ?> <td><?php echo $themenbezeichnung3;?></td> <?php } ?>     
         </tr>
-        <tr>
-            <td><label><b>Kick-Off:</b></label></td>
-            <td><i style='color:red;' class="fas fa-exclamation"></i> <?php echo $infos1['kickoff'];;?></td>      
-        </tr> 
+    <!--     <tr>
+           <td><label><b>Kick-Off:</b></label></td>
+            <td><i style='color:red;' class="fas fa-exclamation"></i> 
+            <?php// echo $infos1['kickoff'];?>
+            </td>      
+        </tr>  -->
     </table>
 
-   <div type="button" style='color:white;' class="btn btn-primary"><a href='/modul_uebersicht'>Zurück zur Übersichtx</a></div>
+   <div type="button" class="btn btn-primary"><a style='color:white;' href='/modul_uebersicht'>Zurück zur Übersicht</a></div>
     </div>
     </bewerbung>
 <br><br>

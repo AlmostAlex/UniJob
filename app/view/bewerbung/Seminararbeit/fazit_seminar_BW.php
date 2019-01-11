@@ -73,10 +73,12 @@
                 <div class='ue_txt_v'></div> <div class='ue_txt_wh'></div></div>  
             </td>
         </tr>
+        <?php if($infos['betreuer'] != ""){?>
         <tr>
             <td><label><b>Betreuer:</b></label></td>
             <td><?php echo $infos['betreuer'];?></td>      
         </tr>
+        <?php } ?>
         <tr>
             <td><label><b>Art:</b></label></td>
             <td><?php echo $infos['kategorie'];?></td>      

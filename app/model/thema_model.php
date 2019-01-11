@@ -458,9 +458,6 @@ class thema_model
         }
          return $row;
     }
-   
-
- 
 
     }
 
@@ -561,7 +558,7 @@ class thema_model
     public function getBetreuerByID($thema_id)
     {
         $statement = $this->dbh->prepare(
-            "SELECT user.nachname, modul.kickoff, modul.kategorie, modul.modulbezeichnung, modul.professur
+            "SELECT thema.betreuer, modul.kickoff, modul.kategorie, modul.modulbezeichnung, modul.professur
                 FROM modul, thema, user
                 WHERE thema.modul_id = modul.modul_id
                 AND user.benutzer_id = thema.benutzer_id
@@ -569,7 +566,7 @@ class thema_model
                 LIMIT 1 ");
         $statement->bind_param('i', $thema_id);
         $statement->execute();
-        $statement->bind_result($nachname, $kickoff, $kategorie, $modulbezeichnung, $professur);
+        $statement->bind_result($betreuer, $kickoff, $kategorie, $modulbezeichnung, $professur);
         $statement->fetch();
 
         $date = date("d.m.Y");
@@ -584,7 +581,7 @@ class thema_model
         }
 
         $infos = array(
-            'betreuer' => $nachname,
+            'betreuer' => $betreuer,
             'kickoff' => date("d.m.Y", strtotime($kickoff)),
             'date' => $date,
             'time' => $time,

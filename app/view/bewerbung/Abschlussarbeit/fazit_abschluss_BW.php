@@ -73,10 +73,12 @@
                 <div class='ue_txt_v'></div> <div class='ue_txt_wh'></div></div>  
             </td>
         </tr>
+        <?php if($infos['betreuer'] != ""){?>
         <tr>
             <td><label><b>Betreuer:</b></label></td>
             <td><?php echo $infos['betreuer'];?></td>      
         </tr>
+        <?php } ?>
         <tr>
             <td><label><b>Art:</b></label></td>
             <td><?php echo $infos['kategorie'];?></td>      
@@ -89,13 +91,13 @@
             <td><label><b>Thema:</b></label></td>
             <td><?php echo $themenbezeichnung;?></td>      
         </tr>   
-        <tr>
+ <!--       <tr>
             <td><label><b>Kick-Off:</b></label></td>
-            <td><i style='color:red;' class="fas fa-exclamation"></i> <?php echo $infos['kickoff'];;?></td>      
-        </tr>   
+            <td><i style='color:red;' class="fas fa-exclamation"></i> <?php //echo $infos['kickoff'];?></td>      
+        </tr>    -->
     </table>
 
-     <div type="button" style='color:white;' class="btn btn-primary"><a href='/modul_uebersicht'>Zurück zur Übersichtx</a></div>
+     <div type="button"  class="btn btn-primary"><a style='color:white;' href='/modul_uebersicht'>Zurück zur Übersicht</a></div>
     </div>
     </bewerbung>
 <br><br>
