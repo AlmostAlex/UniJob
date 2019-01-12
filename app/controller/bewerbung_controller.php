@@ -243,8 +243,6 @@ class bewerbung_controller
                     }
             }
 
-
-// TBC
 // BEWERBUNGSVERFAHREN
 else if($this->modul_model->getModulVerfahrenByID($id) == 'Bewerbungsverfahren'){
             

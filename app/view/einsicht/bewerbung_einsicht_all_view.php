@@ -7,7 +7,21 @@
     beworben.
  </div>
 
+<div class="dropdown">
 
+<button style='float:right; margin-left:20px;' id="collapse-init" class="btn btn-info">
+    Öffne alle Themen
+</button>
+
+  <button style='float:right;' class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Exportieren
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <a data-verfahren='expBEW' data-modul-id='<?php echo $modul_id;?>' id='ListeAlleBew' name ='ListeAlleBew' class="dropdown-item" href="#">Export - Alle Bewerber</a>
+ </div>
+</div>
+
+<br><br>
 
 <nachrueckv style='<?php echo $display;?>'>
    <b> <i class="fas fa-arrow-right"></i>   Anmeldungen während des <red>Nachrückverfahrens <i class="fas fa-exclamation"></i></red> </b>
@@ -55,7 +69,7 @@
         </div>
     </form>
 </nachrueckv>
-<hr>
+
 
 <!-- BEWERBUNGEN MIT ALLEN THEMEN -->
 <b> <i class="fas fa-arrow-right"></i>   Bewerbungen zu den Themen </b>
@@ -82,7 +96,7 @@
            <table style='padding: 0px;margin-bottom: 0px;'>
             <tr>
                 <td style='width:50px;'>
-                    <a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#thema_<?php echo $themen[$k]['thema_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a>
+                    <a class='collapsed' id="panel-collapse collapse" data-toggle='collapse' data-parent='#accordion' href='#thema_<?php echo $themen[$k]['thema_id']; ?>' aria-expanded='true'><i class='fa' aria-hidden='true'></i></a>
                 </td>
                 <td>
                 Thema: <?php echo $themen[$k]['themenbezeichnung']; ?>
@@ -91,7 +105,7 @@
             </tr>
            </table>
 
-           <div id='thema_<?php echo $themen[$k]['thema_id']; ?>' class='collapse' role='tabpanel' aria-labelledby='headingOne' data-parent='#accordion'>
+           <div id='thema_<?php echo $themen[$k]['thema_id']; ?>'  class="panel-collapse collapse" role='tabpanel' aria-labelledby='headingOne' data-parent='#accordion'>
             
             <table style='border:0px;' id="sort_einsicht_all_<?php echo $themen[$k]['thema_id']; ?>">
                 <thead>

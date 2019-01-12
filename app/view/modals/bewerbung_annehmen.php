@@ -14,8 +14,8 @@
       <div class="modal-body">
         <div class='alert alert-danger'>
           <center>
-          <!--  <img style='float:left;' src='<?php// echo $modal['img'];?>'> -->
-            <?php echo "Den Studenten mit der Matrikelnummer '".$matrikelnummer."' annehmen? Die übrigen Bewerber werden hierdurch abgelehnt. Alle Bewerber werden über ihr Ergebnis informiert!";?>
+        
+            <?php echo "Den Studenten mit der Matrikelnummer .'$matrikelnummer.' annehmen? Die übrigen Bewerber werden hierdurch abgelehnt. Alle Bewerber werden über ihr Ergebnis informiert!";?>
             <center>
         </div>
       </div>
@@ -28,8 +28,3 @@
 </div>
 
 
-<script>
-  $(window).on('load', function () {
-    $('#automatic').modal('show');
-  });
-</script>

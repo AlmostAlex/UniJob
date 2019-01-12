@@ -180,6 +180,7 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 
+    //BELEGWUNSCHV START
     //all
     $("#ListeAll").click(function() {
         //var liste = $("input[name='Liste']:checked").val();
@@ -191,7 +192,6 @@ $(document).ready(function() {
 
         });
     });
-
 
     $("#ListeVerfTh").click(function() {
         //var liste = $("input[name='Liste']:checked").val();
@@ -213,7 +213,6 @@ $(document).ready(function() {
         });
     });
 
-
     $("#ListeNachr").click(function() {
         //var liste = $("input[name='Liste']:checked").val();
         var id = $("#ListeNachr").data('modul-id');
@@ -222,6 +221,47 @@ $(document).ready(function() {
             document.location.href = '../../ajax/ajax_controller.php?action=' + verf + '&art=nachr&id=' + id;
 
         });
+    });
+
+    //BELEGWUNSCHV ENDE
+
+    // BEWERBUNGSV START 
+    $("#ListeAlleBew").click(function() {
+        //var liste = $("input[name='Liste']:checked").val();
+        //var liste = document.getElementById("ListeAll").value;
+        var id = $("#ListeAlleBew").data('modul-id');
+        var verf = $("#ListeAlleBew").data('verfahren');
+        $.get('../../../ajax/ajax_controller.php', 'action=' + verf + '&art=all&id=' + id, function() {
+            document.location.href = '../../../ajax/ajax_controller.php?action=' + verf + '&art=allBEW&id=' + id;
+        });
+    });
+
+
+
+});
+
+// Expan all Button aus der Gesamt-Einsicht für Bewerbungen
+
+$(function() {
+
+    var active = true;
+
+    $('#collapse-init').click(function() {
+        if (active) {
+            active = false;
+            $('.panel-collapse').collapse('show');
+            $('.panel-title').attr('data-toggle', '');
+            $(this).text('Schließe alle Themen');
+        } else {
+            active = true;
+            $('.panel-collapse').collapse('hide');
+            $('.panel-title').attr('data-toggle', 'collapse');
+            $(this).text('Öffne alle Themen');
+        }
+    });
+
+    $('#accordion').on('show.bs.collapse', function() {
+        if (active) $('#accordion .in').collapse('hide');
     });
 
 });

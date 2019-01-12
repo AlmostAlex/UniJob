@@ -80,7 +80,7 @@ class einsicht_controller
                                         // checkt, ob Bewerbungen vorhanden sind
                                         // KORR: UND ABER NACHR = 0 --> WENN KEINE BEW ABER NACHRÜCKV DANN JA
                     $infos = $this->bewerbung_model->info_bewerbung($thema_id);                  
-                   echo "nanana";
+                 
                     $bewerber = $this->bewerbung_model->bewerber($thema_id);
                     include 'app/view/einsicht/bewerbung_einsicht_view.php';
                 }
@@ -121,8 +121,6 @@ class einsicht_controller
                     include 'app/view/einsicht/none_view.php'; 
                 } 
         } 
-
-
 
         else if($action1=='Belegwunschverfahren' && $action2=='none'){
             $modul_id = $id; 
@@ -1176,26 +1174,18 @@ class einsicht_controller
                 ($this->belegwunsch_model->countAnzWHBeleg($id)  > 0 ) ){
                     $cWH = true;  }  else { $cWH = false;}
                 $anmeldungen = $this->belegwunsch_model->getWHThBeleg($id); 
-                // Nachr fehlt
-                include('../app/view/export/download.php');
-            
+                
+                include('../app/view/export/download_bel.php');         
         }
 
         if($action == 'expBEW'){     
-            if($art == 'all'){ // Alle Listen d.h Vergebene, Nicht-vergebene und Liste nachdem Nachrückv. falls vorhanden
-            }
-            else if($art == 'verfTh'){
-                echo "verf";
-            }
-            else if($art == 'vergTh'){
-                echo "verg";
-            }
-            else if($art == 'nachr'){
-                echo "nr";
-            }
+             // Zuerst werden alle Themen geholt
+             $themen = $this->thema_model->themen_all($id);  
+             include('../app/view/export/download_bew.php');
         }
 
     }
+
 
           
 function convertToWindowsCharset($string) {

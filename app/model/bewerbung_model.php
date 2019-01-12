@@ -198,12 +198,12 @@ class bewerbung_model
             $statement = $this->dbh->prepare
             ("SELECT bewerbung.vorname, bewerbung.nachname, bewerbung.matrikelnummer, bewerbung.email,
             bewerbung.fachsemester, bewerbung.credits, bewerbung.studiengang, bewerbung.gesamt_punkte,
-            bewerbung.status
+            bewerbung.status, bewerbung.seminarteilnahme
             FROM bewerbung
             WHERE bewerbung.thema_id = ?");
            $statement->bind_param('i', $thema_id);
            $statement->execute();
-           $statement->bind_result($vorname, $nachname, $matrikelnummer, $email, $fachsemester, $credits, $studiengang, $gesamt_punkte, $status);
+           $statement->bind_result($vorname, $nachname, $matrikelnummer, $email, $fachsemester, $credits, $studiengang, $gesamt_punkte, $status, $seminarteilnahme);
           
            $rows = array();
         while ($statement->fetch()) {
@@ -216,7 +216,8 @@ class bewerbung_model
                 'credits' => $credits, 
                 'studiengang' => $studiengang,
                 'gesamt_punkte' => $gesamt_punkte,
-                'status' => $status
+                'status' => $status,
+                'seminarteilnahme' => $seminarteilnahme
             );
             $rows[] = $bewerbung;
         }
