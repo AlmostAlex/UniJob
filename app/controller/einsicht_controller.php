@@ -1235,14 +1235,34 @@ function convertToWindowsCharset($string) {
         $bewerber = $this->bewerbung_model->bewerber($thema_id);
         $themabezeichnung = $this->thema_model->getThemenbezeichnung($thema_id);
         $betreff_angenommen = "Sie wurden für das Thema '#thema' angenommen!";
-        $inhalt_angenommen = "Hallo #bewerber, </br> hiermit möchten wir Sie darüber informieren, dass sie das Thema #thema erhalten haben.";
-        //$inhalt_angenommen = str_replace("#thema", $themabezeichnung, $inhalt_angenommen1, $count);
+        $inhalt_angenommen = "Hallo #bewerber, hiermit möchten wir Sie darüber informieren, dass sie das Thema #thema erhalten haben.";
         //echo $count;
+
+        if(isset($_POST['send_mail']))
+        {
+            $annehmen_betreff = $_POST['Betreff_annahme'];
+            $annehmen_inhalt = $_POST['Inhalt_annahme'];
+            $annehmen_betreff = str_replace("#thema", $themabezeichnung, $annehmen_betreff);
+            $annehmen_betreff = str_replace("#bewerber_vorname", $bewerber[$genommen]['vorname'], $annehmen_betreff);
+            $annehmen_betreff = str_replace("#bewerber_nachname", $bewerber[$genommen]['nachname'], $annehmen_betreff);
+            $annehmen_inhalt = str_replace("#thema", $themabezeichnung, $annehmen_inhalt);
+            $annehmen_inhalt = str_replace("#bewerber_vorname", $bewerber[$genommen]['vorname'], $annehmen_inhalt);
+            $annehmen_inhalt = str_replace("#bewerber_nachname", $bewerber[$genommen]['nachname'], $annehmen_inhalt);
+    
+            $ablehnen_betreff = $_POST['Betreff_ablehnen'];
+            $ablehnen_inhalt = $_POST['Inhalt_ablehnen'];
+            $returnadress = $_POST['returnadress'];
+
+
+
+            $this->sendMail($bewerber, $genommen, $themabezeichnung, $annehmen_betreff, $annehmen_inhalt, $ablehnen_betreff, $ablehnen_inhalt, $returnadress);
+
+        }
         include 'app/view/einsicht/annehmen_view.php';
         
     }
 
-    public function sendMail($wahl, $student)
+    public function sendMail($bewerber, $genommen, $themabezeichnung, $annehmen_betreff, $annehmen_inhalt, $ablehnen_betreff, $ablehnen_inhalt, $returnadress)
     {
 
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
@@ -1258,31 +1278,60 @@ function convertToWindowsCharset($string) {
             $mail->Port = 587;                                    // TCP port to connect to
 
             //Recipients
-            $mail->setFrom('from@example.com', 'Mailer');
-            while($i < count($student)){
-                $mail->addAddress($student[$i]['email'], $student[$i]['vorname']." ".$student[$i]['nachname']);     // Add a recipient
-                $i = $i + 1;
-            }
-            $mail->addReplyTo('info@example.com', 'Information');
+            $mail->setFrom('okulov.alexander.mail@gmail.com', 'Mailer');
+            $mail->addAddress($bewerber[$genommen]['email'], $bewerber[$genommen]['vorname']." ".$bewerber[$genommen]['nachname']);     // Add a recipient
+            $mail->addReplyTo($returnadress, 'Information');
 
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
-            $annehmenbody = "Sie haben das <b>Thema</b> erhalten!";
-            $ablehnenbody = "Sie haben das Thema leider <b>nicht</b> erhalten.";
-            if($wahl == "annehmen"){
-                $mail->Subject = 'Here is the subject';
-                $mail->Body    = $annehmenbody;
-                $mail->AltBody = strip_tags($annehmenbody);
-            }else{
-                $mail->Subject = 'Here is the subject';
-                $mail->Body    = $ablehnenbody;
-                $mail->AltBody = strip_tags($ablehnenbody);
-            }
+                $mail->Subject = $annehmen_betreff;
+                $mail->Body    = $annehmen_inhalt;
+                $mail->AltBody = strip_tags($annehmen_inhalt);
 
             $mail->send();
             echo 'Message has been sent';
         } catch (Exception $e) {
             echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }
+
+        $i = 0;
+        while($i<count($bewerber)){
+            if($i != $genommen){
+        $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+        try {
+            //Server settings
+            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'user@example.com';                 // SMTP username
+            $mail->Password = 'secret';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                    // TCP port to connect to
+
+            //Recipients
+            $mail->setFrom('okulov.alexander.mail@gmail.com', 'Mailer');
+            $mail->addAddress($bewerber[$i]['email'], $bewerber[$i]['vorname']." ".$bewerber[$i]['nachname']);     // Add a recipient
+            $mail->addReplyTo($returnadress, 'Information');
+
+            //Content
+            $ablehnen_betreff1 = str_replace("#thema", $themabezeichnung, $ablehnen_betreff);
+            $ablehnen_betreff1 = str_replace("#bewerber_vorname", $bewerber[$i]['vorname'], $ablehnen_betreff1);
+            $ablehnen_betreff1 = str_replace("#bewerber_nachname", $bewerber[$i]['nachname'], $ablehnen_betreff1);
+            $ablehnen_inhalt1 = str_replace("#thema", $themabezeichnung, $ablehnen_inhalt);
+            $ablehnen_inhalt1 = str_replace("#bewerber_vorname", $bewerber[$i]['vorname'], $ablehnen_inhalt1);
+            $ablehnen_inhalt1 = str_replace("#bewerber_nachname", $bewerber[$i]['nachname'], $ablehnen_inhalt1);
+
+            $mail->isHTML(true);                                  // Set email format to HTML
+                $mail->Subject = $ablehnen_betreff1;
+                $mail->Body    = $ablehnen_inhalt1;
+                $mail->AltBody = strip_tags($ablehnen_inhalt1);
+
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        }
+    } $i=$i+1;}
     }
 }
