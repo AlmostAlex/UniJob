@@ -138,7 +138,12 @@ $(document).ready(function() {
           ['fontsize', ['fontsize']],
           ['para', ['ul', 'ol', 'paragraph']],
           ['height', ['height']]
-        ]
+        ],
+        popover: {
+            image: [],
+            link: [],
+            air: []
+        }
       });
   });
 

@@ -1225,9 +1225,9 @@ function convertToWindowsCharset($string) {
         $bewerber = $this->bewerbung_model->bewerber($thema_id);
         $themabezeichnung = $this->thema_model->getThemenbezeichnung($thema_id);
         $betreff_angenommen = "Sie wurden für das Thema '#thema' angenommen!";
-        $inhalt_angenommen = "Hallo #bewerber, </br>hiermit möchten wir Sie darüber informieren, dass sie das Thema #thema erhalten haben.";
+        $inhalt_angenommen = "Hallo #bewerber_vorname, </br>hiermit möchten wir Sie darüber informieren, dass sie das Thema #thema erhalten haben.";
         $betreff_abgelehnt = "Sie wurden nicht für das Thema '#thema' angenommen";
-        $inhalt_abgelehnt = "Hallo #bewerber, hiermit möchten wir Sie darüber informieren, dass sie das Thema #thema NICHT erhalten haben.";
+        $inhalt_abgelehnt = "Hallo #bewerber_vorname, hiermit möchten wir Sie darüber informieren, dass sie das Thema #thema NICHT erhalten haben.";
         
         
         //echo $count;
@@ -1262,12 +1262,12 @@ function convertToWindowsCharset($string) {
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {
             //Server settings
-            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->SMTPDebug = 0;                                 // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
             $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'okulov.alexander.mail@gmail.com';                 // SMTP username
-            $mail->Password = 'aA18118381';                           // SMTP password
+            $mail->Username = 'stickywebsinfo@gmail.com';                 // SMTP username
+            $mail->Password = 'sticky112';                           // SMTP password
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                                    // TCP port to connect to
 
@@ -1278,14 +1278,14 @@ function convertToWindowsCharset($string) {
 
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
-                $mail->Subject = $annehmen_betreff;
-                $mail->Body    = $annehmen_inhalt;
-                $mail->AltBody = strip_tags($annehmen_inhalt);
+                $mail->Subject = $this->convertToWindowsCharset($annehmen_betreff);
+                $mail->Body    = $this->convertToWindowsCharset($annehmen_inhalt);
+                $mail->AltBody = strip_tags($this->convertToWindowsCharset($annehmen_inhalt));
 
             $mail->send();
             echo 'Message has been sent';
         } catch (Exception $e) {
-            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+           // echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }
 
         $i = 0;
@@ -1296,10 +1296,10 @@ function convertToWindowsCharset($string) {
             //Server settings
             $mail->SMTPDebug = 2;                                 // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
+            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'user@example.com';                 // SMTP username
-            $mail->Password = 'secret';                           // SMTP password
+            $mail->Username = 'stickywebsinfo@gmail.com';                 // SMTP username
+            $mail->Password = 'sticky112';                           // SMTP password
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                                    // TCP port to connect to
 
@@ -1317,14 +1317,14 @@ function convertToWindowsCharset($string) {
             $ablehnen_inhalt1 = str_replace("#bewerber_nachname", $bewerber[$i]['nachname'], $ablehnen_inhalt1);
 
             $mail->isHTML(true);                                  // Set email format to HTML
-                $mail->Subject = $ablehnen_betreff1;
-                $mail->Body    = $ablehnen_inhalt1;
-                $mail->AltBody = strip_tags($ablehnen_inhalt1);
+                $mail->Subject = $this->convertToWindowsCharset($ablehnen_betreff1);
+                $mail->Body    = $this->convertToWindowsCharset($ablehnen_inhalt1);
+                $mail->AltBody = strip_tags($this->convertToWindowsCharset($ablehnen_inhalt1));
 
             $mail->send();
             echo 'Message has been sent';
         } catch (Exception $e) {
-            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+           // echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }
     } $i=$i+1;}
     }

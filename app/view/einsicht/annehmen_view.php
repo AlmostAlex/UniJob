@@ -1,12 +1,17 @@
-<br><h4>Bearbeiten der Mailvorlagen</h4>
-Hier können Sie ihre Emails noch anpassen. </br>
-Nutzen sie folgende Schreibweisen für Empfängerspezifische Informationen:</br>
-#thema = Das Thema, auf welches sich der Student beworben hat</br>
-#bewerber_vorname = Vorname des jeweiligen Bewerbers</br>
-#bewerber_nachname = Nachname des jeweiligen Bewerbers
-
-<div class="add_thema">
+<div class="verwaltungsbox">
+    <h4 class='card-title'><i class="fa fa-info-circle" aria-hidden="true"></i> 
+    Bearbeitung der Mails (Zusage/Absage)</h4>
+    <u>Bitte beachten Sie die folgenden Hinweise, damit die Emails die passenden Informationen beinhalten:</u><br>
+    <ul>
+    <li>  Vornahme des Bewerbers = <b>#bewerber_vorname</b></li>
+    <li>  Nachname des Bewerbers = <b>#bewerber_nachname</b></li>
+    <li>  Themenbezeichnung = <b>#thema</b></li>
+</div>
+<div class="form_thema">
     <form action="" method="post" name="mod" id="mod">
+        <table id='general'> 
+            <div style="left:50px" class="form_ueberschrift"><b>Email für die Zusage</b></div>
+        </table>
         <div class="list-group-item">
             <feld2>
                 <table>
@@ -26,9 +31,11 @@ Nutzen sie folgende Schreibweisen für Empfängerspezifische Informationen:</br>
                     </div>
                 </table>
             </feld2>
-        </div>
-        </br>
+        </div></br>
 
+        <table id='general'> 
+            <div style="left:50px" class="form_ueberschrift"><b>Email für die Absage</b></div>
+        </table>
         <div class="list-group-item">
             <feld2>
                 <table>
@@ -65,7 +72,8 @@ Nutzen sie folgende Schreibweisen für Empfängerspezifische Informationen:</br>
                 </table>
             </feld2>
         </div>
+</br>
         <input type="submit" name="send_mail" id="add_btn" class="btn btn-primary" value="Mails absenden" />
-
+</br>
     </form>
 </div>
