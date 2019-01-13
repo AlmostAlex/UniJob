@@ -20,9 +20,9 @@ Nutzen sie folgende Schreibweisen für Empfängerspezifische Informationen:</br>
                         <tr>
                             <td><label for="inhalt"><b>Inhalt:</b></label></td>
                             <td>
-                                <textarea rows="5" type="text" name="Inhalt_annahme" class="form-control" required/><?php echo $inhalt_angenommen; ?></textarea>
+                            <textarea id="summernote" name="Inhalt_annahme"> <?php echo $inhalt_angenommen; ?></textarea>
                             </td>
-                        </tr>                 
+                        </tr>
                     </div>
                 </table>
             </feld2>
@@ -36,15 +36,15 @@ Nutzen sie folgende Schreibweisen für Empfängerspezifische Informationen:</br>
                         <tr>
                             <td><label for="betreff"><b>Betreff:</b></label></td>
                             <td>
-                                <space><input style='height:35px;' type="text" name="Betreff_ablehnen" class="form-control" value="<?php echo $betreff_angenommen; ?>" required/></space>
+                                <space><input style='height:35px;' type="text" name="Betreff_ablehnen" class="form-control" value="<?php echo $betreff_abgelehnt; ?>" required/></space>
                             </td>
                         </tr>
                         <tr>
                             <td><label for="inhalt"><b>Inhalt:</b></label></td>
                             <td>
-                                <textarea rows="5" type="text" name="Inhalt_ablehnen" class="form-control" required/><?php echo $inhalt_angenommen; ?></textarea>
+                            <textarea id="summernote" name="Inhalt_ablehnen"> <?php echo $inhalt_abgelehnt; ?></textarea>
                             </td>
-                        </tr>                   
+                        </tr>  
                     </div>
                 </table>
             </feld2>

@@ -130,6 +130,17 @@ function swap2(e) {
     )
 }
 
+$(document).ready(function() {
+    $('textarea#summernote').summernote({
+        toolbar: [
+          // [groupName, [list of button]]
+          ['style', ['bold', 'italic', 'underline', 'clear']],
+          ['fontsize', ['fontsize']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['height', ['height']]
+        ]
+      });
+  });
 
 $(document).ready(function() {
     $("input:checkbox:not(:checked)").each(function() {

@@ -17,12 +17,13 @@
         <link rel="stylesheet" href="/css/bootstrap.css">
         <link rel="stylesheet" href="/css/layout.css"> 
         <link rel="stylesheet" href="/css/main.css">  
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css"> 
         <link rel="stylesheet" href="/css/modul_verwaltung.css"> 
         <link rel="stylesheet" href="/css/modul_uebersicht.css"> 
         <link rel="stylesheet" href="/css/archivierung.css"> 
-        
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+        <link href="/css/summernote.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.0/css/jquery.dataTables.css"/>
         <link rel="stylesheet" href="/css/einsicht.css">
         <!-- Icons -->
@@ -45,7 +46,7 @@
         <script src="/js/modul.js"></script>
         <script src="/js/modul_verwaltung.js"></script>
         <script src="/js/einsicht.js"></script>
-        
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script> 
         <script type="text/javascript" src="http://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>             
         

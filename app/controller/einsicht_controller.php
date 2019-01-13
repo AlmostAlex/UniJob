@@ -1225,7 +1225,11 @@ function convertToWindowsCharset($string) {
         $bewerber = $this->bewerbung_model->bewerber($thema_id);
         $themabezeichnung = $this->thema_model->getThemenbezeichnung($thema_id);
         $betreff_angenommen = "Sie wurden für das Thema '#thema' angenommen!";
-        $inhalt_angenommen = "Hallo #bewerber, hiermit möchten wir Sie darüber informieren, dass sie das Thema #thema erhalten haben.";
+        $inhalt_angenommen = "Hallo #bewerber, </br>hiermit möchten wir Sie darüber informieren, dass sie das Thema #thema erhalten haben.";
+        $betreff_abgelehnt = "Sie wurden nicht für das Thema '#thema' angenommen";
+        $inhalt_abgelehnt = "Hallo #bewerber, hiermit möchten wir Sie darüber informieren, dass sie das Thema #thema NICHT erhalten haben.";
+        
+        
         //echo $count;
 
         if(isset($_POST['send_mail']))
@@ -1243,7 +1247,7 @@ function convertToWindowsCharset($string) {
             $ablehnen_inhalt = $_POST['Inhalt_ablehnen'];
             $returnadress = $_POST['returnadress'];
 
-
+            echo $annehmen_inhalt;
 
             $this->sendMail($bewerber, $genommen, $themabezeichnung, $annehmen_betreff, $annehmen_inhalt, $ablehnen_betreff, $ablehnen_inhalt, $returnadress);
 
@@ -1260,10 +1264,10 @@ function convertToWindowsCharset($string) {
             //Server settings
             $mail->SMTPDebug = 2;                                 // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
+            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'user@example.com';                 // SMTP username
-            $mail->Password = 'secret';                           // SMTP password
+            $mail->Username = 'okulov.alexander.mail@gmail.com';                 // SMTP username
+            $mail->Password = 'aA18118381';                           // SMTP password
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                                    // TCP port to connect to
 
