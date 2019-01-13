@@ -1,4 +1,5 @@
 <br><h4>Verwaltung aller Bewerbungen zum Bewerbungsverfahren</h4>
+<?php echo $infos['anzBewANG']; ?>
 <open>
     <div class='alert alert-secondary' role='alert'>
 
@@ -17,7 +18,12 @@
     Exportieren
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <a data-verfahren='expBEW' data-modul-id='<?php echo $modul_id;?>' id='ListeAlleBew' name ='ListeAlleBew' class="dropdown-item" href="#">Export - Alle Bewerber</a>
+    <a data-verfahren='expBEW' data-modul-id='<?php echo $id?>' id='alleListen' name="alleListen" class="dropdown-item" href="#">Export - Alle Listen</a>
+    <a data-verfahren='expBEW' data-modul-id='<?php echo $modul_id;?>' id='ListeAlleBew' name ='ListeAlleBew' class="dropdown-item" href="#">Export - Alle Bewerber je Thema</a>
+    <a data-verfahren='expBEW' data-modul-id='<?php echo $id?>' <?php if($infos['anzBewANG'] > 0){echo 'id="ListeAngBew"';}?> name="ListeAngBew" class="dropdown-item <?php if($infos['anzBewANG'] == 0){echo 'disabled';}?>" href="#">Export - Angenommene Bewerber</a>
+    <a data-verfahren='expBEW' data-modul-id='<?php echo $id?>' <?php if($this->modul_model->getNachrueckverfahren($id) == 'true'){echo 'id="ListeNachrBew"';}?> name="ListeNachrBew" class="dropdown-item <?php if($this->modul_model->getNachrueckverfahren($id) == 'false'){echo 'disabled';}?>" href="#">Export - Nachrückverfahren</a>
+ 
+
  </div>
 </div>
 

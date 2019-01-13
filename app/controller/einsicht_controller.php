@@ -111,7 +111,7 @@ class einsicht_controller
                 $infos = $this->bewerbung_model->info_bewerbung_all($modul_id);                  
                 //$bew_thema = $this->bewerbung_model->bewerber_thema_all($modul_id);
                 
-            
+                
                 $themen = $this->thema_model->themen_all($modul_id);
                 //echo count($bew_thema);
                  include 'app/view/einsicht/bewerbung_einsicht_all_view.php';
@@ -1179,8 +1179,17 @@ class einsicht_controller
         }
 
         if($action == 'expBEW'){     
+             // ID = Modul_ID
              // Zuerst werden alle Themen geholt
              $themen = $this->thema_model->themen_all($id);  
+             $angBew = $this->bewerbung_model->getBewAng($id);
+
+             if( ($this->modul_model->getNachrueckverfahren($id) == 'true') && 
+                ($this->belegwunsch_model->countAnzWHBeleg($id)  > 0 ) ){
+                    $cWH = true;  }  else { $cWH = false;}
+                $anmeldungen = $this->belegwunsch_model->getWHThBeleg($id); 
+
+
              include('../app/view/export/download_bew.php');
         }
 

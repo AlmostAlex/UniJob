@@ -133,14 +133,14 @@ function swap2(e) {
 $(document).ready(function() {
     $('textarea#summernote').summernote({
         toolbar: [
-          // [groupName, [list of button]]
-          ['style', ['bold', 'italic', 'underline', 'clear']],
-          ['fontsize', ['fontsize']],
-          ['para', ['ul', 'ol', 'paragraph']],
-          ['height', ['height']]
+            // [groupName, [list of button]]
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['fontsize', ['fontsize']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']]
         ]
-      });
-  });
+    });
+});
 
 $(document).ready(function() {
     $("input:checkbox:not(:checked)").each(function() {
@@ -237,16 +237,41 @@ $(document).ready(function() {
     //BELEGWUNSCHV ENDE
 
     // BEWERBUNGSV START 
+    $("#alleListen").click(function() {
+        var id = $("#alleListen").data('modul-id');
+        var verf = $("#alleListen").data('verfahren');
+        $.get('../../../ajax/ajax_controller.php', 'action=' + verf + '&art=alleListen&id=' + id, function() {
+            document.location.href = '../../../ajax/ajax_controller.php?action=' + verf + '&art=alleListen&id=' + id;
+        });
+    });
+
     $("#ListeAlleBew").click(function() {
-        //var liste = $("input[name='Liste']:checked").val();
-        //var liste = document.getElementById("ListeAll").value;
         var id = $("#ListeAlleBew").data('modul-id');
         var verf = $("#ListeAlleBew").data('verfahren');
-        $.get('../../../ajax/ajax_controller.php', 'action=' + verf + '&art=all&id=' + id, function() {
+        $.get('../../../ajax/ajax_controller.php', 'action=' + verf + '&art=allBEW&id=' + id, function() {
             document.location.href = '../../../ajax/ajax_controller.php?action=' + verf + '&art=allBEW&id=' + id;
         });
     });
 
+    // Alle Angenommenen Bewerber 
+    $("#ListeAngBew").click(function() {
+        var id = $("#ListeAngBew").data('modul-id');
+        var verf = $("#ListeAngBew").data('verfahren');
+        $.get('../../../ajax/ajax_controller.php', 'action=' + verf + '&art=AngBEW&id=' + id, function() {
+            document.location.href = '../../../ajax/ajax_controller.php?action=' + verf + '&art=AngBEW&id=' + id;
+        });
+    });
+
+
+    $("#ListeNachrBew").click(function() {
+        var id = $("#ListeNachrBew").data('modul-id');
+        var verf = $("#ListeNachrBew").data('verfahren');
+        alert(verf);
+        $.get('../../../ajax/ajax_controller.php', 'action=' + verf + '&art=nachr&id=' + id, function() {
+            document.location.href = '../../../ajax/ajax_controller.php?action=' + verf + '&art=nachr&id=' + id;
+
+        });
+    });
 
 
 });
