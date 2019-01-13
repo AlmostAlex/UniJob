@@ -128,20 +128,28 @@ class bewerbung_model
                         WHERE thema.thema_id = bewerbung.thema_id 
                         AND thema.modul_id = modul.modul_id
                         AND modul.modul_id = $modul_id)
-                    as anzBew
+                    as anzBew,
+                    (SELECT count(bewerbung.bewerbung_id) 
+                        FROM thema, bewerbung, modul
+                        WHERE thema.thema_id = bewerbung.thema_id 
+                        AND thema.modul_id = modul.modul_id
+                        AND modul.modul_id = $modul_id
+                        AND bewerbung.status = 'Angenommen')
+                    as anzBewANG
                 FROM thema,bewerbung,modul
                 WHERE thema.thema_id = bewerbung.thema_id
                 AND modul.modul_id = thema.modul_id
                 AND modul.modul_id  =?");
             $statement->bind_param('i', $modul_id);
             $statement->execute();
-            $statement->bind_result($modulbezeichnung,$professur,$kategorie,$anzBew);
+            $statement->bind_result($modulbezeichnung,$professur,$kategorie,$anzBew, $anzBewANG);
             $statement->fetch();
     if($kategorie == 'Abschlussarbeit') {$modulbezeichnung = $professur;}
             $infos = array(
                 'modulbezeichnung' => $modulbezeichnung,
                 'kategorie' => $kategorie,
-                'anzBew' => $anzBew
+                'anzBew' => $anzBew,
+                'anzBewANG' => $anzBewANG
             );
     
         return $infos;
@@ -172,27 +180,38 @@ class bewerbung_model
         return $infos;
         } 
 
-    /*    public function bewerber_thema_all($modul_id){
-
+        public function getBewAng($thema_id){
             $statement = $this->dbh->prepare
-            ("SELECT thema.thema_id, thema.themenbezeichnung
-            FROM modul,thema,bewerbung
+            ("SELECT thema.themenbezeichnung, bewerbung.vorname, bewerbung.nachname, bewerbung.matrikelnummer, bewerbung.email,
+            bewerbung.fachsemester, bewerbung.credits, bewerbung.studiengang, bewerbung.gesamt_punkte, bewerbung.seminarteilnahme
+            FROM bewerbung, modul, thema
             WHERE modul.modul_id = thema.modul_id
-            AND thema.modul_id =?");
-           $statement->bind_param('i', $modul_id);
+            AND bewerbung.thema_id = thema.thema_id
+            AND bewerbung.status = 'Angenommen'
+            AND modul.modul_id =?");
+           $statement->bind_param('i', $thema_id);
            $statement->execute();
-           $statement->bind_result($thema_id, $themenbezeichnung);
-        
-        while ($statement->fetch()) {
-            $row[] = array(
-                'thema_id' => $thema_id,
-                'themenbezeichnung' => $themenbezeichnung
-            );
+           $statement->bind_result($themenbezeichnung, $vorname, $nachname, $matrikelnummer, $email, $fachsemester, $credits, $studiengang, $gesamt_punkte, $seminarteilnahme);
+          
+           $rows = array();
+           while ($statement->fetch()) {
+               $angBew = array(
+                   'themenbezeichnung' => $themenbezeichnung,
+                   'vorname' => $vorname,
+                   'nachname' => $nachname,
+                   'matrikelnummer' => $matrikelnummer,
+                   'email' => $email,
+                   'fachsemester' => $fachsemester,
+                   'credits' => $credits, 
+                   'studiengang' => $studiengang,
+                   'gesamt_punkte' => $gesamt_punkte,
+                   'seminarteilnahme' => $seminarteilnahme
+               );
+               $rows[] = $angBew;
+           }
+           return $rows;
+
         }
-        return $row;
-    } */
-
-
 
         public function bewerber($thema_id){
             $statement = $this->dbh->prepare
