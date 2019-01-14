@@ -342,7 +342,7 @@ class thema_model
             $row = array(
                 'thema_id' => $thema_id,
                 'themenbezeichnung' => $themenbezeichnung, 
-                'anz_bew_th' => $this->bewerbung_countTh($thema_id)            
+                'anz_bew_th' => $this->bewerbung_countTh($thema_id)     
             );
             $rows[] = $row;
         }

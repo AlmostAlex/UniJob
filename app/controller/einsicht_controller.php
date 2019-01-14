@@ -1256,8 +1256,6 @@ function convertToWindowsCharset($string) {
             $ablehnen_inhalt = $_POST['Inhalt_ablehnen'];
             $returnadress = $_POST['returnadress'];
 
-            echo $annehmen_inhalt;
-
             $this->sendMail($bewerber, $genommen, $themabezeichnung, $annehmen_betreff, $annehmen_inhalt, $ablehnen_betreff, $ablehnen_inhalt, $returnadress);
 
         }
@@ -1292,9 +1290,11 @@ function convertToWindowsCharset($string) {
                 $mail->AltBody = strip_tags($this->convertToWindowsCharset($annehmen_inhalt));
 
             $mail->send();
-            echo 'Message has been sent';
+            $this->bewerbung_model->updateStatus($bewerber[$genommen]['id']);
+            $this->thema_model->updateStatus($bewerber[$genommen]['thema_id']);
+            echo 'Message has been sent - Angenommen';
         } catch (Exception $e) {
-           // echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }
 
         $i = 0;
@@ -1331,9 +1331,11 @@ function convertToWindowsCharset($string) {
                 $mail->AltBody = strip_tags($this->convertToWindowsCharset($ablehnen_inhalt1));
 
             $mail->send();
-            echo 'Message has been sent';
+            $this->bewerbung_model->updateStatus($bewerber[$i]['id']);
+            $this->thema_model->updateStatus($bewerber[$i]['thema_id']);
+            echo 'Message has been sent - abgelehnt';
         } catch (Exception $e) {
-           // echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }
     } $i=$i+1;}
     }
