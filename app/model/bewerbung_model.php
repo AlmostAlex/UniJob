@@ -256,22 +256,24 @@ class bewerbung_model
 
         public function bewerber($thema_id){
             $statement = $this->dbh->prepare
-            ("SELECT bewerbung.vorname, bewerbung.nachname, bewerbung.matrikelnummer, bewerbung.email,
+            ("SELECT bewerbung.bewerbung_id, bewerbung.vorname, bewerbung.nachname, bewerbung.matrikelnummer, bewerbung.email, bewerbung.thema_id,
             bewerbung.fachsemester, bewerbung.credits, bewerbung.studiengang, bewerbung.gesamt_punkte,
             bewerbung.status, bewerbung.seminarteilnahme
             FROM bewerbung
             WHERE bewerbung.thema_id = ?");
            $statement->bind_param('i', $thema_id);
            $statement->execute();
-           $statement->bind_result($vorname, $nachname, $matrikelnummer, $email, $fachsemester, $credits, $studiengang, $gesamt_punkte, $status, $seminarteilnahme);
+           $statement->bind_result($bewerbung_id, $vorname, $nachname, $matrikelnummer, $email, $thema_iddb, $fachsemester, $credits, $studiengang, $gesamt_punkte, $status, $seminarteilnahme);
           
            $rows = array();
         while ($statement->fetch()) {
             $bewerbung = array(
+                'id' => $bewerbung_id,
                 'vorname' => $vorname,
                 'nachname' => $nachname,
                 'matrikelnummer' => $matrikelnummer,
                 'email' => $email,
+                'thema_id' => $thema_iddb,
                 'fachsemester' => $fachsemester,
                 'credits' => $credits, 
                 'studiengang' => $studiengang,

@@ -42,10 +42,6 @@
                             <td class='matrikelnummer_NV'><?php echo $anmeldungen[$k]['matrikelnummer']?></td>
                             <td class='email_NV'><?php echo $anmeldungen[$k]['email']?></td>
                             <td><?php echo $anmeldungen[$k]['status']?></td>
-                            <td style='width:28%;' align='center'>
-                            <span data-toggle='tooltip' data-placement='top' title='Modul löschen' class='<?php echo $module[$i]["checkDeleteBtn"] ?>'>
-                                <a href='#' data-toggle='modal' data-target='#Sicherheitsabfrage_<?php echo $module[$i]["modul_id"]; ?>'><i class="far fa-check-circle"></i></a>
-                            </span></td>
                         </tr>
                         <?php } ?>
                     </table>
