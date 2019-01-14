@@ -1293,9 +1293,9 @@ function convertToWindowsCharset($string) {
             $mail->send();
             $this->bewerbung_model->updateStatus($bewerber[$genommen]['id']);
             $this->thema_model->updateStatus($bewerber[$genommen]['thema_id']);
-            echo 'Message has been sent - Angenommen';
+          //  echo 'Message has been sent - Angenommen';
         } catch (Exception $e) {
-            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+             //echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }
 
         $i = 0;
@@ -1304,7 +1304,7 @@ function convertToWindowsCharset($string) {
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {
             //Server settings
-            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            //$mail->SMTPDebug = 0;                                 // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
             $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
@@ -1334,9 +1334,9 @@ function convertToWindowsCharset($string) {
             $mail->send();
             $this->bewerbung_model->updateStatus($bewerber[$i]['id']);
             $this->thema_model->updateStatus($bewerber[$i]['thema_id']);
-            echo 'Message has been sent - abgelehnt';
+           // echo 'Message has been sent - abgelehnt';
         } catch (Exception $e) {
-            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+           // echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }
     } $i=$i+1;}
     }

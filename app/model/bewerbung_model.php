@@ -254,9 +254,21 @@ class bewerbung_model
 
         }
 
+        public function updateStatus($bewerber_id){
+            $status = "Angenommen";
+            if ($statement = $this->dbh->prepare("UPDATE bewerbung SET bewerbung.status = ? WHERE bewerbung.bewerbung_id = ?"))
+            {
+                $statement->bind_param('si', $status, $bewerber_id);
+                $statement->execute();
+            } else {
+                $error = $this->dbh->errno . ' ' . $this->dbh->error;
+                echo "Fehlercode: " . $error . "<br/> Annahme der Bewerbung ist fehlgeschlagen.";
+            }
+        }
+
         public function bewerber($thema_id){
             $statement = $this->dbh->prepare
-            ("SELECT bewerbung.bewerbung_id, bewerbung.vorname, bewerbung.nachname, bewerbung.matrikelnummer, bewerbung.email, bewerbung.thema_id,
+("SELECT bewerbung.bewerbung_id, bewerbung.vorname, bewerbung.nachname, bewerbung.matrikelnummer, bewerbung.email, bewerbung.thema_id,
             bewerbung.fachsemester, bewerbung.credits, bewerbung.studiengang, bewerbung.gesamt_punkte,
             bewerbung.status, bewerbung.seminarteilnahme
             FROM bewerbung
