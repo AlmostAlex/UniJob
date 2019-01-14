@@ -33,10 +33,10 @@ if($art == 'allBEW' || $art == 'alleListen' ){
 }
 
 // Alle Angenommenen Bewerber
-if ($art =='AngBEW' || $art == 'alleListen'){
-    if($art =='all'){ $ausgabe .= "\n\n"; } 
+if ($art =='AbgAngBew'|| $art == 'alleListen'){
+    if($art =='alleListen'){ $ausgabe .= "\n"; } 
     $ausgabe .= '"Liste - Alle angenommenen Bewerber"; '."\n";
-    $ausgabe .= '"Thema"; Nachname";"Vorname";"Matrikelnummer";"E-Mail";"Studiengang";"Fachsemester";"Credits";"Seminarteilnahme";"Punkte";'."\n";
+    $ausgabe .= '"Thema";"Nachname";"Vorname";"Matrikelnummer";"E-Mail";"Studiengang";"Fachsemester";"Credits";"Seminarteilnahme";"Punkte";'."\n";
     for($l = 0; $l < count($angBew); $l++){ 
         $ausgabe .= 
         $angBew[$l]['themenbezeichnung'] . ';' . 
@@ -49,6 +49,26 @@ if ($art =='AngBEW' || $art == 'alleListen'){
         $angBew[$l]['credits'] . ';' .  
         $angBew[$l]['seminarteilnahme'] . ';' . 
         $angBew[$l]['gesamt_punkte'] . ';' . "\n";
+        
+    } 
+}
+
+// Alle AbgelehntenBewerber
+if ($art =='AbgAngBew' || $art == 'alleListen'){
+    if($art =='alleListen' || $art =='AbgAngBew' ){ $ausgabe .= "\n"; } 
+    $ausgabe .= '"Liste - Alle abeglehnten Bewerber"; '."\n";
+    $ausgabe .= '"Nachname";"Vorname";"Matrikelnummer";"E-Mail";"Studiengang";"Fachsemester";"Credits";"Seminarteilnahme";"Punkte";'."\n";
+    for($l = 0; $l < count($abgBew); $l++){ 
+        $ausgabe .= 
+        $abgBew[$l]['nachname'] . ';' . 
+        $abgBew[$l]['vorname'] . ';'.  
+        $abgBew[$l]['matrikelnummer'] .';'. 
+        $abgBew[$l]['email'] . ';' .
+        $abgBew[$l]['studiengang'] . ';' . 
+        $abgBew[$l]['fachsemester'] . ';' . 
+        $abgBew[$l]['credits'] . ';' .  
+        $abgBew[$l]['seminarteilnahme'] . ';' . 
+        $abgBew[$l]['gesamt_punkte'] . ';' . "\n";
         
     } 
 }

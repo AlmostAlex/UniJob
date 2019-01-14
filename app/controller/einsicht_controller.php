@@ -1183,6 +1183,7 @@ class einsicht_controller
              // Zuerst werden alle Themen geholt
              $themen = $this->thema_model->themen_all($id);  
              $angBew = $this->bewerbung_model->getBewAng($id);
+             $abgBew = $this->bewerbung_model->getBewAbg($id);
 
              if( ($this->modul_model->getNachrueckverfahren($id) == 'true') && 
                 ($this->belegwunsch_model->countAnzWHBeleg($id)  > 0 ) ){

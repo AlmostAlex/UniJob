@@ -133,19 +133,14 @@ function swap2(e) {
 $(document).ready(function() {
     $('textarea#summernote').summernote({
         toolbar: [
-          // [groupName, [list of button]]
-          ['style', ['bold', 'italic', 'underline', 'clear']],
-          ['fontsize', ['fontsize']],
-          ['para', ['ul', 'ol', 'paragraph']],
-          ['height', ['height']]
-        ],
-        popover: {
-            image: [],
-            link: [],
-            air: []
-        }
-      });
-  });
+            // [groupName, [list of button]]
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['fontsize', ['fontsize']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']]
+        ]
+    });
+});
 
 $(document).ready(function() {
     $("input:checkbox:not(:checked)").each(function() {
@@ -264,6 +259,15 @@ $(document).ready(function() {
         var verf = $("#ListeAngBew").data('verfahren');
         $.get('../../../ajax/ajax_controller.php', 'action=' + verf + '&art=AngBEW&id=' + id, function() {
             document.location.href = '../../../ajax/ajax_controller.php?action=' + verf + '&art=AngBEW&id=' + id;
+        });
+    });
+
+    // Alle Abgelehnten Bewerber 
+    $("#ListeAngAbgBew").click(function() {
+        var id = $("#ListeAngAbgBew").data('modul-id');
+        var verf = $("#ListeAngAbgBew").data('verfahren');
+        $.get('../../../ajax/ajax_controller.php', 'action=' + verf + '&art=AbgAngBew&id=' + id, function() {
+            document.location.href = '../../../ajax/ajax_controller.php?action=' + verf + '&art=AbgAngBew&id=' + id;
         });
     });
 
