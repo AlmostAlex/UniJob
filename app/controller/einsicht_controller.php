@@ -1226,7 +1226,6 @@ function convertToWindowsCharset($string) {
 
     public function getAnnahmeModal($iteration, $matrikelnummer, $thema_id)
     {
-        echo $matrikelnummer;
         $modal['btn_url'] = '/einsicht/annehmen/'.$iteration.'/'.$thema_id;
         include 'app/view/modals/bewerbung_annehmen.php';
     }
