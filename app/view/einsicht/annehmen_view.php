@@ -65,7 +65,7 @@
                         <tr>
                             <td><label for="rueckadresse"><b>Antwortadresse:</b></label></td>
                             <td>
-                                <space><input style='height:35px;' type="text" name="returnadress" class="form-control" value="" placeholder="vorname.nachname@stud.uni-goettingen.de" required/></space>
+                                <space><input style='height:35px;' type="text" name="returnadress" class="form-control" value="produktion@wiwi.uni-goettingen.de" placeholder="vorname.nachname@wiwi.uni-goettingen.de" required/></space>
                             </td>
                         </tr>                        
                     </div>
