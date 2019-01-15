@@ -137,7 +137,8 @@
                     <span data-toggle='tooltip' data-placement='top' title='Diesen Bewerber annehmen  /  alle anderen ablehnen' class='badge badge-warning'>
                         <a href='#' data-toggle='modal' data-target='#annehmen_<?php echo $bewerber[$k]["matrikelnummer"]; ?>'><i class="far fa-check-circle" style="color:white"></i></a>
                     </span>
-                    <?php $this->getAnnahmeModal($k,$bewerber[$k]["matrikelnummer"], $themen[$k]['thema_id']);?>
+                    <?php $this->getAnnahmeModal($k,$bewerber[$p]["matrikelnummer"],$themen[$k]['thema_id']);?>
+                    <?php echo "hihihi";?>
                 </td>
                 </tr>
                   
