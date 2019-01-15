@@ -1,7 +1,7 @@
 <div class="verwaltungsbox">
     <h4 class='card-title'><i class="fa fa-info-circle" aria-hidden="true"></i> 
-    Bearbeitung der Mails (Zusage/Absage)</h4>
-    <u>Bitte beachten Sie die folgenden Hinweise, damit die Emails die passenden Informationen beinhalten:</u><br>
+    Bearbeitung der E-Mails für Zusage und Absagen</h4>
+    <u>Bitte beachten Sie die folgenden Hinweise, damit die E-Mails die passenden Informationen beinhalten:</u><br>
     <ul>
     <li>  Vornahme des Bewerbers = <b>#bewerber_vorname</b></li>
     <li>  Nachname des Bewerbers = <b>#bewerber_nachname</b></li>
@@ -10,7 +10,7 @@
 <div class="form_thema">
     <form action="" method="post" name="mod" id="mod">
         <table id='general'> 
-            <div style="left:50px" class="form_ueberschrift"><b>Email für die Zusage</b></div>
+            <div style="left:50px" class="form_ueberschrift"><b>E-Mail für die Zusage</b></div>
         </table>
         <div class="list-group-item">
             <feld2>
@@ -34,7 +34,7 @@
         </div></br>
 
         <table id='general'> 
-            <div style="left:50px" class="form_ueberschrift"><b>Email für die Absage</b></div>
+            <div style="left:50px" class="form_ueberschrift"><b>E-Mail für die Absage</b></div>
         </table>
         <div class="list-group-item">
             <feld2>
@@ -63,7 +63,7 @@
                     <div class="form-group fieldGroup">
                         </tr>
                         <tr>
-                            <td><label for="rueckadresse"><b>Rücksendeadresse:</b></label></td>
+                            <td><label for="rueckadresse"><b>Antwortadresse:</b></label></td>
                             <td>
                                 <space><input style='height:35px;' type="text" name="returnadress" class="form-control" value="" placeholder="vorname.nachname@stud.uni-goettingen.de" required/></space>
                             </td>

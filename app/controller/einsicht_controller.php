@@ -1234,10 +1234,10 @@ function convertToWindowsCharset($string) {
     {
         $bewerber = $this->bewerbung_model->bewerber($thema_id);
         $themabezeichnung = $this->thema_model->getThemenbezeichnung($thema_id);
-        $betreff_angenommen = "Sie wurden für das Thema '#thema' angenommen!";
-        $inhalt_angenommen = "Hallo #bewerber_vorname, </br>hiermit möchten wir Sie darüber informieren, dass sie das Thema #thema erhalten haben.";
-        $betreff_abgelehnt = "Sie wurden nicht für das Thema '#thema' angenommen";
-        $inhalt_abgelehnt = "Hallo #bewerber_vorname, hiermit möchten wir Sie darüber informieren, dass sie das Thema #thema NICHT erhalten haben.";
+        $betreff_angenommen = "Abschlussarbeit an der Professur für Produktion und Logistik - Zusage";
+        $inhalt_angenommen = "Hallo #bewerber_vorname #bewerber_nachname, </br></br>hiermit möchten wir Sie darüber informieren, dass Sie das Thema: #thema erhalten haben. Bitte nehmen Sie Kontakt mit uns auf zur Besprechung des weiteren Vorgehens. </br></br>Mit freundlichen Grüßen </br>Professur für Produktion und Logistik";
+        $betreff_abgelehnt = "Abschlussarbeit an der Professur für Produktion und Logistik - Absage";
+        $inhalt_abgelehnt = "Hallo #bewerber_vorname #bewerber_nachname, </br></br>hiermit möchten wir Sie darüber informieren, dass Sie das Thema: #thema leider nicht erhalten haben. Versuchen Sie es gerne im nächsten Quartal erneut. </br></br>Mit freundlichen Grüßen </br>Professur für Produktion und Logistik";
         
         
         //echo $count;
@@ -1280,9 +1280,9 @@ function convertToWindowsCharset($string) {
             $mail->Port = 587;                                    // TCP port to connect to
 
             //Recipients
-            $mail->setFrom('okulov.alexander.mail@gmail.com', 'Mailer');
+            $mail->setFrom('okulov.alexander.mail@gmail.com', $this->convertToWindowsCharset('Professur für Produktion und Logistik'));
             $mail->addAddress($bewerber[$genommen]['email'], $bewerber[$genommen]['vorname']." ".$bewerber[$genommen]['nachname']);     // Add a recipient
-            $mail->addReplyTo($returnadress, 'Information');
+            $mail->addReplyTo($returnadress, 'Bewerber Antwort');
 
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
@@ -1314,9 +1314,9 @@ function convertToWindowsCharset($string) {
             $mail->Port = 587;                                    // TCP port to connect to
 
             //Recipients
-            $mail->setFrom('okulov.alexander.mail@gmail.com', 'Mailer');
+            $mail->setFrom('okulov.alexander.mail@gmail.com', $this->convertToWindowsCharset('Professur für Produktion und Logistik'));
             $mail->addAddress($bewerber[$i]['email'], $bewerber[$i]['vorname']." ".$bewerber[$i]['nachname']);     // Add a recipient
-            $mail->addReplyTo($returnadress, 'Information');
+            $mail->addReplyTo($returnadress, 'Bewerber Antwort');
 
             //Content
             $ablehnen_betreff1 = str_replace("#thema", $themabezeichnung, $ablehnen_betreff);
