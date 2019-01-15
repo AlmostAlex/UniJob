@@ -15,7 +15,7 @@
         <div class='alert alert-danger'>
           <center>
         
-            <?php echo "Den Studenten mit der Matrikelnummer .'$matrikelnummer.' annehmen? Die übrigen Bewerber werden hierdurch abgelehnt. Alle Bewerber werden über ihr Ergebnis informiert!";?>
+            <?php echo "Den Studenten mit der Matrikelnummer '".$matrikelnummer."' annehmen? Die übrigen Bewerber werden hierdurch abgelehnt. Alle Bewerber werden über ihr Ergebnis informiert!";?>
             <center>
         </div>
       </div>
