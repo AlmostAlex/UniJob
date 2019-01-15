@@ -1291,7 +1291,7 @@ function convertToWindowsCharset($string) {
                 $mail->AltBody = strip_tags($this->convertToWindowsCharset($annehmen_inhalt));
 
             $mail->send();
-            $this->bewerbung_model->updateStatus($bewerber[$genommen]['id']);
+            $this->bewerbung_model->updateStatusAngenommen($bewerber[$genommen]['id']);
             $this->thema_model->updateStatus($bewerber[$genommen]['thema_id']);
           //  echo 'Message has been sent - Angenommen';
         } catch (Exception $e) {
@@ -1332,8 +1332,7 @@ function convertToWindowsCharset($string) {
                 $mail->AltBody = strip_tags($this->convertToWindowsCharset($ablehnen_inhalt1));
 
             $mail->send();
-            $this->bewerbung_model->updateStatus($bewerber[$i]['id']);
-            $this->thema_model->updateStatus($bewerber[$i]['thema_id']);
+            $this->bewerbung_model->updateStatusAbgelehnt($bewerber[$i]['id']);
            // echo 'Message has been sent - abgelehnt';
         } catch (Exception $e) {
            // echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
