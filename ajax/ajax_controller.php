@@ -77,7 +77,7 @@ if(isset($_GET["action"]) && $_GET["action"] =='swapAgain'){
 
 // Export
 
-if(isset($_GET["action"]) && ($_GET["action"] =='expWH' || $_GET["action"] =='expBEW' ||  $_GET["action"] =='expBEL')){
+if(isset($_GET["action"]) && ($_GET["action"] =='expWH' || $_GET["action"] =='expBEW' ||  $_GET["action"] =='expBEWTh' ||  $_GET["action"] =='expBEL')){
     $controller = new einsicht_controller();
     $controller->export($_GET['action'],$_GET['art'],$_GET['id']);
 

@@ -7,6 +7,23 @@
     beworben.
  </div>
 
+
+<div class="dropdown">
+  <button style='float:right;' class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Exportieren
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <a data-verfahren='expBEWTh' data-modul-id='<?php echo $thema_id;?>' id='alleListen' name="alleListen" class="dropdown-item" href="#">Export - Alle Listen</a>
+    <a data-verfahren='expBEWTh' data-modul-id='<?php echo $thema_id;?>' id='ListeAlleBew' name ='ListeAlleBew' class="dropdown-item" href="#">Export - Alle Bewerbungen des Themas</a>
+    <a data-verfahren='expBEWTh' data-modul-id='<?php echo $thema_id;?>' <?php if($infos['anzBewABG'] > 0 || $infos['anzBewANG'] > 0){echo 'id="ListeAngAbgBew"';}?> name="ListeAngAbgBew" class="dropdown-item <?php if($infos['anzBewABG'] == 0 && $infos['anzBewANG'] == 0){echo 'disabled';}?>" href="#">Export - Angn./Abgl. Bewerber</a>
+
+
+</div>
+</div>
+
+<?php echo $thema_id?>
+<br><br>
+
 <nachrueckv style='<?php echo $display;?>'>
    <b> <i class="fas fa-arrow-right"></i>   Anmeldungen während des <red>Nachrückverfahrens <i class="fas fa-exclamation"></i></red> </b>
 <!-- NACHRÜCKVERFAHREN TABELLE WENN BEWERBUNGEN ZUM NACHRÜCKVERFAHREN EXISTIEREN! -->
@@ -42,6 +59,7 @@
                             <td class='matrikelnummer_NV'><?php echo $anmeldungen[$k]['matrikelnummer']?></td>
                             <td class='email_NV'><?php echo $anmeldungen[$k]['email']?></td>
                             <td><?php echo $anmeldungen[$k]['status']?></td>
+                            <td></td>
                         </tr>
                         <?php } ?>
                     </table>

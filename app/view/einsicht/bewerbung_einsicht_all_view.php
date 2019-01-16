@@ -2,7 +2,7 @@
 <open>
     <div class='alert alert-secondary' role='alert'>
 
-     Auf <?php if($infos['kategorie']=='Abschlussarbeit') { echo "die Professur";} else {echo "das Modul "; } ?> <b>"<?php echo $infos['modulbezeichnung'] ;?>"</b>
+     Auf <?php if($infos['kategorie']=='Abschlussarbeit') { echo "die Abschlussarbeiten ";} else {echo "die Seminarthemen des Moduls"; } ?> <b>"<?php echo $infos['modulbezeichnung'] ;?>"</b>
     <?php if($infos['anzBew']>1){ echo "haben sich <b>{$infos['anzBew']}</b> Bewerber "; } else{ echo "hat sich <b>1</b> Bewerber";} ?>   
     beworben.
  </div>
@@ -21,7 +21,6 @@
     <a data-verfahren='expBEW' data-modul-id='<?php echo $modul_id;?>' id='ListeAlleBew' name ='ListeAlleBew' class="dropdown-item" href="#">Export - Alle Bewerber je Thema</a>
     <a data-verfahren='expBEW' data-modul-id='<?php echo $id?>' <?php if($infos['anzBewABG'] > 0 || $infos['anzBewANG'] > 0){echo 'id="ListeAngAbgBew"';}?> name="ListeAngAbgBew" class="dropdown-item <?php if($infos['anzBewABG'] == 0 && $infos['anzBewANG'] == 0){echo 'disabled';}?>" href="#">Export - Angn./Abgl. Bewerber</a>
     <a data-verfahren='expBEW' data-modul-id='<?php echo $id?>' <?php if($this->modul_model->getNachrueckverfahren($id) == 'true'){echo 'id="ListeNachrBew"';}?> name="ListeNachrBew" class="dropdown-item <?php if($this->modul_model->getNachrueckverfahren($id) == 'false'){echo 'disabled';}?>" href="#">Export - Nachrückverfahren</a>
-    
  </div>
 </div>
 
@@ -63,9 +62,7 @@
                             <td class='email_NV'><?php echo $anmeldungen[$k]['email']?></td>
                             <td><?php echo $anmeldungen[$k]['status']?></td>
                             <td style='width:28%;' align='center'>
-                            <span data-toggle='tooltip' data-placement='top' title='Modul löschen' class='<?php echo $module[$i]["checkDeleteBtn"] ?>'>
-                                <a href='#' data-toggle='modal' data-target='#Sicherheitsabfrage_<?php echo $module[$i]["modul_id"]; ?>'><i class="far fa-check-circle"></i></a>
-                            </span></td>
+                            </td>
                         </tr>
                         <?php } ?>
                     </table>
@@ -116,29 +113,30 @@
                     <tr>
                         <th class="no-sort" name='anmerkung'></th>
                         <th class='matrikelnummer'>Matrikelnr.</th>
-                        <th>FS</th>
-                        <th>Credits</th>
-                        <th>Studieng.</th>
-                        <th>Punkte</th>
-                        <th>Status</th>
+                        <th class='email'>E-Mail</th>
+                        <th class='fs'>FS</th>
+                        <th class='credits'>Credits</th>
+                        <th class='studiengang'>Studieng.</th>
+                        <th class='punkte'>Punkte</th>
+                        <th class='status'>Status</th>
                         <th class="no-sort">Funktionen</th>
                     </tr>
                 </thead>
             <?php $bewerber = $this->bewerber($themen[$k]['thema_id']); for ($p = 0; $p < count($bewerber); $p++) {?>   
                 <tr>
                 <td></td>
-                <td><?php echo $bewerber[$p]['matrikelnummer']; ?></td>
-                <td><?php echo $bewerber[$p]['fachsemester']; ?></td>
-                <td><?php echo $bewerber[$p]['credits']; ?></td>
-                <td><?php echo $bewerber[$p]['studiengang']; ?></td>
-                <td><?php echo $bewerber[$p]['gesamt_punkte']; ?></td>
-                <td><?php echo $bewerber[$p]['status']; ?></td>
+                <td class='matrikelnummer'><?php echo $bewerber[$p]['matrikelnummer']; ?></td>
+                <td class='email'><?php echo $bewerber[$p]['email']; ?></td>
+                <td class='fs'><?php echo $bewerber[$p]['fachsemester']; ?></td>
+                <td class='credits'><?php echo $bewerber[$p]['credits']; ?></td>
+                <td class='studiengang'><?php echo $bewerber[$p]['studiengang']; ?></td>
+                <td class='punkte'><?php echo $bewerber[$p]['gesamt_punkte']; ?></td>
+                <td class='status'><?php echo $bewerber[$p]['status']; ?></td>
                 <td style='width:28%;' align='center'>
                     <span data-toggle='tooltip' data-placement='top' title='Diesen Bewerber annehmen  /  alle anderen ablehnen' class='badge badge-warning'>
                         <a href='#' data-toggle='modal' data-target='#annehmen_<?php echo $bewerber[$k]["matrikelnummer"]; ?>'><i class="far fa-check-circle" style="color:white"></i></a>
                     </span>
                     <?php $this->getAnnahmeModal($k,$bewerber[$p]["matrikelnummer"],$themen[$k]['thema_id']);?>
-                    <?php echo "hihihi";?>
                 </td>
                 </tr>
                   

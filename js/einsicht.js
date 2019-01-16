@@ -276,7 +276,6 @@ $(document).ready(function() {
         });
     });
 
-
     $("#ListeNachrBew").click(function() {
         var id = $("#ListeNachrBew").data('modul-id');
         var verf = $("#ListeNachrBew").data('verfahren');
@@ -286,6 +285,8 @@ $(document).ready(function() {
 
         });
     });
+
+    //BEWERBUNG JE THEMA
 
 
 });

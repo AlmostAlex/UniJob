@@ -458,7 +458,7 @@ else{
                 $modal['case'] = 'bewerbung_senden';
                 $modal['title'] = 'Sicherheitsabfrage: Bewerbung?';
                 $modal['body_class'] = 'well';
-                $modal['content'] = 'Möchtest du wirklich dich da wirklich bewerben??';
+                $modal['content'] = 'Möchtest du wirklich dich da wirklich bewerben?';
                 $modal['btn'] = 'Bewerbung versenden';
                 $modal['btn_class'] = 'btn btn-primary';
                 $modal['type'] = 'submit';
@@ -471,7 +471,7 @@ else{
                 $modal['case'] = 'bewerbung_senden_BEL';
                 $modal['title'] = 'Sicherheitsabfrage: Bewerbung?';
                 $modal['body_class'] = 'well';
-                $modal['content'] = 'Möchtest du wirklich dich da wirklich bewerben??';
+                $modal['content'] = 'Möchtest du wirklich dich da wirklich bewerben?';
                 $modal['btn'] = 'Bewerbung versenden';
                 $modal['btn_class'] = 'btn btn-primary';
                 $modal['type'] = 'submit';

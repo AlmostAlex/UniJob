@@ -1178,25 +1178,52 @@ class einsicht_controller
                 include('../app/view/export/download_bel.php');         
         }
 
-        if($action == 'expBEW'){     
+        else if($action == 'expBEW'){     
              // ID = Modul_ID
              // Zuerst werden alle Themen geholt
+             $kategorie = $this->modul_model->getModulKategorie($id);
              $themen = $this->thema_model->themen_all($id);  
              $angBew = $this->bewerbung_model->getBewAng($id);
              $abgBew = $this->bewerbung_model->getBewAbg($id);
 
+             $infos = $this->bewerbung_model->info_bewerbung_all($id); 
              if( ($this->modul_model->getNachrueckverfahren($id) == 'true') && 
                 ($this->belegwunsch_model->countAnzWHBeleg($id)  > 0 ) ){
                     $cWH = true;  }  else { $cWH = false;}
                 $anmeldungen = $this->belegwunsch_model->getWHThBeleg($id); 
 
-
              include('../app/view/export/download_bew.php');
         }
 
+       else if($action == 'expBEWTh'){     
+            // ID = Thema_id 
+            // Zuerst wird die Modul_id geholt
+            $modul_id = $this->thema_model->getModulID($id);
+            $kategorie = $this->modul_model->getModulKategorie($modul_id);
+            //Anschließend die Themenbezeichnung
+            $themenbezeichnung = $this->thema_model->getThemenbezeichnung($id);
+            //Es werden alle Bewerber auf das Thema geholt
+            $bewerber = $this->bewerbung_model->bewerber($id);
+
+            //Liste aller angenommenen und abgelehnten Bewerber
+            $angBew = $this->bewerbung_model->getBewThAng($id);
+            $abgBew = $this->bewerbung_model->getBewThAbg($id);
+
+            //$themen = $this->thema_model->themen_all($id);  
+            //$angBew = $this->bewerbung_model->getBewAng($id);
+            //$abgBew = $this->bewerbung_model->getBewAbg($id);
+
+            $infos = $this->bewerbung_model->info_bewerbung_all($modul_id); 
+            if( ($this->modul_model->getNachrueckverfahren($modul_id) == 'true') && 
+               ($this->belegwunsch_model->countAnzWHBeleg($modul_id)  > 0 ) ){
+                   $cWH = true;  }  else { $cWH = false;}
+               $anmeldungen = $this->belegwunsch_model->getWHThBeleg($modul_id); 
+
+            include('../app/view/export/download_bewTh.php');
+       }
+
+
     }
-
-
           
 function convertToWindowsCharset($string) {
     $charset =  mb_detect_encoding(

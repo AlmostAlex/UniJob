@@ -13,7 +13,10 @@ $ausgabe = '';
 if($art == 'allBEW' || $art == 'alleListen' ){
     for($i = 0; $i < count($themen); $i++){ 
     $ausgabe .= $themen[$i]['themenbezeichnung'] . ';'."\n";
-    $ausgabe .= '"Nachname";"Vorname";"Matrikelnummer";"E-Mail";"Studiengang";"Fachsemester";"Credits";"Seminarteilnahme";"Punkte";"Status";'."\n";
+    $ausgabe .= '"Nachname";"Vorname";"Matrikelnummer";"E-Mail";"Studiengang";"Fachsemester";"Credits";';
+    if($kategorie=='Abschlussarbeit'){ $ausgabe .= '"Zulassung";';  } else{ $ausgabe .= "Seminarteilnahme"; } 
+    $ausgabe .=  '"Punkte";"Status";'."\n";
+
         $bewerber = $this->bewerber($themen[$i]['thema_id']); for ($p = 0; $p < count($bewerber); $p++) {
             $ausgabe .= 
             $bewerber[$p]['nachname'] . ';' . 
@@ -22,42 +25,48 @@ if($art == 'allBEW' || $art == 'alleListen' ){
             $bewerber[$p]['email'] . ';' .
             $bewerber[$p]['studiengang'] . ';' . 
             $bewerber[$p]['fachsemester'] . ';' . 
-            $bewerber[$p]['credits'] . ';' .  
-            $bewerber[$p]['seminarteilnahme'] . ';' .
-            $bewerber[$p]['gesamt_punkte'] . ';' .  
+            $bewerber[$p]['credits'] . ';'; 
+            if($kategorie=='Abschlussarbeit'){$ausgabe .= $bewerber[$p]['voraussetzung'] . ';';} 
+            else{$ausgabe .= $bewerber[$p]['seminarteilnahme'] . ';';} 
+            $ausgabe .= $bewerber[$p]['gesamt_punkte'] . ';' .  
             $bewerber[$p]['status'] . ';' . "\n";
-
             }            
             $ausgabe .= "\n";
     }
 }
 
 // Alle Angenommenen Bewerber
-if ($art =='AbgAngBew'|| $art == 'alleListen'){
+if ( ($art =='AbgAngBew'|| $art == 'alleListen') && $infos['anzBewANG'] > 0){
     if($art =='alleListen'){ $ausgabe .= "\n"; } 
     $ausgabe .= '"Liste - Alle angenommenen Bewerber"; '."\n";
-    $ausgabe .= '"Thema";"Nachname";"Vorname";"Matrikelnummer";"E-Mail";"Studiengang";"Fachsemester";"Credits";"Seminarteilnahme";"Punkte";'."\n";
+    $ausgabe .= '"Nachname";"Vorname";"Matrikelnummer";"E-Mail";"Studiengang";"Fachsemester";"Credits";';
+    if($kategorie=='Abschlussarbeit'){ $ausgabe .= '"Zulassung";';  } else{ $ausgabe .= '"Seminarteilnahme";'; } 
+    $ausgabe .=  '"Punkte";'."\n";
+    
     for($l = 0; $l < count($angBew); $l++){ 
         $ausgabe .= 
-        $angBew[$l]['themenbezeichnung'] . ';' . 
         $angBew[$l]['nachname'] . ';' . 
         $angBew[$l]['vorname'] . ';'.  
         $angBew[$l]['matrikelnummer'] .';'. 
         $angBew[$l]['email'] . ';' .
         $angBew[$l]['studiengang'] . ';' . 
         $angBew[$l]['fachsemester'] . ';' . 
-        $angBew[$l]['credits'] . ';' .  
-        $angBew[$l]['seminarteilnahme'] . ';' . 
-        $angBew[$l]['gesamt_punkte'] . ';' . "\n";
+        $angBew[$l]['credits'] . ';'; 
+        if($kategorie=='Abschlussarbeit'){$ausgabe .= $angBew[$l]['voraussetzung'] . ';';} 
+        else{$ausgabe .= $angBew[$l]['seminarteilnahme'] . ';';} 
+        $ausgabe .= $angBew[$l]['gesamt_punkte'] . ';' . "\n";  
         
     } 
 }
 
-// Alle AbgelehntenBewerber
-if ($art =='AbgAngBew' || $art == 'alleListen'){
+// Alle Abgelehnten Bewerber
+if ( ($art =='AbgAngBew' || $art == 'alleListen') && $infos['anzBewABG'] > 0){
     if($art =='alleListen' || $art =='AbgAngBew' ){ $ausgabe .= "\n"; } 
     $ausgabe .= '"Liste - Alle abeglehnten Bewerber"; '."\n";
-    $ausgabe .= '"Nachname";"Vorname";"Matrikelnummer";"E-Mail";"Studiengang";"Fachsemester";"Credits";"Seminarteilnahme";"Punkte";'."\n";
+    $ausgabe .= '"Nachname";"Vorname";"Matrikelnummer";"E-Mail";"Studiengang";"Fachsemester";"Credits";';
+    if($kategorie=='Abschlussarbeit'){ $ausgabe .= '"Zulassung";';  } else{ $ausgabe .= '"Seminarteilnahme";'; } 
+    $ausgabe .=  '"Punkte";'."\n";
+
     for($l = 0; $l < count($abgBew); $l++){ 
         $ausgabe .= 
         $abgBew[$l]['nachname'] . ';' . 
@@ -66,14 +75,14 @@ if ($art =='AbgAngBew' || $art == 'alleListen'){
         $abgBew[$l]['email'] . ';' .
         $abgBew[$l]['studiengang'] . ';' . 
         $abgBew[$l]['fachsemester'] . ';' . 
-        $abgBew[$l]['credits'] . ';' .  
-        $abgBew[$l]['seminarteilnahme'] . ';' . 
-        $abgBew[$l]['gesamt_punkte'] . ';' . "\n";
-        
+        $abgBew[$l]['credits'] . ';';  
+        if($kategorie=='Abschlussarbeit'){$ausgabe .= $abgBew[$l]['voraussetzung'] . ';';} 
+        else{$ausgabe .= $abgBew[$l]['seminarteilnahme'] . ';';} 
+        $ausgabe .= $abgBew[$l]['gesamt_punkte'] . ';' . "\n";         
     } 
 }
 
-if ($art =='nachr' || $art == 'alleListen'){
+if ( ($art =='nachr' || $art == 'alleListen') && $infos['anzBewANG'] > 0){
     if($art =='alleListen'){ $ausgabe .= "\n"; } 
     $ausgabe .= '"Liste - aus dem Nachrückverfahren"; '."\n";
     $ausgabe .= '"Thema";"Nachname";"Vorname";"Matrikelnummer";"E-Mail"; '."\n";
@@ -83,9 +92,6 @@ if ($art =='nachr' || $art == 'alleListen'){
         $anmeldungen[$k]['matrikelnummer'] .';'. $anmeldungen[$k]['email'] . ';' .  "\n";
     } 
 }
-
-
-
 
 
     echo $this->convertToWindowsCharset($ausgabe);

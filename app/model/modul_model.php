@@ -527,6 +527,18 @@ public function getModuleByUebersicht($filter_modul, $f_abfrage_s, $b_abfrage)
         return $studiengang;
     }
 
+    public function getModulKategorieByThema($thema_id)
+    {
+        $statement = $this->dbh->prepare("SELECT modul.kategorie FROM modul,thema 
+        Where thema.modul_id = modul.modul_id
+        AND thema.thema_id =?");
+        $statement->bind_param('i', $modul_id);
+        $statement->execute();
+        $statement->bind_result($kategorie);
+        $statement->fetch();
+        return $kategorie;
+    }
+
     public function getModulNachrueckvByID($modul_id)
     {
         $statement = $this->dbh->prepare("SELECT nachrueckverfahren From modul Where modul_id =?");

@@ -61,6 +61,7 @@ class thema_model
         return $thema_id;
     }
 
+
     public function  getBewID($thID){
         $statement = $this->dbh->prepare(
             "SELECT belegwunsch_id 
