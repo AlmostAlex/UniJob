@@ -3,7 +3,7 @@
     Bearbeitung der E-Mails für Zusage und Absagen</h4>
     <u>Bitte beachten Sie die folgenden Hinweise, damit die E-Mails die passenden Informationen beinhalten:</u><br>
     <ul>
-    <li>  Vornahme des Bewerbers = <b>#bewerber_vorname</b></li>
+    <li>  Vorname des Bewerbers = <b>#bewerber_vorname</b></li>
     <li>  Nachname des Bewerbers = <b>#bewerber_nachname</b></li>
     <li>  Themenbezeichnung = <b>#thema</b></li>
 </div>
